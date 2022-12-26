@@ -1,14 +1,15 @@
-import { Controller, Request, Post, Body, Res, HttpStatus } from '@nestjs/common';
+import { Controller, Request, Post, Body, Res, HttpStatus, UseGuards } from '@nestjs/common';
 import { Response } from 'express';
-import { BodyValidationService } from 'src/common/services/bodyValidation.service';
 import { User } from '../user/user.entity';
 import { UserService } from '../user/user.service';
+import { AuthService } from './auth.service';
 import { SignUpUserDto } from './dto/user-signup.dto';
+import { LocalAuthGuard } from './guards/local-auth.guard';
 
 @Controller('auth')
 export class AuthController {
   //We inject the user servicec in the constructor
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private authService: AuthService) {}
 
   /**
    * We create a post route for the sign up, the route will be /user/signup
@@ -20,12 +21,6 @@ export class AuthController {
    */
   @Post('signup')
   signUpUser(@Body() body: SignUpUserDto, @Request() req, @Res() res: Response) {
-    if (BodyValidationService.containsUndefinedFields(body)) {
-      return res.status(HttpStatus.BAD_REQUEST).json({
-        message: 'Please fill in all fields'
-      });
-    }
-
     if (body.password !== body.confirmPassword) {
       return res.status(HttpStatus.BAD_REQUEST).json({
         message: 'Passwords do not match'
@@ -44,5 +39,18 @@ export class AuthController {
       const { id, firstName, lastName, email } = user;
       return res.status(HttpStatus.CREATED).json({ id, firstName, lastName, email });
     });
+  }
+
+  /**
+   * Route for login
+   * The guard is used to protect the route, if the user is not authenticated, the route will not be accessible
+   * The LocalAuthGuard will check if the user is authenticated using the local strategy
+   * @param req The request object
+   * @returns the JWT access token for the user
+   */
+  @UseGuards(LocalAuthGuard)
+  @Post('login')
+  async loginUser(@Request() req) {
+    return this.authService.login(req.user);
   }
 }

@@ -5,6 +5,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserModule } from './modules/user/user.module';
 import { User } from './modules/user/user.entity';
 import { AuthModule } from './modules/auth/auth.module';
+import { LocalStrategy } from './modules/auth/strategies/local.strategy';
 
 @Module({
   imports: [
@@ -38,6 +39,6 @@ import { AuthModule } from './modules/auth/auth.module';
     AuthModule
   ],
   controllers: [],
-  providers: [AppService]
+  providers: [AppService, LocalStrategy]
 })
 export class AppModule {}

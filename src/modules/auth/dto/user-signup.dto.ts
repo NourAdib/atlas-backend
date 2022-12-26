@@ -1,4 +1,4 @@
-import { IsDate, IsEmail, IsNotEmpty, IsPhoneNumber } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsPhoneNumber } from 'class-validator';
 
 /**
  * This is the DTO for the user sign up,
@@ -15,7 +15,6 @@ export class SignUpUserDto {
   @IsNotEmpty()
   lastName: string;
 
-  @IsNotEmpty()
   @IsEmail()
   email: string;
 
@@ -33,6 +32,6 @@ export class SignUpUserDto {
 
   address: string;
 
-  @IsDate()
+  @IsNotEmpty()
   dateOfBirth: Date;
 }
