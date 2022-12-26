@@ -7,5 +7,6 @@
     "quoteProps": "preserve",
     "bracketSpacing": true,
     "bracketSameLine": true,
-    "trailingComma": "none"
+    "trailingComma": "none",
+    "endOfLine": "auto"
 }
