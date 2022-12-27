@@ -6,6 +6,8 @@ import { UserModule } from './modules/user/user.module';
 import { User } from './modules/user/user.entity';
 import { AuthModule } from './modules/auth/auth.module';
 import { LocalStrategy } from './modules/auth/strategies/local.strategy';
+import { PostModule } from './modules/post/post.module';
+import { Post } from './modules/post/post.entity';
 
 @Module({
   imports: [
@@ -21,7 +23,7 @@ import { LocalStrategy } from './modules/auth/strategies/local.strategy';
         username: configService.get<string>('DATABASE_USERNAME'),
         password: configService.get<string>('DATABASE_PASSWORD'),
         database: configService.get<string>('DATABASE_NAME'),
-        entities: [User],
+        entities: [User, Post],
         synchronize: false,
         autoLoadEntities: true,
         options: { encrypt: false },
@@ -36,7 +38,8 @@ import { LocalStrategy } from './modules/auth/strategies/local.strategy';
       inject: [ConfigService]
     }),
     UserModule,
-    AuthModule
+    AuthModule,
+    PostModule
   ],
   controllers: [],
   providers: [AppService, LocalStrategy]

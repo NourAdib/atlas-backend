@@ -11,6 +11,11 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(private userService: UserService) {}
 
+  /**
+   * Returns the user profile
+   * @param req the request object
+   * @param res the response object
+   */
   @UseGuards(JwtAuthGuard)
   @Get('profile')
   getUserProfile(@Request() req, @Res() res: Response) {
@@ -19,6 +24,12 @@ export class UserController {
     });
   }
 
+  /**
+   * Updates the user role
+   * @param req the request object
+   * @param res the response object
+   * @param role the role to update to
+   */
   @UseGuards(JwtAuthGuard)
   @Patch('role')
   updateUserRole(@Request() req, @Res() res: Response, @Query('role') role: Role) {

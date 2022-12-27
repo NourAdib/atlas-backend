@@ -68,7 +68,7 @@ export class UserService {
         'address',
         'dateOfBirth'
       ])
-      .where('id = :id', { id: user.userId })
+      .where('id = :id', { id: user.id })
       .execute();
   }
 
@@ -93,7 +93,7 @@ export class UserService {
       .createQueryBuilder()
       .update(User)
       .set({ role })
-      .where('id = :id', { id: user.userId })
+      .where('id = :id', { id: user.id })
       .execute();
   }
 }
