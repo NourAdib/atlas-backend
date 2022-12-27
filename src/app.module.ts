@@ -29,7 +29,7 @@ import { LocalStrategy } from './modules/auth/strategies/local.strategy';
         //Migrations Table Name
         migrationsTableName: 'migrations',
         //Migrations Folder
-        migrations: ['dist/migrations/*{.ts,.js}'],
+        migrations: ['../migrations/*{.ts,.js}'],
         //Automatically run migrations on app start if needed
         migrationsRun: true
       }),

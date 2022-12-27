@@ -1,6 +1,7 @@
 import { BaseEntity } from '../../common/entities/base.entity';
 import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert } from 'typeorm';
 import { EncryptionService } from '../../common/services/encryption.service';
+import { Role } from '../../constants/role.enum';
 
 /**
  * User Entity Class is the class that represents the User table in the database
@@ -35,6 +36,9 @@ export class User extends BaseEntity {
 
   @Column()
   dateOfBirth: Date;
+
+  @Column()
+  role: Role;
 
   //This is a hook that will be executed before the user is inserted in the database
   @BeforeInsert()

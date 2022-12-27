@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Role } from 'src/constants/role.enum';
 import { Repository } from 'typeorm';
 import { SignUpUserDto } from '../auth/dto/user-signup.dto';
 import { User } from './user.entity';
@@ -30,6 +31,9 @@ export class UserService {
     newUser.phoneNumber = user.phoneNumber;
     newUser.address = user.address;
     newUser.dateOfBirth = new Date(user.dateOfBirth);
+
+    //The user is a normal user by default
+    newUser.role = Role.User;
     return this.usersRepository.save(newUser);
   }
 
