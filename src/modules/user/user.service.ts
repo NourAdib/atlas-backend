@@ -1,7 +1,9 @@
 import { Injectable } from '@nestjs/common';
+import { BadRequestException } from '@nestjs/common/exceptions/bad-request.exception';
+import { ForbiddenException } from '@nestjs/common/exceptions/forbidden.exception';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Role } from 'src/constants/role.enum';
-import { Repository } from 'typeorm';
+import { Repository, UpdateResult } from 'typeorm';
 import { SignUpUserDto } from '../auth/dto/user-signup.dto';
 import { User } from './user.entity';
 
@@ -33,7 +35,7 @@ export class UserService {
     newUser.dateOfBirth = new Date(user.dateOfBirth);
 
     //The user is a normal user by default
-    newUser.role = Role.User;
+    newUser.role = Role.Standard;
     return this.usersRepository.save(newUser);
   }
 
@@ -61,10 +63,36 @@ export class UserService {
         'lastName',
         'email',
         'username',
+        'role',
         'phoneNumber',
         'address',
         'dateOfBirth'
       ])
+      .where('id = :id', { id: user.userId })
+      .execute();
+  }
+
+  /**
+   * Updates the user role
+   * @param user the user object that contains the userId
+   * @param role the role to be updated to
+   * @returns success or failure
+   */
+  updateUserRole(user: any, role: Role): Promise<UpdateResult> {
+    //Check if the role is valid
+    if (!Object.values(Role).includes(role)) {
+      throw new BadRequestException('Invalid role');
+    }
+
+    //Check if the user is an admin
+    if (user.role !== Role.Admin && role === Role.Admin) {
+      throw new ForbiddenException('You are not authorized to perform this action');
+    }
+
+    return this.usersRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({ role })
       .where('id = :id', { id: user.userId })
       .execute();
   }

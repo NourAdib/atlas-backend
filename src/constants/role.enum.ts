@@ -1,4 +1,7 @@
 export enum Role {
   Admin = 'admin',
-  User = 'user'
+  Standard = 'standard',
+  Celebrity = 'celebrity',
+  Influencer = 'influencer',
+  Professional = 'professional'
 }

@@ -1,4 +1,5 @@
-import { Controller, UseGuards, Res, Request, Get, HttpStatus } from '@nestjs/common';
+import { Controller, UseGuards, Res, Request, Get, HttpStatus, Patch } from '@nestjs/common';
+import { Query } from '@nestjs/common/decorators';
 import { Response } from 'express';
 import { Role } from 'src/constants/role.enum';
 import { Roles } from 'src/decorators/roles.decorator';
@@ -18,10 +19,23 @@ export class UserController {
     });
   }
 
-  @UseGuards(JwtAuthGuard, RolesGuard)
+  @UseGuards(JwtAuthGuard)
+  @Patch('role')
+  updateUserRole(@Request() req, @Res() res: Response, @Query('role') role: Role) {
+    this.userService
+      .updateUserRole(req.user, role)
+      .then(() => {
+        return res.status(HttpStatus.OK).send();
+      })
+      .catch((err) => {
+        return res.status(HttpStatus.BAD_REQUEST).json(err);
+      });
+  }
+
+  /* @UseGuards(JwtAuthGuard, RolesGuard)
   @Get('test')
   @Roles(Role.Admin)
   test() {
     return 'test';
-  }
+  } */
 }
