@@ -1,7 +1,9 @@
 import { Controller, UseGuards, Res, Request, Get, HttpStatus, Post, Body } from '@nestjs/common';
 import { Response } from 'express';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { User } from '../user/user.entity';
 import { CreatePostDto } from './dto/post-create.dto';
+import { CreateScrapBookDto } from './dto/scrapbook-create.dts';
 import { PostService } from './post.service';
 
 @Controller('post')
@@ -27,6 +29,47 @@ export class PostController {
   @Get('user-posts')
   getUserPosts(@Request() req, @Res() res: Response) {
     this.postService.getUserPosts(req.user).then((posts) => {
+      return res.status(HttpStatus.OK).json(posts);
+    });
+  }
+
+  /************************** SCRAPBOOK APIs **************************/
+  /**
+   * Creates a new scrapbook
+   * @param body the request body
+   * @param req the request object
+   * @param res the response object
+   */
+  @UseGuards(JwtAuthGuard)
+  @Post('scrapbook/create')
+  createScrapbook(@Body() body: CreateScrapBookDto, @Request() req, @Res() res: Response) {
+    this.postService.createScrapbook(req.user, body).then((post) => {
+      return res.status(HttpStatus.OK).json(post);
+    });
+  }
+
+  /**
+   * Returns the scrapbooks of the user sending the request
+   * @param req the request object
+   * @param res the response object
+   */
+  @UseGuards(JwtAuthGuard)
+  @Get('scrapbook/user-scrapbooks')
+  getUserScrapbooks(@Request() req, @Res() res: Response) {
+    this.postService.getUserScrapbooks(req.user).then((posts) => {
+      return res.status(HttpStatus.OK).json(posts);
+    });
+  }
+
+  /**
+   * Returns the scrapbook with the given id
+   * @param req the request object
+   * @param res the response object
+   */
+  @UseGuards(JwtAuthGuard)
+  @Get('scrapbook/:id')
+  getUserScrapbook(@Request() req, @Res() res: Response) {
+    this.postService.getScrapbookById(req.params.id).then((posts) => {
       return res.status(HttpStatus.OK).json(posts);
     });
   }

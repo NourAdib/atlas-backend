@@ -7,7 +7,8 @@ import { User } from './modules/user/user.entity';
 import { AuthModule } from './modules/auth/auth.module';
 import { LocalStrategy } from './modules/auth/strategies/local.strategy';
 import { PostModule } from './modules/post/post.module';
-import { Post } from './modules/post/post.entity';
+import { Post } from './modules/post/entities/post.entity';
+import { Scrapbook } from './modules/post/entities/scrapbook.entity';
 
 @Module({
   imports: [
@@ -23,7 +24,7 @@ import { Post } from './modules/post/post.entity';
         username: configService.get<string>('DATABASE_USERNAME'),
         password: configService.get<string>('DATABASE_PASSWORD'),
         database: configService.get<string>('DATABASE_NAME'),
-        entities: [User, Post],
+        entities: [User, Post, Scrapbook],
         synchronize: false,
         autoLoadEntities: true,
         options: { encrypt: false },

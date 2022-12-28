@@ -2,7 +2,8 @@ import { BaseEntity } from '../../common/entities/base.entity';
 import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, OneToMany } from 'typeorm';
 import { EncryptionService } from '../../common/services/encryption.service';
 import { Role } from '../../constants/role.enum';
-import { Post } from '../post/post.entity';
+import { Post } from '../post/entities/post.entity';
+import { Scrapbook } from '../post/entities/scrapbook.entity';
 
 /**
  * User Entity Class is the class that represents the User table in the database
@@ -46,6 +47,10 @@ export class User extends BaseEntity {
   //A user can have many posts
   @OneToMany(() => Post, (post) => post.postedBy)
   posts: Post[];
+
+  //A user can have many posts
+  @OneToMany(() => Scrapbook, (scrapbook) => scrapbook.user)
+  scrapbooks: Scrapbook[];
 
   //This is a hook that will be executed before the user is inserted in the database
   @BeforeInsert()

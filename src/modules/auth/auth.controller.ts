@@ -1,5 +1,7 @@
 import { Controller, Request, Post, Body, Res, HttpStatus, UseGuards } from '@nestjs/common';
 import { Response } from 'express';
+import { Role } from 'src/constants/role.enum';
+import { Roles } from 'src/decorators/roles.decorator';
 import { User } from '../user/user.entity';
 import { UserService } from '../user/user.service';
 import { AuthService } from './auth.service';
@@ -42,15 +44,16 @@ export class AuthController {
       return res.status(HttpStatus.CREATED).json({ id, firstName, lastName, email });
     });
   }
+
   /** creating post route, the route will be admin/signup
    * @param body the request body
    * @param req the request object itself
    * @param res the response object we will send back to the user
    * @returns confirmation message or error message
    */
-  @UseGuards(RolesGuard)
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Post('admin/signup')
+  @Roles(Role.Admin)
   signUpAdmin(@Body() body: SignUpUserDto, @Request() req, @Res() res: Response) {
     if (body.password !== body.confirmPassword) {
       return res.status(HttpStatus.BAD_REQUEST).json({
@@ -66,7 +69,7 @@ export class AuthController {
       }
     });
 
-    this.userService.create(body).then((user: User) => {
+    this.userService.createAdmin(body).then((user: User) => {
       const { id, firstName, lastName, email } = user;
       return res.status(HttpStatus.CREATED).json({ id, firstName, lastName, email });
     });
