@@ -4,7 +4,9 @@ import { User } from '../user/user.entity';
 import { UserService } from '../user/user.service';
 import { AuthService } from './auth.service';
 import { SignUpUserDto } from './dto/user-signup.dto';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { LocalAuthGuard } from './guards/local-auth.guard';
+import { RolesGuard } from './guards/roles.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -40,7 +42,35 @@ export class AuthController {
       return res.status(HttpStatus.CREATED).json({ id, firstName, lastName, email });
     });
   }
+  /** creating post route, the route will be admin/signup
+   * @param body the request body
+   * @param req the request object itself
+   * @param res the response object we will send back to the user
+   * @returns confirmation message or error message
+   */
+  @UseGuards(RolesGuard)
+  @UseGuards(JwtAuthGuard)
+  @Post('admin/signup')
+  signUpAdmin(@Body() body: SignUpUserDto, @Request() req, @Res() res: Response) {
+    if (body.password !== body.confirmPassword) {
+      return res.status(HttpStatus.BAD_REQUEST).json({
+        message: 'Passwords do not match'
+      });
+    }
 
+    this.userService.findOneByEmail(body.email).then((user: User) => {
+      if (user) {
+        return res.status(HttpStatus.BAD_REQUEST).json({
+          message: 'User already exists'
+        });
+      }
+    });
+
+    this.userService.create(body).then((user: User) => {
+      const { id, firstName, lastName, email } = user;
+      return res.status(HttpStatus.CREATED).json({ id, firstName, lastName, email });
+    });
+  }
   /**
    * Route for login
    * The guard is used to protect the route, if the user is not authenticated, the route will not be accessible

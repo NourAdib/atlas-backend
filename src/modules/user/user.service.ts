@@ -38,7 +38,26 @@ export class UserService {
     newUser.role = Role.Standard;
     return this.usersRepository.save(newUser);
   }
+  /**
+   * Creates a new user object and saves it in the database
+   * @param user the user object that contains the user information
+   * @returns the newly created user
+   */
+  createAdmin(user: SignUpUserDto): Promise<User> {
+    const newUser = new User();
+    newUser.firstName = user.firstName;
+    newUser.lastName = user.lastName;
+    newUser.email = user.email;
+    newUser.username = user.username;
+    newUser.password = user.password;
+    newUser.phoneNumber = user.phoneNumber;
+    newUser.address = user.address;
+    newUser.dateOfBirth = new Date(user.dateOfBirth);
 
+    //The user is an admin
+    newUser.role = Role.Admin;
+    return this.usersRepository.save(newUser);
+  }
   /**
    * Gets the user with the email passed in the parameter
    * @param email the email of the user
