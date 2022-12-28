@@ -42,9 +42,15 @@ export class AuthController {
       return res.status(HttpStatus.CREATED).json({ id, firstName, lastName, email });
     });
   }
+  /** creating post route, the route will be admin/signup
+   * @param body the request body
+   * @param req the request object itself
+   * @param res the response object we will send back to the user
+   * @returns confirmation message or error message
+   */
   @UseGuards(RolesGuard)
   @UseGuards(JwtAuthGuard)
-  @Post('signup')
+  @Post('admin/signup')
   signUpAdmin(@Body() body: SignUpUserDto, @Request() req, @Res() res: Response) {
     if (body.password !== body.confirmPassword) {
       return res.status(HttpStatus.BAD_REQUEST).json({
@@ -75,13 +81,6 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @Post('login')
   async loginUser(@Request() req) {
-    return this.authService.login(req.user);
-  }
-
-  @UseGuards(JwtAuthGuard)
-  @UseGuards(RolesGuard)
-  @Post('login')
-  async loginAdmin(@Request() req) {
     return this.authService.login(req.user);
   }
 }
