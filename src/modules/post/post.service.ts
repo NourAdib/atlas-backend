@@ -1,5 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Visibility } from 'src/constants/visibility.enum';
 import { Repository } from 'typeorm';
 import { User } from '../user/user.entity';
 import { Post } from './entities/post.entity';
@@ -23,6 +24,10 @@ export class PostService {
    */
   //TODO: Add image upload
   createPost(user: User, post: any): Promise<Post> {
+    if (!Object.values(Visibility).includes(post.visibility)) {
+      throw new BadRequestException('Invalid visibility');
+    }
+
     const newPost = new Post();
     newPost.caption = post.caption;
     //newPost.imageUrl = post.imageUrl;
@@ -68,6 +73,20 @@ export class PostService {
     return this.postRepository
       .createQueryBuilder()
       .leftJoinAndSelect('Post.postedBy', 'User')
+      .select([
+        'Post.id',
+        'Post.caption',
+        'Post.location',
+        'Post.visibility',
+        'Post.createdAt',
+        'Post.location',
+        'Post.tag',
+        'Post.type',
+        'post.imageUrl',
+        'User.id',
+        'User.username',
+        'User.email'
+      ])
       .where('User.id = :id', { id: user.id })
       .getMany();
   }
@@ -81,6 +100,17 @@ export class PostService {
     return this.scrapbookRepository
       .createQueryBuilder()
       .leftJoinAndSelect('Scrapbook.user', 'User')
+      .select([
+        'Scrapbook.id',
+        'Scrapbook.caption',
+        'Scrapbook.location',
+        'Scrapbook.visibility',
+        'Scrapbook.createdAt',
+        'Scrapbook.location',
+        'User.id',
+        'User.username',
+        'User.email'
+      ])
       .where('User.id = :id', { id: user.id })
       .getMany();
   }

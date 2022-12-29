@@ -1,7 +1,17 @@
-import { Controller, UseGuards, Res, Request, Get, HttpStatus, Post, Body } from '@nestjs/common';
+import {
+  Controller,
+  UseGuards,
+  Res,
+  Request,
+  Get,
+  HttpStatus,
+  Post,
+  Body,
+  BadRequestException
+} from '@nestjs/common';
 import { Response } from 'express';
+import { Visibility } from 'src/constants/visibility.enum';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-import { User } from '../user/user.entity';
 import { CreatePostDto } from './dto/post-create.dto';
 import { CreateScrapBookDto } from './dto/scrapbook-create.dts';
 import { PostService } from './post.service';
@@ -14,6 +24,10 @@ export class PostController {
   @UseGuards(JwtAuthGuard)
   @Post('create')
   createPost(@Body() body: CreatePostDto, @Request() req, @Res() res: Response) {
+    if (!Object.values(Visibility).includes(body.visibility)) {
+      throw new BadRequestException('Invalid visibility');
+    }
+
     this.postService.createPost(req.user, body).then((post) => {
       return res.status(HttpStatus.OK).json(post);
     });
@@ -43,6 +57,10 @@ export class PostController {
   @UseGuards(JwtAuthGuard)
   @Post('scrapbook/create')
   createScrapbook(@Body() body: CreateScrapBookDto, @Request() req, @Res() res: Response) {
+    if (!Object.values(Visibility).includes(body.visibility)) {
+      throw new BadRequestException('Invalid visibility');
+    }
+
     this.postService.createScrapbook(req.user, body).then((post) => {
       return res.status(HttpStatus.OK).json(post);
     });

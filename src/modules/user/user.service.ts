@@ -88,7 +88,7 @@ export class UserService {
         'dateOfBirth'
       ])
       .where('id = :id', { id: user.id })
-      .execute();
+      .getRawOne();
   }
 
   /**

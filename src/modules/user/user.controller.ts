@@ -2,9 +2,7 @@ import { Controller, UseGuards, Res, Request, Get, HttpStatus, Patch } from '@ne
 import { Query } from '@nestjs/common/decorators';
 import { Response } from 'express';
 import { Role } from 'src/constants/role.enum';
-import { Roles } from 'src/decorators/roles.decorator';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-import { RolesGuard } from '../auth/guards/roles.guard';
 import { UserService } from './user.service';
 
 @Controller('user')
@@ -42,11 +40,4 @@ export class UserController {
         return res.status(HttpStatus.BAD_REQUEST).json(err);
       });
   }
-
-  /* @UseGuards(JwtAuthGuard, RolesGuard)
-  @Get('test')
-  @Roles(Role.Admin)
-  test() {
-    return 'test';
-  } */
 }
