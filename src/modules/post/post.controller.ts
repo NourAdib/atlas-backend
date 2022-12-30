@@ -7,7 +7,8 @@ import {
   HttpStatus,
   Post,
   Body,
-  BadRequestException
+  BadRequestException,
+  Param
 } from '@nestjs/common';
 import { Response } from 'express';
 import { Visibility } from 'src/constants/visibility.enum';
@@ -82,12 +83,13 @@ export class PostController {
   /**
    * Returns the scrapbook with the given id
    * @param req the request object
+   * @param params the request params
    * @param res the response object
    */
   @UseGuards(JwtAuthGuard)
   @Get('scrapbook/:id')
-  getUserScrapbook(@Request() req, @Res() res: Response) {
-    this.postService.getScrapbookById(req.params.id).then((posts) => {
+  getUserScrapbook(@Request() req, @Param() params, @Res() res: Response) {
+    this.postService.getScrapbookById(params.id).then((posts) => {
       return res.status(HttpStatus.OK).json(posts);
     });
   }

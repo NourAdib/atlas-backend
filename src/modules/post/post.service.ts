@@ -24,10 +24,6 @@ export class PostService {
    */
   //TODO: Add image upload
   createPost(user: User, post: any): Promise<Post> {
-    if (!Object.values(Visibility).includes(post.visibility)) {
-      throw new BadRequestException('Invalid visibility');
-    }
-
     const newPost = new Post();
     newPost.caption = post.caption;
     //newPost.imageUrl = post.imageUrl;
