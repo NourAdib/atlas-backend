@@ -128,4 +128,12 @@ export class UserService {
       .where('id = id', { id: user.id })
       .execute();
   }
+  updateUserAddress(user: any, address: string): Promise<UpdateResult> {
+    return this.usersRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({ address })
+      .where('id = id', { id: user.id })
+      .execute();
+  }
 }

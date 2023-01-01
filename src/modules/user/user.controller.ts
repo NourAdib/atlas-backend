@@ -9,7 +9,7 @@ import {
   BadRequestException
 } from '@nestjs/common';
 import { Body, Query } from '@nestjs/common/decorators';
-import { Response } from 'express';
+import { Response, query } from 'express';
 import { Role } from 'src/constants/role.enum';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { UserService } from './user.service';
@@ -58,7 +58,17 @@ export class UserController {
   @Patch('email')
   updateUserEmail(@Body() body: UpdateUserEmailDto, @Request() req, @Res() res: Response) {
     this.userService.updateUserEmail(req.user, body.email).then(() => {
-      return res.status(HttpStatus.OK).send();
+      return res.status(HttpStatus.OK).json({ message: 'Email updated' });
+    });
+  }
+  @UseGuards(JwtAuthGuard)
+  @Patch('address')
+  updateUserAddress(@Query('address') address: string, @Request() req, @Res() res: Response) {
+    if (!address) {
+      throw new BadRequestException('Adress must not be empty');
+    }
+    this.userService.updateUserAddress(req.user, address).then(() => {
+      return res.status(HttpStatus.OK).json({ message: 'Address updated' });
     });
   }
 }
