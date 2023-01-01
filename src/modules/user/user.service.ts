@@ -176,4 +176,18 @@ export class UserService {
       .where('id = id', { id: user.id })
       .execute();
   }
+  /**
+   * updates the username
+   * @param user the user object that contains the userId
+   * @param username the username to be updated to
+   * @returns success or failure
+   */
+  updateUsername(user: any, username: string): Promise<UpdateResult> {
+    return this.usersRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({ username })
+      .where('id = id', { id: user.id })
+      .execute();
+  }
 }

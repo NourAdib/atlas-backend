@@ -97,13 +97,13 @@ export class UserController {
     if (firstName.length >= 255) {
       throw new BadRequestException('Name should be less than 256 charecters');
     }
-    this.userService.updateUserAddress(req.user, firstName).then(() => {
+    this.userService.updateUserFirstName(req.user, firstName).then(() => {
       return res.status(HttpStatus.OK).json({ message: 'First name updated' });
     });
   }
   /**
    * updates the usres last name
-   * @param firstName the first name to be updated
+   * @param lastName the first name to be updated
    * @param req the request object
    * @param res the response object
    */
@@ -116,8 +116,27 @@ export class UserController {
     if (lastName.length >= 255) {
       throw new BadRequestException('Name should be less than 256 charecters');
     }
-    this.userService.updateUserAddress(req.user, lastName).then(() => {
+    this.userService.updateUserLastName(req.user, lastName).then(() => {
       return res.status(HttpStatus.OK).json({ message: 'Last name updated' });
+    });
+  }
+  /**
+   * updates the usrename
+   * @param username the username to be updated
+   * @param req the request object
+   * @param res the response object
+   */
+  @UseGuards(JwtAuthGuard)
+  @Patch('username')
+  updateUsername(@Query('username') username: string, @Request() req, @Res() res: Response) {
+    if (!username) {
+      throw new BadRequestException('Username must not be empty');
+    }
+    if (username.length > 30) {
+      throw new BadRequestException('Userame should be less than 30 charecters');
+    }
+    this.userService.updateUsername(req.user, username).then(() => {
+      return res.status(HttpStatus.OK).json({ message: 'Username updated' });
     });
   }
 }
