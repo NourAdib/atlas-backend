@@ -34,13 +34,12 @@ export class UserService {
     newUser.phoneNumber = user.phoneNumber;
     newUser.address = user.address;
     newUser.dateOfBirth = new Date(user.dateOfBirth);
-    
+
     //The user is a normal user by default
     newUser.role = Role.Standard;
 
     console.log(newUser);
-    
-    
+
     return this.usersRepository.save(newUser);
   }
   /**
@@ -187,6 +186,20 @@ export class UserService {
       .createQueryBuilder()
       .update(User)
       .set({ username })
+      .where('id = id', { id: user.id })
+      .execute();
+  }
+  /**
+   * Updates users date of birth
+   * @param user the user object that contains the userId
+   * @param email the email to be updated to
+   * @returns success or failure
+   */
+  updateUserDateOfBirth(user: any, dateOfBirth: Date): Promise<UpdateResult> {
+    return this.usersRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({ dateOfBirth })
       .where('id = id', { id: user.id })
       .execute();
   }

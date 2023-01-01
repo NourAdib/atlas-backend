@@ -17,6 +17,7 @@ import { brotliDecompressSync } from 'zlib';
 import { UpdateUserEmailDto } from './dto/email-update.dto';
 import { isEmail } from 'class-validator';
 import { Post } from '../post/entities/post.entity';
+import { UpdateUserDateOfBirthDto } from './dto/dateofbirth-update.dto';
 
 @Controller('user')
 export class UserController {
@@ -137,6 +138,23 @@ export class UserController {
     }
     this.userService.updateUsername(req.user, username).then(() => {
       return res.status(HttpStatus.OK).json({ message: 'Username updated' });
+    });
+  }
+  /**
+   * updates the user date of birth
+   * @param body
+   * @param req the request object
+   * @param res the response object
+   */
+  @UseGuards(JwtAuthGuard)
+  @Patch('dateOfBirth')
+  updateUserDateOfBirth(
+    @Body() body: UpdateUserDateOfBirthDto,
+    @Request() req,
+    @Res() res: Response
+  ) {
+    this.userService.updateUserDateOfBirth(req.user, body.dateOfBirth).then(() => {
+      return res.status(HttpStatus.OK).json({ message: 'Date of birth updated' });
     });
   }
 }
