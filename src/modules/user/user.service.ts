@@ -6,6 +6,7 @@ import { Role } from 'src/constants/role.enum';
 import { Repository, UpdateResult } from 'typeorm';
 import { SignUpUserDto } from '../auth/dto/user-signup.dto';
 import { User } from './user.entity';
+import { threadId } from 'worker_threads';
 
 @Injectable()
 export class UserService {
@@ -33,9 +34,13 @@ export class UserService {
     newUser.phoneNumber = user.phoneNumber;
     newUser.address = user.address;
     newUser.dateOfBirth = new Date(user.dateOfBirth);
-
+    
     //The user is a normal user by default
     newUser.role = Role.Standard;
+
+    console.log(newUser);
+    
+    
     return this.usersRepository.save(newUser);
   }
   /**
@@ -113,6 +118,14 @@ export class UserService {
       .update(User)
       .set({ role })
       .where('id = :id', { id: user.id })
+      .execute();
+  }
+  updateUserEmail(user: any, email: string): Promise<UpdateResult> {
+    return this.usersRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({ email })
+      .where('id = id', { id: user.id })
       .execute();
   }
 }

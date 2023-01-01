@@ -1,9 +1,22 @@
-import { Controller, UseGuards, Res, Request, Get, HttpStatus, Patch } from '@nestjs/common';
-import { Query } from '@nestjs/common/decorators';
+import {
+  Controller,
+  UseGuards,
+  Res,
+  Request,
+  Get,
+  HttpStatus,
+  Patch,
+  BadRequestException
+} from '@nestjs/common';
+import { Body, Query } from '@nestjs/common/decorators';
 import { Response } from 'express';
 import { Role } from 'src/constants/role.enum';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { UserService } from './user.service';
+import { brotliDecompressSync } from 'zlib';
+import { UpdateUserEmailDto } from './dto/email-update.dto';
+import { isEmail } from 'class-validator';
+import { Post } from '../post/entities/post.entity';
 
 @Controller('user')
 export class UserController {
@@ -39,5 +52,13 @@ export class UserController {
       .catch((err) => {
         return res.status(HttpStatus.BAD_REQUEST).json(err);
       });
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Patch('email')
+  updateUserEmail(@Body() body: UpdateUserEmailDto, @Request() req, @Res() res: Response) {
+    this.userService.updateUserEmail(req.user, body.email).then(() => {
+      return res.status(HttpStatus.OK).send();
+    });
   }
 }
