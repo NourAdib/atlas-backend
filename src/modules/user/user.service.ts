@@ -120,6 +120,12 @@ export class UserService {
       .where('id = :id', { id: user.id })
       .execute();
   }
+  /**
+   * Updates users email address
+   * @param user the user object that contains the userId
+   * @param email the email to be updated to
+   * @returns success or failure
+   */
   updateUserEmail(user: any, email: string): Promise<UpdateResult> {
     return this.usersRepository
       .createQueryBuilder()
@@ -128,11 +134,45 @@ export class UserService {
       .where('id = id', { id: user.id })
       .execute();
   }
+  /**
+   * Updates users address
+   * @param user the user object that contains the userId
+   * @param address the address to be updated to
+   * @returns success or failure
+   */
   updateUserAddress(user: any, address: string): Promise<UpdateResult> {
     return this.usersRepository
       .createQueryBuilder()
       .update(User)
       .set({ address })
+      .where('id = id', { id: user.id })
+      .execute();
+  }
+  /**
+   * updates the users First name
+   * @param user the user object that contains the userId
+   * @param firstName the first name to be updated to
+   * @returns success or failure
+   */
+  updateUserFirstName(user: any, firstName: string): Promise<UpdateResult> {
+    return this.usersRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({ firstName })
+      .where('id = id', { id: user.id })
+      .execute();
+  }
+  /**
+   * updates the users Last name
+   * @param user the user object that contains the userId
+   * @param firstName the first name to be updated to
+   * @returns success or failure
+   */
+  updateUserLastName(user: any, lastName: string): Promise<UpdateResult> {
+    return this.usersRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({ lastName })
       .where('id = id', { id: user.id })
       .execute();
   }
