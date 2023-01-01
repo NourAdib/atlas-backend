@@ -16,8 +16,6 @@ export class AuthService {
   async validateUser(email: string, pass: string): Promise<any> {
     const user = await this.usersService.findOneByEmail(email);
 
-    console.log('user: ', user);
-
     const passwordsMatch = await new EncryptionService().comparePasswords(pass, user.password);
 
     if (user && passwordsMatch) {
@@ -37,5 +35,11 @@ export class AuthService {
     return {
       access_token: this.jwtService.sign(payload)
     };
+  }
+
+  async isUserBanned(user: any) {
+    return this.usersService.isUserBanned(user.id).then((result) => {
+      return result;
+    });
   }
 }

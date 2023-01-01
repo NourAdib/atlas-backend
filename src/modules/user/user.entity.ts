@@ -6,6 +6,7 @@ import { Post } from '../post/entities/post.entity';
 import { Scrapbook } from '../post/entities/scrapbook.entity';
 import { PostReport } from '../report/entities/post-report.entity';
 import { UserReport } from '../report/entities/user-report.entity';
+import { UserBan } from '../report/entities/user-ban.entity';
 
 /**
  * User Entity Class is the class that represents the User table in the database
@@ -65,6 +66,9 @@ export class User extends BaseEntity {
   //A user can be reported by many users
   @OneToMany(() => UserReport, (userReport) => userReport.reportedUser)
   reportsAgainst: UserReport[];
+
+  @OneToMany(() => UserBan, (userBan) => userBan.bannedUser)
+  bans: UserBan[];
 
   //This is a hook that will be executed before the user is inserted in the database
   @BeforeInsert()

@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { Post } from '../post/entities/post.entity';
 import { User } from '../user/user.entity';
 import { PostReport } from './entities/post-report.entity';
+import { UserBan } from './entities/user-ban.entity';
 import { UserReport } from './entities/user-report.entity';
 
 @Injectable()
@@ -20,7 +21,10 @@ export class ReportService {
     private postRepository: Repository<Post>,
 
     @InjectRepository(User)
-    private userRepository: Repository<User>
+    private userRepository: Repository<User>,
+
+    @InjectRepository(UserBan)
+    private userBanRepository: Repository<UserBan>
   ) {}
 
   async reportPost(user: any, body: any): Promise<PostReport> {
@@ -50,7 +54,6 @@ export class ReportService {
       })
       .then((user) => {
         return user.reportedPosts.map((reports) => {
-          console.log('reports', reports);
           if ((reports.status = ReportStatus.PendingReview)) {
             return reports.reportedPost;
           }
@@ -136,5 +139,24 @@ export class ReportService {
       .leftJoinAndSelect('UserReport.reportedBy', 'ReportedBy')
       .where('UserReport.reportedUser.id = :id', { id: id })
       .getMany();
+  }
+
+  async banUser(id: string): Promise<UserBan> {
+    const newBan = new UserBan();
+
+    // Find the user to ban
+    const user = await this.userRepository.findOne({
+      where: { id: id }
+    });
+
+    if (!user) {
+      throw new HttpException('User not found', HttpStatus.NO_CONTENT);
+    }
+
+    const millisecondsInAWeek = 604800000;
+    newBan.bannedUser = user;
+    newBan.startDate = new Date(Date.now());
+    newBan.endDate = new Date(Date.now() + millisecondsInAWeek); //Ban for 1 week
+    return this.userBanRepository.save(newBan);
   }
 }

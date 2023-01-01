@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { BadRequestException } from '@nestjs/common/exceptions/bad-request.exception';
 import { ForbiddenException } from '@nestjs/common/exceptions/forbidden.exception';
 import { InjectRepository } from '@nestjs/typeorm';
+import { BanStatus } from 'src/constants/ban-status.enum';
 import { Role } from 'src/constants/role.enum';
 import { Repository, UpdateResult } from 'typeorm';
 import { SignUpUserDto } from '../auth/dto/user-signup.dto';
@@ -114,5 +115,21 @@ export class UserService {
       .set({ role })
       .where('id = :id', { id: user.id })
       .execute();
+  }
+
+  isUserBanned(id: string): Promise<boolean> {
+    return this.usersRepository
+      .findOne({
+        where: { id: id },
+        relations: ['bans'],
+        order: { createdAt: 'DESC' }
+      })
+      .then((user) => {
+        for (const ban of user.bans) {
+          if (ban.status === BanStatus.Active) {
+            return true;
+          }
+        }
+      });
   }
 }
