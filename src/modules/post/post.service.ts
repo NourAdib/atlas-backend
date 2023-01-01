@@ -3,8 +3,11 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Visibility } from 'src/constants/visibility.enum';
 import { Repository } from 'typeorm';
 import { User } from '../user/user.entity';
+import { commentDto } from './dto/comments.dto';
+import { PostComment } from './entities/post-comment.entity';
 import { Post } from './entities/post.entity';
 import { Scrapbook } from './entities/scrapbook.entity';
+import { UserComment } from './entities/user-comment.entity';
 
 @Injectable()
 export class PostService {
@@ -13,7 +16,13 @@ export class PostService {
     private postRepository: Repository<Post>,
 
     @InjectRepository(Scrapbook)
-    private scrapbookRepository: Repository<Scrapbook>
+    private scrapbookRepository: Repository<Scrapbook>,
+
+    @InjectRepository(UserComment)
+    private userCommentRepository: Repository<UserComment>,
+
+    @InjectRepository(PostComment)
+    private postCommentRepository: Repository<PostComment>
   ) {}
 
   /**
@@ -60,6 +69,15 @@ export class PostService {
     return this.scrapbookRepository.save(newScrapbook);
   }
 
+  async createComment(user: User, body: commentDto): Promise<UserComment> {
+    const newComment = await this.userCommentRepository.create({
+      ...body,
+      author: user
+    });
+
+    await this.userCommentRepository.save(newComment);
+    return newComment;
+  }
   /**
    * Returns all the posts of a user
    * @param user the user sending t he request

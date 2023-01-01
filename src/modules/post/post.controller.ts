@@ -13,6 +13,7 @@ import {
 import { Response } from 'express';
 import { Visibility } from 'src/constants/visibility.enum';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { commentDto } from './dto/comments.dto';
 import { CreatePostDto } from './dto/post-create.dto';
 import { CreateScrapBookDto } from './dto/scrapbook-create.dts';
 import { PostService } from './post.service';
@@ -48,6 +49,25 @@ export class PostController {
     });
   }
 
+  //comments api
+  @UseGuards(JwtAuthGuard)
+  @Post('comment')
+  createComment(@Body() body: commentDto, @Request() req, @Res() res: Response) {
+    this.postService
+      .createComment(req.user, body)
+      .then((comment) => {
+        return res.status(HttpStatus.OK).json(comment);
+      })
+      .catch((err) => {
+        const { message } = err;
+
+        if (err.status === HttpStatus.NO_CONTENT) {
+          return res.status(HttpStatus.NO_CONTENT).send();
+        }
+
+        return res.status(HttpStatus.BAD_REQUEST).json({ 'message': message });
+      });
+  }
   /************************** SCRAPBOOK APIs **************************/
   /**
    * Creates a new scrapbook
