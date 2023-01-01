@@ -19,6 +19,7 @@ import { isEmail } from 'class-validator';
 import { Post } from '../post/entities/post.entity';
 import { UpdateUserDateOfBirthDto } from './dto/dateofbirth-update.dto';
 import { UpdateUserPhoneNumberDto } from './dto/phone-update.dto';
+import { Gender } from 'src/constants/gender.enum';
 
 @Controller('user')
 export class UserController {
@@ -174,5 +175,23 @@ export class UserController {
     this.userService.updateUserPhoneNumber(req.user, body.phoneNumber).then(() => {
       return res.status(HttpStatus.OK).json({ message: 'Phone number updated' });
     });
+  }
+  /**
+   * Updates the user gender
+   * @param req the request object
+   * @param res the response object
+   * @param gender the gender to update to
+   */
+  @UseGuards(JwtAuthGuard)
+  @Patch('gender')
+  updateUserGender(@Request() req, @Res() res: Response, @Query('gender') role: Gender) {
+    this.userService
+      .updateUserGender(req.user, role)
+      .then(() => {
+        return res.status(HttpStatus.OK).json({ message: 'Gender updated' });
+      })
+      .catch((err) => {
+        return res.status(HttpStatus.BAD_REQUEST).json(err);
+      });
   }
 }

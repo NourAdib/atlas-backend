@@ -7,6 +7,7 @@ import { Repository, UpdateResult } from 'typeorm';
 import { SignUpUserDto } from '../auth/dto/user-signup.dto';
 import { User } from './user.entity';
 import { threadId } from 'worker_threads';
+import { Gender } from 'src/constants/gender.enum';
 
 @Injectable()
 export class UserService {
@@ -215,6 +216,26 @@ export class UserService {
       .update(User)
       .set({ phoneNumber })
       .where('id = id', { id: user.id })
+      .execute();
+  }
+
+  /**
+   * Updates the user role
+   * @param user the user object that contains the userId
+   * @param role the role to be updated to
+   * @returns success or failure
+   */
+  updateUserGender(user: any, gender: Gender): Promise<UpdateResult> {
+    //Check if the role is valid
+    if (!Object.values(Gender).includes(gender)) {
+      throw new BadRequestException('Invalid choice');
+    }
+
+    return this.usersRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({ gender })
+      .where('id = :id', { id: user.id })
       .execute();
   }
 }
