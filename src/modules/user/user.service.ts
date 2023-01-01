@@ -192,7 +192,7 @@ export class UserService {
   /**
    * Updates users date of birth
    * @param user the user object that contains the userId
-   * @param email the email to be updated to
+   * @param dateOfBirth the email to be updated to
    * @returns success or failure
    */
   updateUserDateOfBirth(user: any, dateOfBirth: Date): Promise<UpdateResult> {
@@ -200,6 +200,20 @@ export class UserService {
       .createQueryBuilder()
       .update(User)
       .set({ dateOfBirth })
+      .where('id = id', { id: user.id })
+      .execute();
+  }
+  /**
+   * Updates users phone number
+   * @param user the user object that contains the userId
+   * @param phoneNumber the phone number to be updated to
+   * @returns success or failure
+   */
+  updateUserPhoneNumber(user: any, phoneNumber: string): Promise<UpdateResult> {
+    return this.usersRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({ phoneNumber })
       .where('id = id', { id: user.id })
       .execute();
   }

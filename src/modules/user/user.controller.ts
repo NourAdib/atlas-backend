@@ -18,6 +18,7 @@ import { UpdateUserEmailDto } from './dto/email-update.dto';
 import { isEmail } from 'class-validator';
 import { Post } from '../post/entities/post.entity';
 import { UpdateUserDateOfBirthDto } from './dto/dateofbirth-update.dto';
+import { UpdateUserPhoneNumberDto } from './dto/phone-update.dto';
 
 @Controller('user')
 export class UserController {
@@ -155,6 +156,23 @@ export class UserController {
   ) {
     this.userService.updateUserDateOfBirth(req.user, body.dateOfBirth).then(() => {
       return res.status(HttpStatus.OK).json({ message: 'Date of birth updated' });
+    });
+  }
+  /**
+   * updates the users phone number
+   * @param body
+   * @param req the request object
+   * @param res the response object
+   */
+  @UseGuards(JwtAuthGuard)
+  @Patch('phoneNumber')
+  updateUserPhoneNumber(
+    @Body() body: UpdateUserPhoneNumberDto,
+    @Request() req,
+    @Res() res: Response
+  ) {
+    this.userService.updateUserPhoneNumber(req.user, body.phoneNumber).then(() => {
+      return res.status(HttpStatus.OK).json({ message: 'Phone number updated' });
     });
   }
 }
