@@ -33,6 +33,9 @@ export class Post extends BaseEntity {
   @Column()
   visibility: Visibility;
 
+  @Column()
+  isTakenDown: boolean;
+
   //A post can only be posted by one user but a user can have many posts
   @ManyToOne(() => User, (user) => user.posts)
   postedBy: User;

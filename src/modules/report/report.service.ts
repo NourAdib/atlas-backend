@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ReportStatus } from 'src/constants/report-status.enum';
-import { Repository } from 'typeorm';
+import { Repository, UpdateResult } from 'typeorm';
 import { Post } from '../post/entities/post.entity';
 import { User } from '../user/user.entity';
 import { PostReport } from './entities/post-report.entity';
@@ -158,5 +158,39 @@ export class ReportService {
     newBan.startDate = new Date(Date.now());
     newBan.endDate = new Date(Date.now() + millisecondsInAWeek); //Ban for 1 week
     return this.userBanRepository.save(newBan);
+  }
+
+  async banPost(id: string): Promise<UpdateResult> {
+    const post = await this.postRepository.findOne({
+      where: { id: id }
+    });
+
+    if (!post) {
+      throw new HttpException('Post not found', HttpStatus.NO_CONTENT);
+    }
+
+    return this.postRepository
+      .createQueryBuilder()
+      .update(Post)
+      .set({ isTakenDown: true })
+      .where('id = :id', { id: post.id })
+      .execute();
+  }
+
+  async unbanPost(id: string): Promise<UpdateResult> {
+    const post = await this.postRepository.findOne({
+      where: { id: id }
+    });
+
+    if (!post) {
+      throw new HttpException('Post not found', HttpStatus.NO_CONTENT);
+    }
+
+    return this.postRepository
+      .createQueryBuilder()
+      .update(Post)
+      .set({ isTakenDown: false })
+      .where('id = :id', { id: post.id })
+      .execute();
   }
 }

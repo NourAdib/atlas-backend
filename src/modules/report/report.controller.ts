@@ -112,6 +112,12 @@ export class ReportController {
       });
   }
 
+  /**
+   * Bans a user
+   * @param req the request object
+   * @param params the parameters (the id of the user to be banned)
+   * @param res the response object
+   */
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Post('ban-user/:id')
   @Roles(Role.Admin)
@@ -120,6 +126,58 @@ export class ReportController {
       .banUser(params.id)
       .then((reports) => {
         return res.status(HttpStatus.OK).json(reports);
+      })
+      .catch((err) => {
+        const { message } = err;
+
+        if (err.status === HttpStatus.NO_CONTENT) {
+          return res.status(HttpStatus.NO_CONTENT).send();
+        }
+
+        return res.status(HttpStatus.BAD_REQUEST).json({ 'message': message });
+      });
+  }
+
+  /**
+   * Bans a post
+   * @param req the request object
+   * @param params the parameters (the id of the post to be banned)
+   * @param res the response object
+   */
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Post('ban-post/:id')
+  @Roles(Role.Admin)
+  banPost(@Request() req, @Param() params, @Res() res: Response) {
+    this.reportService
+      .banPost(params.id)
+      .then(() => {
+        return res.status(HttpStatus.OK).json({ 'message': 'Post banned' });
+      })
+      .catch((err) => {
+        const { message } = err;
+
+        if (err.status === HttpStatus.NO_CONTENT) {
+          return res.status(HttpStatus.NO_CONTENT).send();
+        }
+
+        return res.status(HttpStatus.BAD_REQUEST).json({ 'message': message });
+      });
+  }
+
+  /**
+   * Unbans a post
+   * @param req the request object
+   * @param params the parameters (the id of the user to be unbanned)
+   * @param res the response object
+   */
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Post('unban-post/:id')
+  @Roles(Role.Admin)
+  unbanPost(@Request() req, @Param() params, @Res() res: Response) {
+    this.reportService
+      .unbanPost(params.id)
+      .then(() => {
+        return res.status(HttpStatus.OK).json({ 'message': 'Post unbanned' });
       })
       .catch((err) => {
         const { message } = err;

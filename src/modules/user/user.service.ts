@@ -117,7 +117,7 @@ export class UserService {
       .execute();
   }
 
-  isUserBanned(id: string): Promise<boolean> {
+  async isUserBanned(id: string): Promise<boolean> {
     return this.usersRepository
       .findOne({
         where: { id: id },
