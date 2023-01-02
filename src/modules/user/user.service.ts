@@ -41,8 +41,6 @@ export class UserService {
     //The user is a normal user by default
     newUser.role = Role.Standard;
 
-    console.log(newUser);
-
     return this.usersRepository.save(newUser);
   }
   /**
@@ -90,6 +88,7 @@ export class UserService {
         'email',
         'username',
         'role',
+        'gender',
         'phoneNumber',
         'address',
         'dateOfBirth'
@@ -122,7 +121,7 @@ export class UserService {
       .where('id = :id', { id: user.id })
       .execute();
   }
-  
+
   /**
    * Updates users email address
    * @param user the user object that contains the userId
@@ -255,6 +254,7 @@ export class UserService {
       .set({ password: encryptedPassword })
       .where('id = :id', { id: user.id })
       .execute();
+  }
 
   async isUserBanned(id: string): Promise<boolean> {
     return this.usersRepository
