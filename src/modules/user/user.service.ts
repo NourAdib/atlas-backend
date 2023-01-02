@@ -7,6 +7,9 @@ import { Role } from 'src/constants/role.enum';
 import { Repository, UpdateResult } from 'typeorm';
 import { SignUpUserDto } from '../auth/dto/user-signup.dto';
 import { User } from './user.entity';
+import { threadId } from 'worker_threads';
+import { Gender } from 'src/constants/gender.enum';
+import { EncryptionService } from 'src/common/services/encryption.service';
 
 @Injectable()
 export class UserService {
@@ -37,6 +40,9 @@ export class UserService {
 
     //The user is a normal user by default
     newUser.role = Role.Standard;
+
+    console.log(newUser);
+
     return this.usersRepository.save(newUser);
   }
   /**
@@ -116,6 +122,139 @@ export class UserService {
       .where('id = :id', { id: user.id })
       .execute();
   }
+  
+  /**
+   * Updates users email address
+   * @param user the user object that contains the userId
+   * @param email the email to be updated to
+   * @returns success or failure
+   */
+  updateUserEmail(user: any, email: string): Promise<UpdateResult> {
+    return this.usersRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({ email })
+      .where('id = id', { id: user.id })
+      .execute();
+  }
+  /**
+   * Updates users address
+   * @param user the user object that contains the userId
+   * @param address the address to be updated to
+   * @returns success or failure
+   */
+  updateUserAddress(user: any, address: string): Promise<UpdateResult> {
+    return this.usersRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({ address })
+      .where('id = id', { id: user.id })
+      .execute();
+  }
+  /**
+   * updates the users First name
+   * @param user the user object that contains the userId
+   * @param firstName the first name to be updated to
+   * @returns success or failure
+   */
+  updateUserFirstName(user: any, firstName: string): Promise<UpdateResult> {
+    return this.usersRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({ firstName })
+      .where('id = id', { id: user.id })
+      .execute();
+  }
+  /**
+   * updates the users Last name
+   * @param user the user object that contains the userId
+   * @param lastName the last name to be updated to
+   * @returns success or failure
+   */
+  updateUserLastName(user: any, lastName: string): Promise<UpdateResult> {
+    return this.usersRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({ lastName })
+      .where('id = id', { id: user.id })
+      .execute();
+  }
+  /**
+   * updates the username
+   * @param user the user object that contains the userId
+   * @param username the username to be updated to
+   * @returns success or failure
+   */
+  updateUsername(user: any, username: string): Promise<UpdateResult> {
+    return this.usersRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({ username })
+      .where('id = id', { id: user.id })
+      .execute();
+  }
+  /**
+   * Updates users date of birth
+   * @param user the user object that contains the userId
+   * @param dateOfBirth the date of birth to be updated to
+   * @returns success or failure
+   */
+  updateUserDateOfBirth(user: any, dateOfBirth: Date): Promise<UpdateResult> {
+    return this.usersRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({ dateOfBirth })
+      .where('id = id', { id: user.id })
+      .execute();
+  }
+  /**
+   * Updates users phone number
+   * @param user the user object that contains the userId
+   * @param phoneNumber the phone number to be updated to
+   * @returns success or failure
+   */
+  updateUserPhoneNumber(user: any, phoneNumber: string): Promise<UpdateResult> {
+    return this.usersRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({ phoneNumber })
+      .where('id = id', { id: user.id })
+      .execute();
+  }
+
+  /**
+   * Updates the user gender
+   * @param user the user object that contains the userId
+   * @param gender the gender to be updated to
+   * @returns success or failure
+   */
+  updateUserGender(user: any, gender: Gender): Promise<UpdateResult> {
+    //Check if the gender is valid
+    if (!Object.values(Gender).includes(gender)) {
+      throw new BadRequestException('Invalid gender');
+    }
+
+    return this.usersRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({ gender })
+      .where('id = :id', { id: user.id })
+      .execute();
+  }
+  /**
+   * updates the user password
+   * @param user user the user object that contains the userId
+   * @param password the password to be updated to
+   * @returns success or failure
+   */
+  async updateUserPassword(user: any, password: string): Promise<UpdateResult> {
+    const encryptedPassword = await new EncryptionService().encryptPassword(password);
+    return this.usersRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({ password: encryptedPassword })
+      .where('id = :id', { id: user.id })
+      .execute();
 
   async isUserBanned(id: string): Promise<boolean> {
     return this.usersRepository

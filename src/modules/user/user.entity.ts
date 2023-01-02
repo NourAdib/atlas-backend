@@ -6,6 +6,7 @@ import { Post } from '../post/entities/post.entity';
 import { Scrapbook } from '../post/entities/scrapbook.entity';
 import { PostReport } from '../report/entities/post-report.entity';
 import { UserReport } from '../report/entities/user-report.entity';
+import { Gender } from '../../constants/gender.enum';
 import { UserBan } from '../report/entities/user-ban.entity';
 
 /**
@@ -44,6 +45,9 @@ export class User extends BaseEntity {
 
   @Column()
   role: Role;
+
+  @Column({ default: Gender.Undefined })
+  gender: Gender = Gender.Undefined;
 
   /* @OneToMany(() => User, (user) => user.followers) */
 

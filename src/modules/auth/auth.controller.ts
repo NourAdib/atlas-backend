@@ -34,6 +34,8 @@ export class AuthController {
    */
   @Post('signup')
   signUpUser(@Body() body: SignUpUserDto, @Request() req, @Res() res: Response) {
+    console.log(body);
+    
     if (body.password !== body.confirmPassword) {
       return res.status(HttpStatus.BAD_REQUEST).json({
         message: 'Passwords do not match'
@@ -47,6 +49,9 @@ export class AuthController {
         });
       }
     });
+
+    console.log('Here');
+    
 
     this.userService.create(body).then((user: User) => {
       const { id, firstName, lastName, email } = user;
