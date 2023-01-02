@@ -45,8 +45,8 @@ export class User extends BaseEntity {
   @Column()
   role: Role;
 
-  @Column({ default: Gender.Male })
-  gender: Gender = Gender.Male;
+  @Column({ default: Gender.Undefined })
+  gender: Gender = Gender.Undefined;
 
   /* @OneToMany(() => User, (user) => user.followers) */
 

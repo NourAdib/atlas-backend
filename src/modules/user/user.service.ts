@@ -246,11 +246,11 @@ export class UserService {
    * @returns success or failure
    */
   async updateUserPassword(user: any, password: string): Promise<UpdateResult> {
-    const encryptPassword = await new EncryptionService().encryptPassword(password);
+    const encryptedPassword = await new EncryptionService().encryptPassword(password);
     return this.usersRepository
       .createQueryBuilder()
       .update(User)
-      .set({ password: encryptPassword })
+      .set({ password: encryptedPassword })
       .where('id = :id', { id: user.id })
       .execute();
   }
