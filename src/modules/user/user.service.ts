@@ -222,13 +222,13 @@ export class UserService {
   /**
    * Updates the user role
    * @param user the user object that contains the userId
-   * @param role the role to be updated to
+   * @param gender the gender to be updated to
    * @returns success or failure
    */
   updateUserGender(user: any, gender: Gender): Promise<UpdateResult> {
-    //Check if the role is valid
+    //Check if the gender is valid
     if (!Object.values(Gender).includes(gender)) {
-      throw new BadRequestException('Invalid choice');
+      throw new BadRequestException('Invalid gender');
     }
 
     return this.usersRepository

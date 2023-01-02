@@ -184,9 +184,9 @@ export class UserController {
    */
   @UseGuards(JwtAuthGuard)
   @Patch('gender')
-  updateUserGender(@Request() req, @Res() res: Response, @Query('gender') role: Gender) {
+  updateUserGender(@Request() req, @Res() res: Response, @Query('gender') gender: Gender) {
     this.userService
-      .updateUserGender(req.user, role)
+      .updateUserGender(req.user, gender)
       .then(() => {
         return res.status(HttpStatus.OK).json({ message: 'Gender updated' });
       })
