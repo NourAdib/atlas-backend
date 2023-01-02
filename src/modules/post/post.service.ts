@@ -1,13 +1,10 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Visibility } from 'src/constants/visibility.enum';
 import { Repository } from 'typeorm';
 import { User } from '../user/user.entity';
-import { commentDto } from './dto/comments.dto';
-import { PostComment } from './entities/post-comment.entity';
+import { Comment } from './entities/comment.entity';
 import { Post } from './entities/post.entity';
 import { Scrapbook } from './entities/scrapbook.entity';
-import { UserComment } from './entities/user-comment.entity';
 
 @Injectable()
 export class PostService {
@@ -18,11 +15,8 @@ export class PostService {
     @InjectRepository(Scrapbook)
     private scrapbookRepository: Repository<Scrapbook>,
 
-    @InjectRepository(UserComment)
-    private userCommentRepository: Repository<UserComment>,
-
-    @InjectRepository(PostComment)
-    private postCommentRepository: Repository<PostComment>
+    @InjectRepository(Comment)
+    private commentRepository: Repository<Comment>
   ) {}
 
   /**
@@ -67,16 +61,6 @@ export class PostService {
     }
 
     return this.scrapbookRepository.save(newScrapbook);
-  }
-
-  async createComment(user: User, body: commentDto): Promise<UserComment> {
-    const newComment = await this.userCommentRepository.create({
-      ...body,
-      author: user
-    });
-
-    await this.userCommentRepository.save(newComment);
-    return newComment;
   }
   /**
    * Returns all the posts of a user
@@ -139,6 +123,62 @@ export class PostService {
       .createQueryBuilder()
       .leftJoinAndSelect('Scrapbook.posts', 'Post')
       .where('Scrapbook.id = :id', { id: id })
+      .getOne();
+  }
+
+  /**
+   * Creates a new comment
+   * @param user the user sending the request
+   * @param Comment the comment to be created
+   * @returns the created comment
+   */
+  async createComment(user: User, Comment: any): Promise<Comment> {
+    const newComment = new Comment();
+    newComment.author = user;
+    newComment.comment = Comment.comment;
+    newComment.created = Comment.created;
+    newComment.commentOnPost = Comment.commentOnPost;
+    return this.commentRepository.save(newComment);
+  }
+
+  /**
+   * Gets the user comments
+   * @param user the user sending the request
+   * @returns the comment of the user
+   */
+  getUserComments(user: User): Promise<Comment[]> {
+    return this.commentRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect('Comment.author', 'User')
+      .select(['Comment.id', 'Comment.created', 'Comment.comment', 'User.id', 'User.username'])
+      .where('User.id = :id', { id: user.id })
+      .getMany();
+  }
+
+  /**
+   * Gets the post which has the comment
+   * @param post post with the comment
+   * @returns post of the comment
+   */
+  getPostComments(post: Post): Promise<Comment[]> {
+    return this.commentRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect('Comment.commentOnPost', 'Post')
+      .select(['Comment.id', 'Comment.created', 'Comment.comment', 'Post.id'])
+      .where('Post.id = :id', { id: post.id })
+      .getMany();
+  }
+
+  /**
+   * Gets the comment with given id
+   * @param id id of the comment
+   * @returns comment with its id
+   */
+  getCommentById(id: string): Promise<Comment> {
+    return this.commentRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect('Comment.comment', 'Comment')
+      .where('Comment.id = :id', { id: id })
       .getOne();
   }
 }

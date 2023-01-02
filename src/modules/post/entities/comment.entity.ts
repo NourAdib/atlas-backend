@@ -7,9 +7,10 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn
 } from 'typeorm';
+import { Post } from './post.entity';
 
 @Entity()
-export class UserComment extends BaseEntity {
+export class Comment extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -19,6 +20,11 @@ export class UserComment extends BaseEntity {
   @Column()
   comment: string;
 
+  //A comment can be made my one user but a user can have many comments
   @ManyToOne(() => User, (user) => user.commentedBy)
   author: User;
+
+  //A comment can be in one post but a post can have many comments
+  @ManyToOne(() => Post, (post) => post.commentPost)
+  commentOnPost: Post;
 }

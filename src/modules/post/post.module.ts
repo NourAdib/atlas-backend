@@ -4,11 +4,10 @@ import { PostController } from './post.controller';
 import { Post } from './entities/post.entity';
 import { PostService } from './post.service';
 import { Scrapbook } from './entities/scrapbook.entity';
-import { PostComment } from './entities/post-comment.entity';
-import { UserComment } from './entities/user-comment.entity';
+import { Comment } from './entities/comment.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Post, Scrapbook, PostComment, UserComment])],
+  imports: [TypeOrmModule.forFeature([Post, Scrapbook, Comment])],
   controllers: [PostController],
   providers: [PostService],
   exports: [PostService]

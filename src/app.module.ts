@@ -12,6 +12,7 @@ import { Scrapbook } from './modules/post/entities/scrapbook.entity';
 import { PostReport } from './modules/report/entities/post-report.entity';
 import { UserReport } from './modules/report/entities/user-report.entity';
 import { ReportModule } from './modules/report/report.module';
+import { Comment } from './modules/post/entities/comment.entity';
 
 @Module({
   imports: [
@@ -27,7 +28,7 @@ import { ReportModule } from './modules/report/report.module';
         username: configService.get<string>('DATABASE_USERNAME'),
         password: configService.get<string>('DATABASE_PASSWORD'),
         database: configService.get<string>('DATABASE_NAME'),
-        entities: [User, Post, Scrapbook, PostReport, UserReport],
+        entities: [User, Post, Scrapbook, PostReport, UserReport, Comment],
         synchronize: false,
         autoLoadEntities: true,
         options: { encrypt: false },

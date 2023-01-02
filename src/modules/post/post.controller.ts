@@ -49,9 +49,15 @@ export class PostController {
     });
   }
 
-  //comments api
+  //Comments api
+  /**
+   * Creates the a new comment
+   * @param body the request body
+   * @param req the request object
+   * @param res the response object
+   */
   @UseGuards(JwtAuthGuard)
-  @Post('comment')
+  @Post('comment/create')
   createComment(@Body() body: commentDto, @Request() req, @Res() res: Response) {
     this.postService
       .createComment(req.user, body)
@@ -67,6 +73,46 @@ export class PostController {
 
         return res.status(HttpStatus.BAD_REQUEST).json({ 'message': message });
       });
+  }
+
+  /**
+   * Gets the user's comments
+   * @param req the request object
+   * @param res the response object
+   */
+  @UseGuards(JwtAuthGuard)
+  @Get('comment/user-comments')
+  getUserComments(@Request() req, @Res() res: Response) {
+    this.postService.getUserComments(req.user).then((posts) => {
+      return res.status(HttpStatus.OK).json(posts);
+    });
+  }
+
+  /**
+   * Gets the post with the comment
+   * @param req the request object
+   * @param res the response object
+   */
+  @UseGuards(JwtAuthGuard)
+  @Get('comment/post-comments')
+  getPostComments(@Request() req, @Res() res: Response) {
+    this.postService.getPostComments(req.user).then((posts) => {
+      return res.status(HttpStatus.OK).json(posts);
+    });
+  }
+
+  /**
+   * Gets the comments by id
+   * @param req the request object
+   * @param params the request params
+   * @param res the response object
+   */
+  @UseGuards(JwtAuthGuard)
+  @Get('comment/:id')
+  getUserComment(@Request() req, @Param() params, @Res() res: Response) {
+    this.postService.getCommentById(params.id).then((posts) => {
+      return res.status(HttpStatus.OK).json(posts);
+    });
   }
   /************************** SCRAPBOOK APIs **************************/
   /**

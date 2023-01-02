@@ -4,7 +4,7 @@ import { User } from '../../user/user.entity';
 import { Visibility } from '../../../constants/visibility.enum';
 import { Scrapbook } from './scrapbook.entity';
 import { PostReport } from '../../report/entities/post-report.entity';
-import { PostComment } from './post-comment.entity';
+import { Comment } from './comment.entity';
 
 /**
  * User Entity Class is the class that represents the User table in the database
@@ -42,11 +42,11 @@ export class Post extends BaseEntity {
   @OneToMany(() => PostReport, (postReport) => postReport.reportedPost)
   reportsAgainst: PostReport[];
 
-  //A user can comment of many posts
-  @OneToMany(() => PostComment, (postComment) => postComment.CommentOnPost)
-  commentPost: PostComment[];
-
   //A post can only be part of one scrapbook but a scrapbook can have many posts
   @ManyToOne(() => Scrapbook, (scrapbook) => scrapbook.posts)
   scrapbook: Scrapbook;
+
+  //A user can comment of many posts
+  @OneToMany(() => Comment, (comment) => comment.commentOnPost)
+  commentPost: Comment[];
 }
