@@ -6,6 +6,7 @@ import { Post } from './src/modules/post/entities/post.entity';
 import { Scrapbook } from './src/modules/post/entities/scrapbook.entity';
 import { PostReport } from './src/modules/report/entities/post-report.entity';
 import { UserReport } from './src/modules/report/entities/user-report.entity';
+import { UserBan } from './src/modules/report/entities/user-ban.entity';
 
 config();
 
@@ -17,6 +18,6 @@ export default new DataSource({
   username: configService.get('DATABASE_USERNAME'),
   password: configService.get('DATABASE_PASSWORD'),
   database: configService.get('DATABASE_NAME'),
-  entities: [User, Post, Scrapbook, PostReport, UserReport],
+  entities: [User, Post, Scrapbook, PostReport, UserReport, UserBan],
   migrations: ['./migrations/*{.ts,.js}']
 });

@@ -1,4 +1,13 @@
-import { Controller, Request, Post, Body, Res, HttpStatus, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Request,
+  Post,
+  Body,
+  Res,
+  HttpStatus,
+  UseGuards,
+  ForbiddenException
+} from '@nestjs/common';
 import { Response } from 'express';
 import { Role } from 'src/constants/role.enum';
 import { Roles } from 'src/decorators/roles.decorator';
@@ -89,6 +98,12 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @Post('login')
   async loginUser(@Request() req) {
-    return this.authService.login(req.user);
+    const isBanned = await this.authService.isUserBanned(req.user);
+
+    if (!isBanned) {
+      return this.authService.login(req.user);
+    }
+
+    throw new ForbiddenException('User banned');
   }
 }
