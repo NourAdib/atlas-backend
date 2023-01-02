@@ -15,11 +15,11 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { UserService } from './user.service';
 import { brotliDecompressSync } from 'zlib';
 import { UpdateUserEmailDto } from './dto/email-update.dto';
-import { isEmail } from 'class-validator';
 import { Post } from '../post/entities/post.entity';
 import { UpdateUserDateOfBirthDto } from './dto/dateofbirth-update.dto';
 import { UpdateUserPhoneNumberDto } from './dto/phone-update.dto';
 import { Gender } from 'src/constants/gender.enum';
+import { UpdateUserPasseordDto } from './dto/password-update.dto';
 
 @Controller('user')
 export class UserController {
@@ -58,7 +58,7 @@ export class UserController {
   }
   /**
    * updates the user email
-   * @param body
+   * @param body the Dto file
    * @param req the request object
    * @param res the response object
    */
@@ -105,8 +105,8 @@ export class UserController {
     });
   }
   /**
-   * updates the usres last name
-   * @param lastName the first name to be updated
+   * updates the users last name
+   * @param lastName the last name to be updated
    * @param req the request object
    * @param res the response object
    */
@@ -144,7 +144,7 @@ export class UserController {
   }
   /**
    * updates the user date of birth
-   * @param body
+   * @param body the Dto file
    * @param req the request object
    * @param res the response object
    */
@@ -161,7 +161,7 @@ export class UserController {
   }
   /**
    * updates the users phone number
-   * @param body
+   * @param body the Dto file
    * @param req the request object
    * @param res the response object
    */
@@ -193,5 +193,20 @@ export class UserController {
       .catch((err) => {
         return res.status(HttpStatus.BAD_REQUEST).json(err);
       });
+  }
+  /**
+   * @param req the request object
+   * @param res the response object
+   * @param Body the Dto file
+   */
+  @UseGuards(JwtAuthGuard)
+  @Patch('password')
+  updateUserPassword(@Request() req, @Res() res: Response, @Body() Body: UpdateUserPasseordDto) {
+    if (Body.password !== Body.confirmPassword) {
+      throw new BadRequestException('Passwords do not match');
+    }
+    this.userService.updateUserPassword(req.user, Body.password).then(() => {
+      return res.status(HttpStatus.OK).json({ message: 'Password updated' });
+    });
   }
 }
