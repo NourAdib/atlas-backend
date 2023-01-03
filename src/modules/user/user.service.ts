@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { BadRequestException } from '@nestjs/common/exceptions/bad-request.exception';
 import { ForbiddenException } from '@nestjs/common/exceptions/forbidden.exception';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -7,9 +7,9 @@ import { Role } from 'src/constants/role.enum';
 import { Repository, UpdateResult } from 'typeorm';
 import { SignUpUserDto } from '../auth/dto/user-signup.dto';
 import { User } from './user.entity';
-import { threadId } from 'worker_threads';
 import { Gender } from 'src/constants/gender.enum';
 import { EncryptionService } from 'src/common/services/encryption.service';
+import { FirebaseStorageService } from 'src/common/services/firebase-storage.service';
 
 @Injectable()
 export class UserService {
@@ -89,6 +89,7 @@ export class UserService {
         'username',
         'role',
         'gender',
+        'profilePictureUrl',
         'phoneNumber',
         'address',
         'dateOfBirth'
@@ -256,6 +257,11 @@ export class UserService {
       .execute();
   }
 
+  /**
+   * Checks if the user is banned
+   * @param id the id of the user to be checked
+   * @returns if the user is banned or not
+   */
   async isUserBanned(id: string): Promise<boolean> {
     return this.usersRepository
       .findOne({
@@ -270,5 +276,120 @@ export class UserService {
           }
         }
       });
+  }
+
+  /**
+   * Adds an avatar to the user
+   * @param user the user object that contains the userId
+   * @param avatar the avatar to be uploaded
+   * @returns the result of the update
+   */
+  async addUserAvatar(user: any, avatar: any): Promise<UpdateResult> {
+    const { imageId, url, expiryDate } = await new FirebaseStorageService().uploadAvatar(
+      avatar.buffer,
+      user.id
+    );
+
+    return this.usersRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({
+        profilePictureExpiryDate: new Date(expiryDate),
+        profilePictureId: imageId,
+        profilePictureUrl: url
+      })
+      .where('id = :id', { id: user.id })
+      .execute();
+  }
+
+  /**
+   * Checks if the current link is valid and returns a new one if it is not
+   * @param user the user object that contains the userId
+   * @returns a signed url to the users avatar
+   */
+  async getUserAvatar(user: any) {
+    const dbUser = await this.usersRepository.findOneBy({ id: user.id });
+
+    if (!dbUser.profilePictureId || dbUser.profilePictureId.length === 0) {
+      throw new HttpException('Invalid gender', HttpStatus.NO_CONTENT);
+    }
+
+    if (dbUser.profilePictureExpiryDate < new Date(Date.now())) {
+      const { url, expiryDate } = await new FirebaseStorageService().getSignedURL(
+        dbUser.id,
+        dbUser.profilePictureId
+      );
+
+      this.usersRepository
+        .createQueryBuilder()
+        .update(User)
+        .set({
+          profilePictureExpiryDate: new Date(expiryDate),
+          profilePictureUrl: url
+        })
+        .where('id = :id', { id: user.id })
+        .execute();
+
+      return url;
+    }
+
+    return dbUser.profilePictureUrl;
+  }
+
+  /**
+   * Updates the users avatar
+   * @param user the user object that contains the userId
+   * @param avatar the avatar to be uploaded
+   * @returns the result of the update
+   */
+  async updateUserAvatar(user: any, avatar: any) {
+    const dbUser = await this.usersRepository.findOneBy({ id: user.id });
+
+    if (!dbUser.profilePictureId || dbUser.profilePictureId.length === 0) {
+      throw new HttpException("User doesn't have an avatar", HttpStatus.NO_CONTENT);
+    }
+
+    const { url, expiryDate } = await new FirebaseStorageService()
+      .updateAvatar(avatar.buffer, dbUser.profilePictureId, dbUser.id)
+      .catch((err) => {
+        throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      });
+
+    this.usersRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({
+        profilePictureExpiryDate: new Date(expiryDate),
+        profilePictureUrl: url
+      })
+      .where('id = :id', { id: user.id })
+      .execute();
+
+    return dbUser.profilePictureUrl;
+  }
+
+  /**
+   * Deletes the users avatar
+   * @param user the user object that contains the userId
+   * @returns the result of the update
+   */
+  async deleteUserAvatar(user: any): Promise<UpdateResult> {
+    const dbUser = await this.usersRepository.findOneBy({ id: user.id });
+    if (!dbUser.profilePictureId || dbUser.profilePictureId.length === 0) {
+      throw new HttpException("User doesn't have an avatar", HttpStatus.NO_CONTENT);
+    }
+
+    await new FirebaseStorageService().deleteAvatar(dbUser.profilePictureId, dbUser.id);
+
+    return this.usersRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({
+        profilePictureExpiryDate: new Date(Date.now()),
+        profilePictureId: '',
+        profilePictureUrl: ''
+      })
+      .where('id = :id', { id: user.id })
+      .execute();
   }
 }

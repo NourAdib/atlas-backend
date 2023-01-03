@@ -46,6 +46,15 @@ export class User extends BaseEntity {
   @Column()
   role: Role;
 
+  @Column({ type: 'longtext' })
+  profilePictureUrl: string;
+
+  @Column({ default: '' })
+  profilePictureId: string = '';
+
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  profilePictureExpiryDate: Date;
+
   @Column({ default: Gender.Undefined })
   gender: Gender = Gender.Undefined;
 

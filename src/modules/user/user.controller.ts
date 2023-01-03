@@ -6,20 +6,20 @@ import {
   Get,
   HttpStatus,
   Patch,
-  BadRequestException
+  BadRequestException,
+  Post
 } from '@nestjs/common';
-import { Body, Query } from '@nestjs/common/decorators';
-import { Response, query } from 'express';
+import { Body, Delete, Query, UploadedFile, UseInterceptors } from '@nestjs/common/decorators';
+import { Response } from 'express';
 import { Role } from 'src/constants/role.enum';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { UserService } from './user.service';
-import { brotliDecompressSync } from 'zlib';
 import { UpdateUserEmailDto } from './dto/email-update.dto';
-import { Post } from '../post/entities/post.entity';
 import { UpdateUserDateOfBirthDto } from './dto/dateofbirth-update.dto';
 import { UpdateUserPhoneNumberDto } from './dto/phone-update.dto';
 import { Gender } from 'src/constants/gender.enum';
 import { UpdateUserPasseordDto } from './dto/password-update.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('user')
 export class UserController {
@@ -191,7 +191,7 @@ export class UserController {
         return res.status(HttpStatus.OK).json({ message: 'Gender updated' });
       })
       .catch((err) => {
-        return res.status(HttpStatus.BAD_REQUEST).json(err);
+        return res.status(err.status).json(err.message);
       });
   }
   /**
@@ -208,5 +208,82 @@ export class UserController {
     this.userService.updateUserPassword(req.user, Body.password).then(() => {
       return res.status(HttpStatus.OK).json({ message: 'Password updated' });
     });
+  }
+
+  /**
+   * Uploads a users avatar
+   * @param req the request object
+   * @param res the response object
+   * @param file the file to be uploaded
+   */
+  @UseGuards(JwtAuthGuard)
+  @Post('avatar')
+  @UseInterceptors(FileInterceptor('avatar'))
+  async addUserAvatar(@Request() req, @Res() res: Response, @UploadedFile() file) {
+    this.userService
+      .addUserAvatar(req.user, file)
+      .then(() => {
+        return res.status(HttpStatus.OK).json({ message: 'Avatar Added' });
+      })
+      .catch((err) => {
+        return res.status(err.status).json(err.message);
+      });
+  }
+
+  /**
+   * Returns an active users avatar url
+   * @param req the request object
+   * @param res the response object
+   * @returns the url of the users avatar
+   */
+  @UseGuards(JwtAuthGuard)
+  @Get('avatar')
+  async getUserAvatar(@Request() req, @Res() res: Response) {
+    return this.userService
+      .getUserAvatar(req.user)
+      .then((imageUrl) => {
+        return res.status(HttpStatus.OK).json({ profilePictureUrl: imageUrl });
+      })
+      .catch((err) => {
+        return res.status(err.status).json(err.message);
+      });
+  }
+
+  /**
+   * Replaces a users avatar with a new image
+   * @param req the request object
+   * @param res the response object
+   * @param file the file to be uploaded
+   */
+  @UseGuards(JwtAuthGuard)
+  @Patch('avatar')
+  @UseInterceptors(FileInterceptor('avatar'))
+  async updateUserAvatar(@Request() req, @Res() res: Response, @UploadedFile() file) {
+    this.userService
+      .updateUserAvatar(req.user, file)
+      .then(() => {
+        return res.status(HttpStatus.OK).json({ message: 'Avatar updated' });
+      })
+      .catch((err) => {
+        return res.status(err.status).json(err.message);
+      });
+  }
+
+  /**
+   * Deletes a users avatar
+   * @param req the request object
+   * @param res the response object
+   */
+  @UseGuards(JwtAuthGuard)
+  @Delete('avatar')
+  async deleteUserAvatar(@Request() req, @Res() res: Response) {
+    this.userService
+      .deleteUserAvatar(req.user)
+      .then(() => {
+        return res.status(HttpStatus.OK).json({ message: 'Avatar deleted' });
+      })
+      .catch((err) => {
+        return res.status(err.status).json(err.message);
+      });
   }
 }

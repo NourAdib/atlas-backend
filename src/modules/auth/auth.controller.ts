@@ -46,11 +46,13 @@ export class AuthController {
           message: 'User already exists'
         });
       }
-    });
 
-    this.userService.create(body).then((user: User) => {
-      const { id, firstName, lastName, email } = user;
-      return res.status(HttpStatus.CREATED).json({ id, firstName, lastName, email });
+      if (!user) {
+        this.userService.create(body).then((user: User) => {
+          const { id, firstName, lastName, email } = user;
+          return res.status(HttpStatus.CREATED).json({ id, firstName, lastName, email });
+        });
+      }
     });
   }
 
