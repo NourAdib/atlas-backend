@@ -5,7 +5,7 @@ import { GetSignedUrlConfig } from '@google-cloud/storage';
 
 @Injectable()
 export class FirebaseStorageService {
-  expiryDate = Date.now() + 7 * 24 * 60 * 60 * 1000; // 7 Days from now
+  expiryDate = Date.now() + 60 * 1000; // 7 Days from now
 
   async uploadAvatar(image: any, userId: string) {
     const imageId = uuidv4();
@@ -55,22 +55,36 @@ export class FirebaseStorageService {
       });
   }
 
-  //TODO
-  async uploadPostImage(image) {
-    const imageName = uuidv4();
+  async uploadPostImage(image: any, userId: string, postId: string) {
+    const imageId = uuidv4();
 
-    const file = bucket.file(`Posts/${imageName}.png`);
+    const file = bucket.file(`users/${userId}/posts/${postId}/${imageId}.png`);
+
     await file.save(image);
-    return file.publicUrl();
+
+    const urlOptions: GetSignedUrlConfig = {
+      version: 'v4',
+      action: 'read',
+      expires: this.expiryDate
+    };
+
+    const [url] = await file.getSignedUrl(urlOptions);
+
+    return { imageId: imageId, url: url, expiryDate: this.expiryDate };
   }
 
-  //TODO
-  async deletePostImage(imageURL) {
-    //* %27 is the "/"
-    const imageID = imageURL.split('%2F')[1];
+  async deletePostImage(imageId: any, userId: string, postId: string) {
+    const fileName = `users/${userId}/posts/${postId}/${imageId}.png`;
 
-    const file = bucket.file(`Posts/${imageID}`);
-    await file.delete();
+    console.log(fileName);
+
+    await storage
+      .bucket(process.env.FIREBASE_BUCKET_NAME)
+      .file(fileName)
+      .delete()
+      .catch((err) => {
+        throw err;
+      });
   }
 
   async getSignedURL(userId: string, imageId: string) {
@@ -88,6 +102,30 @@ export class FirebaseStorageService {
       .bucket(process.env.FIREBASE_BUCKET_NAME)
       .file(fileName)
       .getSignedUrl(urlOptions);
+
+    console.log(this.expiryDate);
+
+    return { url: url, expiryDate: this.expiryDate };
+  }
+
+  async getPostImageSignedURL(imageId: any, userId: string, postId: string) {
+    const fileName = `users/${userId}/posts/${postId}/${imageId}.png`;
+
+    const urlOptions: GetSignedUrlConfig = {
+      version: 'v4',
+      action: 'read',
+      expires: this.expiryDate
+    };
+
+    // Get a signed URL that allows temporary access to the object
+    const [url] = await storage
+      .bucket(process.env.FIREBASE_BUCKET_NAME)
+      .file(fileName)
+      .getSignedUrl(urlOptions);
+
+    console.log(new Date(Date.now()));
+
+    console.log(new Date(this.expiryDate));
 
     return { url: url, expiryDate: this.expiryDate };
   }

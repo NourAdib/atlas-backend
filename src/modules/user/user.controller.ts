@@ -53,7 +53,7 @@ export class UserController {
         return res.status(HttpStatus.OK).send();
       })
       .catch((err) => {
-        return res.status(HttpStatus.BAD_REQUEST).json(err);
+        return res.status(err.status).json({ message: err.message });
       });
   }
   /**
@@ -191,7 +191,7 @@ export class UserController {
         return res.status(HttpStatus.OK).json({ message: 'Gender updated' });
       })
       .catch((err) => {
-        return res.status(err.status).json(err.message);
+        return res.status(err.status).json({ message: err.message });
       });
   }
   /**
@@ -226,7 +226,7 @@ export class UserController {
         return res.status(HttpStatus.OK).json({ message: 'Avatar Added' });
       })
       .catch((err) => {
-        return res.status(err.status).json(err.message);
+        return res.status(err.status).json({ message: err.message });
       });
   }
 
@@ -245,7 +245,7 @@ export class UserController {
         return res.status(HttpStatus.OK).json({ profilePictureUrl: imageUrl });
       })
       .catch((err) => {
-        return res.status(err.status).json(err.message);
+        return res.status(err.status).json({ message: err.message });
       });
   }
 
@@ -265,7 +265,7 @@ export class UserController {
         return res.status(HttpStatus.OK).json({ message: 'Avatar updated' });
       })
       .catch((err) => {
-        return res.status(err.status).json(err.message);
+        return res.status(err.status || 500).json({ message: err.message });
       });
   }
 
@@ -283,7 +283,7 @@ export class UserController {
         return res.status(HttpStatus.OK).json({ message: 'Avatar deleted' });
       })
       .catch((err) => {
-        return res.status(err.status).json(err.message);
+        return res.status(err.status).json({ message: err.message });
       });
   }
 }

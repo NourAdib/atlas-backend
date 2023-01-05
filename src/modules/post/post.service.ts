@@ -1,7 +1,7 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Visibility } from 'src/constants/visibility.enum';
-import { Repository } from 'typeorm';
+import { FirebaseStorageService } from 'src/common/services/firebase-storage.service';
+import { DeleteResult, Repository } from 'typeorm';
 import { User } from '../user/user.entity';
 import { Post } from './entities/post.entity';
 import { Scrapbook } from './entities/scrapbook.entity';
@@ -13,7 +13,10 @@ export class PostService {
     private postRepository: Repository<Post>,
 
     @InjectRepository(Scrapbook)
-    private scrapbookRepository: Repository<Scrapbook>
+    private scrapbookRepository: Repository<Scrapbook>,
+
+    @InjectRepository(User)
+    private userRepository: Repository<User>
   ) {}
 
   /**
@@ -22,17 +25,48 @@ export class PostService {
    * @param post the post to be created
    * @returns the created post
    */
-  //TODO: Add image upload
   createPost(user: User, post: any): Promise<Post> {
     const newPost = new Post();
     newPost.caption = post.caption;
-    //newPost.imageUrl = post.imageUrl;
     newPost.tag = post.tag;
     newPost.type = post.type;
     newPost.location = post.location;
     newPost.visibility = post.visibility;
     newPost.postedBy = user;
     return this.postRepository.save(newPost);
+  }
+
+  async createPostWithImage(user: User, post: any, image: any): Promise<Post> {
+    const newPost = new Post();
+    newPost.caption = post.caption;
+    newPost.tag = post.tag;
+    newPost.type = post.type;
+    newPost.location = post.location;
+    newPost.visibility = post.visibility;
+    newPost.postedBy = user;
+    const savedPost = await this.postRepository.save(newPost);
+    const { imageId, url, expiryDate } = await new FirebaseStorageService().uploadPostImage(
+      image.buffer,
+      user.id,
+      savedPost.id
+    );
+
+    console.log('Before update');
+
+    await this.postRepository
+      .createQueryBuilder()
+      .update(Post)
+      .set({
+        imageId: imageId,
+        imageUrl: url,
+        imageExpiryDate: new Date(expiryDate)
+      })
+      .where('id = :id', { id: savedPost.id })
+      .execute();
+
+    return this.postRepository.findOneBy({ id: savedPost.id }).then((post) => {
+      return post;
+    });
   }
 
   /**
@@ -60,6 +94,51 @@ export class PostService {
     return this.scrapbookRepository.save(newScrapbook);
   }
 
+  async getPostById(id: string): Promise<Post> {
+    const post = await this.postRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect('Post.postedBy', 'User')
+      .select([
+        'Post.id',
+        'Post.caption',
+        'Post.location',
+        'Post.visibility',
+        'Post.createdAt',
+        'Post.location',
+        'Post.tag',
+        'Post.type',
+        'Post.imageUrl',
+        'Post.imageId',
+        'Post.imageExpiryDate',
+        'User.id',
+        'User.username',
+        'User.email'
+      ])
+      .where('Post.id = :id', { id: id })
+      .getOne();
+
+    if (post.imageId && post.imageExpiryDate < new Date(Date.now())) {
+      console.log('Updating image');
+
+      const { url, expiryDate } = await new FirebaseStorageService().getPostImageSignedURL(
+        post.imageId,
+        post.postedBy.id,
+        post.id
+      );
+
+      this.postRepository
+        .createQueryBuilder()
+        .update(Post)
+        .set({
+          imageExpiryDate: new Date(expiryDate),
+          imageUrl: url
+        })
+        .where('id = :id', { id: post.id })
+        .execute();
+    }
+    return post;
+  }
+
   /**
    * Returns all the posts of a user
    * @param user the user sending t he request
@@ -78,7 +157,9 @@ export class PostService {
         'Post.location',
         'Post.tag',
         'Post.type',
-        'post.imageUrl',
+        'Post.imageUrl',
+        'Post.imageExpiryDate',
+        'Post.imageId',
         'User.id',
         'User.username',
         'User.email'
@@ -105,7 +186,9 @@ export class PostService {
         'Scrapbook.location',
         'User.id',
         'User.username',
-        'User.email'
+        'User.email',
+        'User.profilePictureUrl',
+        'User.gender'
       ])
       .where('User.id = :id', { id: user.id })
       .getMany();
@@ -122,5 +205,73 @@ export class PostService {
       .leftJoinAndSelect('Scrapbook.posts', 'Post')
       .where('Scrapbook.id = :id', { id: id })
       .getOne();
+  }
+
+  async addPostToScrapbook(user: any, scrapbookId: string, postId: string): Promise<Scrapbook> {
+    const post = await this.postRepository.findOneBy({ id: postId });
+
+    if (!post) {
+      throw new HttpException('post does not exist', HttpStatus.NO_CONTENT);
+    }
+    const scrapbook = await this.scrapbookRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect('Scrapbook.posts', 'Post')
+      .where('Scrapbook.id = :id', { id: scrapbookId })
+      .getOne();
+
+    if (!scrapbook) {
+      throw new HttpException('scrapbook does not exist', HttpStatus.NO_CONTENT);
+    }
+
+    if (!scrapbook.posts) {
+      scrapbook.posts = [];
+    }
+    if (scrapbook.posts.find((p) => p.id === post.id)) {
+      throw new HttpException('post already exists in scrapbook', HttpStatus.BAD_REQUEST);
+    }
+    scrapbook.posts.push(post);
+    return await this.scrapbookRepository.save(scrapbook);
+  }
+
+  async removePostFromScrapbook(scrapbookId: string, postId: string): Promise<Scrapbook> {
+    const scrapbook = await await this.scrapbookRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect('Scrapbook.posts', 'Post')
+      .where('Scrapbook.id = :id', { id: scrapbookId })
+      .getOne();
+
+    if (!scrapbook) {
+      throw new HttpException('scrapbook does not exist', HttpStatus.NO_CONTENT);
+    }
+
+    if (!scrapbook.posts) {
+      throw new HttpException('scrapbook does not contain post', HttpStatus.NO_CONTENT);
+    }
+
+    const post = scrapbook.posts.find((p) => p.id === postId);
+
+    if (!post) {
+      throw new HttpException('scrapbook does not contain post', HttpStatus.NO_CONTENT);
+    }
+
+    scrapbook.posts = scrapbook.posts.filter((p) => p.id !== postId);
+    return await this.scrapbookRepository.save(scrapbook);
+  }
+
+  async deletePostById(user: any, postId: string): Promise<DeleteResult> {
+    const dbPost = await this.postRepository.findOneBy({ id: postId }).then((post) => {
+      return post;
+    });
+
+    if (!dbPost) {
+      throw new HttpException('post does not exist', HttpStatus.NO_CONTENT);
+    }
+
+    console.log(dbPost);
+
+    console.log(dbPost.imageId);
+
+    await new FirebaseStorageService().deletePostImage(dbPost.imageId, user.id, dbPost.id);
+    return this.postRepository.delete({ id: postId });
   }
 }

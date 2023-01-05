@@ -8,8 +8,13 @@ import {
   Post,
   Body,
   BadRequestException,
-  Param
+  Param,
+  Delete,
+  UseInterceptors,
+  UploadedFile,
+  Patch
 } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { Response } from 'express';
 import { Visibility } from 'src/constants/visibility.enum';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
@@ -21,17 +26,32 @@ import { PostService } from './post.service';
 export class PostController {
   constructor(private postService: PostService) {}
 
-  //TODO: Add image upload
   @UseGuards(JwtAuthGuard)
   @Post('create')
-  createPost(@Body() body: CreatePostDto, @Request() req, @Res() res: Response) {
+  @UseInterceptors(FileInterceptor('image'))
+  createPost(
+    @Body() body: CreatePostDto,
+    @Request() req,
+    @Res() res: Response,
+    @UploadedFile() file
+  ) {
     if (!Object.values(Visibility).includes(body.visibility)) {
       throw new BadRequestException('Invalid visibility');
     }
 
-    this.postService.createPost(req.user, body).then((post) => {
-      return res.status(HttpStatus.OK).json(post);
-    });
+    if (file) {
+      console.log(file);
+
+      this.postService.createPostWithImage(req.user, body, file).then((post) => {
+        return res.status(HttpStatus.OK).json(post);
+      });
+    }
+
+    if (!file) {
+      this.postService.createPost(req.user, body).then((post) => {
+        return res.status(HttpStatus.OK).json(post);
+      });
+    }
   }
 
   /**
@@ -45,6 +65,22 @@ export class PostController {
   getUserPosts(@Request() req, @Res() res: Response) {
     this.postService.getUserPosts(req.user).then((posts) => {
       return res.status(HttpStatus.OK).json(posts);
+    });
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/:id')
+  getPostById(@Param('id') id: string, @Res() res: Response) {
+    this.postService.getPostById(id).then((post) => {
+      return res.status(HttpStatus.OK).json(post);
+    });
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete('/:id')
+  deletePostById(@Request() req, @Res() res: Response) {
+    this.postService.deletePostById(req.user, req.params.id).then((post) => {
+      return res.status(HttpStatus.OK).json(post);
     });
   }
 
@@ -65,6 +101,44 @@ export class PostController {
     this.postService.createScrapbook(req.user, body).then((post) => {
       return res.status(HttpStatus.OK).json(post);
     });
+  }
+
+  /**
+   * Adds a post to a scrapbook
+   * @param req the request object
+   * @param res the response object
+   * @param params the request params
+   */
+  @UseGuards(JwtAuthGuard)
+  @Post('scrapbook/:id/add-post/:postId')
+  addPostToScrapbook(@Request() req, @Res() res: Response, @Param() params) {
+    this.postService
+      .addPostToScrapbook(req.user, req.params.id, req.params.postId)
+      .then((post) => {
+        return res.status(HttpStatus.OK).json(post);
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
+  }
+
+  /**
+   * Removes a post from a scrapbook
+   * @param req the request object
+   * @param res the response object
+   * @param params the request params
+   */
+  @UseGuards(JwtAuthGuard)
+  @Patch('scrapbook/:id/remove-post/:postId')
+  removePostFromScrapbook(@Request() req, @Res() res: Response, @Param() params) {
+    this.postService
+      .removePostFromScrapbook(params.id, params.postId)
+      .then((post) => {
+        return res.status(HttpStatus.OK).json(post);
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
   }
 
   /**

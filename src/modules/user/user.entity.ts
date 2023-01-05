@@ -1,5 +1,12 @@
 import { BaseEntity } from '../../common/entities/base.entity';
-import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, OneToMany } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  BeforeInsert,
+  OneToMany,
+  AfterLoad
+} from 'typeorm';
 import { EncryptionService } from '../../common/services/encryption.service';
 import { Role } from '../../constants/role.enum';
 import { Post } from '../post/entities/post.entity';
@@ -8,6 +15,7 @@ import { PostReport } from '../report/entities/post-report.entity';
 import { UserReport } from '../report/entities/user-report.entity';
 import { Gender } from '../../constants/gender.enum';
 import { UserBan } from '../report/entities/user-ban.entity';
+import { FirebaseStorageService } from '../../common/services/firebase-storage.service';
 
 /**
  * User Entity Class is the class that represents the User table in the database
@@ -31,7 +39,7 @@ export class User extends BaseEntity {
   @Column()
   username: string;
 
-  @Column()
+  @Column({ select: false })
   password: string;
 
   @Column()
@@ -47,7 +55,7 @@ export class User extends BaseEntity {
   role: Role;
 
   @Column({ type: 'longtext' })
-  profilePictureUrl: string;
+  profilePictureUrl: string = '';
 
   @Column({ default: '' })
   profilePictureId: string = '';
@@ -92,5 +100,20 @@ export class User extends BaseEntity {
   @BeforeInsert()
   async hashPassword() {
     this.password = await new EncryptionService().encryptPassword(this.password);
+  }
+
+  @AfterLoad()
+  async updateAvatarUrl() {
+    if (this.profilePictureId) {
+      if (this.profilePictureExpiryDate < new Date(Date.now())) {
+        const { url, expiryDate } = await new FirebaseStorageService().getSignedURL(
+          this.id,
+          this.profilePictureId
+        );
+
+        this.profilePictureExpiryDate = new Date(expiryDate);
+        this.profilePictureUrl = url;
+      }
+    }
   }
 }

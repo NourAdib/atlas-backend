@@ -1,9 +1,10 @@
 import { BaseEntity } from '../../../common/entities/base.entity';
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, AfterLoad } from 'typeorm';
 import { User } from '../../user/user.entity';
 import { Visibility } from '../../../constants/visibility.enum';
 import { Scrapbook } from './scrapbook.entity';
 import { PostReport } from '../../report/entities/post-report.entity';
+import { FirebaseStorageService } from '../../../common/services/firebase-storage.service';
 
 /**
  * User Entity Class is the class that represents the User table in the database
@@ -18,9 +19,6 @@ export class Post extends BaseEntity {
   @Column()
   caption: string;
 
-  @Column({ default: '' })
-  imageUrl: string = '';
-
   @Column()
   tag: string;
 
@@ -33,8 +31,17 @@ export class Post extends BaseEntity {
   @Column()
   visibility: Visibility;
 
-  @Column()
-  isTakenDown: boolean;
+  @Column({ default: false })
+  isTakenDown: boolean = false;
+
+  @Column({ type: 'longtext' })
+  imageUrl: string = '';
+
+  @Column({ default: '' })
+  imageId: string = '';
+
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  imageExpiryDate: Date;
 
   //A post can only be posted by one user but a user can have many posts
   @ManyToOne(() => User, (user) => user.posts)
@@ -47,4 +54,25 @@ export class Post extends BaseEntity {
   //A post can only be part of one scrapbook but a scrapbook can have many posts
   @ManyToOne(() => Scrapbook, (scrapbook) => scrapbook.posts)
   scrapbook: Scrapbook;
+
+  /**
+   * This method is called after the post is loaded from the database
+   * This is used to update the image url if the image has expired
+   * *It does not reflecct in the database
+   */
+  @AfterLoad()
+  async updateAvatarUrl() {
+    if (this.imageId) {
+      if (this.imageExpiryDate < new Date(Date.now())) {
+        const { url, expiryDate } = await new FirebaseStorageService().getPostImageSignedURL(
+          this.imageId,
+          this.postedBy.id,
+          this.id
+        );
+
+        this.imageExpiryDate = new Date(expiryDate);
+        this.imageUrl = url;
+      }
+    }
+  }
 }

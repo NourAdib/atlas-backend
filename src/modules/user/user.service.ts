@@ -79,23 +79,7 @@ export class UserService {
    * @returns the user profile
    */
   getUserProfile(user: any): Promise<User> {
-    return this.usersRepository
-      .createQueryBuilder()
-      .select([
-        'id',
-        'firstName',
-        'lastName',
-        'email',
-        'username',
-        'role',
-        'gender',
-        'profilePictureUrl',
-        'phoneNumber',
-        'address',
-        'dateOfBirth'
-      ])
-      .where('id = :id', { id: user.id })
-      .getRawOne();
+    return this.usersRepository.findOneBy({ id: user.id });
   }
 
   /**
@@ -388,6 +372,18 @@ export class UserService {
         profilePictureExpiryDate: new Date(Date.now()),
         profilePictureId: '',
         profilePictureUrl: ''
+      })
+      .where('id = :id', { id: user.id })
+      .execute();
+  }
+
+  async updateAvatarUrl(user: any, url: string, expiryDate: Date) {
+    await this.usersRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({
+        profilePictureExpiryDate: new Date(expiryDate),
+        profilePictureUrl: url
       })
       .where('id = :id', { id: user.id })
       .execute();
