@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 import { User } from '../user/user.entity';
 import { Comment } from './entities/comment.entity';
 import { Post } from './entities/post.entity';
@@ -180,5 +180,18 @@ export class PostService {
       .leftJoinAndSelect('Comment.comment', 'Comment')
       .where('Comment.id = :id', { id: id })
       .getOne();
+  }
+
+  /**
+   * Deletes the comment with given id
+   * @param id id of the comment
+   * @returns comment with its id
+   */
+  async deleteCommentbyId(id: string): Promise<DeleteResult> {
+    const com = await this.commentRepository.findOneBy({ id: id }).then((comment) => {
+      return comment;
+    });
+
+    return this.commentRepository.delete({ id: com.id });
   }
 }

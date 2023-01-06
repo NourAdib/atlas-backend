@@ -8,7 +8,8 @@ import {
   Post,
   Body,
   BadRequestException,
-  Param
+  Param,
+  Delete
 } from '@nestjs/common';
 import { Response } from 'express';
 import { Visibility } from 'src/constants/visibility.enum';
@@ -83,8 +84,8 @@ export class PostController {
   @UseGuards(JwtAuthGuard)
   @Get('comment/user-comments')
   getUserComments(@Request() req, @Res() res: Response) {
-    this.postService.getUserComments(req.user).then((posts) => {
-      return res.status(HttpStatus.OK).json(posts);
+    this.postService.getUserComments(req.user).then((comment) => {
+      return res.status(HttpStatus.OK).json(comment);
     });
   }
 
@@ -96,8 +97,8 @@ export class PostController {
   @UseGuards(JwtAuthGuard)
   @Get('comment/post-comments')
   getPostComments(@Request() req, @Res() res: Response) {
-    this.postService.getPostComments(req.user).then((posts) => {
-      return res.status(HttpStatus.OK).json(posts);
+    this.postService.getPostComments(req.user).then((comment) => {
+      return res.status(HttpStatus.OK).json(comment);
     });
   }
 
@@ -109,9 +110,22 @@ export class PostController {
    */
   @UseGuards(JwtAuthGuard)
   @Get('comment/:id')
-  getUserComment(@Request() req, @Param() params, @Res() res: Response) {
-    this.postService.getCommentById(params.id).then((posts) => {
-      return res.status(HttpStatus.OK).json(posts);
+  getCommentById(@Request() req, @Param() params, @Res() res: Response) {
+    this.postService.getCommentById(params.id).then((comment) => {
+      return res.status(HttpStatus.OK).json(comment);
+    });
+  }
+
+  /**
+   * Deletes the comment by id
+   * @param req the request object
+   * @param res the response object
+   */
+  @UseGuards(JwtAuthGuard)
+  @Delete('comment/:id')
+  deleteCommentById(@Request() req, @Res() res: Response) {
+    this.postService.deleteCommentbyId(req.params.id).then((comment) => {
+      return res.status(HttpStatus.OK).json(comment);
     });
   }
   /************************** SCRAPBOOK APIs **************************/
