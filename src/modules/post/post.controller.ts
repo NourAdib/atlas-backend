@@ -18,6 +18,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { Response } from 'express';
 import { Visibility } from 'src/constants/visibility.enum';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { CreateCommentDto } from './dto/comment-create.dto';
 import { CreatePostDto } from './dto/post-create.dto';
 import { CreateScrapBookDto } from './dto/scrapbook-create.dts';
 import { PostService } from './post.service';
@@ -40,17 +41,20 @@ export class PostController {
     }
 
     if (file) {
-      console.log(file);
-
       this.postService.createPostWithImage(req.user, body, file).then((post) => {
         return res.status(HttpStatus.OK).json(post);
       });
     }
 
     if (!file) {
-      this.postService.createPost(req.user, body).then((post) => {
-        return res.status(HttpStatus.OK).json(post);
-      });
+      this.postService
+        .createPost(req.user, body)
+        .then((post) => {
+          return res.status(HttpStatus.OK).json(post);
+        })
+        .catch((err) => {
+          return res.status(err.status).json({ message: err.message });
+        });
     }
   }
 
@@ -63,25 +67,40 @@ export class PostController {
   @UseGuards(JwtAuthGuard)
   @Get('user-posts')
   getUserPosts(@Request() req, @Res() res: Response) {
-    this.postService.getUserPosts(req.user).then((posts) => {
-      return res.status(HttpStatus.OK).json(posts);
-    });
+    this.postService
+      .getUserPosts(req.user)
+      .then((posts) => {
+        return res.status(HttpStatus.OK).json(posts);
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
   }
 
   @UseGuards(JwtAuthGuard)
   @Get('/:id')
   getPostById(@Param('id') id: string, @Res() res: Response) {
-    this.postService.getPostById(id).then((post) => {
-      return res.status(HttpStatus.OK).json(post);
-    });
+    this.postService
+      .getPostById(id)
+      .then((post) => {
+        return res.status(HttpStatus.OK).json(post);
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
   }
 
   @UseGuards(JwtAuthGuard)
   @Delete('/:id')
   deletePostById(@Request() req, @Res() res: Response) {
-    this.postService.deletePostById(req.user, req.params.id).then((post) => {
-      return res.status(HttpStatus.OK).json(post);
-    });
+    this.postService
+      .deletePostById(req.user, req.params.id)
+      .then((post) => {
+        return res.status(HttpStatus.OK).json(post);
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
   }
 
   /************************** SCRAPBOOK APIs **************************/
@@ -149,9 +168,14 @@ export class PostController {
   @UseGuards(JwtAuthGuard)
   @Get('scrapbook/user-scrapbooks')
   getUserScrapbooks(@Request() req, @Res() res: Response) {
-    this.postService.getUserScrapbooks(req.user).then((posts) => {
-      return res.status(HttpStatus.OK).json(posts);
-    });
+    this.postService
+      .getUserScrapbooks(req.user)
+      .then((posts) => {
+        return res.status(HttpStatus.OK).json(posts);
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
   }
 
   /**
@@ -163,8 +187,71 @@ export class PostController {
   @UseGuards(JwtAuthGuard)
   @Get('scrapbook/:id')
   getUserScrapbook(@Request() req, @Param() params, @Res() res: Response) {
-    this.postService.getScrapbookById(params.id).then((posts) => {
-      return res.status(HttpStatus.OK).json(posts);
-    });
+    this.postService
+      .getScrapbookById(params.id)
+      .then((posts) => {
+        return res.status(HttpStatus.OK).json(posts);
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
+  }
+
+  /************************** COMMENTS APIs **************************/
+  @UseGuards(JwtAuthGuard)
+  @Post('comment/:id')
+  addComment(
+    @Body() body: CreateCommentDto,
+    @Request() req,
+    @Res() res: Response,
+    @Param('id') postId: string
+  ) {
+    this.postService
+      .addComment(req.user, postId, body)
+      .then((post) => {
+        return res.status(HttpStatus.OK).json(post);
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('post-comments/:id')
+  getPostComments(@Param('id') postId: string, @Res() res: Response) {
+    this.postService
+      .getPostComments(postId)
+      .then((comments) => {
+        return res.status(HttpStatus.OK).json(comments);
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('user-comments/:id')
+  getUserComments(@Param('id') userId: string, @Res() res: Response) {
+    this.postService
+      .getUserComments(userId)
+      .then((comments) => {
+        return res.status(HttpStatus.OK).json(comments);
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete('comment/:id')
+  deleteComment(@Request() req, @Res() res: Response, @Param('id') commentId: string) {
+    this.postService
+      .deleteComment(req.user, commentId)
+      .then((post) => {
+        return res.status(HttpStatus.OK).json(post);
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
   }
 }

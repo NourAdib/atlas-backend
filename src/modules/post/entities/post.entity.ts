@@ -3,6 +3,7 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, AfterLoad
 import { User } from '../../user/user.entity';
 import { Visibility } from '../../../constants/visibility.enum';
 import { Scrapbook } from './scrapbook.entity';
+import { Comment } from './comment.entity';
 import { PostReport } from '../../report/entities/post-report.entity';
 import { FirebaseStorageService } from '../../../common/services/firebase-storage.service';
 
@@ -54,6 +55,9 @@ export class Post extends BaseEntity {
   //A post can only be part of one scrapbook but a scrapbook can have many posts
   @ManyToOne(() => Scrapbook, (scrapbook) => scrapbook.posts)
   scrapbook: Scrapbook;
+
+  @OneToMany(() => Comment, (comment) => comment.post)
+  comments: Comment[];
 
   /**
    * This method is called after the post is loaded from the database

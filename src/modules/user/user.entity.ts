@@ -11,6 +11,7 @@ import { EncryptionService } from '../../common/services/encryption.service';
 import { Role } from '../../constants/role.enum';
 import { Post } from '../post/entities/post.entity';
 import { Scrapbook } from '../post/entities/scrapbook.entity';
+import { Comment } from '../post/entities/comment.entity';
 import { PostReport } from '../report/entities/post-report.entity';
 import { UserReport } from '../report/entities/user-report.entity';
 import { Gender } from '../../constants/gender.enum';
@@ -90,6 +91,10 @@ export class User extends BaseEntity {
 
   @OneToMany(() => UserBan, (userBan) => userBan.bannedUser)
   bans: UserBan[];
+
+  //A user can make many comments
+  @OneToMany(() => Comment, (comment) => comment.author)
+  comments: Comment;
 
   //This is a hook that will be executed before the user is inserted in the database
   @BeforeInsert()

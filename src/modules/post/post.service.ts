@@ -3,8 +3,10 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { FirebaseStorageService } from 'src/common/services/firebase-storage.service';
 import { DeleteResult, Repository } from 'typeorm';
 import { User } from '../user/user.entity';
+import { CreateCommentDto } from './dto/comment-create.dto';
 import { Post } from './entities/post.entity';
 import { Scrapbook } from './entities/scrapbook.entity';
+import { Comment } from './entities/comment.entity';
 
 @Injectable()
 export class PostService {
@@ -15,8 +17,8 @@ export class PostService {
     @InjectRepository(Scrapbook)
     private scrapbookRepository: Repository<Scrapbook>,
 
-    @InjectRepository(User)
-    private userRepository: Repository<User>
+    @InjectRepository(Comment)
+    private commentRepository: Repository<Comment>
   ) {}
 
   /**
@@ -50,8 +52,6 @@ export class PostService {
       user.id,
       savedPost.id
     );
-
-    console.log('Before update');
 
     await this.postRepository
       .createQueryBuilder()
@@ -98,28 +98,11 @@ export class PostService {
     const post = await this.postRepository
       .createQueryBuilder()
       .leftJoinAndSelect('Post.postedBy', 'User')
-      .select([
-        'Post.id',
-        'Post.caption',
-        'Post.location',
-        'Post.visibility',
-        'Post.createdAt',
-        'Post.location',
-        'Post.tag',
-        'Post.type',
-        'Post.imageUrl',
-        'Post.imageId',
-        'Post.imageExpiryDate',
-        'User.id',
-        'User.username',
-        'User.email'
-      ])
+      .leftJoinAndSelect('Post.comments', 'Comment')
       .where('Post.id = :id', { id: id })
       .getOne();
 
     if (post.imageId && post.imageExpiryDate < new Date(Date.now())) {
-      console.log('Updating image');
-
       const { url, expiryDate } = await new FirebaseStorageService().getPostImageSignedURL(
         post.imageId,
         post.postedBy.id,
@@ -148,22 +131,6 @@ export class PostService {
     return this.postRepository
       .createQueryBuilder()
       .leftJoinAndSelect('Post.postedBy', 'User')
-      .select([
-        'Post.id',
-        'Post.caption',
-        'Post.location',
-        'Post.visibility',
-        'Post.createdAt',
-        'Post.location',
-        'Post.tag',
-        'Post.type',
-        'Post.imageUrl',
-        'Post.imageExpiryDate',
-        'Post.imageId',
-        'User.id',
-        'User.username',
-        'User.email'
-      ])
       .where('User.id = :id', { id: user.id })
       .getMany();
   }
@@ -177,19 +144,6 @@ export class PostService {
     return this.scrapbookRepository
       .createQueryBuilder()
       .leftJoinAndSelect('Scrapbook.user', 'User')
-      .select([
-        'Scrapbook.id',
-        'Scrapbook.caption',
-        'Scrapbook.location',
-        'Scrapbook.visibility',
-        'Scrapbook.createdAt',
-        'Scrapbook.location',
-        'User.id',
-        'User.username',
-        'User.email',
-        'User.profilePictureUrl',
-        'User.gender'
-      ])
       .where('User.id = :id', { id: user.id })
       .getMany();
   }
@@ -234,7 +188,7 @@ export class PostService {
   }
 
   async removePostFromScrapbook(scrapbookId: string, postId: string): Promise<Scrapbook> {
-    const scrapbook = await await this.scrapbookRepository
+    const scrapbook = await this.scrapbookRepository
       .createQueryBuilder()
       .leftJoinAndSelect('Scrapbook.posts', 'Post')
       .where('Scrapbook.id = :id', { id: scrapbookId })
@@ -267,11 +221,91 @@ export class PostService {
       throw new HttpException('post does not exist', HttpStatus.NO_CONTENT);
     }
 
-    console.log(dbPost);
+    if (dbPost.imageId) {
+      await new FirebaseStorageService().deletePostImage(dbPost.imageId, user.id, dbPost.id);
+    }
+    return await this.postRepository.delete({ id: postId });
+  }
 
-    console.log(dbPost.imageId);
+  async addComment(user: any, postId: string, comment: CreateCommentDto): Promise<Post> {
+    const post = await this.getPostById(postId).then((post) => {
+      if (!post) {
+        throw new HttpException('post does not exist', HttpStatus.NO_CONTENT);
+      }
 
-    await new FirebaseStorageService().deletePostImage(dbPost.imageId, user.id, dbPost.id);
-    return this.postRepository.delete({ id: postId });
+      return post;
+    });
+    const newComment = new Comment();
+    newComment.author = user;
+    newComment.text = comment.text;
+    newComment.post = post;
+    return this.commentRepository.save(newComment).then((comment) => {
+      return this.getPostById(comment.post.id);
+    });
+  }
+
+  async getPostComments(postId: string): Promise<Comment[]> {
+    return this.commentRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect('Comment.post', 'Post')
+      .select(['Comment.id', 'Comment.text', 'Comment.createdAt', 'Post.id'])
+      .leftJoinAndSelect('Comment.author', 'User')
+      .where('Comment.post.id = :id', { id: postId })
+      .getMany()
+      .then((comments) => {
+        return comments.map((comment) => {
+          delete comment.post;
+          return comment;
+        });
+      });
+  }
+
+  async getUserComments(userId: string): Promise<Comment[]> {
+    return this.commentRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect('Comment.author', 'User')
+      .leftJoinAndSelect('Comment.post', 'Post')
+      .select([
+        'Comment.id',
+        'Comment.text',
+        'Comment.createdAt',
+        'Post.id',
+        'Post.caption',
+        'Post.location',
+        'Post.visibility',
+        'Post.createdAt',
+        'Post.location',
+        'Post.tag',
+        'Post.type',
+        'Post.imageUrl',
+        'Post.imageId'
+      ])
+      .where('Comment.author.id = :id', { id: userId })
+      .getMany()
+      .then((comments) => {
+        return comments.map((comment) => {
+          delete comment.author;
+          return comment;
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        return [];
+      });
+  }
+
+  async deleteComment(user: any, commentId: string): Promise<DeleteResult> {
+    const comment = await this.commentRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect('Comment.author', 'User')
+      .where('Comment.author.id = :id', { id: user.id })
+      .where('Comment.id = :id', { id: commentId })
+      .getOne();
+
+    if (!comment) {
+      throw new HttpException('comment does not exist', HttpStatus.NO_CONTENT);
+    }
+
+    return await this.commentRepository.delete({ id: commentId });
   }
 }

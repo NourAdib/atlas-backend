@@ -76,8 +76,6 @@ export class FirebaseStorageService {
   async deletePostImage(imageId: any, userId: string, postId: string) {
     const fileName = `users/${userId}/posts/${postId}/${imageId}.png`;
 
-    console.log(fileName);
-
     await storage
       .bucket(process.env.FIREBASE_BUCKET_NAME)
       .file(fileName)
@@ -103,8 +101,6 @@ export class FirebaseStorageService {
       .file(fileName)
       .getSignedUrl(urlOptions);
 
-    console.log(this.expiryDate);
-
     return { url: url, expiryDate: this.expiryDate };
   }
 
@@ -122,10 +118,6 @@ export class FirebaseStorageService {
       .bucket(process.env.FIREBASE_BUCKET_NAME)
       .file(fileName)
       .getSignedUrl(urlOptions);
-
-    console.log(new Date(Date.now()));
-
-    console.log(new Date(this.expiryDate));
 
     return { url: url, expiryDate: this.expiryDate };
   }
