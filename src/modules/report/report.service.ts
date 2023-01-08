@@ -1,5 +1,8 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { PageMetaDto } from 'src/common/dto/page-meta.dto';
+import { PageOptionsDto } from 'src/common/dto/page-options.dto';
+import { PageDto } from 'src/common/dto/page.dto';
 import { ReportStatus } from 'src/constants/report-status.enum';
 import { Repository, UpdateResult } from 'typeorm';
 import { Post } from '../post/entities/post.entity';
@@ -123,22 +126,54 @@ export class ReportService {
     return this.userReportsRepository.save(newReport);
   }
 
-  async getPostReports(id: string): Promise<PostReport[]> {
-    return this.postReportsRepository
+  async getPostReports(id: string, pageOptionsDto: PageOptionsDto): Promise<PageDto<PostReport>> {
+    const queryResults = await this.postReportsRepository
       .createQueryBuilder()
       .leftJoinAndSelect('PostReport.reportedPost', 'Post')
       .leftJoinAndSelect('PostReport.reportedBy', 'ReportedBy')
       .where('PostReport.reportedPost.id = :id', { id: id })
-      .getMany();
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.take)
+      .orderBy('PostReport.createdAt', pageOptionsDto.order)
+      .getManyAndCount()
+      .then((postReportsAndCount) => {
+        return {
+          items: postReportsAndCount[0],
+          itemsCount: postReportsAndCount[1]
+        };
+      });
+
+    const itemCount: number = queryResults.itemsCount;
+    const entities: PostReport[] = queryResults.items;
+
+    const pageMetaDto: PageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
   }
 
-  async getUserReports(id: string): Promise<UserReport[]> {
-    return this.userReportsRepository
+  async getUserReports(id: string, pageOptionsDto: PageOptionsDto): Promise<PageDto<UserReport>> {
+    const queryResults = await this.userReportsRepository
       .createQueryBuilder()
       .leftJoinAndSelect('UserReport.reportedUser', 'User')
       .leftJoinAndSelect('UserReport.reportedBy', 'ReportedBy')
       .where('UserReport.reportedUser.id = :id', { id: id })
-      .getMany();
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.take)
+      .orderBy('UserReport.createdAt', pageOptionsDto.order)
+      .getManyAndCount()
+      .then((userReportsAndCount) => {
+        return {
+          items: userReportsAndCount[0],
+          itemsCount: userReportsAndCount[1]
+        };
+      });
+
+    const itemCount: number = queryResults.itemsCount;
+    const entities: UserReport[] = queryResults.items;
+
+    const pageMetaDto: PageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
   }
 
   async banUser(id: string): Promise<UserBan> {

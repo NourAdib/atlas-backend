@@ -1,4 +1,4 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsEnum, IsNotEmpty } from 'class-validator';
 import { Visibility } from 'src/constants/visibility.enum';
 
 /**
@@ -19,6 +19,7 @@ export class CreatePostDto {
   @IsNotEmpty()
   location: string;
 
+  @IsEnum(Visibility)
   @IsNotEmpty()
   visibility: Visibility;
 }

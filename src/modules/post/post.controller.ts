@@ -12,10 +12,12 @@ import {
   Delete,
   UseInterceptors,
   UploadedFile,
-  Patch
+  Patch,
+  Query
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Response } from 'express';
+import { PageOptionsDto } from 'src/common/dto/page-options.dto';
 import { Visibility } from 'src/constants/visibility.enum';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CreateCommentDto } from './dto/comment-create.dto';
@@ -36,10 +38,6 @@ export class PostController {
     @Res() res: Response,
     @UploadedFile() file
   ) {
-    if (!Object.values(Visibility).includes(body.visibility)) {
-      throw new BadRequestException('Invalid visibility');
-    }
-
     if (file) {
       this.postService.createPostWithImage(req.user, body, file).then((post) => {
         return res.status(HttpStatus.OK).json(post);
@@ -63,12 +61,11 @@ export class PostController {
    * @param req the request object
    * @param res the response object
    */
-  //TODO: Add pagination
   @UseGuards(JwtAuthGuard)
   @Get('user-posts')
-  getUserPosts(@Request() req, @Res() res: Response) {
+  getUserPosts(@Request() req, @Res() res: Response, @Query() pageOptionsDto: PageOptionsDto) {
     this.postService
-      .getUserPosts(req.user)
+      .getUserPosts(req.user, pageOptionsDto)
       .then((posts) => {
         return res.status(HttpStatus.OK).json(posts);
       })
@@ -167,9 +164,9 @@ export class PostController {
    */
   @UseGuards(JwtAuthGuard)
   @Get('scrapbook/user-scrapbooks')
-  getUserScrapbooks(@Request() req, @Res() res: Response) {
+  getUserScrapbooks(@Request() req, @Res() res: Response, @Query() pageOptionsDto: PageOptionsDto) {
     this.postService
-      .getUserScrapbooks(req.user)
+      .getUserScrapbooks(req.user, pageOptionsDto)
       .then((posts) => {
         return res.status(HttpStatus.OK).json(posts);
       })
@@ -218,9 +215,13 @@ export class PostController {
 
   @UseGuards(JwtAuthGuard)
   @Get('post-comments/:id')
-  getPostComments(@Param('id') postId: string, @Res() res: Response) {
+  getPostComments(
+    @Param('id') postId: string,
+    @Res() res: Response,
+    @Query() pageOptionsDto: PageOptionsDto
+  ) {
     this.postService
-      .getPostComments(postId)
+      .getPostComments(postId, pageOptionsDto)
       .then((comments) => {
         return res.status(HttpStatus.OK).json(comments);
       })
@@ -231,9 +232,13 @@ export class PostController {
 
   @UseGuards(JwtAuthGuard)
   @Get('user-comments/:id')
-  getUserComments(@Param('id') userId: string, @Res() res: Response) {
+  getUserComments(
+    @Param('id') userId: string,
+    @Res() res: Response,
+    @Query() pageOptionsDto: PageOptionsDto
+  ) {
     this.postService
-      .getUserComments(userId)
+      .getUserComments(userId, pageOptionsDto)
       .then((comments) => {
         return res.status(HttpStatus.OK).json(comments);
       })

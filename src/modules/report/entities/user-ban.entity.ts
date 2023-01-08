@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, BaseEntity } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { User } from '../../user/user.entity';
 import { BanStatus } from '../../../constants/ban-status.enum';
+import { BaseEntity } from '../../../common/entities/base.entity';
 
 /**
  * User Entity Class is the class that represents the User table in the database

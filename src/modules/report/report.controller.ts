@@ -1,6 +1,7 @@
 import { Controller, UseGuards, Res, Request, Post, Body, HttpStatus } from '@nestjs/common';
-import { Get, Param } from '@nestjs/common/decorators';
+import { Get, Param, Query } from '@nestjs/common/decorators';
 import { Response } from 'express';
+import { PageOptionsDto } from 'src/common/dto/page-options.dto';
 import { Role } from 'src/constants/role.enum';
 import { Roles } from 'src/decorators/roles.decorator';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
@@ -70,9 +71,14 @@ export class ReportController {
    */
   @UseGuards(JwtAuthGuard)
   @Get('post-reports/:id')
-  getPostReports(@Request() req, @Param() params, @Res() res: Response) {
+  getPostReports(
+    @Request() req,
+    @Param() params,
+    @Res() res: Response,
+    @Query() pageOptionsDto: PageOptionsDto
+  ) {
     this.reportService
-      .getPostReports(params.id)
+      .getPostReports(params.id, pageOptionsDto)
       .then((reports) => {
         return res.status(HttpStatus.OK).json(reports);
       })
@@ -95,9 +101,14 @@ export class ReportController {
    */
   @UseGuards(JwtAuthGuard)
   @Get('user-reports/:id')
-  getUserReports(@Request() req, @Param() params, @Res() res: Response) {
+  getUserReports(
+    @Request() req,
+    @Param() params,
+    @Res() res: Response,
+    @Query() pageOptionsDto: PageOptionsDto
+  ) {
     this.reportService
-      .getUserReports(params.id)
+      .getUserReports(params.id, pageOptionsDto)
       .then((reports) => {
         return res.status(HttpStatus.OK).json(reports);
       })

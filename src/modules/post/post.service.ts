@@ -7,6 +7,9 @@ import { CreateCommentDto } from './dto/comment-create.dto';
 import { Post } from './entities/post.entity';
 import { Scrapbook } from './entities/scrapbook.entity';
 import { Comment } from './entities/comment.entity';
+import { PageOptionsDto } from 'src/common/dto/page-options.dto';
+import { PageDto } from 'src/common/dto/page.dto';
+import { PageMetaDto } from 'src/common/dto/page-meta.dto';
 
 @Injectable()
 export class PostService {
@@ -127,12 +130,28 @@ export class PostService {
    * @param user the user sending t he request
    * @returns the posts of the user
    */
-  getUserPosts(user: any): Promise<Post[]> {
-    return this.postRepository
+  async getUserPosts(user: any, pageOptionsDto: PageOptionsDto): Promise<PageDto<Post>> {
+    const queryResults = await this.postRepository
       .createQueryBuilder()
       .leftJoinAndSelect('Post.postedBy', 'User')
       .where('User.id = :id', { id: user.id })
-      .getMany();
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.take)
+      .orderBy('Post.createdAt', pageOptionsDto.order)
+      .getManyAndCount()
+      .then((userPostsAndCount) => {
+        return {
+          items: userPostsAndCount[0],
+          itemsCount: userPostsAndCount[1]
+        };
+      });
+
+    const itemCount: number = queryResults.itemsCount;
+    const entities: Post[] = queryResults.items;
+
+    const pageMetaDto: PageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
   }
 
   /**
@@ -140,12 +159,28 @@ export class PostService {
    * @param user the user sending the request
    * @returns the scrapbooks of the user
    */
-  getUserScrapbooks(user: any): Promise<Scrapbook[]> {
-    return this.scrapbookRepository
+  async getUserScrapbooks(user: any, pageOptionsDto: PageOptionsDto): Promise<PageDto<Scrapbook>> {
+    const queryResults = await this.scrapbookRepository
       .createQueryBuilder()
       .leftJoinAndSelect('Scrapbook.user', 'User')
       .where('User.id = :id', { id: user.id })
-      .getMany();
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.take)
+      .orderBy('Scrapbook.createdAt', pageOptionsDto.order)
+      .getManyAndCount()
+      .then((userScrapbooksAndCount) => {
+        return {
+          items: userScrapbooksAndCount[0],
+          itemsCount: userScrapbooksAndCount[1]
+        };
+      });
+
+    const itemCount: number = queryResults.itemsCount;
+    const entities: Scrapbook[] = queryResults.items;
+
+    const pageMetaDto: PageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
   }
 
   /**
@@ -244,26 +279,38 @@ export class PostService {
     });
   }
 
-  async getPostComments(postId: string): Promise<Comment[]> {
-    return this.commentRepository
+  async getPostComments(postId: string, pageOptionsDto: PageOptionsDto): Promise<PageDto<Comment>> {
+    const queryResults = await this.commentRepository
       .createQueryBuilder()
       .leftJoinAndSelect('Comment.post', 'Post')
       .select(['Comment.id', 'Comment.text', 'Comment.createdAt', 'Post.id'])
       .leftJoinAndSelect('Comment.author', 'User')
       .where('Comment.post.id = :id', { id: postId })
-      .getMany()
-      .then((comments) => {
-        return comments.map((comment) => {
-          delete comment.post;
-          return comment;
-        });
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.take)
+      .orderBy('Comment.createdAt', pageOptionsDto.order)
+      .getManyAndCount()
+      .then((userCommentsAndCount) => {
+        return {
+          items: userCommentsAndCount[0].map((comment) => {
+            delete comment.post;
+            return comment;
+          }),
+          itemsCount: userCommentsAndCount[1]
+        };
       });
+
+    const itemCount: number = queryResults.itemsCount;
+    const entities: Comment[] = queryResults.items;
+
+    const pageMetaDto: PageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
   }
 
-  async getUserComments(userId: string): Promise<Comment[]> {
-    return this.commentRepository
+  async getUserComments(userId: string, pageOptionsDto: PageOptionsDto): Promise<PageDto<Comment>> {
+    const queryResults = await this.commentRepository
       .createQueryBuilder()
-      .leftJoinAndSelect('Comment.author', 'User')
       .leftJoinAndSelect('Comment.post', 'Post')
       .select([
         'Comment.id',
@@ -274,24 +321,32 @@ export class PostService {
         'Post.location',
         'Post.visibility',
         'Post.createdAt',
-        'Post.location',
         'Post.tag',
         'Post.type',
         'Post.imageUrl',
         'Post.imageId'
       ])
-      .where('Comment.author.id = :id', { id: userId })
-      .getMany()
-      .then((comments) => {
-        return comments.map((comment) => {
-          delete comment.author;
-          return comment;
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        return [];
+      .leftJoinAndSelect('Comment.author', 'User')
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.take)
+      .orderBy('Comment.createdAt', pageOptionsDto.order)
+      .getManyAndCount()
+      .then((userCommentsAndCount) => {
+        return {
+          items: userCommentsAndCount[0].map((comment) => {
+            delete comment.author;
+            return comment;
+          }),
+          itemsCount: userCommentsAndCount[1]
+        };
       });
+
+    const itemCount: number = queryResults.itemsCount;
+    const entities: Comment[] = queryResults.items;
+
+    const pageMetaDto: PageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
   }
 
   async deleteComment(user: any, commentId: string): Promise<DeleteResult> {
