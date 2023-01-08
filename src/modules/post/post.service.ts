@@ -7,6 +7,8 @@ import { CreateCommentDto } from './dto/comment-create.dto';
 import { Post } from './entities/post.entity';
 import { Scrapbook } from './entities/scrapbook.entity';
 import { Comment } from './entities/comment.entity';
+import { Like } from './entities/like.entity';
+import { CreateLikeDto } from './dto/like-create.dto';
 
 @Injectable()
 export class PostService {
@@ -18,7 +20,10 @@ export class PostService {
     private scrapbookRepository: Repository<Scrapbook>,
 
     @InjectRepository(Comment)
-    private commentRepository: Repository<Comment>
+    private commentRepository: Repository<Comment>,
+
+    @InjectRepository(Like)
+    private likeRepository: Repository<Like>
   ) {}
 
   /**
@@ -227,6 +232,13 @@ export class PostService {
     return await this.postRepository.delete({ id: postId });
   }
 
+  /**
+   * Adds comments
+   * @param user the user sending the request
+   * @param postId Id of the post
+   * @param comment comment to be added
+   * @returns the created comment
+   */
   async addComment(user: any, postId: string, comment: CreateCommentDto): Promise<Post> {
     const post = await this.getPostById(postId).then((post) => {
       if (!post) {
@@ -244,6 +256,11 @@ export class PostService {
     });
   }
 
+  /**
+   * Returns the post comments
+   * @param postId Id of the post
+   * @returns comments of the posts
+   */
   async getPostComments(postId: string): Promise<Comment[]> {
     return this.commentRepository
       .createQueryBuilder()
@@ -260,6 +277,11 @@ export class PostService {
       });
   }
 
+  /**
+   * Returns the user comments
+   * @param userId Id of the user
+   * @returns comments by the user
+   */
   async getUserComments(userId: string): Promise<Comment[]> {
     return this.commentRepository
       .createQueryBuilder()
@@ -294,6 +316,12 @@ export class PostService {
       });
   }
 
+  /**
+   * Returns the deleted comment
+   * @param user user sending the request
+   * @param commentId Id of the comment
+   * @returns the deleted comment
+   */
   async deleteComment(user: any, commentId: string): Promise<DeleteResult> {
     const comment = await this.commentRepository
       .createQueryBuilder()
@@ -307,5 +335,21 @@ export class PostService {
     }
 
     return await this.commentRepository.delete({ id: commentId });
+  }
+
+  async addLike(user: any, postId: string, like: CreateLikeDto): Promise<Post> {
+    const post = await this.getPostById(postId).then((post) => {
+      if (!post) {
+        throw new HttpException('post does not exist', HttpStatus.NO_CONTENT);
+      }
+
+      return post;
+    });
+    const newLike = new Like();
+    newLike.status = like.status;
+    newLike.post = post;
+    return this.likeRepository.save(newLike).then((like) => {
+      return this.getPostById(like.post.id);
+    });
   }
 }

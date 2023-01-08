@@ -6,6 +6,7 @@ import { Scrapbook } from './scrapbook.entity';
 import { Comment } from './comment.entity';
 import { PostReport } from '../../report/entities/post-report.entity';
 import { FirebaseStorageService } from '../../../common/services/firebase-storage.service';
+import { Like } from './like.entity';
 
 /**
  * User Entity Class is the class that represents the User table in the database
@@ -58,6 +59,10 @@ export class Post extends BaseEntity {
 
   @OneToMany(() => Comment, (comment) => comment.post)
   comments: Comment[];
+
+  //A user can like many posts
+  @OneToMany(() => Like, (like) => like.post)
+  likePost: Like[];
 
   /**
    * This method is called after the post is loaded from the database

@@ -19,6 +19,7 @@ import { Response } from 'express';
 import { Visibility } from 'src/constants/visibility.enum';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CreateCommentDto } from './dto/comment-create.dto';
+import { CreateLikeDto } from './dto/like-create.dto';
 import { CreatePostDto } from './dto/post-create.dto';
 import { CreateScrapBookDto } from './dto/scrapbook-create.dts';
 import { PostService } from './post.service';
@@ -198,6 +199,13 @@ export class PostController {
   }
 
   /************************** COMMENTS APIs **************************/
+  /**
+   * Adds comment to the post
+   * @param body the request body
+   * @param req the request object
+   * @param res the response object
+   * @param postId post Id
+   */
   @UseGuards(JwtAuthGuard)
   @Post('comment/:id')
   addComment(
@@ -216,6 +224,11 @@ export class PostController {
       });
   }
 
+  /**
+   * Returns the post comments
+   * @param postId post Id
+   * @param res thr response object
+   */
   @UseGuards(JwtAuthGuard)
   @Get('post-comments/:id')
   getPostComments(@Param('id') postId: string, @Res() res: Response) {
@@ -229,6 +242,11 @@ export class PostController {
       });
   }
 
+  /**
+   * Returns the user comments
+   * @param userId user Id
+   * @param res the response object
+   */
   @UseGuards(JwtAuthGuard)
   @Get('user-comments/:id')
   getUserComments(@Param('id') userId: string, @Res() res: Response) {
@@ -241,12 +259,35 @@ export class PostController {
         return res.status(err.status).json({ message: err.message });
       });
   }
-
+  /**
+   * Returns the comment with the given Id
+   * @param req the request object
+   * @param res the response object
+   * @param commentId comment Id
+   */
   @UseGuards(JwtAuthGuard)
   @Delete('comment/:id')
   deleteComment(@Request() req, @Res() res: Response, @Param('id') commentId: string) {
     this.postService
       .deleteComment(req.user, commentId)
+      .then((post) => {
+        return res.status(HttpStatus.OK).json(post);
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
+  }
+  /******************* LIKES APIs *********************************/
+  @UseGuards(JwtAuthGuard)
+  @Post('like/:id')
+  addLike(
+    @Body() body: CreateLikeDto,
+    @Request() req,
+    @Res() res: Response,
+    @Param('id') postId: string
+  ) {
+    this.postService
+      .addLike(req.user, postId, body)
       .then((post) => {
         return res.status(HttpStatus.OK).json(post);
       })

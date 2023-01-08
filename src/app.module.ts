@@ -14,6 +14,7 @@ import { PostReport } from './modules/report/entities/post-report.entity';
 import { UserReport } from './modules/report/entities/user-report.entity';
 import { ReportModule } from './modules/report/report.module';
 import { UserBan } from './modules/report/entities/user-ban.entity';
+import { Like } from './modules/post/entities/like.entity';
 
 @Module({
   imports: [
@@ -29,7 +30,7 @@ import { UserBan } from './modules/report/entities/user-ban.entity';
         username: configService.get<string>('DATABASE_USERNAME'),
         password: configService.get<string>('DATABASE_PASSWORD'),
         database: configService.get<string>('DATABASE_NAME'),
-        entities: [User, Post, Scrapbook, PostReport, UserReport, UserBan, Comment],
+        entities: [User, Post, Scrapbook, PostReport, UserReport, UserBan, Comment, Like],
         synchronize: false,
         autoLoadEntities: true,
         options: { encrypt: false },
