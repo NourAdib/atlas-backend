@@ -9,7 +9,7 @@ export class Like extends BaseEntity {
   id: string;
 
   @Column({ default: LikeStatus.Unliked })
-  status: string = LikeStatus.Unliked;
+  status: string;
 
   //A like can me made by one user but a user can have many likes
   @ManyToOne(() => User, (user) => user.likes)

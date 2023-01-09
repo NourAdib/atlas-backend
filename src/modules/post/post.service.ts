@@ -9,6 +9,7 @@ import { Scrapbook } from './entities/scrapbook.entity';
 import { Comment } from './entities/comment.entity';
 import { Like } from './entities/like.entity';
 import { CreateLikeDto } from './dto/like-create.dto';
+import { LikeStatus } from 'src/constants/like-status.enum';
 
 @Injectable()
 export class PostService {
@@ -337,6 +338,13 @@ export class PostService {
     return await this.commentRepository.delete({ id: commentId });
   }
 
+  /**
+   * Adds likes to the post
+   * @param user user sending the request
+   * @param postId Id of the post
+   * @param like like to be added
+   * @returns liked post
+   */
   async addLike(user: any, postId: string, like: CreateLikeDto): Promise<Post> {
     const post = await this.getPostById(postId).then((post) => {
       if (!post) {
@@ -346,10 +354,73 @@ export class PostService {
       return post;
     });
     const newLike = new Like();
+    newLike.user = user;
+
+    like.status = LikeStatus.Liked;
     newLike.status = like.status;
+
     newLike.post = post;
     return this.likeRepository.save(newLike).then((like) => {
       return this.getPostById(like.post.id);
     });
+  }
+
+  /**
+   * Gets user likes
+   * @param userId Id of the user
+   * @returns user likes
+   */
+  getUserLikes(userId: string): Promise<Like[]> {
+    return this.likeRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect('Like.user', 'User')
+      .leftJoinAndSelect('Like.post', 'Post')
+      .select([
+        'Like.id',
+        'Like.status',
+        'Post.id',
+        'Post.caption',
+        'Post.location',
+        'Post.visibility',
+        'Post.status',
+        'Post.location',
+        'Post.tag',
+        'Post.type',
+        'Post.imageUrl',
+        'Post.imageId'
+      ])
+      .where('User.id =: id', { id: userId })
+      .getMany()
+      .then((likes) => {
+        return likes.map((like) => {
+          delete like.user;
+          return like;
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        return [];
+      });
+  }
+
+  /**
+   * Gets post likes
+   * @param postId Id of the post
+   * @returns post likes
+   */
+  getPostLikes(postId: string): Promise<Like[]> {
+    return this.likeRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect('Like.post', 'Post')
+      .select(['Like.id', 'Like.status', 'Post.id'])
+      .leftJoinAndSelect('Like.user', 'User')
+      .where('Like.post.id = :id', { id: postId })
+      .getMany()
+      .then((likes) => {
+        return likes.map((like) => {
+          delete like.post;
+          return like;
+        });
+      });
   }
 }

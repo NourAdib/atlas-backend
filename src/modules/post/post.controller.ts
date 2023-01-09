@@ -278,6 +278,13 @@ export class PostController {
       });
   }
   /******************* LIKES APIs *********************************/
+  /**
+   * Adds likes to the post
+   * @param body the request body
+   * @param req the request object
+   * @param res the response object
+   * @param postId Id of the post
+   */
   @UseGuards(JwtAuthGuard)
   @Post('like/:id')
   addLike(
@@ -290,6 +297,41 @@ export class PostController {
       .addLike(req.user, postId, body)
       .then((post) => {
         return res.status(HttpStatus.OK).json(post);
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
+  }
+  /**
+   * Returns the user likes
+   * @param userId Id of the user
+   * @param res the response object
+   */
+  @UseGuards(JwtAuthGuard)
+  @Get('user-likes/:id')
+  getUserLikes(@Param('id') userId: string, @Res() res: Response) {
+    this.postService
+      .getUserLikes(userId)
+      .then((likes) => {
+        return res.status(HttpStatus.OK).json(likes);
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
+  }
+
+  /**
+   * Returns the post likes
+   * @param postId Id of the post
+   * @param res the response object
+   */
+  @UseGuards(JwtAuthGuard)
+  @Get('post-likes/:id')
+  getPostLikes(@Param('id') postId: string, @Res() res: Response) {
+    this.postService
+      .getPostLikes(postId)
+      .then((likes) => {
+        return res.status(HttpStatus.OK).json(likes);
       })
       .catch((err) => {
         return res.status(err.status).json({ message: err.message });
