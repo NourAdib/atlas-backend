@@ -46,8 +46,8 @@ export class User extends BaseEntity {
   @Column()
   phoneNumber: string;
 
-  @Column()
-  address: string;
+  @Column({ default: '' })
+  address: string = '';
 
   @Column()
   dateOfBirth: Date;

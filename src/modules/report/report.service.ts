@@ -53,7 +53,11 @@ export class ReportService {
     const userReportedPosts = await this.userRepository
       .findOne({
         where: { id: user.id },
-        relations: ['reportedPosts', 'reportedPosts.reportedPost']
+        relations: [
+          'reportedPosts',
+          'reportedPosts.reportedPost',
+          'reportedPosts.reportedPost.postedBy'
+        ]
       })
       .then((user) => {
         return user.reportedPosts.map((reports) => {
@@ -227,5 +231,60 @@ export class ReportService {
       .set({ isTakenDown: false })
       .where('id = :id', { id: post.id })
       .execute();
+  }
+
+  async getReportedPosts(pageOptionsDto: PageOptionsDto): Promise<PageDto<PostReport>> {
+    const queryResults = await this.postReportsRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect('PostReport.reportedPost', 'Post')
+      .leftJoinAndSelect('PostReport.reportedBy', 'ReportedBy')
+      .leftJoinAndSelect('Post.postedBy', 'postedBy')
+      .where('PostReport.status = :status', { status: ReportStatus.PendingReview })
+      .groupBy('Post.id')
+      .addGroupBy('PostReport.reason')
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.take)
+      .orderBy('Post.createdAt', pageOptionsDto.order)
+      .getManyAndCount()
+      .then((postsAndCount) => {
+        return {
+          items: postsAndCount[0],
+          itemsCount: postsAndCount[0].length
+        };
+      });
+
+    const itemCount: number = queryResults.itemsCount;
+    const entities: PostReport[] = queryResults.items;
+
+    const pageMetaDto: PageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  async getReportedUsers(pageOptionsDto: PageOptionsDto): Promise<PageDto<UserReport>> {
+    const queryResults = await this.userReportsRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect('UserReport.reportedUser', 'User')
+      .leftJoinAndSelect('UserReport.reportedBy', 'ReportedBy')
+      .where('UserReport.status = :status', { status: ReportStatus.PendingReview })
+      .groupBy('User.id')
+      .addGroupBy('UserReport.reason')
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.take)
+      .orderBy('User.createdAt', pageOptionsDto.order)
+      .getManyAndCount()
+      .then((usersAndCount) => {
+        return {
+          items: usersAndCount[0],
+          itemsCount: usersAndCount[0].length
+        };
+      });
+
+    const itemCount: number = queryResults.itemsCount;
+    const entities: UserReport[] = queryResults.items;
+
+    const pageMetaDto: PageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
   }
 }

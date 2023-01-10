@@ -200,4 +200,44 @@ export class ReportController {
         return res.status(HttpStatus.BAD_REQUEST).json({ 'message': message });
       });
   }
+
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Get('reported-posts')
+  @Roles(Role.Admin)
+  getReportedPosts(@Request() req, @Res() res: Response, @Query() pageOptionsDto: PageOptionsDto) {
+    this.reportService
+      .getReportedPosts(pageOptionsDto)
+      .then((posts) => {
+        return res.status(HttpStatus.OK).json(posts);
+      })
+      .catch((err) => {
+        const { message } = err;
+
+        if (err.status === HttpStatus.NO_CONTENT) {
+          return res.status(HttpStatus.NO_CONTENT).send();
+        }
+
+        return res.status(HttpStatus.BAD_REQUEST).json({ 'message': message });
+      });
+  }
+
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Get('reported-users')
+  @Roles(Role.Admin)
+  getReportedUsers(@Request() req, @Res() res: Response, @Query() pageOptionsDto: PageOptionsDto) {
+    this.reportService
+      .getReportedUsers(pageOptionsDto)
+      .then((posts) => {
+        return res.status(HttpStatus.OK).json(posts);
+      })
+      .catch((err) => {
+        const { message } = err;
+
+        if (err.status === HttpStatus.NO_CONTENT) {
+          return res.status(HttpStatus.NO_CONTENT).send();
+        }
+
+        return res.status(HttpStatus.BAD_REQUEST).json({ 'message': message });
+      });
+  }
 }

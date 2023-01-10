@@ -1,4 +1,4 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsEnum, IsNotEmpty } from 'class-validator';
 import { Visibility } from 'src/constants/visibility.enum';
 import { Post } from '../entities/post.entity';
 
@@ -15,6 +15,7 @@ export class CreateScrapBookDto {
   @IsNotEmpty()
   location: string;
 
+  @IsEnum(Visibility)
   @IsNotEmpty()
   visibility: Visibility;
 }

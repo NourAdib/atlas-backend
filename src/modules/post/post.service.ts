@@ -248,7 +248,7 @@ export class PostService {
   }
 
   async deletePostById(user: any, postId: string): Promise<DeleteResult> {
-    const dbPost = await this.postRepository.findOneBy({ id: postId }).then((post) => {
+    const dbPost = await this.getPostById(postId).then((post) => {
       return post;
     });
 

@@ -3,6 +3,7 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { User } from '../../user/user.entity';
 import { ReportStatus } from '../../../constants/report-status.enum';
 import { BaseEntity } from '../../../common/entities/base.entity';
+import { ReportReason } from '../../../constants/report-reason.enum';
 
 /**
  * User Entity Class is the class that represents the User table in the database
@@ -18,7 +19,7 @@ export class PostReport extends BaseEntity {
   status: string = ReportStatus.PendingReview;
 
   @Column()
-  reason: string;
+  reason: ReportReason;
 
   //A Report can only report one post but a post can be in many reports
   @ManyToOne(() => Post, (post) => post.reportsAgainst, {

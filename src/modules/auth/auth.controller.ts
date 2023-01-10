@@ -6,8 +6,11 @@ import {
   Res,
   HttpStatus,
   UseGuards,
-  ForbiddenException
+  ForbiddenException,
+  UseInterceptors,
+  UploadedFile
 } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { Response } from 'express';
 import { Role } from 'src/constants/role.enum';
 import { Roles } from 'src/decorators/roles.decorator';
@@ -33,7 +36,13 @@ export class AuthController {
    * @returns confirmation message or error message
    */
   @Post('signup')
-  signUpUser(@Body() body: SignUpUserDto, @Request() req, @Res() res: Response) {
+  @UseInterceptors(FileInterceptor('avatar'))
+  signUpUser(
+    @Body() body: SignUpUserDto,
+    @Request() req,
+    @Res() res: Response,
+    @UploadedFile() file
+  ) {
     if (body.password !== body.confirmPassword) {
       return res.status(HttpStatus.BAD_REQUEST).json({
         message: 'Passwords do not match'
@@ -48,10 +57,21 @@ export class AuthController {
       }
 
       if (!user) {
-        this.userService.create(body).then((user: User) => {
-          const { id, firstName, lastName, email } = user;
-          return res.status(HttpStatus.CREATED).json({ id, firstName, lastName, email });
-        });
+        if (file) {
+          this.userService.createUserWithImage(body, file).then((user: User) => {
+            const { id, firstName, lastName, email, profilePictureUrl } = user;
+            return res
+              .status(HttpStatus.CREATED)
+              .json({ id, firstName, lastName, email, profilePictureUrl });
+          });
+        }
+
+        if (!file) {
+          this.userService.create(body).then((user: User) => {
+            const { id, firstName, lastName, email } = user;
+            return res.status(HttpStatus.CREATED).json({ id, firstName, lastName, email });
+          });
+        }
       }
     });
   }

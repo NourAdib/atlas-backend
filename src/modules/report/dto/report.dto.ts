@@ -1,4 +1,4 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsEnum, IsNotEmpty } from 'class-validator';
 import { ReportReason } from 'src/constants/report-reason.enum';
 
 /**
@@ -8,6 +8,7 @@ export class ReportDto {
   @IsNotEmpty()
   id: string;
 
+  @IsEnum(ReportReason)
   @IsNotEmpty()
   reason: ReportReason;
 }

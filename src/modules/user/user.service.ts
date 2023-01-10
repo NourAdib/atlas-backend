@@ -43,6 +43,44 @@ export class UserService {
 
     return this.usersRepository.save(newUser);
   }
+
+  async createUserWithImage(user: SignUpUserDto, image: any): Promise<User> {
+    const newUser = new User();
+    newUser.firstName = user.firstName;
+    newUser.lastName = user.lastName;
+    newUser.email = user.email;
+    newUser.username = user.username;
+    newUser.password = user.password;
+    newUser.phoneNumber = user.phoneNumber;
+    newUser.address = user.address;
+    newUser.dateOfBirth = new Date(user.dateOfBirth);
+
+    //The user is a normal user by default
+    newUser.role = Role.Standard;
+
+    const savedUser = await this.usersRepository.save(newUser);
+
+    const { imageId, url, expiryDate } = await new FirebaseStorageService().uploadAvatar(
+      image.buffer,
+      savedUser.id
+    );
+
+    await this.usersRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({
+        profilePictureId: imageId,
+        profilePictureUrl: url,
+        profilePictureExpiryDate: new Date(expiryDate)
+      })
+      .where('id = :id', { id: savedUser.id })
+      .execute();
+
+    return this.usersRepository.findOneBy({ id: savedUser.id }).then((user) => {
+      return user;
+    });
+  }
+
   /**
    * Creates a new user object and saves it in the database
    * @param user the user object that contains the user information
