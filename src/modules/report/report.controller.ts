@@ -28,13 +28,7 @@ export class ReportController {
         return res.status(HttpStatus.OK).json(report);
       })
       .catch((err) => {
-        const { message } = err;
-
-        if (err.status === HttpStatus.NO_CONTENT) {
-          return res.status(HttpStatus.NO_CONTENT).send();
-        }
-
-        return res.status(HttpStatus.BAD_REQUEST).json({ 'message': message });
+        return res.status(err.status).json({ message: err.message });
       });
   }
 
@@ -53,13 +47,7 @@ export class ReportController {
         return res.status(HttpStatus.OK).json(report);
       })
       .catch((err) => {
-        const { message } = err;
-
-        if (err.status === HttpStatus.NO_CONTENT) {
-          return res.status(HttpStatus.NO_CONTENT).send();
-        }
-
-        return res.status(HttpStatus.BAD_REQUEST).json({ 'message': message });
+        return res.status(err.status).json({ message: err.message });
       });
   }
 
@@ -83,13 +71,7 @@ export class ReportController {
         return res.status(HttpStatus.OK).json(reports);
       })
       .catch((err) => {
-        const { message } = err;
-
-        if (err.status === HttpStatus.NO_CONTENT) {
-          return res.status(HttpStatus.NO_CONTENT).send();
-        }
-
-        return res.status(HttpStatus.BAD_REQUEST).json({ 'message': message });
+        return res.status(err.status).json({ message: err.message });
       });
   }
 
@@ -113,13 +95,7 @@ export class ReportController {
         return res.status(HttpStatus.OK).json(reports);
       })
       .catch((err) => {
-        const { message } = err;
-
-        if (err.status === HttpStatus.NO_CONTENT) {
-          return res.status(HttpStatus.NO_CONTENT).send();
-        }
-
-        return res.status(HttpStatus.BAD_REQUEST).json({ 'message': message });
+        return res.status(err.status).json({ message: err.message });
       });
   }
 
@@ -130,22 +106,16 @@ export class ReportController {
    * @param res the response object
    */
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Post('ban-user/:id')
+  @Post('ban-user/:userId')
   @Roles(Role.Admin)
-  banUser(@Request() req, @Param() params, @Res() res: Response) {
+  banUser(@Request() req, @Param('userId') userId, @Res() res: Response) {
     this.reportService
-      .banUser(params.id)
+      .banUser(userId)
       .then((reports) => {
         return res.status(HttpStatus.OK).json(reports);
       })
       .catch((err) => {
-        const { message } = err;
-
-        if (err.status === HttpStatus.NO_CONTENT) {
-          return res.status(HttpStatus.NO_CONTENT).send();
-        }
-
-        return res.status(HttpStatus.BAD_REQUEST).json({ 'message': message });
+        return res.status(err.status).json({ message: err.message });
       });
   }
 
@@ -156,22 +126,21 @@ export class ReportController {
    * @param res the response object
    */
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Post('ban-post/:id')
+  @Post('ban-post/:postId/:reportId')
   @Roles(Role.Admin)
-  banPost(@Request() req, @Param() params, @Res() res: Response) {
+  banPost(
+    @Request() req,
+    @Param('postId') postId,
+    @Param('reportId') reportId,
+    @Res() res: Response
+  ) {
     this.reportService
-      .banPost(params.id)
+      .banPost(postId, reportId)
       .then(() => {
         return res.status(HttpStatus.OK).json({ 'message': 'Post banned' });
       })
       .catch((err) => {
-        const { message } = err;
-
-        if (err.status === HttpStatus.NO_CONTENT) {
-          return res.status(HttpStatus.NO_CONTENT).send();
-        }
-
-        return res.status(HttpStatus.BAD_REQUEST).json({ 'message': message });
+        return res.status(err.status).json({ message: err.message });
       });
   }
 
@@ -191,13 +160,7 @@ export class ReportController {
         return res.status(HttpStatus.OK).json({ 'message': 'Post unbanned' });
       })
       .catch((err) => {
-        const { message } = err;
-
-        if (err.status === HttpStatus.NO_CONTENT) {
-          return res.status(HttpStatus.NO_CONTENT).send();
-        }
-
-        return res.status(HttpStatus.BAD_REQUEST).json({ 'message': message });
+        return res.status(err.status).json({ message: err.message });
       });
   }
 
@@ -211,13 +174,7 @@ export class ReportController {
         return res.status(HttpStatus.OK).json(posts);
       })
       .catch((err) => {
-        const { message } = err;
-
-        if (err.status === HttpStatus.NO_CONTENT) {
-          return res.status(HttpStatus.NO_CONTENT).send();
-        }
-
-        return res.status(HttpStatus.BAD_REQUEST).json({ 'message': message });
+        return res.status(err.status).json({ message: err.message });
       });
   }
 
@@ -231,13 +188,7 @@ export class ReportController {
         return res.status(HttpStatus.OK).json(posts);
       })
       .catch((err) => {
-        const { message } = err;
-
-        if (err.status === HttpStatus.NO_CONTENT) {
-          return res.status(HttpStatus.NO_CONTENT).send();
-        }
-
-        return res.status(HttpStatus.BAD_REQUEST).json({ 'message': message });
+        return res.status(err.status).json({ message: err.message });
       });
   }
 }

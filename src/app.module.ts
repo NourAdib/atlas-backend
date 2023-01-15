@@ -14,6 +14,8 @@ import { PostReport } from './modules/report/entities/post-report.entity';
 import { UserReport } from './modules/report/entities/user-report.entity';
 import { ReportModule } from './modules/report/report.module';
 import { UserBan } from './modules/report/entities/user-ban.entity';
+import { Appeal } from './modules/appeals/entities/appeal.entity';
+import { AppealsModule } from './modules/appeals/appeals.module';
 
 @Module({
   imports: [
@@ -29,7 +31,7 @@ import { UserBan } from './modules/report/entities/user-ban.entity';
         username: configService.get<string>('DATABASE_USERNAME'),
         password: configService.get<string>('DATABASE_PASSWORD'),
         database: configService.get<string>('DATABASE_NAME'),
-        entities: [User, Post, Scrapbook, PostReport, UserReport, UserBan, Comment],
+        entities: [User, Post, Scrapbook, PostReport, UserReport, UserBan, Comment, Appeal],
         synchronize: false,
         autoLoadEntities: true,
         options: { encrypt: false },
@@ -46,7 +48,8 @@ import { UserBan } from './modules/report/entities/user-ban.entity';
     UserModule,
     AuthModule,
     PostModule,
-    ReportModule
+    ReportModule,
+    AppealsModule
   ],
   controllers: [],
   providers: [AppService, LocalStrategy]

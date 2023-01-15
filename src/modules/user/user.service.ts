@@ -10,6 +10,7 @@ import { User } from './user.entity';
 import { Gender } from 'src/constants/gender.enum';
 import { EncryptionService } from 'src/common/services/encryption.service';
 import { FirebaseStorageService } from 'src/common/services/firebase-storage.service';
+import { UpdateUserPasseordDto } from './dto/password-update.dto';
 
 @Injectable()
 export class UserService {
@@ -152,12 +153,7 @@ export class UserService {
    * @returns success or failure
    */
   updateUserEmail(user: any, email: string): Promise<UpdateResult> {
-    return this.usersRepository
-      .createQueryBuilder()
-      .update(User)
-      .set({ email })
-      .where('id = id', { id: user.id })
-      .execute();
+    return this.usersRepository.update(user.id, { email });
   }
   /**
    * Updates users address
@@ -166,12 +162,7 @@ export class UserService {
    * @returns success or failure
    */
   updateUserAddress(user: any, address: string): Promise<UpdateResult> {
-    return this.usersRepository
-      .createQueryBuilder()
-      .update(User)
-      .set({ address })
-      .where('id = id', { id: user.id })
-      .execute();
+    return this.usersRepository.update(user.id, { address });
   }
   /**
    * updates the users First name
@@ -180,12 +171,7 @@ export class UserService {
    * @returns success or failure
    */
   updateUserFirstName(user: any, firstName: string): Promise<UpdateResult> {
-    return this.usersRepository
-      .createQueryBuilder()
-      .update(User)
-      .set({ firstName })
-      .where('id = id', { id: user.id })
-      .execute();
+    return this.usersRepository.update(user.id, { firstName });
   }
   /**
    * updates the users Last name
@@ -194,12 +180,7 @@ export class UserService {
    * @returns success or failure
    */
   updateUserLastName(user: any, lastName: string): Promise<UpdateResult> {
-    return this.usersRepository
-      .createQueryBuilder()
-      .update(User)
-      .set({ lastName })
-      .where('id = id', { id: user.id })
-      .execute();
+    return this.usersRepository.update(user.id, { lastName });
   }
   /**
    * updates the username
@@ -208,12 +189,7 @@ export class UserService {
    * @returns success or failure
    */
   updateUsername(user: any, username: string): Promise<UpdateResult> {
-    return this.usersRepository
-      .createQueryBuilder()
-      .update(User)
-      .set({ username })
-      .where('id = id', { id: user.id })
-      .execute();
+    return this.usersRepository.update(user.id, { username });
   }
   /**
    * Updates users date of birth
@@ -222,12 +198,7 @@ export class UserService {
    * @returns success or failure
    */
   updateUserDateOfBirth(user: any, dateOfBirth: Date): Promise<UpdateResult> {
-    return this.usersRepository
-      .createQueryBuilder()
-      .update(User)
-      .set({ dateOfBirth })
-      .where('id = id', { id: user.id })
-      .execute();
+    return this.usersRepository.update(user.id, { dateOfBirth });
   }
   /**
    * Updates users phone number
@@ -236,12 +207,7 @@ export class UserService {
    * @returns success or failure
    */
   updateUserPhoneNumber(user: any, phoneNumber: string): Promise<UpdateResult> {
-    return this.usersRepository
-      .createQueryBuilder()
-      .update(User)
-      .set({ phoneNumber })
-      .where('id = id', { id: user.id })
-      .execute();
+    return this.usersRepository.update(user.id, { phoneNumber });
   }
 
   /**
@@ -269,8 +235,27 @@ export class UserService {
    * @param password the password to be updated to
    * @returns success or failure
    */
-  async updateUserPassword(user: any, password: string): Promise<UpdateResult> {
-    const encryptedPassword = await new EncryptionService().encryptPassword(password);
+  async updateUserPassword(user: any, body: UpdateUserPasseordDto): Promise<UpdateResult> {
+    const dbUser = await this.usersRepository
+      .createQueryBuilder()
+      .select(['id', 'email', 'password', 'role'])
+      .where('id = :id', { id: user.id })
+      .getRawOne();
+
+    if (!dbUser) {
+      throw new BadRequestException('User not found');
+    }
+
+    const passwordMatch = await new EncryptionService().comparePasswords(
+      body.currentPassword,
+      dbUser.password
+    );
+
+    if (!passwordMatch) {
+      throw new BadRequestException('Incorrect current password');
+    }
+
+    const encryptedPassword = await new EncryptionService().encryptPassword(body.password);
     return this.usersRepository
       .createQueryBuilder()
       .update(User)

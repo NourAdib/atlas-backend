@@ -17,6 +17,7 @@ import { UserReport } from '../report/entities/user-report.entity';
 import { Gender } from '../../constants/gender.enum';
 import { UserBan } from '../report/entities/user-ban.entity';
 import { FirebaseStorageService } from '../../common/services/firebase-storage.service';
+import { Appeal } from '../appeals/entities/appeal.entity';
 
 /**
  * User Entity Class is the class that represents the User table in the database
@@ -94,7 +95,11 @@ export class User extends BaseEntity {
 
   //A user can make many comments
   @OneToMany(() => Comment, (comment) => comment.author)
-  comments: Comment;
+  comments: Comment[];
+
+  //A user can make many appeals
+  @OneToMany(() => Appeal, (appeal) => appeal.appealedBy)
+  appeals: Appeal[];
 
   //This is a hook that will be executed before the user is inserted in the database
   @BeforeInsert()

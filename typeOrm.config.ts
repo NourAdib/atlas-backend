@@ -8,6 +8,7 @@ import { Comment } from './src/modules/post/entities/comment.entity';
 import { PostReport } from './src/modules/report/entities/post-report.entity';
 import { UserReport } from './src/modules/report/entities/user-report.entity';
 import { UserBan } from './src/modules/report/entities/user-ban.entity';
+import { Appeal } from './src/modules/appeals/entities/appeal.entity';
 
 config();
 
@@ -19,6 +20,6 @@ export default new DataSource({
   username: configService.get('DATABASE_USERNAME'),
   password: configService.get('DATABASE_PASSWORD'),
   database: configService.get('DATABASE_NAME'),
-  entities: [User, Post, Scrapbook, PostReport, UserReport, UserBan, Comment],
+  entities: [User, Post, Scrapbook, PostReport, UserReport, UserBan, Comment, Appeal],
   migrations: ['./migrations/*{.ts,.js}']
 });

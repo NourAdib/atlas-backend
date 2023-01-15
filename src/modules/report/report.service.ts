@@ -135,6 +135,7 @@ export class ReportService {
       .createQueryBuilder()
       .leftJoinAndSelect('PostReport.reportedPost', 'Post')
       .leftJoinAndSelect('PostReport.reportedBy', 'ReportedBy')
+      .leftJoinAndSelect('Post.postedBy', 'PostedBy')
       .where('PostReport.reportedPost.id = :id', { id: id })
       .skip(pageOptionsDto.skip)
       .take(pageOptionsDto.take)
@@ -199,14 +200,26 @@ export class ReportService {
     return this.userBanRepository.save(newBan);
   }
 
-  async banPost(id: string): Promise<UpdateResult> {
+  async banPost(postId: string, reportId: string): Promise<UpdateResult> {
     const post = await this.postRepository.findOne({
-      where: { id: id }
+      where: { id: postId },
+      relations: ['postedBy']
     });
 
     if (!post) {
       throw new HttpException('Post not found', HttpStatus.NO_CONTENT);
     }
+
+    const report = await this.postReportsRepository.findOne({
+      where: { id: reportId }
+    });
+
+    if (!report) {
+      throw new HttpException('Report not found', HttpStatus.NO_CONTENT);
+    }
+
+    report.status = ReportStatus.Accepted;
+    await this.postReportsRepository.save(report);
 
     return this.postRepository
       .createQueryBuilder()

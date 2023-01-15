@@ -33,9 +33,14 @@ export class UserController {
   @UseGuards(JwtAuthGuard)
   @Get('profile')
   getUserProfile(@Request() req, @Res() res: Response) {
-    this.userService.getUserProfile(req.user).then((user) => {
-      return res.status(HttpStatus.OK).json(user);
-    });
+    this.userService
+      .getUserProfile(req.user)
+      .then((user) => {
+        return res.status(HttpStatus.OK).json(user);
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
   }
 
   /**
@@ -65,9 +70,14 @@ export class UserController {
   @UseGuards(JwtAuthGuard)
   @Patch('email')
   updateUserEmail(@Body() body: UpdateUserEmailDto, @Request() req, @Res() res: Response) {
-    this.userService.updateUserEmail(req.user, body.email).then(() => {
-      return res.status(HttpStatus.OK).json({ message: 'Email updated' });
-    });
+    this.userService
+      .updateUserEmail(req.user, body.email)
+      .then(() => {
+        return res.status(HttpStatus.OK).json({ message: 'Email updated' });
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
   }
   /**
    * updates the user address
@@ -81,9 +91,14 @@ export class UserController {
     if (!address) {
       throw new BadRequestException('Adress must not be empty');
     }
-    this.userService.updateUserAddress(req.user, address).then(() => {
-      return res.status(HttpStatus.OK).json({ message: 'Address updated' });
-    });
+    this.userService
+      .updateUserAddress(req.user, address)
+      .then(() => {
+        return res.status(HttpStatus.OK).json({ message: 'Address updated' });
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
   }
   /**
    * updates the users first name
@@ -100,9 +115,14 @@ export class UserController {
     if (firstName.length >= 255) {
       throw new BadRequestException('Name should be less than 256 charecters');
     }
-    this.userService.updateUserFirstName(req.user, firstName).then(() => {
-      return res.status(HttpStatus.OK).json({ message: 'First name updated' });
-    });
+    this.userService
+      .updateUserFirstName(req.user, firstName)
+      .then(() => {
+        return res.status(HttpStatus.OK).json({ message: 'First name updated' });
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
   }
   /**
    * updates the users last name
@@ -119,9 +139,14 @@ export class UserController {
     if (lastName.length >= 255) {
       throw new BadRequestException('Name should be less than 256 charecters');
     }
-    this.userService.updateUserLastName(req.user, lastName).then(() => {
-      return res.status(HttpStatus.OK).json({ message: 'Last name updated' });
-    });
+    this.userService
+      .updateUserLastName(req.user, lastName)
+      .then(() => {
+        return res.status(HttpStatus.OK).json({ message: 'Last name updated' });
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
   }
   /**
    * updates the usrename
@@ -138,9 +163,14 @@ export class UserController {
     if (username.length > 30) {
       throw new BadRequestException('Userame should be less than 30 charecters');
     }
-    this.userService.updateUsername(req.user, username).then(() => {
-      return res.status(HttpStatus.OK).json({ message: 'Username updated' });
-    });
+    this.userService
+      .updateUsername(req.user, username)
+      .then(() => {
+        return res.status(HttpStatus.OK).json({ message: 'Username updated' });
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
   }
   /**
    * updates the user date of birth
@@ -155,9 +185,14 @@ export class UserController {
     @Request() req,
     @Res() res: Response
   ) {
-    this.userService.updateUserDateOfBirth(req.user, body.dateOfBirth).then(() => {
-      return res.status(HttpStatus.OK).json({ message: 'Date of birth updated' });
-    });
+    this.userService
+      .updateUserDateOfBirth(req.user, body.dateOfBirth)
+      .then(() => {
+        return res.status(HttpStatus.OK).json({ message: 'Date of birth updated' });
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
   }
   /**
    * updates the users phone number
@@ -172,9 +207,14 @@ export class UserController {
     @Request() req,
     @Res() res: Response
   ) {
-    this.userService.updateUserPhoneNumber(req.user, body.phoneNumber).then(() => {
-      return res.status(HttpStatus.OK).json({ message: 'Phone number updated' });
-    });
+    this.userService
+      .updateUserPhoneNumber(req.user, body.phoneNumber)
+      .then(() => {
+        return res.status(HttpStatus.OK).json({ message: 'Phone number updated' });
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
   }
   /**
    * Updates the user gender
@@ -201,13 +241,18 @@ export class UserController {
    */
   @UseGuards(JwtAuthGuard)
   @Patch('password')
-  updateUserPassword(@Request() req, @Res() res: Response, @Body() Body: UpdateUserPasseordDto) {
-    if (Body.password !== Body.confirmPassword) {
+  updateUserPassword(@Request() req, @Res() res: Response, @Body() body: UpdateUserPasseordDto) {
+    if (body.password !== body.confirmPassword) {
       throw new BadRequestException('Passwords do not match');
     }
-    this.userService.updateUserPassword(req.user, Body.password).then(() => {
-      return res.status(HttpStatus.OK).json({ message: 'Password updated' });
-    });
+    this.userService
+      .updateUserPassword(req.user, body)
+      .then(() => {
+        return res.status(HttpStatus.OK).json({ message: 'Password updated' });
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
   }
 
   /**
