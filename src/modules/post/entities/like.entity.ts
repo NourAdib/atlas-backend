@@ -1,5 +1,5 @@
-import { LikeStatus } from 'src/constants/like-status.enum';
-import { User } from 'src/modules/user/user.entity';
+import { LikeStatus } from '../../../constants/like-status.enum';
+import { User } from '../../user/user.entity';
 import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Post } from './post.entity';
 
