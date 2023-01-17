@@ -6,7 +6,7 @@ import { PageDto } from 'src/common/dto/page.dto';
 import { ReportStatus } from 'src/constants/report-status.enum';
 import { Repository, UpdateResult } from 'typeorm';
 import { Post } from '../post/entities/post.entity';
-import { User } from '../user/user.entity';
+import { User } from '../user/entities/user.entity';
 import { PostReport } from './entities/post-report.entity';
 import { UserBan } from './entities/user-ban.entity';
 import { UserReport } from './entities/user-report.entity';

@@ -14,7 +14,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { Response } from 'express';
 import { Role } from 'src/constants/role.enum';
 import { Roles } from 'src/decorators/roles.decorator';
-import { User } from '../user/user.entity';
+import { User } from '../user/entities/user.entity';
 import { UserService } from '../user/user.service';
 import { AuthService } from './auth.service';
 import { SignUpUserDto } from './dto/user-signup.dto';

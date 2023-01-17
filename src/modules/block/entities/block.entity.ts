@@ -1,6 +1,6 @@
 import { BaseEntity } from '../../../common/entities/base.entity';
 import { Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { User } from '../../user/user.entity';
+import { User } from '../../user/entities/user.entity';
 
 @Entity()
 export class Block extends BaseEntity {

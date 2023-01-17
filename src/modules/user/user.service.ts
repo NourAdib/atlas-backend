@@ -6,7 +6,7 @@ import { BanStatus } from 'src/constants/ban-status.enum';
 import { Role } from 'src/constants/role.enum';
 import { Repository, UpdateResult } from 'typeorm';
 import { SignUpUserDto } from '../auth/dto/user-signup.dto';
-import { User } from './user.entity';
+import { User } from './entities/user.entity';
 import { Gender } from 'src/constants/gender.enum';
 import { EncryptionService } from 'src/common/services/encryption.service';
 import { FirebaseStorageService } from 'src/common/services/firebase-storage.service';
@@ -102,6 +102,11 @@ export class UserService {
     newUser.role = Role.Admin;
     return this.usersRepository.save(newUser);
   }
+
+  getUserProfileById(id: string): Promise<User> {
+    return this.usersRepository.findOneBy({ id });
+  }
+
   /**
    * Gets the user with the email passed in the parameter
    * @param email the email of the user

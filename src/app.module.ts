@@ -3,7 +3,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserModule } from './modules/user/user.module';
-import { User } from './modules/user/user.entity';
+import { User } from './modules/user/entities/user.entity';
 import { AuthModule } from './modules/auth/auth.module';
 import { LocalStrategy } from './modules/auth/strategies/local.strategy';
 import { PostModule } from './modules/post/post.module';
@@ -18,6 +18,9 @@ import { Appeal } from './modules/appeals/entities/appeal.entity';
 import { AppealsModule } from './modules/appeals/appeals.module';
 import { BlockModule } from './modules/block/block.module';
 import { Block } from './modules/block/entities/block.entity';
+import { Follow } from './modules/follow/entities/follow.entity';
+import { FollowRequest } from './modules/follow/entities/follow-request.entity';
+import { FollowModule } from './modules/follow/follow.module';
 
 @Module({
   imports: [
@@ -33,7 +36,19 @@ import { Block } from './modules/block/entities/block.entity';
         username: configService.get<string>('DATABASE_USERNAME'),
         password: configService.get<string>('DATABASE_PASSWORD'),
         database: configService.get<string>('DATABASE_NAME'),
-        entities: [User, Post, Scrapbook, PostReport, UserReport, UserBan, Comment, Appeal, Block],
+        entities: [
+          User,
+          Post,
+          Scrapbook,
+          PostReport,
+          UserReport,
+          UserBan,
+          Comment,
+          Appeal,
+          Block,
+          Follow,
+          FollowRequest
+        ],
         synchronize: false,
         autoLoadEntities: true,
         options: { encrypt: false },
@@ -52,7 +67,8 @@ import { Block } from './modules/block/entities/block.entity';
     PostModule,
     ReportModule,
     AppealsModule,
-    BlockModule
+    BlockModule,
+    FollowModule
   ],
   controllers: [],
   providers: [AppService, LocalStrategy]

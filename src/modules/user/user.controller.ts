@@ -43,6 +43,19 @@ export class UserController {
       });
   }
 
+  @UseGuards(JwtAuthGuard)
+  @Get('profile/:id')
+  getUserProfileById(@Request() req, @Res() res: Response, @Query('id') id: string) {
+    this.userService
+      .getUserProfileById(id)
+      .then((user) => {
+        return res.status(HttpStatus.OK).json(user);
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
+  }
+
   /**
    * Updates the user role
    * @param req the request object

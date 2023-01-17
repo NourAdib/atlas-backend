@@ -3,7 +3,7 @@ import { BlockService } from './block.service';
 import { BlockController } from './block.controller';
 import { Block } from './entities/block.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from '../user/user.entity';
+import { User } from '../user/entities/user.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Block, User])],

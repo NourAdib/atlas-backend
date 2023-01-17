@@ -1,6 +1,6 @@
 import { ReportStatus } from '../../../constants/report-status.enum';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { User } from '../../user/user.entity';
+import { User } from '../../user/entities/user.entity';
 import { BaseEntity } from '../../../common/entities/base.entity';
 import { ReportReason } from '../../../constants/report-reason.enum';
 

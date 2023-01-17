@@ -1,6 +1,6 @@
 import { BaseEntity } from '../../../common/entities/base.entity';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, AfterLoad } from 'typeorm';
-import { User } from '../../user/user.entity';
+import { User } from '../../user/entities/user.entity';
 import { Visibility } from '../../../constants/visibility.enum';
 import { Scrapbook } from './scrapbook.entity';
 import { Comment } from './comment.entity';

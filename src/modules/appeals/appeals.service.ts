@@ -7,7 +7,7 @@ import { ReportStatus } from 'src/constants/report-status.enum';
 import { Repository } from 'typeorm';
 import { Post } from '../post/entities/post.entity';
 import { PostReport } from '../report/entities/post-report.entity';
-import { User } from '../user/user.entity';
+import { User } from '../user/entities/user.entity';
 import { AppealDto } from './dto/appeal.dto';
 import { Appeal } from './entities/appeal.entity';
 

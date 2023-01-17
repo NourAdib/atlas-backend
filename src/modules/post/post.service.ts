@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FirebaseStorageService } from 'src/common/services/firebase-storage.service';
 import { DeleteResult, Repository } from 'typeorm';
-import { User } from '../user/user.entity';
+import { User } from '../user/entities/user.entity';
 import { CreateCommentDto } from './dto/comment-create.dto';
 import { Post } from './entities/post.entity';
 import { Scrapbook } from './entities/scrapbook.entity';

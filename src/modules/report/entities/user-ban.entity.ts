@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { User } from '../../user/user.entity';
+import { User } from '../../user/entities/user.entity';
 import { BanStatus } from '../../../constants/ban-status.enum';
 import { BaseEntity } from '../../../common/entities/base.entity';
 
