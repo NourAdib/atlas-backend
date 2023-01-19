@@ -21,6 +21,7 @@ import { Block } from './modules/block/entities/block.entity';
 import { Follow } from './modules/follow/entities/follow.entity';
 import { FollowRequest } from './modules/follow/entities/follow-request.entity';
 import { FollowModule } from './modules/follow/follow.module';
+import { NotificationModule } from './modules/notification/notification.module';
 
 @Module({
   imports: [
@@ -68,7 +69,8 @@ import { FollowModule } from './modules/follow/follow.module';
     ReportModule,
     AppealsModule,
     BlockModule,
-    FollowModule
+    FollowModule,
+    NotificationModule
   ],
   controllers: [],
   providers: [AppService, LocalStrategy]

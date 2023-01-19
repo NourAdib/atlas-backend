@@ -71,6 +71,9 @@ export class User extends BaseEntity {
   @Column({ default: Gender.Undefined })
   gender: Gender = Gender.Undefined;
 
+  @Column({ default: '' })
+  fcmToken: string = '';
+
   /* @OneToMany(() => User, (user) => user.followers) */
 
   //A user can have many posts

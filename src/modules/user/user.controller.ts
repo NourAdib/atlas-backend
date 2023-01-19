@@ -9,7 +9,14 @@ import {
   BadRequestException,
   Post
 } from '@nestjs/common';
-import { Body, Delete, Query, UploadedFile, UseInterceptors } from '@nestjs/common/decorators';
+import {
+  Body,
+  Delete,
+  Param,
+  Query,
+  UploadedFile,
+  UseInterceptors
+} from '@nestjs/common/decorators';
 import { Response } from 'express';
 import { Role } from 'src/constants/role.enum';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
@@ -45,7 +52,7 @@ export class UserController {
 
   @UseGuards(JwtAuthGuard)
   @Get('profile/:id')
-  getUserProfileById(@Request() req, @Res() res: Response, @Query('id') id: string) {
+  getUserProfileById(@Request() req, @Res() res: Response, @Param('id') id: string) {
     this.userService
       .getUserProfileById(id)
       .then((user) => {

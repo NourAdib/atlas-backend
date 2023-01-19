@@ -2,6 +2,7 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 import { getStorage } from 'firebase-admin/storage';
+import { getMessaging } from 'firebase-admin/messaging';
 import { initializeApp } from 'firebase-admin/app';
 import { credential } from 'firebase-admin';
 
@@ -16,5 +17,6 @@ initializeApp(firebaseConfig);
 
 export const storage = getStorage();
 export const bucket = getStorage().bucket();
+export const messaging = getMessaging();
 
-module.exports = { bucket, storage };
+module.exports = { bucket, storage, messaging };
