@@ -91,14 +91,14 @@ export class AppealsController {
    */
   @UseGuards(JwtAuthGuard)
   @Get('post-appeals/:postId')
-  getPostAppeals(
+  getPostAppealsById(
     @Request() req,
     @Param('postId') postId,
     @Res() res: Response,
     @Query() pageOptionsDto: PageOptionsDto
   ) {
     this.appealsService
-      .getPostAppeals(postId, req.user, pageOptionsDto)
+      .getPostAppealsById(postId, req.user, pageOptionsDto)
       .then((appeal) => {
         return res.status(HttpStatus.OK).json(appeal);
       })
@@ -120,6 +120,20 @@ export class AppealsController {
       .getUserAppeals(req.user, pageOptionsDto)
       .then((appeal) => {
         return res.status(HttpStatus.OK).json(appeal);
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
+  }
+
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Get('post-appeals')
+  @Roles(Role.Admin)
+  getPostAppeals(@Request() req, @Res() res: Response, @Query() pageOptionsDto: PageOptionsDto) {
+    this.appealsService
+      .getPostAppeals(pageOptionsDto)
+      .then((appeals) => {
+        return res.status(HttpStatus.OK).json(appeals);
       })
       .catch((err) => {
         return res.status(err.status).json({ message: err.message });

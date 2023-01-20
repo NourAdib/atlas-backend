@@ -5,7 +5,7 @@ import { GetSignedUrlConfig } from '@google-cloud/storage';
 
 @Injectable()
 export class FirebaseStorageService {
-  expiryDate = Date.now() + 60 * 1000; // 7 Days from now
+  expiryDate = Date.now() + 7 * 24 * 60 * 60 * 1000; // 7 Days from now
 
   async uploadAvatar(image: any, userId: string) {
     const imageId = uuidv4();

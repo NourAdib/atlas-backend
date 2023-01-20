@@ -27,6 +27,7 @@ import { UpdateUserPhoneNumberDto } from './dto/phone-update.dto';
 import { Gender } from 'src/constants/gender.enum';
 import { UpdateUserPasseordDto } from './dto/password-update.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { NotificationPreference } from 'src/constants/notification-preference.enum';
 
 @Controller('user')
 export class UserController {
@@ -75,7 +76,7 @@ export class UserController {
     this.userService
       .updateUserRole(req.user, role)
       .then(() => {
-        return res.status(HttpStatus.OK).send();
+        return res.status(HttpStatus.OK).json({ message: 'Role updated' });
       })
       .catch((err) => {
         return res.status(err.status).json({ message: err.message });
@@ -346,6 +347,23 @@ export class UserController {
       .deleteUserAvatar(req.user)
       .then(() => {
         return res.status(HttpStatus.OK).json({ message: 'Avatar deleted' });
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Patch('notification-prefences')
+  async updateUserNotificationPreferences(
+    @Request() req,
+    @Res() res: Response,
+    @Query('preference') notificationPreferences: NotificationPreference
+  ) {
+    this.userService
+      .updateUserNotificationPreferences(req.user, notificationPreferences)
+      .then(() => {
+        return res.status(HttpStatus.OK).json({ message: 'Notification preferences updated' });
       })
       .catch((err) => {
         return res.status(err.status).json({ message: err.message });

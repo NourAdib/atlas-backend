@@ -21,6 +21,7 @@ import { Appeal } from '../../appeals/entities/appeal.entity';
 import { Block } from '../../block/entities/block.entity';
 import { Follow } from '../../../modules/follow/entities/follow.entity';
 import { FollowRequest } from '../../../modules/follow/entities/follow-request.entity';
+import { NotificationPreference } from '../../../constants/notification-preference.enum';
 
 /**
  * User Entity Class is the class that represents the User table in the database
@@ -73,6 +74,9 @@ export class User extends BaseEntity {
 
   @Column({ default: '' })
   fcmToken: string = '';
+
+  @Column({ default: NotificationPreference.All })
+  notificationPreference: NotificationPreference = NotificationPreference.All;
 
   /* @OneToMany(() => User, (user) => user.followers) */
 

@@ -1,5 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { groupBy } from 'rxjs';
 import { PageMetaDto } from 'src/common/dto/page-meta.dto';
 import { PageOptionsDto } from 'src/common/dto/page-options.dto';
 import { PageDto } from 'src/common/dto/page.dto';
@@ -70,7 +71,7 @@ export class AppealsService {
     return this.appealRepository.save(newAppeal);
   }
 
-  async getPostAppeals(
+  async getPostAppealsById(
     postId: string,
     user: any,
     pageOptionsDto: PageOptionsDto
@@ -168,5 +169,30 @@ export class AppealsService {
     appeal.status = ReportStatus.Rejected;
 
     return this.appealRepository.save(appeal);
+  }
+
+  async getPostAppeals(pageOptionsDto: PageOptionsDto): Promise<PageDto<Appeal>> {
+    const appeals = await this.appealRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect('Appeal.appealedPost', 'Post')
+      .leftJoinAndSelect('Post.postedBy', 'PostedBy')
+      .leftJoinAndSelect('Appeal.appealedBy', 'User')
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.take)
+      .orderBy('Appeal.createdAt', pageOptionsDto.order)
+      .getManyAndCount()
+      .then((appealsAndCount) => {
+        return {
+          items: appealsAndCount[0],
+          itemsCount: appealsAndCount[0].length
+        };
+      });
+
+    const itemCount: number = appeals.itemsCount;
+    const entities: Appeal[] = appeals.items;
+
+    const pageMetaDto: PageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
   }
 }

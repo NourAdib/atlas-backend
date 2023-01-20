@@ -11,6 +11,7 @@ import { Gender } from 'src/constants/gender.enum';
 import { EncryptionService } from 'src/common/services/encryption.service';
 import { FirebaseStorageService } from 'src/common/services/firebase-storage.service';
 import { UpdateUserPasseordDto } from './dto/password-update.dto';
+import { NotificationPreference } from 'src/constants/notification-preference.enum';
 
 @Injectable()
 export class UserService {
@@ -132,10 +133,32 @@ export class UserService {
    * @param role the role to be updated to
    * @returns success or failure
    */
-  updateUserRole(user: any, role: Role): Promise<UpdateResult> {
+  async updateUserRole(user: any, role: Role): Promise<UpdateResult> {
     //Check if the role is valid
     if (!Object.values(Role).includes(role)) {
       throw new BadRequestException('Invalid role');
+    }
+
+    if (role === Role.Influencer) {
+      const dbUser = await this.usersRepository.findOne({
+        where: { id: user.id },
+        relations: ['followers']
+      });
+
+      if (dbUser.followers.length < 2) {
+        throw new BadRequestException('You need at least 2 followers to become an influencer');
+      }
+    }
+
+    if (role === Role.Celebrity) {
+      const dbUser = await this.usersRepository.findOne({
+        where: { id: user.id },
+        relations: ['followers']
+      });
+
+      if (dbUser.followers.length < 10) {
+        throw new BadRequestException('You need at least 10 followers to become an celebrity');
+      }
     }
 
     //Check if the user is an admin
@@ -415,5 +438,14 @@ export class UserService {
       })
       .where('id = :id', { id: user.id })
       .execute();
+  }
+  async updateUserNotificationPreferences(
+    user: any,
+    notificationPreference: NotificationPreference
+  ): Promise<UpdateResult> {
+    if (!Object.values(NotificationPreference).includes(notificationPreference)) {
+      throw new BadRequestException('Invalid opiton');
+    }
+    return this.usersRepository.update(user.id, { notificationPreference });
   }
 }

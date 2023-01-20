@@ -1,4 +1,6 @@
 export enum NotificationTargetGroup {
   All = 'all',
-  SingleUser = 'singleUser'
+  SingleUser = 'singleUser',
+  Influencers = 'influencers',
+  Celebrity = 'celebrity'
 }
