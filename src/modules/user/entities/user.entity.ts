@@ -78,6 +78,9 @@ export class User extends BaseEntity {
   @Column({ default: NotificationPreference.All })
   notificationPreference: NotificationPreference = NotificationPreference.All;
 
+  @Column({ default: false })
+  isBanned: boolean = false;
+
   /* @OneToMany(() => User, (user) => user.followers) */
 
   //A user can have many posts

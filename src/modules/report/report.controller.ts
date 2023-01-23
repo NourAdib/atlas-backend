@@ -106,11 +106,16 @@ export class ReportController {
    * @param res the response object
    */
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Post('ban-user/:userId')
+  @Post('ban-user/:userId/:reportId')
   @Roles(Role.Admin)
-  banUser(@Request() req, @Param('userId') userId, @Res() res: Response) {
+  banUser(
+    @Request() req,
+    @Param('userId') userId,
+    @Param('reportId') reportId,
+    @Res() res: Response
+  ) {
     this.reportService
-      .banUser(userId)
+      .banUser(userId, reportId)
       .then((reports) => {
         return res.status(HttpStatus.OK).json(reports);
       })

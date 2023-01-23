@@ -181,12 +181,12 @@ export class ReportService {
     return new PageDto(entities, pageMetaDto);
   }
 
-  async banUser(id: string): Promise<UserBan> {
+  async banUser(userId: string, reportId: string): Promise<UserBan> {
     const newBan = new UserBan();
 
     // Find the user to ban
     const user = await this.userRepository.findOne({
-      where: { id: id }
+      where: { id: userId }
     });
 
     if (!user) {
@@ -197,6 +197,20 @@ export class ReportService {
     newBan.bannedUser = user;
     newBan.startDate = new Date(Date.now());
     newBan.endDate = new Date(Date.now() + millisecondsInAWeek); //Ban for 1 week
+
+    const report = await this.userReportsRepository.findOne({
+      where: { id: reportId }
+    });
+
+    if (!report) {
+      throw new HttpException('Report not found', HttpStatus.NO_CONTENT);
+    }
+
+    report.status = ReportStatus.Accepted;
+    await this.userReportsRepository.save(report);
+
+    await this.userRepository.update(userId, { isBanned: true });
+
     return this.userBanRepository.save(newBan);
   }
 

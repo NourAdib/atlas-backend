@@ -12,6 +12,9 @@ import { EncryptionService } from 'src/common/services/encryption.service';
 import { FirebaseStorageService } from 'src/common/services/firebase-storage.service';
 import { UpdateUserPasseordDto } from './dto/password-update.dto';
 import { NotificationPreference } from 'src/constants/notification-preference.enum';
+import { PageDto } from 'src/common/dto/page.dto';
+import { PageOptionsDto } from 'src/common/dto/page-options.dto';
+import { PageMetaDto } from 'src/common/dto/page-meta.dto';
 
 @Injectable()
 export class UserService {
@@ -447,5 +450,28 @@ export class UserService {
       throw new BadRequestException('Invalid opiton');
     }
     return this.usersRepository.update(user.id, { notificationPreference });
+  }
+
+  async searchUsers(searchTerm: string, pageOptionsDto: PageOptionsDto): Promise<PageDto<User>> {
+    const queryResults = await this.usersRepository
+      .createQueryBuilder('user')
+      .where('user.username LIKE :searchTerm', { searchTerm: `%${searchTerm}%` })
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.take)
+      .orderBy('User.username', pageOptionsDto.order)
+      .getManyAndCount()
+      .then((usersAndCount) => {
+        return {
+          items: usersAndCount[0],
+          itemsCount: usersAndCount[1]
+        };
+      });
+
+    const itemCount: number = queryResults.itemsCount;
+    const entities: User[] = queryResults.items;
+
+    const pageMetaDto: PageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
   }
 }

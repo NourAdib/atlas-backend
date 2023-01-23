@@ -28,6 +28,7 @@ import { Gender } from 'src/constants/gender.enum';
 import { UpdateUserPasseordDto } from './dto/password-update.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { NotificationPreference } from 'src/constants/notification-preference.enum';
+import { PageOptionsDto } from 'src/common/dto/page-options.dto';
 
 @Controller('user')
 export class UserController {
@@ -364,6 +365,24 @@ export class UserController {
       .updateUserNotificationPreferences(req.user, notificationPreferences)
       .then(() => {
         return res.status(HttpStatus.OK).json({ message: 'Notification preferences updated' });
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('search')
+  async searchUsers(
+    @Request() req,
+    @Res() res: Response,
+    @Query('searchTerm') searchTerm: string,
+    @Query() pageOptionsDto: PageOptionsDto
+  ) {
+    this.userService
+      .searchUsers(searchTerm, pageOptionsDto)
+      .then((users) => {
+        return res.status(HttpStatus.OK).json(users);
       })
       .catch((err) => {
         return res.status(err.status).json({ message: err.message });
