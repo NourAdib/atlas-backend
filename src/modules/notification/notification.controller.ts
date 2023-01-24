@@ -34,8 +34,6 @@ export class NotificationController {
         return res.status(HttpStatus.OK).json({ message: 'Notification sent' });
       })
       .catch((err) => {
-        console.log('err', err);
-
         return res.status(err.status).json({ message: err.message });
       });
   }

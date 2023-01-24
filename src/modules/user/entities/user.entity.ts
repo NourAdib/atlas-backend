@@ -23,6 +23,7 @@ import { Follow } from '../../../modules/follow/entities/follow.entity';
 import { FollowRequest } from '../../../modules/follow/entities/follow-request.entity';
 import { NotificationPreference } from '../../../constants/notification-preference.enum';
 import { Like } from '../../post/entities/post-like.entity';
+import { SubscriptionPlan } from '../../../constants/subscription-plan.enum';
 
 /**
  * User Entity Class is the class that represents the User table in the database
@@ -81,6 +82,15 @@ export class User extends BaseEntity {
 
   @Column({ default: false })
   isBanned: boolean = false;
+
+  @Column({ default: false })
+  hasStripAccount: boolean = false;
+
+  @Column({ default: '' })
+  stripeCustomerId: string = '';
+
+  @Column({ default: SubscriptionPlan.Basic })
+  subscriptionPlan: SubscriptionPlan = SubscriptionPlan.Basic;
 
   /* @OneToMany(() => User, (user) => user.followers) */
 

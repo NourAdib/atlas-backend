@@ -25,6 +25,7 @@ import { NotificationModule } from './modules/notification/notification.module';
 import { AnalyticsModule } from './modules/analytics/analytics.module';
 import { FeedModule } from './modules/feed/feed.module';
 import { Like } from './modules/post/entities/post-like.entity';
+import { PaymentModule } from './modules/payment/payment.module';
 
 @Module({
   imports: [
@@ -76,7 +77,8 @@ import { Like } from './modules/post/entities/post-like.entity';
     FollowModule,
     NotificationModule,
     AnalyticsModule,
-    FeedModule
+    FeedModule,
+    PaymentModule
   ],
   controllers: [],
   providers: [AppService, LocalStrategy]

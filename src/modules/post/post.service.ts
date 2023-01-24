@@ -418,7 +418,6 @@ export class PostService {
 
     for (let i = 0; i < post.likes.length; i++) {
       if (post.likes[i].likedBy.id === user.id) {
-        console.log('like found');
         await this.postRepository.update(post.id, { likesCount: post.likes.length - 1 });
 
         return this.likeRepository.delete({ id: post.likes[i].id });
