@@ -15,6 +15,8 @@ import { NotificationPreference } from 'src/constants/notification-preference.en
 import { PageDto } from 'src/common/dto/page.dto';
 import { PageOptionsDto } from 'src/common/dto/page-options.dto';
 import { PageMetaDto } from 'src/common/dto/page-meta.dto';
+import { StripeService } from 'src/common/services/stripe.service';
+import { SubscriptionPlan } from 'src/constants/subscription-plan.enum';
 
 @Injectable()
 export class UserService {
@@ -497,6 +499,23 @@ export class UserService {
   }
 
   async deleteUser(user: any) {
-    await this.usersRepository.delete(user.id);
+    const dbUser = await this.usersRepository.findOneBy({ id: user.id });
+
+    if (!dbUser) {
+      throw new BadRequestException('User not found');
+    }
+
+    await this.removeThirdPartyData(dbUser);
+    await this.usersRepository.delete(dbUser.id);
+  }
+
+  async removeThirdPartyData(user: User) {
+    if (user.profilePictureId) {
+      await new FirebaseStorageService().deleteAvatar(user.profilePictureId, user.id);
+    }
+
+    if (user.subscriptionPlan == SubscriptionPlan.Premium) {
+      await new StripeService().deleteCustomer(user.stripeCustomerId);
+    }
   }
 }

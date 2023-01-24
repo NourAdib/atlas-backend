@@ -6,7 +6,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, UpdateResult } from 'typeorm';
 import { SubscriptionPlan } from 'src/constants/subscription-plan.enum';
 import { NotificationService } from '../notification/notification.service';
-import { Subscription } from 'rxjs';
 dotenv.config();
 
 @Injectable()
@@ -32,12 +31,17 @@ export class PaymentService {
       throw new NotFoundException('User not found');
     }
 
+    let newUser = false;
+    let customer: Stripe.Customer;
+
     if (dbUser.subscriptionPlan === SubscriptionPlan.Basic && dbUser.hasStripAccount === false) {
-      const customer = await this.stripe.customers.create({
+      customer = await this.stripe.customers.create({
         email: dbUser.email,
         name: `${dbUser.firstName} ${dbUser.lastName}`,
         phone: dbUser.phoneNumber
       });
+
+      newUser = true;
 
       await this.userRepository.update(dbUser.id, {
         stripeCustomerId: customer.id,
@@ -45,10 +49,14 @@ export class PaymentService {
       });
     }
 
+    if (dbUser.subscriptionPlan === SubscriptionPlan.Premium && dbUser.hasStripAccount === true) {
+      throw new BadRequestException('User already has an active subscription');
+    }
+
     const session = await this.stripe.checkout.sessions.create({
       mode: 'subscription',
       payment_method_types: ['card'],
-      customer: dbUser.stripeCustomerId,
+      customer: newUser ? customer.id : dbUser.stripeCustomerId,
       currency: 'aed',
       line_items: [
         {
