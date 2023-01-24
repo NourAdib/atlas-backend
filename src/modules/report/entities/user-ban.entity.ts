@@ -23,6 +23,8 @@ export class UserBan extends BaseEntity {
   endDate: Date;
 
   //A user can be banned multiple times
-  @ManyToOne(() => User, (user) => user.bans)
+  @ManyToOne(() => User, (user) => user.bans, {
+    onDelete: 'CASCADE'
+  })
   bannedUser: User;
 }

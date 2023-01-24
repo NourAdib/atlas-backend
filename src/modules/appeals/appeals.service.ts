@@ -1,6 +1,5 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { groupBy } from 'rxjs';
 import { PageMetaDto } from 'src/common/dto/page-meta.dto';
 import { PageOptionsDto } from 'src/common/dto/page-options.dto';
 import { PageDto } from 'src/common/dto/page.dto';
@@ -103,7 +102,7 @@ export class AppealsService {
       relations: ['appeals']
     });
 
-    if (!user) {
+    if (!dbUser) {
       throw new BadRequestException('User not found');
     }
 

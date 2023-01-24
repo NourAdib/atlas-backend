@@ -24,6 +24,7 @@ export class FollowService {
 
   async requestFollow(id: string, user: any): Promise<FollowRequest> {
     const userToBeFollowed = await this.usersRepository.findOneBy({ id: id });
+
     const userRequestingFollow = await this.usersRepository.findOne({
       where: { id: user.id },
       relations: [
@@ -35,6 +36,10 @@ export class FollowService {
     });
 
     if (!userToBeFollowed) {
+      throw new BadRequestException('User not found');
+    }
+
+    if (!userRequestingFollow) {
       throw new BadRequestException('User not found');
     }
 
@@ -136,6 +141,10 @@ export class FollowService {
       relations: ['followers', 'followers.followedBy']
     });
 
+    if (!dbUser) {
+      throw new BadRequestException('User not found');
+    }
+
     const users = dbUser.followers.map((follow) => {
       return follow.followedBy;
     });
@@ -153,6 +162,10 @@ export class FollowService {
       where: { id: user.id },
       relations: ['following', 'following.followed']
     });
+
+    if (!dbUser) {
+      throw new BadRequestException('User not found');
+    }
 
     const users = dbUser.following.map((follow) => {
       return follow.followed;
@@ -175,6 +188,10 @@ export class FollowService {
       relations: ['followRequestsReceived', 'followRequestsReceived.requestedBy']
     });
 
+    if (!dbUser) {
+      throw new BadRequestException('User not found');
+    }
+
     const itemCount: number = dbUser.followRequestsReceived.length;
     const entities: FollowRequest[] = dbUser.followRequestsReceived;
 
@@ -192,6 +209,10 @@ export class FollowService {
       relations: ['followRequestsSent', 'followRequestsSent.requestedUser']
     });
 
+    if (!dbUser) {
+      throw new BadRequestException('User not found');
+    }
+
     const itemCount: number = dbUser.followRequestsSent.length;
     const entities: FollowRequest[] = dbUser.followRequestsSent;
 
@@ -208,6 +229,10 @@ export class FollowService {
     });
 
     if (!userToBeUnfollowed) {
+      throw new BadRequestException('User not found');
+    }
+
+    if (!userRequestingUnfollow) {
       throw new BadRequestException('User not found');
     }
 

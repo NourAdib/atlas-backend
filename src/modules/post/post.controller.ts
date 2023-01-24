@@ -259,4 +259,30 @@ export class PostController {
         return res.status(err.status).json({ message: err.message });
       });
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('like/:id')
+  likePost(@Request() req, @Res() res: Response, @Param('id') postId: string) {
+    this.postService
+      .likePost(req.user, postId)
+      .then((post) => {
+        return res.status(HttpStatus.OK).json(post);
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete('unlike/:id')
+  unlike(@Request() req, @Res() res: Response, @Param('id') postId: string) {
+    this.postService
+      .unlikePost(req.user, postId)
+      .then(() => {
+        return res.status(HttpStatus.OK).json({ message: 'Post unliked successfully' });
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
+  }
 }

@@ -10,6 +10,7 @@ import { Comment } from './entities/comment.entity';
 import { PageOptionsDto } from 'src/common/dto/page-options.dto';
 import { PageDto } from 'src/common/dto/page.dto';
 import { PageMetaDto } from 'src/common/dto/page-meta.dto';
+import { Like } from './entities/post-like.entity';
 
 @Injectable()
 export class PostService {
@@ -21,7 +22,10 @@ export class PostService {
     private scrapbookRepository: Repository<Scrapbook>,
 
     @InjectRepository(Comment)
-    private commentRepository: Repository<Comment>
+    private commentRepository: Repository<Comment>,
+
+    @InjectRepository(Like)
+    private likeRepository: Repository<Like>
   ) {}
 
   /**
@@ -102,25 +106,34 @@ export class PostService {
       .createQueryBuilder()
       .leftJoinAndSelect('Post.postedBy', 'User')
       .leftJoinAndSelect('Post.comments', 'Comment')
+      .leftJoinAndSelect('Comment.author', 'CommentUser')
+      .leftJoinAndSelect('Post.likes', 'Like')
+      .leftJoinAndSelect('Like.likedBy', 'LikeUser')
       .where('Post.id = :id', { id: id })
       .getOne();
 
-    if (post.imageId && post.imageExpiryDate < new Date(Date.now())) {
-      const { url, expiryDate } = await new FirebaseStorageService().getPostImageSignedURL(
-        post.imageId,
-        post.postedBy.id,
-        post.id
-      );
+    if (!post) {
+      throw new HttpException('Post not found', HttpStatus.NOT_FOUND);
+    }
 
-      this.postRepository
-        .createQueryBuilder()
-        .update(Post)
-        .set({
-          imageExpiryDate: new Date(expiryDate),
-          imageUrl: url
-        })
-        .where('id = :id', { id: post.id })
-        .execute();
+    if (post.imageId) {
+      if (post.imageId && post.imageExpiryDate < new Date(Date.now())) {
+        const { url, expiryDate } = await new FirebaseStorageService().getPostImageSignedURL(
+          post.imageId,
+          post.postedBy.id,
+          post.id
+        );
+
+        this.postRepository
+          .createQueryBuilder()
+          .update(Post)
+          .set({
+            imageExpiryDate: new Date(expiryDate),
+            imageUrl: url
+          })
+          .where('id = :id', { id: post.id })
+          .execute();
+      }
     }
     return post;
   }
@@ -362,5 +375,54 @@ export class PostService {
     }
 
     return await this.commentRepository.delete({ id: commentId });
+  }
+
+  async likePost(user: any, postId: string): Promise<Like> {
+    const post = await this.getPostById(postId).then((post) => {
+      if (!post) {
+        throw new HttpException('post does not exist', HttpStatus.NO_CONTENT);
+      }
+
+      return post;
+    });
+
+    if (post.likes.length === 0) {
+      post.likes = [];
+    }
+    if (post.likes.find((like) => like.likedBy.id === user.id)) {
+      throw new HttpException('post already liked', HttpStatus.BAD_REQUEST);
+    }
+
+    const like = new Like();
+    like.likedBy = user;
+    like.likedPost = post;
+
+    return this.likeRepository.save(like);
+  }
+
+  async unlikePost(user: any, postId: string): Promise<DeleteResult> {
+    const post = await this.getPostById(postId).then((post) => {
+      if (!post) {
+        throw new HttpException('post does not exist', HttpStatus.NO_CONTENT);
+      }
+
+      return post;
+    });
+
+    if (post.likes.length === 0) {
+      post.likes = [];
+    }
+    if (!post.likes.find((like) => like.likedBy.id === user.id)) {
+      throw new HttpException('post not liked', HttpStatus.BAD_REQUEST);
+    }
+
+    for (let i = 0; i < post.likes.length; i++) {
+      if (post.likes[i].likedBy.id === user.id) {
+        console.log('like found');
+        await this.postRepository.update(post.id, { likesCount: post.likes.length - 1 });
+
+        return this.likeRepository.delete({ id: post.likes[i].id });
+      }
+    }
   }
 }

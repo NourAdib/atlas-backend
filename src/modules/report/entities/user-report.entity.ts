@@ -21,10 +21,14 @@ export class UserReport extends BaseEntity {
   reason: ReportReason;
 
   //A Report can only report one user but a user can be in many reports
-  @ManyToOne(() => User, (user) => user.reportsAgainst)
+  @ManyToOne(() => User, (user) => user.reportsAgainst, {
+    onDelete: 'CASCADE'
+  })
   reportedUser: User;
 
   //A Report can only be posted by one user but a user can have many Reports
-  @ManyToOne(() => User, (user) => user.reportedUsers)
+  @ManyToOne(() => User, (user) => user.reportedUsers, {
+    onDelete: 'CASCADE'
+  })
   reportedBy: User;
 }

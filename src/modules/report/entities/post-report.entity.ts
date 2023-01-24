@@ -28,6 +28,8 @@ export class PostReport extends BaseEntity {
   reportedPost: Post;
 
   //A Report can only be posted by one user but a user can have many Reports
-  @ManyToOne(() => User, (user) => user.reportedPosts)
+  @ManyToOne(() => User, (user) => user.reportedPosts, {
+    onDelete: 'CASCADE'
+  })
   reportedBy: User;
 }

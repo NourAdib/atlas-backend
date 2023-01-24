@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { EncryptionService } from 'src/common/services/encryption.service';
@@ -27,6 +27,10 @@ export class AuthService {
       .select(['id', 'email', 'password', 'role'])
       .where('email = :email', { email: email })
       .getRawOne();
+
+    if (!user) {
+      throw new BadRequestException('User not found');
+    }
 
     const passwordsMatch = await new EncryptionService().comparePasswords(pass, user.password);
 

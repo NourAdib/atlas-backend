@@ -24,7 +24,9 @@ export class Scrapbook extends BaseEntity {
   visibility: Visibility;
 
   //A scrapbook can only be posted by one user but a user can have many scrapbook
-  @ManyToOne(() => User, (user) => user.scrapbooks)
+  @ManyToOne(() => User, (user) => user.scrapbooks, {
+    onDelete: 'CASCADE'
+  })
   user: User;
 
   //A scrapbook can have many posts

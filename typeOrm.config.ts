@@ -4,6 +4,7 @@ import { config } from 'dotenv';
 import { User } from './src/modules/user/entities/user.entity';
 import { Post } from './src/modules/post/entities/post.entity';
 import { Scrapbook } from './src/modules/post/entities/scrapbook.entity';
+import { Like } from './src/modules/post/entities/post-like.entity';
 import { Comment } from './src/modules/post/entities/comment.entity';
 import { PostReport } from './src/modules/report/entities/post-report.entity';
 import { UserReport } from './src/modules/report/entities/user-report.entity';
@@ -34,7 +35,8 @@ export default new DataSource({
     Appeal,
     Block,
     Follow,
-    FollowRequest
+    FollowRequest,
+    Like
   ],
   migrations: ['./migrations/*{.ts,.js}']
 });

@@ -148,6 +148,10 @@ export class UserService {
         relations: ['followers']
       });
 
+      if (!dbUser) {
+        throw new BadRequestException('User not found');
+      }
+
       if (dbUser.followers.length < 2) {
         throw new BadRequestException('You need at least 2 followers to become an influencer');
       }
@@ -158,6 +162,10 @@ export class UserService {
         where: { id: user.id },
         relations: ['followers']
       });
+
+      if (!dbUser) {
+        throw new BadRequestException('User not found');
+      }
 
       if (dbUser.followers.length < 10) {
         throw new BadRequestException('You need at least 10 followers to become an celebrity');
@@ -348,6 +356,10 @@ export class UserService {
   async getUserAvatar(user: any) {
     const dbUser = await this.usersRepository.findOneBy({ id: user.id });
 
+    if (!dbUser) {
+      throw new BadRequestException('User not found');
+    }
+
     if (!dbUser.profilePictureId || dbUser.profilePictureId.length === 0) {
       throw new HttpException('Invalid gender', HttpStatus.NO_CONTENT);
     }
@@ -383,6 +395,10 @@ export class UserService {
   async updateUserAvatar(user: any, avatar: any) {
     const dbUser = await this.usersRepository.findOneBy({ id: user.id });
 
+    if (!dbUser) {
+      throw new BadRequestException('User not found');
+    }
+
     if (!dbUser.profilePictureId || dbUser.profilePictureId.length === 0) {
       throw new HttpException("User doesn't have an avatar", HttpStatus.NO_CONTENT);
     }
@@ -413,6 +429,11 @@ export class UserService {
    */
   async deleteUserAvatar(user: any): Promise<UpdateResult> {
     const dbUser = await this.usersRepository.findOneBy({ id: user.id });
+
+    if (!dbUser) {
+      throw new BadRequestException('User not found');
+    }
+
     if (!dbUser.profilePictureId || dbUser.profilePictureId.length === 0) {
       throw new HttpException("User doesn't have an avatar", HttpStatus.NO_CONTENT);
     }
@@ -473,5 +494,9 @@ export class UserService {
     const pageMetaDto: PageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
 
     return new PageDto(entities, pageMetaDto);
+  }
+
+  async deleteUser(user: any) {
+    await this.usersRepository.delete(user.id);
   }
 }

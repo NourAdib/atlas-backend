@@ -12,7 +12,9 @@ export class Comment extends BaseEntity {
   text: string;
 
   //A comment can be made my one user but a user can have many comments
-  @ManyToOne(() => User, (user) => user.comments)
+  @ManyToOne(() => User, (user) => user.comments, {
+    onDelete: 'CASCADE'
+  })
   author: User;
 
   //A comment can be in one post but a post can have many comments

@@ -30,6 +30,10 @@ export class BlockService {
       relations: ['blocks', 'blocks.blockedUser']
     });
 
+    if (!blockingUser) {
+      throw new BadRequestException('User not found');
+    }
+
     blockingUser.blocks.map((block) => {
       if (block.blockedUser.id === userToBeBlocked.id) {
         throw new BadRequestException('User already blocked');
@@ -58,6 +62,10 @@ export class BlockService {
       where: { id: user.id },
       relations: ['blocks', 'blocks.blockedUser']
     });
+
+    if (!unblockingUser) {
+      throw new BadRequestException('User not found');
+    }
 
     let userFound = false;
     let blockId = '';

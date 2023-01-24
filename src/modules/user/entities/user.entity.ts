@@ -22,6 +22,7 @@ import { Block } from '../../block/entities/block.entity';
 import { Follow } from '../../../modules/follow/entities/follow.entity';
 import { FollowRequest } from '../../../modules/follow/entities/follow-request.entity';
 import { NotificationPreference } from '../../../constants/notification-preference.enum';
+import { Like } from '../../post/entities/post-like.entity';
 
 /**
  * User Entity Class is the class that represents the User table in the database
@@ -137,6 +138,10 @@ export class User extends BaseEntity {
   //A user can receive many follow requests
   @OneToMany(() => FollowRequest, (followRequest) => followRequest.requestedUser)
   followRequestsReceived: FollowRequest[];
+
+  //A user can have many likes
+  @OneToMany(() => Like, (like) => like.likedBy)
+  likes: Like[];
 
   //This is a hook that will be executed before the user is inserted in the database
   @BeforeInsert()

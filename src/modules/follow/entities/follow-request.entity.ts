@@ -12,10 +12,14 @@ export class FollowRequest extends BaseEntity {
   status: FollowStatus = FollowStatus.Pending;
 
   //the user doing the following
-  @ManyToOne(() => User, (user) => user.followRequestsSent)
+  @ManyToOne(() => User, (user) => user.followRequestsSent, {
+    onDelete: 'CASCADE'
+  })
   requestedBy: User;
 
   //the user being followed
-  @ManyToOne(() => User, (user) => user.followRequestsReceived)
+  @ManyToOne(() => User, (user) => user.followRequestsReceived, {
+    onDelete: 'CASCADE'
+  })
   requestedUser: User;
 }

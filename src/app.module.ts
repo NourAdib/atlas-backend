@@ -22,6 +22,9 @@ import { Follow } from './modules/follow/entities/follow.entity';
 import { FollowRequest } from './modules/follow/entities/follow-request.entity';
 import { FollowModule } from './modules/follow/follow.module';
 import { NotificationModule } from './modules/notification/notification.module';
+import { AnalyticsModule } from './modules/analytics/analytics.module';
+import { FeedModule } from './modules/feed/feed.module';
+import { Like } from './modules/post/entities/post-like.entity';
 
 @Module({
   imports: [
@@ -48,7 +51,8 @@ import { NotificationModule } from './modules/notification/notification.module';
           Appeal,
           Block,
           Follow,
-          FollowRequest
+          FollowRequest,
+          Like
         ],
         synchronize: false,
         autoLoadEntities: true,
@@ -70,7 +74,9 @@ import { NotificationModule } from './modules/notification/notification.module';
     AppealsModule,
     BlockModule,
     FollowModule,
-    NotificationModule
+    NotificationModule,
+    AnalyticsModule,
+    FeedModule
   ],
   controllers: [],
   providers: [AppService, LocalStrategy]

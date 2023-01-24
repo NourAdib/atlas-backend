@@ -3,6 +3,7 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, AfterLoad
 import { User } from '../../user/entities/user.entity';
 import { Visibility } from '../../../constants/visibility.enum';
 import { Scrapbook } from './scrapbook.entity';
+import { Like } from './post-like.entity';
 import { Comment } from './comment.entity';
 import { PostReport } from '../../report/entities/post-report.entity';
 import { FirebaseStorageService } from '../../../common/services/firebase-storage.service';
@@ -45,8 +46,13 @@ export class Post extends BaseEntity {
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   imageExpiryDate: Date;
 
+  @Column({ default: 0 })
+  likesCount: number = 0;
+
   //A post can only be posted by one user but a user can have many posts
-  @ManyToOne(() => User, (user) => user.posts)
+  @ManyToOne(() => User, (user) => user.posts, {
+    onDelete: 'CASCADE'
+  })
   postedBy: User;
 
   //A user can be reported by many users
@@ -63,6 +69,10 @@ export class Post extends BaseEntity {
   //A post can have many appeals
   @OneToMany(() => Appeal, (appeal) => appeal.appealedPost)
   appeals: Appeal[];
+
+  //A post can have many likes
+  @OneToMany(() => Like, (like) => like.likedPost)
+  likes: Like[];
 
   /**
    * This method is called after the post is loaded from the database

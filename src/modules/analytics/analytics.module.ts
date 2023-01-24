@@ -2,12 +2,12 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Post } from '../post/entities/post.entity';
 import { User } from '../user/entities/user.entity';
-import { FeedController } from './feed.controller';
-import { FeedService } from './feed.service';
+import { AnalyticsController } from './analytics.controller';
+import { AnalyticsService } from './analytics.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Post, User])],
-  controllers: [FeedController],
-  providers: [FeedService]
+  controllers: [AnalyticsController],
+  providers: [AnalyticsService]
 })
-export class FeedModule {}
+export class AnalyticsModule {}

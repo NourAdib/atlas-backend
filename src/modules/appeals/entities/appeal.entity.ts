@@ -26,6 +26,8 @@ export class Appeal extends BaseEntity {
   appealedPost: Post;
 
   //A appeal can only be appeal by one user but a user can have many appeal
-  @ManyToOne(() => User, (user) => user.appeals)
+  @ManyToOne(() => User, (user) => user.appeals, {
+    onDelete: 'CASCADE'
+  })
   appealedBy: User;
 }

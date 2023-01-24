@@ -388,4 +388,17 @@ export class UserController {
         return res.status(err.status).json({ message: err.message });
       });
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete('delete')
+  async deleteUser(@Request() req, @Res() res: Response) {
+    this.userService
+      .deleteUser(req.user)
+      .then(() => {
+        return res.status(HttpStatus.OK).json({ message: 'User deleted' });
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
+  }
 }

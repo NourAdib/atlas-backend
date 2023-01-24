@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { BadRequestException, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PageMetaDto } from 'src/common/dto/page-meta.dto';
 import { PageOptionsDto } from 'src/common/dto/page-options.dto';
@@ -60,6 +60,9 @@ export class ReportService {
         ]
       })
       .then((user) => {
+        if (!user) {
+          throw new BadRequestException('User not found');
+        }
         return user.reportedPosts.map((reports) => {
           if ((reports.status = ReportStatus.PendingReview)) {
             return reports.reportedPost;
@@ -109,6 +112,9 @@ export class ReportService {
         relations: ['reportedUsers', 'reportedUsers.reportedUser']
       })
       .then((user) => {
+        if (!user) {
+          throw new BadRequestException('User not found');
+        }
         return user.reportedUsers.map((reports) => {
           if ((reports.status = ReportStatus.PendingReview)) {
             return reports.reportedUser;

@@ -8,10 +8,14 @@ export class Follow extends BaseEntity {
   id: string;
 
   //the user doing the following
-  @ManyToOne(() => User, (user) => user.following)
+  @ManyToOne(() => User, (user) => user.following, {
+    onDelete: 'CASCADE'
+  })
   followedBy: User;
 
   //the user being followed
-  @ManyToOne(() => User, (user) => user.followers)
+  @ManyToOne(() => User, (user) => user.followers, {
+    onDelete: 'CASCADE'
+  })
   followed: User;
 }
