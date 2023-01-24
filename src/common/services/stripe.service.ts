@@ -10,6 +10,6 @@ export class StripeService {
   });
 
   async deleteCustomer(customerId: string): Promise<void> {
-    const test = await this.stripe.customers.del(customerId);
+    await this.stripe.customers.del(customerId);
   }
 }

@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { PageMetaDto } from 'src/common/dto/page-meta.dto';
 import { PageOptionsDto } from 'src/common/dto/page-options.dto';
 import { PageDto } from 'src/common/dto/page.dto';
+import { Visibility } from 'src/constants/visibility.enum';
 import { Repository } from 'typeorm';
 import { Post } from '../post/entities/post.entity';
 import { User } from '../user/entities/user.entity';
@@ -24,6 +25,8 @@ export class FeedService {
         'following',
         'following.followed.posts',
         'following.followed.posts.postedBy',
+        'following.followed.posts.likes',
+        'following.followed.posts.likes.likedBy',
         'following.followed.posts.comments',
         'following.followed.posts.comments.author'
       ],
@@ -34,7 +37,14 @@ export class FeedService {
       throw new BadRequestException('User not found');
     }
 
-    const posts = dbUser.following.map((user) => user.followed.posts)[0];
+    const publicPosts = await this.postRepository.find({
+      where: { visibility: Visibility.Public },
+      relations: ['postedBy', 'comments', 'likes', 'likes.likedBy', 'comments.author']
+    });
+
+    let posts = dbUser.following.map((user) => user.followed.posts)[0];
+
+    posts = posts.concat(publicPosts);
 
     const paginatedPosts = posts.slice(
       (pageOptionsDto.page - 1) * pageOptionsDto.take,
