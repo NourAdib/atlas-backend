@@ -68,7 +68,7 @@ export class TasksService {
    * Runs at the specified interval
    * Updates the post picture URL for all posts whose picture will expire tomorrow
    */
-  @Cron(CronExpression.EVERY_10_SECONDS)
+  @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
   async updateUserPostURLs() {
     const tomorrow = new Date(Date.now());
     tomorrow.setDate(tomorrow.getDate() + 1);
@@ -82,7 +82,6 @@ export class TasksService {
         relations: ['postedBy']
       })
       .then(async (posts) => {
-        console.log(posts.length);
         for (let i = 0; i < posts.length; i++) {
           const post = posts[i];
 
