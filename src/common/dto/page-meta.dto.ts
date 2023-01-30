@@ -1,5 +1,8 @@
 import { PageMetaDtoParameters } from './page-meta-parameters.dto';
 
+/**
+ * PageMetaDto is a class that represents the metadata of a paginated list.
+ */
 export class PageMetaDto {
   readonly page: number;
   readonly take: number;

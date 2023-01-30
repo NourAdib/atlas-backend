@@ -1,0 +1,548 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>atlas-backend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">atlas-backend documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li >TasksService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/modules/tasks/tasks.service.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>This service is used to run bulk tasks requiring a lot of processing power
+This will run once everyday at 12:00:00 AM server time</p>
+
+            </p>
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#removeExpiredBans" >removeExpiredBans</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateUserPostURLs" >updateUserPostURLs</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateUserProfileURLs" >updateUserProfileURLs</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(userRepository: <a href="../entitys/User.html" target="_self">Repository&lt;User&gt;</a>, postRepository: <a href="../entitys/Post.html" target="_self">Repository&lt;Post&gt;</a>, userBanRepository: Repository<UserBan>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/modules/tasks/tasks.service.ts:16</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>userRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/User.html" target="_self" >Repository&lt;User&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>postRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/Post.html" target="_self" >Repository&lt;Post&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>userBanRepository</td>
+                                                  
+                                                        <td>
+                                                                    <code>Repository&lt;UserBan&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeExpiredBans"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>removeExpiredBans</b></span>
+                        <a href="#removeExpiredBans"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeExpiredBans()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="111"
+                            class="link-to-prism">src/modules/tasks/tasks.service.ts:111</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Runs at the specified interval
+Removes the bans on users whose ban has expired</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateUserPostURLs"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>updateUserPostURLs</b></span>
+                        <a href="#updateUserPostURLs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateUserPostURLs()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="72"
+                            class="link-to-prism">src/modules/tasks/tasks.service.ts:72</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Runs at the specified interval
+Updates the post picture URL for all posts whose picture will expire tomorrow</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateUserProfileURLs"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>updateUserProfileURLs</b></span>
+                        <a href="#updateUserProfileURLs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateUserProfileURLs()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">src/modules/tasks/tasks.service.ts:33</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Runs at the specified interval
+Updates the profile picture URL for all users whose profile picture will expire tomorrow</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Logger } from &#x27;@nestjs/common&#x27;;
+import { Cron, CronExpression } from &#x27;@nestjs/schedule&#x27;;
+import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
+import { FirebaseStorageService } from &#x27;src/common/services/firebase-storage.service&#x27;;
+import { BanStatus } from &#x27;src/constants/ban-status.enum&#x27;;
+import { Repository, Not, LessThan } from &#x27;typeorm&#x27;;
+import { Post } from &#x27;../post/entities/post.entity&#x27;;
+import { UserBan } from &#x27;../report/entities/user-ban.entity&#x27;;
+import { User } from &#x27;../user/entities/user.entity&#x27;;
+
+/**
+ * This service is used to run bulk tasks requiring a lot of processing power
+ * This will run once everyday at 12:00:00 AM server time
+ */
+@Injectable()
+export class TasksService {
+  constructor(
+    @InjectRepository(User)
+    private userRepository: Repository&lt;User&gt;,
+
+    @InjectRepository(Post)
+    private postRepository: Repository&lt;Post&gt;,
+
+    @InjectRepository(UserBan)
+    private userBanRepository: Repository&lt;UserBan&gt;
+  ) {}
+
+  /**
+   * Runs at the specified interval
+   * Updates the profile picture URL for all users whose profile picture will expire tomorrow
+   */
+  @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
+  async updateUserProfileURLs() {
+    const tomorrow &#x3D; new Date(Date.now());
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    await this.userRepository
+      .find({
+        where: {
+          profilePictureId: Not(&#x27;&#x27;),
+          profilePictureExpiryDate: LessThan(tomorrow)
+        }
+      })
+      .then(async (users) &#x3D;&gt; {
+        console.log(users.length);
+
+        for (let i &#x3D; 0; i &lt; users.length; i++) {
+          const user &#x3D; users[i];
+
+          if (user.profilePictureId) {
+            if (user.profilePictureExpiryDate &lt; new Date(Date.now())) {
+              const { url, expiryDate } &#x3D; await new FirebaseStorageService().getSignedURL(
+                user.id,
+                user.profilePictureId
+              );
+
+              user.profilePictureExpiryDate &#x3D; new Date(expiryDate);
+              user.profilePictureUrl &#x3D; url;
+
+              await this.userRepository.save(user);
+            }
+          }
+        }
+      });
+  }
+
+  /**
+   * Runs at the specified interval
+   * Updates the post picture URL for all posts whose picture will expire tomorrow
+   */
+  @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
+  async updateUserPostURLs() {
+    const tomorrow &#x3D; new Date(Date.now());
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    await this.postRepository
+      .find({
+        where: {
+          imageId: Not(&#x27;&#x27;),
+          imageExpiryDate: LessThan(tomorrow)
+        },
+        relations: [&#x27;postedBy&#x27;]
+      })
+      .then(async (posts) &#x3D;&gt; {
+        for (let i &#x3D; 0; i &lt; posts.length; i++) {
+          const post &#x3D; posts[i];
+
+          if (post.imageId) {
+            if (post.imageExpiryDate &lt; new Date(Date.now())) {
+              const { url, expiryDate } &#x3D; await new FirebaseStorageService().getPostImageSignedURL(
+                post.imageId,
+                post.postedBy.id,
+                post.id
+              );
+
+              post.imageExpiryDate &#x3D; new Date(expiryDate);
+              post.imageUrl &#x3D; url;
+
+              await this.postRepository.save(post);
+            }
+          }
+        }
+      });
+  }
+
+  /**
+   * Runs at the specified interval
+   * Removes the bans on users whose ban has expired
+   */
+  @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
+  async removeExpiredBans() {
+    await this.userBanRepository
+      .find({
+        where: {
+          status: BanStatus.Active,
+          endDate: LessThan(new Date(Date.now()))
+        }
+      })
+      .then(async (bans) &#x3D;&gt; {
+        for (let i &#x3D; 0; i &lt; bans.length; i++) {
+          const ban &#x3D; bans[i];
+
+          if (ban.endDate &lt; new Date(Date.now())) {
+            await this.userBanRepository.update(ban.id, { status: BanStatus.Expired });
+          }
+        }
+      });
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'TasksService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

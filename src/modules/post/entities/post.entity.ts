@@ -73,25 +73,4 @@ export class Post extends BaseEntity {
   //A post can have many likes
   @OneToMany(() => Like, (like) => like.likedPost)
   likes: Like[];
-
-  /**
-   * This method is called after the post is loaded from the database
-   * This is used to update the image url if the image has expired
-   * *It does not reflecct in the database
-   */
-  @AfterLoad()
-  async updateAvatarUrl() {
-    if (this.imageId) {
-      if (this.imageExpiryDate < new Date(Date.now())) {
-        const { url, expiryDate } = await new FirebaseStorageService().getPostImageSignedURL(
-          this.imageId,
-          this.postedBy.id,
-          this.id
-        );
-
-        this.imageExpiryDate = new Date(expiryDate);
-        this.imageUrl = url;
-      }
-    }
-  }
 }

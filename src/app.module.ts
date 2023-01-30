@@ -26,10 +26,13 @@ import { AnalyticsModule } from './modules/analytics/analytics.module';
 import { FeedModule } from './modules/feed/feed.module';
 import { Like } from './modules/post/entities/post-like.entity';
 import { PaymentModule } from './modules/payment/payment.module';
+import { ScheduleModule } from '@nestjs/schedule';
+import { TasksModule } from './modules/tasks/tasks.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
+    ScheduleModule.forRoot(),
     TypeOrmModule.forRootAsync({
       //We import the ConfigModule to use the ConfigService to acceess the environment variables
       imports: [ConfigModule],
@@ -78,7 +81,8 @@ import { PaymentModule } from './modules/payment/payment.module';
     NotificationModule,
     AnalyticsModule,
     FeedModule,
-    PaymentModule
+    PaymentModule,
+    TasksModule
   ],
   controllers: [],
   providers: [AppService, LocalStrategy]

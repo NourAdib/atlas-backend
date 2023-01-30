@@ -1,0 +1,3069 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>atlas-backend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">atlas-backend documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li >UserService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/modules/user/user.service.ts</code>
+        </p>
+
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#addUserAvatar" >addUserAvatar</a>
+                            </li>
+                            <li>
+                                <a href="#create" >create</a>
+                            </li>
+                            <li>
+                                <a href="#createAdmin" >createAdmin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createUserWithImage" >createUserWithImage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#deleteUser" >deleteUser</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#deleteUserAvatar" >deleteUserAvatar</a>
+                            </li>
+                            <li>
+                                <a href="#findOneByEmail" >findOneByEmail</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getUserAvatar" >getUserAvatar</a>
+                            </li>
+                            <li>
+                                <a href="#getUserProfile" >getUserProfile</a>
+                            </li>
+                            <li>
+                                <a href="#getUserProfileById" >getUserProfileById</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#isUserBanned" >isUserBanned</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#removeThirdPartyData" >removeThirdPartyData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#searchUsers" >searchUsers</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateAvatarUrl" >updateAvatarUrl</a>
+                            </li>
+                            <li>
+                                <a href="#updateUserAddress" >updateUserAddress</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateUserAvatar" >updateUserAvatar</a>
+                            </li>
+                            <li>
+                                <a href="#updateUserDateOfBirth" >updateUserDateOfBirth</a>
+                            </li>
+                            <li>
+                                <a href="#updateUserEmail" >updateUserEmail</a>
+                            </li>
+                            <li>
+                                <a href="#updateUserFirstName" >updateUserFirstName</a>
+                            </li>
+                            <li>
+                                <a href="#updateUserGender" >updateUserGender</a>
+                            </li>
+                            <li>
+                                <a href="#updateUserLastName" >updateUserLastName</a>
+                            </li>
+                            <li>
+                                <a href="#updateUsername" >updateUsername</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateUserNotificationPreferences" >updateUserNotificationPreferences</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateUserPassword" >updateUserPassword</a>
+                            </li>
+                            <li>
+                                <a href="#updateUserPhoneNumber" >updateUserPhoneNumber</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateUserRole" >updateUserRole</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(usersRepository: <a href="../entitys/User.html" target="_self">Repository&lt;User&gt;</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/modules/user/user.service.ts:22</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>We use the repository to interact with the database</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>usersRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/User.html" target="_self" >Repository&lt;User&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>the user repository that will be injected by the nestjs</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addUserAvatar"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>addUserAvatar</b></span>
+                        <a href="#addUserAvatar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addUserAvatar(user: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, avatar: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="335"
+                            class="link-to-prism">src/modules/user/user.service.ts:335</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Adds an avatar to the user</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the user object that contains the userId</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>avatar</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the avatar to be uploaded</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;UpdateResult&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>the result of the update</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="create"></a>
+                    <span class="name">
+                        <span ><b>create</b></span>
+                        <a href="#create"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>create(user: <a href="../classes/SignUpUserDto.html" target="_self">SignUpUserDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/modules/user/user.service.ts:37</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Creates a new user object and saves it in the database</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="../classes/SignUpUserDto.html" target="_self" >SignUpUserDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the user object that contains the user information</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/User.html" target="_self" >Promise&lt;User&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>the newly created user</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createAdmin"></a>
+                    <span class="name">
+                        <span ><b>createAdmin</b></span>
+                        <a href="#createAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createAdmin(user: <a href="../classes/SignUpUserDto.html" target="_self">SignUpUserDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="96"
+                            class="link-to-prism">src/modules/user/user.service.ts:96</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Creates a new user object and saves it in the database</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="../classes/SignUpUserDto.html" target="_self" >SignUpUserDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the user object that contains the user information</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/User.html" target="_self" >Promise&lt;User&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>the newly created user</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createUserWithImage"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>createUserWithImage</b></span>
+                        <a href="#createUserWithImage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createUserWithImage(user: <a href="../classes/SignUpUserDto.html" target="_self">SignUpUserDto</a>, image: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="54"
+                            class="link-to-prism">src/modules/user/user.service.ts:54</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="../classes/SignUpUserDto.html" target="_self" >SignUpUserDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>image</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/User.html" target="_self" >Promise&lt;User&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteUser"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>deleteUser</b></span>
+                        <a href="#deleteUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteUser(user: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="501"
+                            class="link-to-prism">src/modules/user/user.service.ts:501</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteUserAvatar"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>deleteUserAvatar</b></span>
+                        <a href="#deleteUserAvatar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteUserAvatar(user: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="432"
+                            class="link-to-prism">src/modules/user/user.service.ts:432</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Deletes the users avatar</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the user object that contains the userId</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;UpdateResult&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>the result of the update</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findOneByEmail"></a>
+                    <span class="name">
+                        <span ><b>findOneByEmail</b></span>
+                        <a href="#findOneByEmail"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>findOneByEmail(email: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="121"
+                            class="link-to-prism">src/modules/user/user.service.ts:121</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Gets the user with the email passed in the parameter</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>email</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the email of the user</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/User.html" target="_self" >Promise&lt;User&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>the user with the email passed in the parameter</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getUserAvatar"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getUserAvatar</b></span>
+                        <a href="#getUserAvatar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getUserAvatar(user: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="358"
+                            class="link-to-prism">src/modules/user/user.service.ts:358</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Checks if the current link is valid and returns a new one if it is not</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the user object that contains the userId</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>a signed url to the users avatar</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getUserProfile"></a>
+                    <span class="name">
+                        <span ><b>getUserProfile</b></span>
+                        <a href="#getUserProfile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getUserProfile(user: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="131"
+                            class="link-to-prism">src/modules/user/user.service.ts:131</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Gets the user profile using the JWT token</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the user object that contains the userId</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/User.html" target="_self" >Promise&lt;User&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>the user profile</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getUserProfileById"></a>
+                    <span class="name">
+                        <span ><b>getUserProfileById</b></span>
+                        <a href="#getUserProfileById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getUserProfileById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="112"
+                            class="link-to-prism">src/modules/user/user.service.ts:112</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/User.html" target="_self" >Promise&lt;User&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isUserBanned"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>isUserBanned</b></span>
+                        <a href="#isUserBanned"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>isUserBanned(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="313"
+                            class="link-to-prism">src/modules/user/user.service.ts:313</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Checks if the user is banned</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the id of the user to be checked</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;boolean&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>if the user is banned or not</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeThirdPartyData"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>removeThirdPartyData</b></span>
+                        <a href="#removeThirdPartyData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeThirdPartyData(user: <a href="../entitys/User.html" target="_self">User</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="512"
+                            class="link-to-prism">src/modules/user/user.service.ts:512</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="../entitys/User.html" target="_self" >User</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchUsers"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>searchUsers</b></span>
+                        <a href="#searchUsers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>searchUsers(searchTerm: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="478"
+                            class="link-to-prism">src/modules/user/user.service.ts:478</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>searchTerm</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;User&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateAvatarUrl"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>updateAvatarUrl</b></span>
+                        <a href="#updateAvatarUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateAvatarUrl(user: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, expiryDate: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank">Date</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="457"
+                            class="link-to-prism">src/modules/user/user.service.ts:457</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>url</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>expiryDate</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateUserAddress"></a>
+                    <span class="name">
+                        <span ><b>updateUserAddress</b></span>
+                        <a href="#updateUserAddress"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateUserAddress(user: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, address: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="205"
+                            class="link-to-prism">src/modules/user/user.service.ts:205</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Updates users address</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the user object that contains the userId</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>address</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the address to be updated to</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;UpdateResult&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>success or failure</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateUserAvatar"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>updateUserAvatar</b></span>
+                        <a href="#updateUserAvatar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateUserAvatar(user: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, avatar: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="397"
+                            class="link-to-prism">src/modules/user/user.service.ts:397</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Updates the users avatar</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the user object that contains the userId</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>avatar</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the avatar to be uploaded</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>the result of the update</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateUserDateOfBirth"></a>
+                    <span class="name">
+                        <span ><b>updateUserDateOfBirth</b></span>
+                        <a href="#updateUserDateOfBirth"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateUserDateOfBirth(user: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, dateOfBirth: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank">Date</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="241"
+                            class="link-to-prism">src/modules/user/user.service.ts:241</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Updates users date of birth</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the user object that contains the userId</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>dateOfBirth</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the date of birth to be updated to</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;UpdateResult&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>success or failure</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateUserEmail"></a>
+                    <span class="name">
+                        <span ><b>updateUserEmail</b></span>
+                        <a href="#updateUserEmail"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateUserEmail(user: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, email: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="196"
+                            class="link-to-prism">src/modules/user/user.service.ts:196</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Updates users email address</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the user object that contains the userId</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>email</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the email to be updated to</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;UpdateResult&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>success or failure</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateUserFirstName"></a>
+                    <span class="name">
+                        <span ><b>updateUserFirstName</b></span>
+                        <a href="#updateUserFirstName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateUserFirstName(user: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, firstName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="214"
+                            class="link-to-prism">src/modules/user/user.service.ts:214</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>updates the users First name</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the user object that contains the userId</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>firstName</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the first name to be updated to</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;UpdateResult&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>success or failure</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateUserGender"></a>
+                    <span class="name">
+                        <span ><b>updateUserGender</b></span>
+                        <a href="#updateUserGender"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateUserGender(user: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, gender: <a href="../undefineds/Gender.html" target="_self">Gender</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="260"
+                            class="link-to-prism">src/modules/user/user.service.ts:260</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Updates the user gender</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the user object that contains the userId</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>gender</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/enumerations.html#Gender" target="_self" >Gender</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the gender to be updated to</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;UpdateResult&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>success or failure</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateUserLastName"></a>
+                    <span class="name">
+                        <span ><b>updateUserLastName</b></span>
+                        <a href="#updateUserLastName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateUserLastName(user: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, lastName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="223"
+                            class="link-to-prism">src/modules/user/user.service.ts:223</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>updates the users Last name</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the user object that contains the userId</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>lastName</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the last name to be updated to</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;UpdateResult&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>success or failure</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateUsername"></a>
+                    <span class="name">
+                        <span ><b>updateUsername</b></span>
+                        <a href="#updateUsername"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateUsername(user: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, username: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="232"
+                            class="link-to-prism">src/modules/user/user.service.ts:232</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>updates the username</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the user object that contains the userId</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>username</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the username to be updated to</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;UpdateResult&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>success or failure</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateUserNotificationPreferences"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>updateUserNotificationPreferences</b></span>
+                        <a href="#updateUserNotificationPreferences"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateUserNotificationPreferences(user: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, notificationPreference: <a href="../undefineds/NotificationPreference.html" target="_self">NotificationPreference</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="468"
+                            class="link-to-prism">src/modules/user/user.service.ts:468</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>notificationPreference</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/enumerations.html#NotificationPreference" target="_self" >NotificationPreference</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;UpdateResult&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateUserPassword"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>updateUserPassword</b></span>
+                        <a href="#updateUserPassword"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateUserPassword(user: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, body: <a href="../classes/UpdateUserPasseordDto.html" target="_self">UpdateUserPasseordDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="279"
+                            class="link-to-prism">src/modules/user/user.service.ts:279</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>updates the user password</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>user the user object that contains the userId</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>body</td>
+                                    <td>
+                                                <code><a href="../classes/UpdateUserPasseordDto.html" target="_self" >UpdateUserPasseordDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;UpdateResult&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>success or failure</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateUserPhoneNumber"></a>
+                    <span class="name">
+                        <span ><b>updateUserPhoneNumber</b></span>
+                        <a href="#updateUserPhoneNumber"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateUserPhoneNumber(user: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, phoneNumber: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="250"
+                            class="link-to-prism">src/modules/user/user.service.ts:250</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Updates users phone number</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the user object that contains the userId</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>phoneNumber</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the phone number to be updated to</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;UpdateResult&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>success or failure</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateUserRole"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>updateUserRole</b></span>
+                        <a href="#updateUserRole"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateUserRole(user: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, role: <a href="../undefineds/Role.html" target="_self">Role</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="141"
+                            class="link-to-prism">src/modules/user/user.service.ts:141</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Updates the user role</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the user object that contains the userId</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>role</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/enumerations.html#Role" target="_self" >Role</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the role to be updated to</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;UpdateResult&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>success or failure</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpException, HttpStatus, Injectable } from &#x27;@nestjs/common&#x27;;
+import { BadRequestException } from &#x27;@nestjs/common/exceptions/bad-request.exception&#x27;;
+import { ForbiddenException } from &#x27;@nestjs/common/exceptions/forbidden.exception&#x27;;
+import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
+import { BanStatus } from &#x27;src/constants/ban-status.enum&#x27;;
+import { Role } from &#x27;src/constants/role.enum&#x27;;
+import { Repository, UpdateResult } from &#x27;typeorm&#x27;;
+import { SignUpUserDto } from &#x27;../auth/dto/user-signup.dto&#x27;;
+import { User } from &#x27;./entities/user.entity&#x27;;
+import { Gender } from &#x27;src/constants/gender.enum&#x27;;
+import { EncryptionService } from &#x27;src/common/services/encryption.service&#x27;;
+import { FirebaseStorageService } from &#x27;src/common/services/firebase-storage.service&#x27;;
+import { UpdateUserPasseordDto } from &#x27;./dto/password-update.dto&#x27;;
+import { NotificationPreference } from &#x27;src/constants/notification-preference.enum&#x27;;
+import { PageDto } from &#x27;src/common/dto/page.dto&#x27;;
+import { PageOptionsDto } from &#x27;src/common/dto/page-options.dto&#x27;;
+import { PageMetaDto } from &#x27;src/common/dto/page-meta.dto&#x27;;
+import { StripeService } from &#x27;src/common/services/stripe.service&#x27;;
+import { SubscriptionPlan } from &#x27;src/constants/subscription-plan.enum&#x27;;
+
+@Injectable()
+export class UserService {
+  /**
+   * We use the repository to interact with the database
+   * @param usersRepository the user repository that will be injected by the nestjs
+   */
+  constructor(
+    @InjectRepository(User)
+    private usersRepository: Repository&lt;User&gt;
+  ) {}
+
+  /**
+   * Creates a new user object and saves it in the database
+   * @param user the user object that contains the user information
+   * @returns the newly created user
+   */
+  create(user: SignUpUserDto): Promise&lt;User&gt; {
+    const newUser &#x3D; new User();
+    newUser.firstName &#x3D; user.firstName;
+    newUser.lastName &#x3D; user.lastName;
+    newUser.email &#x3D; user.email;
+    newUser.username &#x3D; user.username;
+    newUser.password &#x3D; user.password;
+    newUser.phoneNumber &#x3D; user.phoneNumber;
+    newUser.address &#x3D; user.address;
+    newUser.dateOfBirth &#x3D; new Date(user.dateOfBirth);
+
+    //The user is a normal user by default
+    newUser.role &#x3D; Role.Standard;
+
+    return this.usersRepository.save(newUser);
+  }
+
+  async createUserWithImage(user: SignUpUserDto, image: any): Promise&lt;User&gt; {
+    const newUser &#x3D; new User();
+    newUser.firstName &#x3D; user.firstName;
+    newUser.lastName &#x3D; user.lastName;
+    newUser.email &#x3D; user.email;
+    newUser.username &#x3D; user.username;
+    newUser.password &#x3D; user.password;
+    newUser.phoneNumber &#x3D; user.phoneNumber;
+    newUser.address &#x3D; user.address;
+    newUser.dateOfBirth &#x3D; new Date(user.dateOfBirth);
+
+    //The user is a normal user by default
+    newUser.role &#x3D; Role.Standard;
+
+    const savedUser &#x3D; await this.usersRepository.save(newUser);
+
+    const { imageId, url, expiryDate } &#x3D; await new FirebaseStorageService().uploadAvatar(
+      image.buffer,
+      savedUser.id
+    );
+
+    await this.usersRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({
+        profilePictureId: imageId,
+        profilePictureUrl: url,
+        profilePictureExpiryDate: new Date(expiryDate)
+      })
+      .where(&#x27;id &#x3D; :id&#x27;, { id: savedUser.id })
+      .execute();
+
+    return this.usersRepository.findOneBy({ id: savedUser.id }).then((user) &#x3D;&gt; {
+      return user;
+    });
+  }
+
+  /**
+   * Creates a new user object and saves it in the database
+   * @param user the user object that contains the user information
+   * @returns the newly created user
+   */
+  createAdmin(user: SignUpUserDto): Promise&lt;User&gt; {
+    const newUser &#x3D; new User();
+    newUser.firstName &#x3D; user.firstName;
+    newUser.lastName &#x3D; user.lastName;
+    newUser.email &#x3D; user.email;
+    newUser.username &#x3D; user.username;
+    newUser.password &#x3D; user.password;
+    newUser.phoneNumber &#x3D; user.phoneNumber;
+    newUser.address &#x3D; user.address;
+    newUser.dateOfBirth &#x3D; new Date(user.dateOfBirth);
+
+    //The user is an admin
+    newUser.role &#x3D; Role.Admin;
+    return this.usersRepository.save(newUser);
+  }
+
+  getUserProfileById(id: string): Promise&lt;User&gt; {
+    return this.usersRepository.findOneBy({ id });
+  }
+
+  /**
+   * Gets the user with the email passed in the parameter
+   * @param email the email of the user
+   * @returns the user with the email passed in the parameter
+   */
+  findOneByEmail(email: string): Promise&lt;User&gt; {
+    //Look in the users table for one user with the email as the email passed in the parameter
+    return this.usersRepository.findOneBy({ email });
+  }
+
+  /**
+   * Gets the user profile using the JWT token
+   * @param user the user object that contains the userId
+   * @returns the user profile
+   */
+  getUserProfile(user: any): Promise&lt;User&gt; {
+    return this.usersRepository.findOneBy({ id: user.id });
+  }
+
+  /**
+   * Updates the user role
+   * @param user the user object that contains the userId
+   * @param role the role to be updated to
+   * @returns success or failure
+   */
+  async updateUserRole(user: any, role: Role): Promise&lt;UpdateResult&gt; {
+    //Check if the role is valid
+    if (!Object.values(Role).includes(role)) {
+      throw new BadRequestException(&#x27;Invalid role&#x27;);
+    }
+
+    if (role &#x3D;&#x3D;&#x3D; Role.Influencer) {
+      const dbUser &#x3D; await this.usersRepository.findOne({
+        where: { id: user.id },
+        relations: [&#x27;followers&#x27;]
+      });
+
+      if (!dbUser) {
+        throw new BadRequestException(&#x27;User not found&#x27;);
+      }
+
+      if (dbUser.followers.length &lt; 2) {
+        throw new BadRequestException(&#x27;You need at least 2 followers to become an influencer&#x27;);
+      }
+    }
+
+    if (role &#x3D;&#x3D;&#x3D; Role.Celebrity) {
+      const dbUser &#x3D; await this.usersRepository.findOne({
+        where: { id: user.id },
+        relations: [&#x27;followers&#x27;]
+      });
+
+      if (!dbUser) {
+        throw new BadRequestException(&#x27;User not found&#x27;);
+      }
+
+      if (dbUser.followers.length &lt; 10) {
+        throw new BadRequestException(&#x27;You need at least 10 followers to become an celebrity&#x27;);
+      }
+    }
+
+    //Check if the user is an admin
+    if (user.role !&#x3D;&#x3D; Role.Admin &amp;&amp; role &#x3D;&#x3D;&#x3D; Role.Admin) {
+      throw new ForbiddenException(&#x27;You are not authorized to perform this action&#x27;);
+    }
+
+    return this.usersRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({ role })
+      .where(&#x27;id &#x3D; :id&#x27;, { id: user.id })
+      .execute();
+  }
+
+  /**
+   * Updates users email address
+   * @param user the user object that contains the userId
+   * @param email the email to be updated to
+   * @returns success or failure
+   */
+  updateUserEmail(user: any, email: string): Promise&lt;UpdateResult&gt; {
+    return this.usersRepository.update(user.id, { email });
+  }
+  /**
+   * Updates users address
+   * @param user the user object that contains the userId
+   * @param address the address to be updated to
+   * @returns success or failure
+   */
+  updateUserAddress(user: any, address: string): Promise&lt;UpdateResult&gt; {
+    return this.usersRepository.update(user.id, { address });
+  }
+  /**
+   * updates the users First name
+   * @param user the user object that contains the userId
+   * @param firstName the first name to be updated to
+   * @returns success or failure
+   */
+  updateUserFirstName(user: any, firstName: string): Promise&lt;UpdateResult&gt; {
+    return this.usersRepository.update(user.id, { firstName });
+  }
+  /**
+   * updates the users Last name
+   * @param user the user object that contains the userId
+   * @param lastName the last name to be updated to
+   * @returns success or failure
+   */
+  updateUserLastName(user: any, lastName: string): Promise&lt;UpdateResult&gt; {
+    return this.usersRepository.update(user.id, { lastName });
+  }
+  /**
+   * updates the username
+   * @param user the user object that contains the userId
+   * @param username the username to be updated to
+   * @returns success or failure
+   */
+  updateUsername(user: any, username: string): Promise&lt;UpdateResult&gt; {
+    return this.usersRepository.update(user.id, { username });
+  }
+  /**
+   * Updates users date of birth
+   * @param user the user object that contains the userId
+   * @param dateOfBirth the date of birth to be updated to
+   * @returns success or failure
+   */
+  updateUserDateOfBirth(user: any, dateOfBirth: Date): Promise&lt;UpdateResult&gt; {
+    return this.usersRepository.update(user.id, { dateOfBirth });
+  }
+  /**
+   * Updates users phone number
+   * @param user the user object that contains the userId
+   * @param phoneNumber the phone number to be updated to
+   * @returns success or failure
+   */
+  updateUserPhoneNumber(user: any, phoneNumber: string): Promise&lt;UpdateResult&gt; {
+    return this.usersRepository.update(user.id, { phoneNumber });
+  }
+
+  /**
+   * Updates the user gender
+   * @param user the user object that contains the userId
+   * @param gender the gender to be updated to
+   * @returns success or failure
+   */
+  updateUserGender(user: any, gender: Gender): Promise&lt;UpdateResult&gt; {
+    //Check if the gender is valid
+    if (!Object.values(Gender).includes(gender)) {
+      throw new BadRequestException(&#x27;Invalid gender&#x27;);
+    }
+
+    return this.usersRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({ gender })
+      .where(&#x27;id &#x3D; :id&#x27;, { id: user.id })
+      .execute();
+  }
+  /**
+   * updates the user password
+   * @param user user the user object that contains the userId
+   * @param password the password to be updated to
+   * @returns success or failure
+   */
+  async updateUserPassword(user: any, body: UpdateUserPasseordDto): Promise&lt;UpdateResult&gt; {
+    const dbUser &#x3D; await this.usersRepository
+      .createQueryBuilder()
+      .select([&#x27;id&#x27;, &#x27;email&#x27;, &#x27;password&#x27;, &#x27;role&#x27;])
+      .where(&#x27;id &#x3D; :id&#x27;, { id: user.id })
+      .getRawOne();
+
+    if (!dbUser) {
+      throw new BadRequestException(&#x27;User not found&#x27;);
+    }
+
+    const passwordMatch &#x3D; await new EncryptionService().comparePasswords(
+      body.currentPassword,
+      dbUser.password
+    );
+
+    if (!passwordMatch) {
+      throw new BadRequestException(&#x27;Incorrect current password&#x27;);
+    }
+
+    const encryptedPassword &#x3D; await new EncryptionService().encryptPassword(body.password);
+    return this.usersRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({ password: encryptedPassword })
+      .where(&#x27;id &#x3D; :id&#x27;, { id: user.id })
+      .execute();
+  }
+
+  /**
+   * Checks if the user is banned
+   * @param id the id of the user to be checked
+   * @returns if the user is banned or not
+   */
+  async isUserBanned(id: string): Promise&lt;boolean&gt; {
+    return this.usersRepository
+      .findOne({
+        where: { id: id },
+        relations: [&#x27;bans&#x27;],
+        order: { createdAt: &#x27;DESC&#x27; }
+      })
+      .then((user) &#x3D;&gt; {
+        for (const ban of user.bans) {
+          if (ban.status &#x3D;&#x3D;&#x3D; BanStatus.Active) {
+            return true;
+          }
+        }
+      });
+  }
+
+  /**
+   * Adds an avatar to the user
+   * @param user the user object that contains the userId
+   * @param avatar the avatar to be uploaded
+   * @returns the result of the update
+   */
+  async addUserAvatar(user: any, avatar: any): Promise&lt;UpdateResult&gt; {
+    const { imageId, url, expiryDate } &#x3D; await new FirebaseStorageService().uploadAvatar(
+      avatar.buffer,
+      user.id
+    );
+
+    return this.usersRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({
+        profilePictureExpiryDate: new Date(expiryDate),
+        profilePictureId: imageId,
+        profilePictureUrl: url
+      })
+      .where(&#x27;id &#x3D; :id&#x27;, { id: user.id })
+      .execute();
+  }
+
+  /**
+   * Checks if the current link is valid and returns a new one if it is not
+   * @param user the user object that contains the userId
+   * @returns a signed url to the users avatar
+   */
+  async getUserAvatar(user: any) {
+    const dbUser &#x3D; await this.usersRepository.findOneBy({ id: user.id });
+
+    if (!dbUser) {
+      throw new BadRequestException(&#x27;User not found&#x27;);
+    }
+
+    if (!dbUser.profilePictureId || dbUser.profilePictureId.length &#x3D;&#x3D;&#x3D; 0) {
+      throw new HttpException(&#x27;Invalid gender&#x27;, HttpStatus.NO_CONTENT);
+    }
+
+    if (dbUser.profilePictureExpiryDate &lt; new Date(Date.now())) {
+      const { url, expiryDate } &#x3D; await new FirebaseStorageService().getSignedURL(
+        dbUser.id,
+        dbUser.profilePictureId
+      );
+
+      this.usersRepository
+        .createQueryBuilder()
+        .update(User)
+        .set({
+          profilePictureExpiryDate: new Date(expiryDate),
+          profilePictureUrl: url
+        })
+        .where(&#x27;id &#x3D; :id&#x27;, { id: user.id })
+        .execute();
+
+      return url;
+    }
+
+    return dbUser.profilePictureUrl;
+  }
+
+  /**
+   * Updates the users avatar
+   * @param user the user object that contains the userId
+   * @param avatar the avatar to be uploaded
+   * @returns the result of the update
+   */
+  async updateUserAvatar(user: any, avatar: any) {
+    const dbUser &#x3D; await this.usersRepository.findOneBy({ id: user.id });
+
+    if (!dbUser) {
+      throw new BadRequestException(&#x27;User not found&#x27;);
+    }
+
+    if (!dbUser.profilePictureId || dbUser.profilePictureId.length &#x3D;&#x3D;&#x3D; 0) {
+      throw new HttpException(&quot;User doesn&#x27;t have an avatar&quot;, HttpStatus.NO_CONTENT);
+    }
+
+    const { url, expiryDate } &#x3D; await new FirebaseStorageService()
+      .updateAvatar(avatar.buffer, dbUser.profilePictureId, dbUser.id)
+      .catch((err) &#x3D;&gt; {
+        throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      });
+
+    this.usersRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({
+        profilePictureExpiryDate: new Date(expiryDate),
+        profilePictureUrl: url
+      })
+      .where(&#x27;id &#x3D; :id&#x27;, { id: user.id })
+      .execute();
+
+    return dbUser.profilePictureUrl;
+  }
+
+  /**
+   * Deletes the users avatar
+   * @param user the user object that contains the userId
+   * @returns the result of the update
+   */
+  async deleteUserAvatar(user: any): Promise&lt;UpdateResult&gt; {
+    const dbUser &#x3D; await this.usersRepository.findOneBy({ id: user.id });
+
+    if (!dbUser) {
+      throw new BadRequestException(&#x27;User not found&#x27;);
+    }
+
+    if (!dbUser.profilePictureId || dbUser.profilePictureId.length &#x3D;&#x3D;&#x3D; 0) {
+      throw new HttpException(&quot;User doesn&#x27;t have an avatar&quot;, HttpStatus.NO_CONTENT);
+    }
+
+    await new FirebaseStorageService().deleteAvatar(dbUser.profilePictureId, dbUser.id);
+
+    return this.usersRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({
+        profilePictureExpiryDate: new Date(Date.now()),
+        profilePictureId: &#x27;&#x27;,
+        profilePictureUrl: &#x27;&#x27;
+      })
+      .where(&#x27;id &#x3D; :id&#x27;, { id: user.id })
+      .execute();
+  }
+
+  async updateAvatarUrl(user: any, url: string, expiryDate: Date) {
+    await this.usersRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({
+        profilePictureExpiryDate: new Date(expiryDate),
+        profilePictureUrl: url
+      })
+      .where(&#x27;id &#x3D; :id&#x27;, { id: user.id })
+      .execute();
+  }
+  async updateUserNotificationPreferences(
+    user: any,
+    notificationPreference: NotificationPreference
+  ): Promise&lt;UpdateResult&gt; {
+    if (!Object.values(NotificationPreference).includes(notificationPreference)) {
+      throw new BadRequestException(&#x27;Invalid opiton&#x27;);
+    }
+    return this.usersRepository.update(user.id, { notificationPreference });
+  }
+
+  async searchUsers(searchTerm: string, pageOptionsDto: PageOptionsDto): Promise&lt;PageDto&lt;User&gt;&gt; {
+    const queryResults &#x3D; await this.usersRepository
+      .createQueryBuilder(&#x27;user&#x27;)
+      .where(&#x27;user.username LIKE :searchTerm&#x27;, { searchTerm: &#x60;%${searchTerm}%&#x60; })
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.take)
+      .orderBy(&#x27;User.username&#x27;, pageOptionsDto.order)
+      .getManyAndCount()
+      .then((usersAndCount) &#x3D;&gt; {
+        return {
+          items: usersAndCount[0],
+          itemsCount: usersAndCount[1]
+        };
+      });
+
+    const itemCount: number &#x3D; queryResults.itemsCount;
+    const entities: User[] &#x3D; queryResults.items;
+
+    const pageMetaDto: PageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  async deleteUser(user: any) {
+    const dbUser &#x3D; await this.usersRepository.findOneBy({ id: user.id });
+
+    if (!dbUser) {
+      throw new BadRequestException(&#x27;User not found&#x27;);
+    }
+
+    await this.removeThirdPartyData(dbUser);
+    await this.usersRepository.delete(dbUser.id);
+  }
+
+  async removeThirdPartyData(user: User) {
+    if (user.profilePictureId) {
+      await new FirebaseStorageService().deleteAvatar(user.profilePictureId, user.id);
+    }
+
+    if (user.subscriptionPlan &#x3D;&#x3D; SubscriptionPlan.Premium) {
+      await new StripeService().deleteCustomer(user.stripeCustomerId);
+    }
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'UserService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -163,19 +163,4 @@ export class User extends BaseEntity {
   async hashPassword() {
     this.password = await new EncryptionService().encryptPassword(this.password);
   }
-
-  @AfterLoad()
-  async updateAvatarUrl() {
-    if (this.profilePictureId) {
-      if (this.profilePictureExpiryDate < new Date(Date.now())) {
-        const { url, expiryDate } = await new FirebaseStorageService().getSignedURL(
-          this.id,
-          this.profilePictureId
-        );
-
-        this.profilePictureExpiryDate = new Date(expiryDate);
-        this.profilePictureUrl = url;
-      }
-    }
-  }
 }

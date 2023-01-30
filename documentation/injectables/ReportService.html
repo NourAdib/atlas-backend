@@ -1,0 +1,1346 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>atlas-backend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">atlas-backend documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li >ReportService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/modules/report/report.service.ts</code>
+        </p>
+
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#banPost" >banPost</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#banUser" >banUser</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getPostReports" >getPostReports</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getReportedPosts" >getReportedPosts</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getReportedUsers" >getReportedUsers</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getUserReports" >getUserReports</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#reportPost" >reportPost</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#reportUser" >reportUser</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#unbanPost" >unbanPost</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(userReportsRepository: Repository<UserReport>, postReportsRepository: Repository<PostReport>, postRepository: <a href="../entitys/Post.html" target="_self">Repository&lt;Post&gt;</a>, userRepository: <a href="../entitys/User.html" target="_self">Repository&lt;User&gt;</a>, userBanRepository: Repository<UserBan>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/modules/report/report.service.ts:15</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>userReportsRepository</td>
+                                                  
+                                                        <td>
+                                                                    <code>Repository&lt;UserReport&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>postReportsRepository</td>
+                                                  
+                                                        <td>
+                                                                    <code>Repository&lt;PostReport&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>postRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/Post.html" target="_self" >Repository&lt;Post&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>userRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/User.html" target="_self" >Repository&lt;User&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>userBanRepository</td>
+                                                  
+                                                        <td>
+                                                                    <code>Repository&lt;UserBan&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="banPost"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>banPost</b></span>
+                        <a href="#banPost"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>banPost(postId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, reportId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="223"
+                            class="link-to-prism">src/modules/report/report.service.ts:223</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>postId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>reportId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;UpdateResult&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="banUser"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>banUser</b></span>
+                        <a href="#banUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>banUser(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, reportId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="190"
+                            class="link-to-prism">src/modules/report/report.service.ts:190</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>reportId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;UserBan&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getPostReports"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getPostReports</b></span>
+                        <a href="#getPostReports"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getPostReports(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="139"
+                            class="link-to-prism">src/modules/report/report.service.ts:139</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;PostReport&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getReportedPosts"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getReportedPosts</b></span>
+                        <a href="#getReportedPosts"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getReportedPosts(pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="269"
+                            class="link-to-prism">src/modules/report/report.service.ts:269</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;PostReport&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getReportedUsers"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getReportedUsers</b></span>
+                        <a href="#getReportedUsers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getReportedUsers(pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="297"
+                            class="link-to-prism">src/modules/report/report.service.ts:297</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;UserReport&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getUserReports"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getUserReports</b></span>
+                        <a href="#getUserReports"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getUserReports(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="165"
+                            class="link-to-prism">src/modules/report/report.service.ts:165</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;UserReport&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="reportPost"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>reportPost</b></span>
+                        <a href="#reportPost"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>reportPost(user: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, body: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">src/modules/report/report.service.ts:33</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>body</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;PostReport&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="reportUser"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>reportUser</b></span>
+                        <a href="#reportUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>reportUser(user: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, body: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="90"
+                            class="link-to-prism">src/modules/report/report.service.ts:90</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>body</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;UserReport&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="unbanPost"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>unbanPost</b></span>
+                        <a href="#unbanPost"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>unbanPost(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="252"
+                            class="link-to-prism">src/modules/report/report.service.ts:252</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;UpdateResult&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException, HttpException, HttpStatus, Injectable } from &#x27;@nestjs/common&#x27;;
+import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
+import { PageMetaDto } from &#x27;src/common/dto/page-meta.dto&#x27;;
+import { PageOptionsDto } from &#x27;src/common/dto/page-options.dto&#x27;;
+import { PageDto } from &#x27;src/common/dto/page.dto&#x27;;
+import { ReportStatus } from &#x27;src/constants/report-status.enum&#x27;;
+import { Repository, UpdateResult } from &#x27;typeorm&#x27;;
+import { Post } from &#x27;../post/entities/post.entity&#x27;;
+import { User } from &#x27;../user/entities/user.entity&#x27;;
+import { PostReport } from &#x27;./entities/post-report.entity&#x27;;
+import { UserBan } from &#x27;./entities/user-ban.entity&#x27;;
+import { UserReport } from &#x27;./entities/user-report.entity&#x27;;
+
+@Injectable()
+export class ReportService {
+  constructor(
+    @InjectRepository(UserReport)
+    private userReportsRepository: Repository&lt;UserReport&gt;,
+
+    @InjectRepository(PostReport)
+    private postReportsRepository: Repository&lt;PostReport&gt;,
+
+    @InjectRepository(Post)
+    private postRepository: Repository&lt;Post&gt;,
+
+    @InjectRepository(User)
+    private userRepository: Repository&lt;User&gt;,
+
+    @InjectRepository(UserBan)
+    private userBanRepository: Repository&lt;UserBan&gt;
+  ) {}
+
+  async reportPost(user: any, body: any): Promise&lt;PostReport&gt; {
+    const newReport &#x3D; new PostReport();
+    newReport.reportedBy &#x3D; user;
+
+    // Find the post to report
+    const post &#x3D; await this.postRepository.findOne({
+      where: { id: body.id },
+      relations: [&#x27;postedBy&#x27;]
+    });
+
+    // If the post doesn&#x27;t exist, throw an error
+    if (!post) {
+      throw new HttpException(&#x27;Post not found&#x27;, HttpStatus.NO_CONTENT);
+    }
+
+    if (post.postedBy.id &#x3D;&#x3D;&#x3D; user.id) {
+      throw new HttpException(&#x27;You cannot report your own post&#x27;, HttpStatus.BAD_REQUEST);
+    }
+
+    // If the post has already been reported and is still pending response, throw an error
+    const userReportedPosts &#x3D; await this.userRepository
+      .findOne({
+        where: { id: user.id },
+        relations: [
+          &#x27;reportedPosts&#x27;,
+          &#x27;reportedPosts.reportedPost&#x27;,
+          &#x27;reportedPosts.reportedPost.postedBy&#x27;
+        ]
+      })
+      .then((user) &#x3D;&gt; {
+        if (!user) {
+          throw new BadRequestException(&#x27;User not found&#x27;);
+        }
+        return user.reportedPosts.map((reports) &#x3D;&gt; {
+          if ((reports.status &#x3D; ReportStatus.PendingReview)) {
+            return reports.reportedPost;
+          }
+        });
+      });
+
+    const postAlreadyReported &#x3D; userReportedPosts.map((reportedPost) &#x3D;&gt; {
+      if (!reportedPost) {
+        return false;
+      }
+      return reportedPost.id &#x3D;&#x3D;&#x3D; post.id;
+    });
+
+    if (postAlreadyReported.includes(true)) {
+      throw new HttpException(&#x27;You have already reported this post&#x27;, HttpStatus.BAD_REQUEST);
+    }
+
+    newReport.reportedPost &#x3D; post;
+    newReport.reason &#x3D; body.reason;
+
+    return this.postReportsRepository.save(newReport);
+  }
+
+  async reportUser(user: any, body: any): Promise&lt;UserReport&gt; {
+    const newReport &#x3D; new UserReport();
+    newReport.reportedBy &#x3D; user;
+
+    // Find the user to report
+    const userToBeReported &#x3D; await this.userRepository.findOne({
+      where: { id: body.id }
+    });
+
+    // If the user doesn&#x27;t exist, throw an error
+    if (!userToBeReported) {
+      throw new HttpException(&#x27;User not found&#x27;, HttpStatus.NO_CONTENT);
+    }
+
+    if (userToBeReported.id &#x3D;&#x3D;&#x3D; user.id) {
+      throw new HttpException(&#x27;You cannot report yourself&#x27;, HttpStatus.BAD_REQUEST);
+    }
+
+    // If the user has already been reported and is still pending response, throw an error
+    const userReportedUsers &#x3D; await this.userRepository
+      .findOne({
+        where: { id: user.id },
+        relations: [&#x27;reportedUsers&#x27;, &#x27;reportedUsers.reportedUser&#x27;]
+      })
+      .then((user) &#x3D;&gt; {
+        if (!user) {
+          throw new BadRequestException(&#x27;User not found&#x27;);
+        }
+        return user.reportedUsers.map((reports) &#x3D;&gt; {
+          if ((reports.status &#x3D; ReportStatus.PendingReview)) {
+            return reports.reportedUser;
+          }
+        });
+      });
+
+    const usersAlreadyReported &#x3D; userReportedUsers.map((reportedUser) &#x3D;&gt; {
+      return reportedUser.id &#x3D;&#x3D;&#x3D; userToBeReported.id;
+    });
+
+    if (usersAlreadyReported.includes(true)) {
+      throw new HttpException(&#x27;You have already reported this user&#x27;, HttpStatus.BAD_REQUEST);
+    }
+
+    newReport.reportedUser &#x3D; userToBeReported;
+    newReport.reason &#x3D; body.reason;
+
+    return this.userReportsRepository.save(newReport);
+  }
+
+  async getPostReports(id: string, pageOptionsDto: PageOptionsDto): Promise&lt;PageDto&lt;PostReport&gt;&gt; {
+    const queryResults &#x3D; await this.postReportsRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect(&#x27;PostReport.reportedPost&#x27;, &#x27;Post&#x27;)
+      .leftJoinAndSelect(&#x27;PostReport.reportedBy&#x27;, &#x27;ReportedBy&#x27;)
+      .leftJoinAndSelect(&#x27;Post.postedBy&#x27;, &#x27;PostedBy&#x27;)
+      .where(&#x27;PostReport.reportedPost.id &#x3D; :id&#x27;, { id: id })
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.take)
+      .orderBy(&#x27;PostReport.createdAt&#x27;, pageOptionsDto.order)
+      .getManyAndCount()
+      .then((postReportsAndCount) &#x3D;&gt; {
+        return {
+          items: postReportsAndCount[0],
+          itemsCount: postReportsAndCount[1]
+        };
+      });
+
+    const itemCount: number &#x3D; queryResults.itemsCount;
+    const entities: PostReport[] &#x3D; queryResults.items;
+
+    const pageMetaDto: PageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  async getUserReports(id: string, pageOptionsDto: PageOptionsDto): Promise&lt;PageDto&lt;UserReport&gt;&gt; {
+    const queryResults &#x3D; await this.userReportsRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect(&#x27;UserReport.reportedUser&#x27;, &#x27;User&#x27;)
+      .leftJoinAndSelect(&#x27;UserReport.reportedBy&#x27;, &#x27;ReportedBy&#x27;)
+      .where(&#x27;UserReport.reportedUser.id &#x3D; :id&#x27;, { id: id })
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.take)
+      .orderBy(&#x27;UserReport.createdAt&#x27;, pageOptionsDto.order)
+      .getManyAndCount()
+      .then((userReportsAndCount) &#x3D;&gt; {
+        return {
+          items: userReportsAndCount[0],
+          itemsCount: userReportsAndCount[1]
+        };
+      });
+
+    const itemCount: number &#x3D; queryResults.itemsCount;
+    const entities: UserReport[] &#x3D; queryResults.items;
+
+    const pageMetaDto: PageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  async banUser(userId: string, reportId: string): Promise&lt;UserBan&gt; {
+    const newBan &#x3D; new UserBan();
+
+    // Find the user to ban
+    const user &#x3D; await this.userRepository.findOne({
+      where: { id: userId }
+    });
+
+    if (!user) {
+      throw new HttpException(&#x27;User not found&#x27;, HttpStatus.NO_CONTENT);
+    }
+
+    const millisecondsInAWeek &#x3D; 604800000;
+    newBan.bannedUser &#x3D; user;
+    newBan.startDate &#x3D; new Date(Date.now());
+    newBan.endDate &#x3D; new Date(Date.now() + millisecondsInAWeek); //Ban for 1 week
+
+    const report &#x3D; await this.userReportsRepository.findOne({
+      where: { id: reportId }
+    });
+
+    if (!report) {
+      throw new HttpException(&#x27;Report not found&#x27;, HttpStatus.NO_CONTENT);
+    }
+
+    report.status &#x3D; ReportStatus.Accepted;
+    await this.userReportsRepository.save(report);
+
+    await this.userRepository.update(userId, { isBanned: true });
+
+    return this.userBanRepository.save(newBan);
+  }
+
+  async banPost(postId: string, reportId: string): Promise&lt;UpdateResult&gt; {
+    const post &#x3D; await this.postRepository.findOne({
+      where: { id: postId },
+      relations: [&#x27;postedBy&#x27;]
+    });
+
+    if (!post) {
+      throw new HttpException(&#x27;Post not found&#x27;, HttpStatus.NO_CONTENT);
+    }
+
+    const report &#x3D; await this.postReportsRepository.findOne({
+      where: { id: reportId }
+    });
+
+    if (!report) {
+      throw new HttpException(&#x27;Report not found&#x27;, HttpStatus.NO_CONTENT);
+    }
+
+    report.status &#x3D; ReportStatus.Accepted;
+    await this.postReportsRepository.save(report);
+
+    return this.postRepository
+      .createQueryBuilder()
+      .update(Post)
+      .set({ isTakenDown: true })
+      .where(&#x27;id &#x3D; :id&#x27;, { id: post.id })
+      .execute();
+  }
+
+  async unbanPost(id: string): Promise&lt;UpdateResult&gt; {
+    const post &#x3D; await this.postRepository.findOne({
+      where: { id: id }
+    });
+
+    if (!post) {
+      throw new HttpException(&#x27;Post not found&#x27;, HttpStatus.NO_CONTENT);
+    }
+
+    return this.postRepository
+      .createQueryBuilder()
+      .update(Post)
+      .set({ isTakenDown: false })
+      .where(&#x27;id &#x3D; :id&#x27;, { id: post.id })
+      .execute();
+  }
+
+  async getReportedPosts(pageOptionsDto: PageOptionsDto): Promise&lt;PageDto&lt;PostReport&gt;&gt; {
+    const queryResults &#x3D; await this.postReportsRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect(&#x27;PostReport.reportedPost&#x27;, &#x27;Post&#x27;)
+      .leftJoinAndSelect(&#x27;PostReport.reportedBy&#x27;, &#x27;ReportedBy&#x27;)
+      .leftJoinAndSelect(&#x27;Post.postedBy&#x27;, &#x27;postedBy&#x27;)
+      .where(&#x27;PostReport.status &#x3D; :status&#x27;, { status: ReportStatus.PendingReview })
+      .groupBy(&#x27;Post.id&#x27;)
+      .addGroupBy(&#x27;PostReport.reason&#x27;)
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.take)
+      .orderBy(&#x27;Post.createdAt&#x27;, pageOptionsDto.order)
+      .getManyAndCount()
+      .then((postsAndCount) &#x3D;&gt; {
+        return {
+          items: postsAndCount[0],
+          itemsCount: postsAndCount[0].length
+        };
+      });
+
+    const itemCount: number &#x3D; queryResults.itemsCount;
+    const entities: PostReport[] &#x3D; queryResults.items;
+
+    const pageMetaDto: PageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  async getReportedUsers(pageOptionsDto: PageOptionsDto): Promise&lt;PageDto&lt;UserReport&gt;&gt; {
+    const queryResults &#x3D; await this.userReportsRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect(&#x27;UserReport.reportedUser&#x27;, &#x27;User&#x27;)
+      .leftJoinAndSelect(&#x27;UserReport.reportedBy&#x27;, &#x27;ReportedBy&#x27;)
+      .where(&#x27;UserReport.status &#x3D; :status&#x27;, { status: ReportStatus.PendingReview })
+      .groupBy(&#x27;User.id&#x27;)
+      .addGroupBy(&#x27;UserReport.reason&#x27;)
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.take)
+      .orderBy(&#x27;User.createdAt&#x27;, pageOptionsDto.order)
+      .getManyAndCount()
+      .then((usersAndCount) &#x3D;&gt; {
+        return {
+          items: usersAndCount[0],
+          itemsCount: usersAndCount[0].length
+        };
+      });
+
+    const itemCount: number &#x3D; queryResults.itemsCount;
+    const entities: UserReport[] &#x3D; queryResults.items;
+
+    const pageMetaDto: PageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'ReportService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
