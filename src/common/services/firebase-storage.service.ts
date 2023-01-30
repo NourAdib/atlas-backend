@@ -110,6 +110,7 @@ export class FirebaseStorageService {
   async getSignedURL(userId: string, imageId: string) {
     // The name of the object for which you want a signed URL
     const fileName = `users/${userId}/avatars/${imageId}.png`;
+    let imageUrl = '';
 
     await storage
       .bucket(process.env.FIREBASE_BUCKET_NAME)
@@ -129,15 +130,16 @@ export class FirebaseStorageService {
             .file(fileName)
             .getSignedUrl(urlOptions);
 
-          return { url: url, expiryDate: this.expiryDate };
+          imageUrl = url;
         }
       });
-    return { url: '', expiryDate: this.expiryDate };
+    return { url: imageUrl, expiryDate: this.expiryDate };
   }
 
   async getPostImageSignedURL(imageId: any, userId: string, postId: string) {
     const fileName = `users/${userId}/posts/${postId}/${imageId}.png`;
 
+    let imageUrl = '';
     await storage
       .bucket(process.env.FIREBASE_BUCKET_NAME)
       .file(fileName)
@@ -156,10 +158,9 @@ export class FirebaseStorageService {
             .file(fileName)
             .getSignedUrl(urlOptions);
 
-          return { url: url, expiryDate: this.expiryDate };
-        } else {
+          imageUrl = url;
         }
       });
-    return { url: '', expiryDate: this.expiryDate };
+    return { url: imageUrl, expiryDate: this.expiryDate };
   }
 }
