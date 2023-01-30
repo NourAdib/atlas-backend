@@ -280,8 +280,7 @@ export class FeedService {
         &#x27;following.followed.posts.likes.likedBy&#x27;,
         &#x27;following.followed.posts.comments&#x27;,
         &#x27;following.followed.posts.comments.author&#x27;
-      ],
-      order: { createdAt: &#x27;DESC&#x27; }
+      ]
     });
 
     if (!dbUser) {
@@ -295,7 +294,9 @@ export class FeedService {
 
     let posts &#x3D; dbUser.following.map((user) &#x3D;&gt; user.followed.posts)[0];
 
-    posts &#x3D; posts.concat(publicPosts);
+    posts &#x3D; posts
+      .concat(publicPosts)
+      .sort((a, b) &#x3D;&gt; new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
     const paginatedPosts &#x3D; posts.slice(
       (pageOptionsDto.page - 1) * pageOptionsDto.take,

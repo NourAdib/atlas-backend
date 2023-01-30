@@ -345,8 +345,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="138"
-                            class="link-to-prism">src/common/services/firebase-storage.service.ts:138</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="139"
+                            class="link-to-prism">src/common/services/firebase-storage.service.ts:139</a></div>
                 </td>
             </tr>
 
@@ -957,6 +957,7 @@ export class FirebaseStorageService {
   async getSignedURL(userId: string, imageId: string) {
     // The name of the object for which you want a signed URL
     const fileName &#x3D; &#x60;users/${userId}/avatars/${imageId}.png&#x60;;
+    let imageUrl &#x3D; &#x27;&#x27;;
 
     await storage
       .bucket(process.env.FIREBASE_BUCKET_NAME)
@@ -976,15 +977,16 @@ export class FirebaseStorageService {
             .file(fileName)
             .getSignedUrl(urlOptions);
 
-          return { url: url, expiryDate: this.expiryDate };
+          imageUrl &#x3D; url;
         }
       });
-    return { url: &#x27;&#x27;, expiryDate: this.expiryDate };
+    return { url: imageUrl, expiryDate: this.expiryDate };
   }
 
   async getPostImageSignedURL(imageId: any, userId: string, postId: string) {
     const fileName &#x3D; &#x60;users/${userId}/posts/${postId}/${imageId}.png&#x60;;
 
+    let imageUrl &#x3D; &#x27;&#x27;;
     await storage
       .bucket(process.env.FIREBASE_BUCKET_NAME)
       .file(fileName)
@@ -1003,11 +1005,10 @@ export class FirebaseStorageService {
             .file(fileName)
             .getSignedUrl(urlOptions);
 
-          return { url: url, expiryDate: this.expiryDate };
-        } else {
+          imageUrl &#x3D; url;
         }
       });
-    return { url: &#x27;&#x27;, expiryDate: this.expiryDate };
+    return { url: imageUrl, expiryDate: this.expiryDate };
   }
 }
 </code></pre>
