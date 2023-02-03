@@ -24,7 +24,7 @@ export class AuthService {
   async validateUser(email: string, pass: string): Promise<any> {
     const user = await this.usersRepository
       .createQueryBuilder()
-      .select(['id', 'email', 'password', 'role'])
+      .select(['id', 'email', 'password', 'role', 'subscriptionPlan'])
       .where('email = :email', { email: email })
       .getRawOne();
 
@@ -47,7 +47,12 @@ export class AuthService {
    * @returns the JWT token
    */
   async login(user: any) {
-    const payload = { email: user.email, sub: user.id, role: user.role };
+    const payload = {
+      email: user.email,
+      sub: user.id,
+      role: user.role,
+      subscriptionPlan: user.subscriptionPlan
+    };
     return {
       access_token: this.jwtService.sign(payload)
     };

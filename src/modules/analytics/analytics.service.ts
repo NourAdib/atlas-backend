@@ -16,6 +16,41 @@ export class AnalyticsService {
     private userRepository: Repository<User>
   ) {}
 
+  async getAdminPostAnalytics(user: any, postId: string): Promise<PostAnalyticResposneDto> {
+    const post = await this.postRepository.findOne({
+      where: { id: postId },
+      relations: ['postedBy', 'reportsAgainst', 'scrapbook', 'comments', 'appeals']
+    });
+
+    if (!post) {
+      throw new BadRequestException('Post does not exist');
+    }
+
+    const commentCount = post.comments.length;
+    const reportCount = post.reportsAgainst.length;
+    const appealCount = post.appeals.length;
+    const isPartOfScrapbook = post.scrapbook ? true : false;
+    const interactionCount = commentCount;
+    const isTakenDown = post.isTakenDown;
+    const createdAt = new Date(post.createdAt);
+
+    const response = new PostAnalyticResposneDto();
+    response.commentCount = commentCount;
+    response.likeCount = 0;
+    response.interactionCount = interactionCount;
+    response.isTakenDown = isTakenDown;
+    response.reportCount = reportCount;
+    response.appealCount = appealCount;
+    response.createdAt = createdAt;
+    response.isPartOfScrapbook = isPartOfScrapbook;
+
+    if (isPartOfScrapbook) {
+      response.scrapbookId = post.scrapbook.id;
+    }
+
+    return response;
+  }
+
   async getPostAnalytics(user: any, postId: string): Promise<PostAnalyticResposneDto> {
     const post = await this.postRepository.findOne({
       where: { id: postId },
