@@ -16,7 +16,7 @@ export class PaymentService {
 
   private endpointSecret = process.env?.STRIPE_WEBHOOK_SECRET;
 
-  private url = '192.168.1.175';
+  private url = '10.6.152.189';
 
   constructor(
     @InjectRepository(User)
@@ -71,7 +71,7 @@ export class PaymentService {
     return session.url;
   }
 
-  async unsubscribe(user: User): Promise<string> {
+  async unsubscribe(user: User): Promise<UpdateResult> {
     const dbUser = await this.userRepository.findOne({ where: { id: user.id } });
 
     if (!dbUser) {
@@ -92,7 +92,12 @@ export class PaymentService {
       await this.stripe.subscriptions.del(subscriptions.data[i].id);
     }
 
-    return '';
+    return this.userRepository
+      .createQueryBuilder()
+      .update(User)
+      .set({ subscriptionPlan: SubscriptionPlan.Basic })
+      .where('id = :id', { id: dbUser.id })
+      .execute();
   }
 
   async paymentSuccess(sessionId: string): Promise<UpdateResult> {

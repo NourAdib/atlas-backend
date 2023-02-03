@@ -1788,7 +1788,7 @@ export class PostService {
       .where(&#x27;User.id &#x3D; :id&#x27;, { id: user.id })
       .skip(pageOptionsDto.skip)
       .take(pageOptionsDto.take)
-      .orderBy(&#x27;Post.createdAt&#x27;, pageOptionsDto.order)
+      .orderBy(&#x27;Post.createdAt&#x27;, &#x27;DESC&#x27;)
       .getManyAndCount()
       .then((userPostsAndCount) &#x3D;&gt; {
         return {

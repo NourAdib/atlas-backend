@@ -28,16 +28,23 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content controller">
+               <div class="content class">
                    <div class="content-data">
 
 
 
 
 
+
+
+
+
+
+
+
 <ol class="breadcrumb">
-  <li>Controllers</li>
-  <li >FeedController</li>
+  <li>Classes</li>
+  <li >UpdateUserBioDto</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -55,17 +62,17 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/feed/feed.controller.ts</code>
+            <code>src/modules/user/dto/bio-update.dto.ts</code>
         </p>
 
+
             <p class="comment">
-                <h3>Prefix</h3>
+                <h3>Description</h3>
             </p>
             <p class="comment">
-                <code>feed</code>
+                <p>to check for valid date while updating dates</p>
+
             </p>
-
-
 
 
 
@@ -74,17 +81,16 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
-
                 <tr>
                     <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
+                        <h6><b>Properties</b></h6>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#getFeed" >getFeed</a>
+                                <a href="#bio" >bio</a>
                             </li>
                         </ul>
                     </td>
@@ -94,151 +100,77 @@
 
 
 
+
         </tbody>
     </table>
 </section>
 
+
             <section>
     
-    <h3 id="methods">
-        Methods
+    <h3 id="inputs">
+        Properties
     </h3>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getFeed"></a>
+                    <a name="bio"></a>
                     <span class="name">
-                        <span ><b>getFeed</b></span>
-                        <a href="#getFeed"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>bio</b></span>
+                        <a href="#bio"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getFeed(req, res: Response, pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
-                </td>
-            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@UseGuards(JwtAuthGuard)<br />@Get()<br /></code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="13"
-                            class="link-to-prism">src/modules/feed/feed.controller.ts:13</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>req</td>
-                                    <td>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsNotEmpty()<br />@MaxLength(100)<br />@IsString()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/modules/user/dto/bio-update.dto.ts:9</a></div>
+                        </td>
+                    </tr>
 
 
-                                </tr>
-                                <tr>
-                                    <td>res</td>
-                                    <td>
-                                            <code>Response</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>pageOptionsDto</td>
-                                    <td>
-                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
         </tbody>
     </table>
-</section>    </div>
+</section>
+
+
+
+
+
+
+
+    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, HttpStatus, Res, UseGuards, Request, Query } from &#x27;@nestjs/common&#x27;;
-import { JwtAuthGuard } from &#x27;../auth/guards/jwt-auth.guard&#x27;;
-import { Response } from &#x27;express&#x27;;
-import { FeedService } from &#x27;./feed.service&#x27;;
-import { PageOptionsDto } from &#x27;src/common/dto/page-options.dto&#x27;;
-
-@Controller(&#x27;feed&#x27;)
-export class FeedController {
-  constructor(private feedService: FeedService) {}
-
-  @UseGuards(JwtAuthGuard)
-  @Get()
-  getFeed(@Request() req, @Res() res: Response, @Query() pageOptionsDto: PageOptionsDto) {
-    this.feedService
-      .getFeed(req.user, pageOptionsDto)
-      .then((posts) &#x3D;&gt; {
-        return res.status(HttpStatus.OK).json(posts);
-      })
-      .catch((err) &#x3D;&gt; {
-        return res.status(err.status).json({ message: err.message });
-      });
-  }
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IsNotEmpty, IsString, MaxLength } from &#x27;class-validator&#x27;;
+/**
+ * to check for valid date while updating dates
+ */
+export class UpdateUserBioDto {
+  @IsNotEmpty()
+  @MaxLength(100)
+  @IsString()
+  bio: string;
 }
 </code></pre>
     </div>
 </div>
-
-
-
-
-
-
-
 
 
 
@@ -273,8 +205,8 @@ export class FeedController {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
-            var COMPODOC_CURRENT_PAGE_URL = 'FeedController.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'UpdateUserBioDto.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

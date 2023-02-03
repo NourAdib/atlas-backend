@@ -92,7 +92,14 @@ export class User extends BaseEntity {
   @Column({ default: SubscriptionPlan.Basic })
   subscriptionPlan: SubscriptionPlan = SubscriptionPlan.Basic;
 
-  /* @OneToMany(() => User, (user) => user.followers) */
+  @Column({ default: 0 })
+  followersCount: number = 0;
+
+  @Column({ default: 0 })
+  followingCount: number = 0;
+
+  @Column({ default: '' })
+  bio: string = '';
 
   //A user can have many posts
   @OneToMany(() => Post, (post) => post.postedBy)

@@ -29,6 +29,7 @@ import { UpdateUserPasseordDto } from './dto/password-update.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { NotificationPreference } from 'src/constants/notification-preference.enum';
 import { PageOptionsDto } from 'src/common/dto/page-options.dto';
+import { UpdateUserBioDto } from './dto/bio-update.dto';
 
 @Controller('user')
 export class UserController {
@@ -216,6 +217,26 @@ export class UserController {
         return res.status(err.status).json({ message: err.message });
       });
   }
+
+  /**
+   * updates the user's bio
+   * @param body the Dto file
+   * @param req the request object
+   * @param res the response object
+   */
+  @UseGuards(JwtAuthGuard)
+  @Patch('bio')
+  updateUserBio(@Body() body: UpdateUserBioDto, @Request() req, @Res() res: Response) {
+    this.userService
+      .updatedUserBio(req.user, body.bio)
+      .then(() => {
+        return res.status(HttpStatus.OK).json({ message: 'Bio updated' });
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
+  }
+
   /**
    * updates the users phone number
    * @param body the Dto file

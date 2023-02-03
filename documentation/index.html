@@ -31,6 +31,35 @@
                <div class="content getting-started">
                    <div class="content-data">
 
+<h1 id="running-the-server">Running The Server</h1>
+<h2 id="prerequisites">Prerequisites</h2>
+<ol>
+<li>MySQL Server with a database named Atlas</li>
+<li>Define the env variables</li>
+<li>Running the migrations to create the database</li>
+</ol>
+<h3 id="env-variables">Env Variables</h3>
+<p>The list of Envs:</p>
+<ol>
+<li>Database Host</li>
+<li>Database Name</li>
+<li>Databse Username</li>
+<li>Databse Password</li>
+<li>Secret</li>
+<li>Session Driver</li>
+<li>Firebase Type</li>
+<li>Firebase Project ID</li>
+<li>Firebase Bucket ID</li>
+<li>Firebase Private Key</li>
+<li>Stripe Test Key</li>
+<li>Stripe Webhook Secret</li>
+</ol>
+<h3 id="migrations-run">Migrations Run</h3>
+<p><code>npm run typeorm:run-migrations</code></p>
+<h3 id="normal-mode">Normal Mode</h3>
+<p><code>npm run start</code></p>
+<h3 id="developer-mode">Developer Mode</h3>
+<p><code>npm run start:dev</code></p>
 <h2 id="used-repo-template">Used Repo Template</h2>
 <p><a href="https://github.com/NarHakobyan/awesome-nest-boilerplate">https://github.com/NarHakobyan/awesome-nest-boilerplate</a></p>
 

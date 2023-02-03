@@ -294,6 +294,10 @@ export class FeedService {
 
     let posts &#x3D; dbUser.following.map((user) &#x3D;&gt; user.followed.posts)[0];
 
+    if (!posts) {
+      posts &#x3D; [];
+    }
+
     posts &#x3D; posts
       .concat(publicPosts)
       .sort((a, b) &#x3D;&gt; new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());

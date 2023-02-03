@@ -635,6 +635,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/$npmConfigName1674544597118.html" data-type="entity-link" >$npmConfigName1674544597118</a>
                             </li>
                             <li class="link">
+                                <a href="classes/$npmConfigName1675177507147.html" data-type="entity-link" >$npmConfigName1675177507147</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/AppealDto.html" data-type="entity-link" >AppealDto</a>
                             </li>
                             <li class="link">
@@ -669,6 +672,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/SignUpUserDto.html" data-type="entity-link" >SignUpUserDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/UpdateUserBioDto.html" data-type="entity-link" >UpdateUserBioDto</a>
                             </li>
                             <li class="link">
                                 <a href="classes/UpdateUserDateOfBirthDto.html" data-type="entity-link" >UpdateUserDateOfBirthDto</a>

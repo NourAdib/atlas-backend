@@ -305,8 +305,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="138"
-                            class="link-to-prism">src/modules/follow/follow.service.ts:138</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="154"
+                            class="link-to-prism">src/modules/follow/follow.service.ts:154</a></div>
                 </td>
             </tr>
 
@@ -388,8 +388,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="160"
-                            class="link-to-prism">src/modules/follow/follow.service.ts:160</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="176"
+                            class="link-to-prism">src/modules/follow/follow.service.ts:176</a></div>
                 </td>
             </tr>
 
@@ -471,8 +471,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="182"
-                            class="link-to-prism">src/modules/follow/follow.service.ts:182</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="198"
+                            class="link-to-prism">src/modules/follow/follow.service.ts:198</a></div>
                 </td>
             </tr>
 
@@ -554,8 +554,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="203"
-                            class="link-to-prism">src/modules/follow/follow.service.ts:203</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="219"
+                            class="link-to-prism">src/modules/follow/follow.service.ts:219</a></div>
                 </td>
             </tr>
 
@@ -637,8 +637,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="107"
-                            class="link-to-prism">src/modules/follow/follow.service.ts:107</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="123"
+                            class="link-to-prism">src/modules/follow/follow.service.ts:123</a></div>
                 </td>
             </tr>
 
@@ -803,8 +803,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="224"
-                            class="link-to-prism">src/modules/follow/follow.service.ts:224</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="240"
+                            class="link-to-prism">src/modules/follow/follow.service.ts:240</a></div>
                 </td>
             </tr>
 
@@ -973,6 +973,22 @@ export class FollowService {
     follow.followedBy &#x3D; followRequest.requestedBy;
     follow.followed &#x3D; followRequest.requestedUser;
 
+    const followedBy &#x3D; await this.usersRepository.findOne({
+      where: { id: follow.followedBy.id }
+    });
+
+    followedBy.followingCount &#x3D; followedBy.followingCount + 1;
+
+    await this.usersRepository.save(followedBy);
+
+    const followed &#x3D; await this.usersRepository.findOne({
+      where: { id: follow.followed.id }
+    });
+
+    followed.followersCount &#x3D; followed.followersCount + 1;
+
+    await this.usersRepository.save(followed);
+
     return await this.followsRepository.save(follow);
   }
 
@@ -1125,6 +1141,12 @@ export class FollowService {
     if (!isFollowing) {
       throw new BadRequestException(&#x27;You are not following this user&#x27;);
     }
+
+    userToBeUnfollowed.followersCount &#x3D; userToBeUnfollowed.followersCount - 1;
+    userRequestingUnfollow.followingCount &#x3D; userRequestingUnfollow.followingCount - 1;
+
+    await this.usersRepository.save(userToBeUnfollowed);
+    await this.usersRepository.save(userRequestingUnfollow);
 
     return this.followsRepository.delete(followId);
   }

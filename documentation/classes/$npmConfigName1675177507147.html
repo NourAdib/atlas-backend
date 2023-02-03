@@ -28,16 +28,23 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content controller">
+               <div class="content class">
                    <div class="content-data">
 
 
 
 
 
+
+
+
+
+
+
+
 <ol class="breadcrumb">
-  <li>Controllers</li>
-  <li >FeedController</li>
+  <li>Classes</li>
+  <li >$npmConfigName1675177507147</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -55,25 +62,38 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/feed/feed.controller.ts</code>
+            <code>migrations/1675177507147-$npm_config_name.ts</code>
         </p>
 
+
+
+
             <p class="comment">
-                <h3>Prefix</h3>
+                <h3>Implements</h3>
             </p>
             <p class="comment">
-                <code>feed</code>
+                        <code>MigrationInterface</code>
             </p>
-
-
-
-
 
 
             <section>
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#name" >name</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -84,7 +104,14 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#getFeed" >getFeed</a>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#down" >down</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#up" >up</a>
                             </li>
                         </ul>
                     </td>
@@ -92,6 +119,45 @@
 
 
 
+
+
+        </tbody>
+    </table>
+</section>
+
+
+            <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="name"></a>
+                    <span class="name">
+                        <span ><b>name</b></span>
+                        <a href="#name"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;$npmConfigName1675177507147&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="4" class="link-to-prism">migrations/1675177507147-$npm_config_name.ts:4</a></div>
+                        </td>
+                    </tr>
 
 
         </tbody>
@@ -107,31 +173,27 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getFeed"></a>
+                    <a name="down"></a>
                     <span class="name">
-                        <span ><b>getFeed</b></span>
-                        <a href="#getFeed"><span class="icon ion-ios-link"></span></a>
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>down</b></span>
+                        <a href="#down"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getFeed(req, res: Response, pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>down(queryRunner: QueryRunner)</code>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@UseGuards(JwtAuthGuard)<br />@Get()<br /></code>
-                </td>
-            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="13"
-                            class="link-to-prism">src/modules/feed/feed.controller.ts:13</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="12"
+                            class="link-to-prism">migrations/1675177507147-$npm_config_name.ts:12</a></div>
                 </td>
             </tr>
 
@@ -152,32 +214,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>req</td>
+                                    <td>queryRunner</td>
                                     <td>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>res</td>
-                                    <td>
-                                            <code>Response</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>pageOptionsDto</td>
-                                    <td>
-                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                            <code>QueryRunner</code>
                                     </td>
 
                                     <td>
@@ -192,7 +231,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -202,43 +241,109 @@
             </tr>
         </tbody>
     </table>
-</section>    </div>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="up"></a>
+                    <span class="name">
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>up</b></span>
+                        <a href="#up"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>up(queryRunner: QueryRunner)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="6"
+                            class="link-to-prism">migrations/1675177507147-$npm_config_name.ts:6</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>queryRunner</td>
+                                    <td>
+                                            <code>QueryRunner</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, HttpStatus, Res, UseGuards, Request, Query } from &#x27;@nestjs/common&#x27;;
-import { JwtAuthGuard } from &#x27;../auth/guards/jwt-auth.guard&#x27;;
-import { Response } from &#x27;express&#x27;;
-import { FeedService } from &#x27;./feed.service&#x27;;
-import { PageOptionsDto } from &#x27;src/common/dto/page-options.dto&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { MigrationInterface, QueryRunner } from &quot;typeorm&quot;;
 
-@Controller(&#x27;feed&#x27;)
-export class FeedController {
-  constructor(private feedService: FeedService) {}
+export class $npmConfigName1675177507147 implements MigrationInterface {
+    name &#x3D; &#x27;$npmConfigName1675177507147&#x27;
 
-  @UseGuards(JwtAuthGuard)
-  @Get()
-  getFeed(@Request() req, @Res() res: Response, @Query() pageOptionsDto: PageOptionsDto) {
-    this.feedService
-      .getFeed(req.user, pageOptionsDto)
-      .then((posts) &#x3D;&gt; {
-        return res.status(HttpStatus.OK).json(posts);
-      })
-      .catch((err) &#x3D;&gt; {
-        return res.status(err.status).json({ message: err.message });
-      });
-  }
+    public async up(queryRunner: QueryRunner): Promise&lt;void&gt; {
+        await queryRunner.query(&#x60;ALTER TABLE \&#x60;user\&#x60; ADD \&#x60;followersCount\&#x60; int NOT NULL DEFAULT &#x27;0&#x27;&#x60;);
+        await queryRunner.query(&#x60;ALTER TABLE \&#x60;user\&#x60; ADD \&#x60;followingCount\&#x60; int NOT NULL DEFAULT &#x27;0&#x27;&#x60;);
+        await queryRunner.query(&#x60;ALTER TABLE \&#x60;user\&#x60; ADD \&#x60;bio\&#x60; varchar(255) NOT NULL DEFAULT &#x27;&#x27;&#x60;);
+    }
+
+    public async down(queryRunner: QueryRunner): Promise&lt;void&gt; {
+        await queryRunner.query(&#x60;ALTER TABLE \&#x60;user\&#x60; DROP COLUMN \&#x60;bio\&#x60;&#x60;);
+        await queryRunner.query(&#x60;ALTER TABLE \&#x60;user\&#x60; DROP COLUMN \&#x60;followingCount\&#x60;&#x60;);
+        await queryRunner.query(&#x60;ALTER TABLE \&#x60;user\&#x60; DROP COLUMN \&#x60;followersCount\&#x60;&#x60;);
+    }
+
 }
 </code></pre>
     </div>
 </div>
-
-
-
-
-
-
-
 
 
 
@@ -273,8 +378,8 @@ export class FeedController {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
-            var COMPODOC_CURRENT_PAGE_URL = 'FeedController.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = '$npmConfigName1675177507147.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

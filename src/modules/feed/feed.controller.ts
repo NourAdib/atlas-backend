@@ -10,7 +10,7 @@ export class FeedController {
 
   @UseGuards(JwtAuthGuard)
   @Get()
-  getPostAnalytics(@Request() req, @Res() res: Response, @Query() pageOptionsDto: PageOptionsDto) {
+  getFeed(@Request() req, @Res() res: Response, @Query() pageOptionsDto: PageOptionsDto) {
     this.feedService
       .getFeed(req.user, pageOptionsDto)
       .then((posts) => {

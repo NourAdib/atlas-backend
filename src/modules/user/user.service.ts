@@ -2,21 +2,21 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { BadRequestException } from '@nestjs/common/exceptions/bad-request.exception';
 import { ForbiddenException } from '@nestjs/common/exceptions/forbidden.exception';
 import { InjectRepository } from '@nestjs/typeorm';
-import { BanStatus } from 'src/constants/ban-status.enum';
-import { Role } from 'src/constants/role.enum';
+import { BanStatus } from '../../constants/ban-status.enum';
+import { Role } from '../../constants/role.enum';
 import { Repository, UpdateResult } from 'typeorm';
 import { SignUpUserDto } from '../auth/dto/user-signup.dto';
 import { User } from './entities/user.entity';
-import { Gender } from 'src/constants/gender.enum';
-import { EncryptionService } from 'src/common/services/encryption.service';
-import { FirebaseStorageService } from 'src/common/services/firebase-storage.service';
+import { Gender } from '../../constants/gender.enum';
+import { EncryptionService } from '../../common/services/encryption.service';
+import { FirebaseStorageService } from '../../common/services/firebase-storage.service';
 import { UpdateUserPasseordDto } from './dto/password-update.dto';
-import { NotificationPreference } from 'src/constants/notification-preference.enum';
-import { PageDto } from 'src/common/dto/page.dto';
-import { PageOptionsDto } from 'src/common/dto/page-options.dto';
-import { PageMetaDto } from 'src/common/dto/page-meta.dto';
-import { StripeService } from 'src/common/services/stripe.service';
-import { SubscriptionPlan } from 'src/constants/subscription-plan.enum';
+import { NotificationPreference } from '../../constants/notification-preference.enum';
+import { PageDto } from '../../common/dto/page.dto';
+import { PageOptionsDto } from '../../common/dto/page-options.dto';
+import { PageMetaDto } from '../../common/dto/page-meta.dto';
+import { StripeService } from '../../common/services/stripe.service';
+import { SubscriptionPlan } from '../../constants/subscription-plan.enum';
 
 @Injectable()
 export class UserService {
@@ -196,6 +196,17 @@ export class UserService {
   updateUserEmail(user: any, email: string): Promise<UpdateResult> {
     return this.usersRepository.update(user.id, { email });
   }
+
+  /**
+   * Updates users bio
+   * @param user the user object that contains the userId
+   * @param bio the bio to be updated to
+   * @returns success or failure
+   */
+  updatedUserBio(user: any, bio: string): Promise<UpdateResult> {
+    return this.usersRepository.update(user.id, { bio });
+  }
+
   /**
    * Updates users address
    * @param user the user object that contains the userId

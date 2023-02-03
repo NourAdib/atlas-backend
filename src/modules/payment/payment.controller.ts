@@ -36,7 +36,7 @@ export class PaymentController {
     this.paymentService
       .unsubscribe(req.user)
       .then((result) => {
-        return res.status(HttpStatus.OK).json({ message: 'Payment success', url: result });
+        return res.status(HttpStatus.OK).json({ message: 'Success' });
       })
       .catch((err) => {
         return res.status(err.status).json({ message: err.message });

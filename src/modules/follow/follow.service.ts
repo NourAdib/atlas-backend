@@ -101,6 +101,22 @@ export class FollowService {
     follow.followedBy = followRequest.requestedBy;
     follow.followed = followRequest.requestedUser;
 
+    const followedBy = await this.usersRepository.findOne({
+      where: { id: follow.followedBy.id }
+    });
+
+    followedBy.followingCount = followedBy.followingCount + 1;
+
+    await this.usersRepository.save(followedBy);
+
+    const followed = await this.usersRepository.findOne({
+      where: { id: follow.followed.id }
+    });
+
+    followed.followersCount = followed.followersCount + 1;
+
+    await this.usersRepository.save(followed);
+
     return await this.followsRepository.save(follow);
   }
 
@@ -253,6 +269,12 @@ export class FollowService {
     if (!isFollowing) {
       throw new BadRequestException('You are not following this user');
     }
+
+    userToBeUnfollowed.followersCount = userToBeUnfollowed.followersCount - 1;
+    userRequestingUnfollow.followingCount = userRequestingUnfollow.followingCount - 1;
+
+    await this.usersRepository.save(userToBeUnfollowed);
+    await this.usersRepository.save(userRequestingUnfollow);
 
     return this.followsRepository.delete(followId);
   }
