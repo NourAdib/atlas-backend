@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FirebaseStorageService } from 'src/common/services/firebase-storage.service';
-import { Repository } from 'typeorm';
+import { LessThan, MoreThan, Repository } from 'typeorm';
 import { Point } from 'geojson';
 import { User } from '../user/entities/user.entity';
 import { GetProximityMemoryDto } from './dto/get-proximity-memory.dto';
@@ -27,8 +27,6 @@ export class MemoryService {
     newMemory.location = memory.location;
     newMemory.visibility = memory.visibility;
     newMemory.user = user;
-    const userLocation: Point = { type: 'Point', coordinates: [memory.longitude, memory.latitude] };
-    //newMemory.geoPoint = userLocation;
 
     const savedMemory = await this.memoryRepository.save(newMemory);
     const { imageId, url, expiryDate } = await new FirebaseStorageService().uploadMemoryImage(
@@ -58,32 +56,22 @@ export class MemoryService {
     body: GetProximityMemoryDto,
     pageOptionsDto: PageOptionsDto
   ): Promise<PageDto<Memory>> {
-    /* // The user's location
-    const userLocation: Point = { type: 'Point', coordinates: [body.longitude, body.latitude] };
-
-    const longitude = body.longitude;
-    const latitude = body.latitude;
-
-    // The distance in meters
-    const distance = 10;
-
-    // The query
-    const query = this.memoryRepository
-      .createQueryBuilder()
-      .leftJoinAndSelect('memory.user', 'User')
-      .where('User.id = :id', { id: user.id })
-      .where(
-        `ST_Distance_Sphere(memory.geoPoint, ST_GeomFromText('POINT(:longitude :latitude)')) <= :distance`,
-        { longitude, latitude, distance }
-      )
-      .getMany();
-
-    console.log(query); */
+    const [minLat, maxLat, minLon, maxLon] = this.getCoordinatesRadius(
+      body.latitude,
+      body.longitude
+    );
 
     const queryResults = await this.memoryRepository
       .createQueryBuilder()
       .leftJoinAndSelect('Memory.user', 'User')
-      .where('User.id = :id', { id: user.id })
+      .where({
+        longitude: MoreThan(minLon),
+        latitude: MoreThan(minLat)
+      })
+      .andWhere({
+        longitude: LessThan(maxLon),
+        latitude: LessThan(maxLat)
+      })
       .skip(pageOptionsDto.skip)
       .take(pageOptionsDto.take)
       .orderBy('Memory.createdAt', pageOptionsDto.order)
@@ -101,5 +89,20 @@ export class MemoryService {
     const pageMetaDto: PageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
 
     return new PageDto(entities, pageMetaDto);
+  }
+
+  getCoordinatesRadius(lat: number, lon: number): [number, number, number, number] {
+    const earthRadius = 6378137; // Earth's radius in meters
+    const radius = 5; // 5-meter radius
+
+    const latDiff = (radius / earthRadius) * (180 / Math.PI);
+    const lonDiff = ((radius / earthRadius) * (180 / Math.PI)) / Math.cos((lat * Math.PI) / 180);
+
+    const minLat = lat - latDiff;
+    const maxLat = lat + latDiff;
+    const minLon = lon - lonDiff;
+    const maxLon = lon + lonDiff;
+
+    return [minLat, maxLat, minLon, maxLon];
   }
 }

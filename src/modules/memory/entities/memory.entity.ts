@@ -12,16 +12,6 @@ export class Memory extends BaseEntity {
   @Column()
   location: string;
 
-  /* @Column({
-    type: 'point',
-    nullable: true,
-    transformer: {
-      from: (value: string) => JSON.parse(value),
-      to: (value: Point) => `(${value.coordinates[0]}, ${value.coordinates[1]})`
-    }
-  })
-  geoPoint: Point; */
-
   @Column({ type: 'decimal', precision: 8, scale: 6, default: 0 })
   latitude: number;
 

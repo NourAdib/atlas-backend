@@ -62,7 +62,7 @@ export class MemoryController {
       })
       .catch((err) => {
         console.log(err);
-        
+
         return res.status(err.status).json({ message: err.message });
       });
   }
