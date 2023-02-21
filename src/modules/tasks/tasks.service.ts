@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { FirebaseStorageService } from 'src/common/services/firebase-storage.service';
 import { BanStatus } from 'src/constants/ban-status.enum';
 import { Repository, Not, LessThan } from 'typeorm';
+import { Memory } from '../memory/entities/memory.entity';
 import { Post } from '../post/entities/post.entity';
 import { UserBan } from '../report/entities/user-ban.entity';
 import { User } from '../user/entities/user.entity';
@@ -22,7 +23,10 @@ export class TasksService {
     private postRepository: Repository<Post>,
 
     @InjectRepository(UserBan)
-    private userBanRepository: Repository<UserBan>
+    private userBanRepository: Repository<UserBan>,
+
+    @InjectRepository(Memory)
+    private memoryRepository: Repository<Memory>
   ) {}
 
   /**
@@ -122,6 +126,46 @@ export class TasksService {
 
           if (ban.endDate < new Date(Date.now())) {
             await this.userBanRepository.update(ban.id, { status: BanStatus.Expired });
+          }
+        }
+      });
+  }
+
+  /**
+   * Runs at the specified interval
+   * Updates the memory picture URL for all posts whose picture will expire tomorrow
+   */
+  @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
+  async updateUserMemoryURLs() {
+    const tomorrow = new Date(Date.now());
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    await this.memoryRepository
+      .find({
+        where: {
+          imageId: Not(''),
+          imageExpiryDate: LessThan(tomorrow)
+        },
+        relations: ['user']
+      })
+      .then(async (memories) => {
+        for (let i = 0; i < memories.length; i++) {
+          const memory = memories[i];
+
+          if (memory.imageId) {
+            if (memory.imageExpiryDate < new Date(Date.now())) {
+              const { url, expiryDate } =
+                await new FirebaseStorageService().getMemoryImageSignedURL(
+                  memory.imageId,
+                  memory.user.id,
+                  memory.id
+                );
+
+              memory.imageExpiryDate = new Date(expiryDate);
+              memory.imageUrl = url;
+
+              await this.memoryRepository.save(memory);
+            }
           }
         }
       });

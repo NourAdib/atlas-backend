@@ -28,6 +28,8 @@ import { Like } from './modules/post/entities/post-like.entity';
 import { PaymentModule } from './modules/payment/payment.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { TasksModule } from './modules/tasks/tasks.module';
+import { Memory } from './modules/memory/entities/memory.entity';
+import { MemoryModule } from './modules/memory/memory.module';
 
 @Module({
   imports: [
@@ -56,7 +58,8 @@ import { TasksModule } from './modules/tasks/tasks.module';
           Block,
           Follow,
           FollowRequest,
-          Like
+          Like,
+          Memory
         ],
         synchronize: false,
         autoLoadEntities: true,
@@ -82,6 +85,7 @@ import { TasksModule } from './modules/tasks/tasks.module';
     AnalyticsModule,
     FeedModule,
     PaymentModule,
+    MemoryModule,
     TasksModule
   ],
   controllers: [],

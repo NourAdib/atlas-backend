@@ -13,6 +13,7 @@ import { Appeal } from './src/modules/appeals/entities/appeal.entity';
 import { Block } from './src/modules/block/entities/block.entity';
 import { Follow } from './src/modules/follow/entities/follow.entity';
 import { FollowRequest } from './src/modules/follow/entities/follow-request.entity';
+import { Memory } from './src/modules/memory/entities/memory.entity';
 
 config();
 
@@ -36,7 +37,8 @@ export default new DataSource({
     Block,
     Follow,
     FollowRequest,
-    Like
+    Like,
+    Memory
   ],
   migrations: ['./migrations/*{.ts,.js}']
 });

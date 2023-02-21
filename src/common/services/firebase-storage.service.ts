@@ -65,6 +65,11 @@ export class FirebaseStorageService {
     return { url: url, expiryDate: this.expiryDate };
   }
 
+  /**
+   * Removes the avatar of a user
+   * @param imageId the id of the image to be removed
+   * @param userId the id of the user
+   */
   async deleteAvatar(imageId: any, userId: string) {
     const fileName = `users/${userId}/avatars/${imageId}.png`;
 
@@ -77,6 +82,14 @@ export class FirebaseStorageService {
       });
   }
 
+  /**
+   * Upload post image
+   * @description This function is used to upload a new avatar image
+   * @param image the image to be uploaded
+   * @param userId the id of the user
+   * @param postId the id of the post
+   * @returns the image id, url and expiry date
+   */
   async uploadPostImage(image: any, userId: string, postId: string) {
     const imageId = uuidv4();
 
@@ -162,5 +175,63 @@ export class FirebaseStorageService {
         }
       });
     return { url: imageUrl, expiryDate: this.expiryDate };
+  }
+
+  async getMemoryImageSignedURL(imageId: any, userId: string, memoryId: string) {
+    const fileName = `users/${userId}/memories/${memoryId}/${imageId}.png`;
+
+    let imageUrl = '';
+    await storage
+      .bucket(process.env.FIREBASE_BUCKET_NAME)
+      .file(fileName)
+      .exists()
+      .then(async (exists) => {
+        if (exists[0]) {
+          const urlOptions: GetSignedUrlConfig = {
+            version: 'v4',
+            action: 'read',
+            expires: this.expiryDate
+          };
+
+          // Get a signed URL that allows temporary access to the object
+          const [url] = await storage
+            .bucket(process.env.FIREBASE_BUCKET_NAME)
+            .file(fileName)
+            .getSignedUrl(urlOptions);
+
+          imageUrl = url;
+        }
+      });
+    return { url: imageUrl, expiryDate: this.expiryDate };
+  }
+
+  async uploadMemoryImage(image: any, userId: string, memoryId: string) {
+    const imageId = uuidv4();
+
+    const file = bucket.file(`users/${userId}/memories/${memoryId}/${imageId}.png`);
+
+    await file.save(image);
+
+    const urlOptions: GetSignedUrlConfig = {
+      version: 'v4',
+      action: 'read',
+      expires: this.expiryDate
+    };
+
+    const [url] = await file.getSignedUrl(urlOptions);
+
+    return { imageId: imageId, url: url, expiryDate: this.expiryDate };
+  }
+
+  async deleteMemoryImage(imageId: any, userId: string, memoryId: string) {
+    const fileName = `users/${userId}/memories/${memoryId}/${imageId}.png`;
+
+    await storage
+      .bucket(process.env.FIREBASE_BUCKET_NAME)
+      .file(fileName)
+      .delete()
+      .catch((err) => {
+        throw err;
+      });
   }
 }
