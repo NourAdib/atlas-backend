@@ -1,8 +1,10 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpStatus,
+  Param,
   Post,
   Query,
   Request,
@@ -57,6 +59,48 @@ export class MemoryController {
   ) {
     this.memoryService
       .getProximityMemories(req.user, body, pageOptionsDto)
+      .then((memory) => {
+        return res.status(HttpStatus.OK).json(memory);
+      })
+      .catch((err) => {
+        console.log(err);
+
+        return res.status(err.status).json({ message: err.message });
+      });
+  }
+  @UseGuards(JwtAuthGuard)
+  @Get('user-memories')
+  getUserMemories(@Request() req, @Res() res: Response, @Query() pageOptionsDto: PageOptionsDto) {
+    this.memoryService
+      .getUserMemories(req.user, pageOptionsDto)
+      .then((memories) => {
+        return res.status(HttpStatus.OK).json(memories);
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/:id')
+  getMemoryById(@Param('id') id: string, @Res() res: Response) {
+    this.memoryService
+      .getMemoryById(id)
+      .then((memory) => {
+        return res.status(HttpStatus.OK).json(memory);
+      })
+      .catch((err) => {
+        console.log(err);
+
+        return res.status(err.status).json({ message: err.message });
+      });
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete('/:id')
+  deleteMemoryById(@Param('id') id: string, @Request() req, @Res() res: Response) {
+    this.memoryService
+      .deleteMemoryById(req.user, id)
       .then((memory) => {
         return res.status(HttpStatus.OK).json(memory);
       })
