@@ -36,7 +36,7 @@ import { MemoryModule } from './modules/memory/memory.module';
     ConfigModule.forRoot(),
     ScheduleModule.forRoot(),
     TypeOrmModule.forRootAsync({
-      //We import the ConfigModule to use the ConfigService to acceess the environment variables
+      //We import the ConfigModule to use the ConfigService to access the environment variables
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
         //*Database Settings

@@ -25,7 +25,7 @@ import { UpdateUserEmailDto } from './dto/email-update.dto';
 import { UpdateUserDateOfBirthDto } from './dto/dateofbirth-update.dto';
 import { UpdateUserPhoneNumberDto } from './dto/phone-update.dto';
 import { Gender } from 'src/constants/gender.enum';
-import { UpdateUserPasseordDto } from './dto/password-update.dto';
+import { UpdateUserPasswordDto } from './dto/password-update.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { NotificationPreference } from 'src/constants/notification-preference.enum';
 import { PageOptionsDto } from 'src/common/dto/page-options.dto';
@@ -284,7 +284,7 @@ export class UserController {
    */
   @UseGuards(JwtAuthGuard)
   @Patch('password')
-  updateUserPassword(@Request() req, @Res() res: Response, @Body() body: UpdateUserPasseordDto) {
+  updateUserPassword(@Request() req, @Res() res: Response, @Body() body: UpdateUserPasswordDto) {
     if (body.password !== body.confirmPassword) {
       throw new BadRequestException('Passwords do not match');
     }
@@ -376,7 +376,7 @@ export class UserController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Patch('notification-prefences')
+  @Patch('notification-preferences')
   async updateUserNotificationPreferences(
     @Request() req,
     @Res() res: Response,

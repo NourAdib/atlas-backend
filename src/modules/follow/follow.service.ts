@@ -31,7 +31,8 @@ export class FollowService {
         'following',
         'following.followed',
         'followRequestsSent',
-        'followRequestsSent.requestedUser'
+        'followRequestsSent.requestedUser',
+        'blockedBy.blockingUser'
       ]
     });
 
@@ -46,6 +47,12 @@ export class FollowService {
     if (userToBeFollowed.id === userRequestingFollow.id) {
       throw new BadRequestException('You cannot follow yourself');
     }
+
+    userRequestingFollow.blockedBy.map((block) => {
+      if (block.blockingUser.id === userToBeFollowed.id) {
+        throw new BadRequestException('You have blocked by this user');
+      }
+    });
 
     userRequestingFollow.followRequestsSent.map((followRequest) => {
       if (

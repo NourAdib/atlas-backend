@@ -2,7 +2,6 @@ import { User } from '../../user/entities/user.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { BaseEntity } from '../../../common/entities/base.entity';
 import { Visibility } from '../../../constants/visibility.enum';
-import { Point } from 'geojson';
 
 @Entity()
 export class Memory extends BaseEntity {

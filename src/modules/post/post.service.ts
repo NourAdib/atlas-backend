@@ -11,6 +11,7 @@ import { PageOptionsDto } from 'src/common/dto/page-options.dto';
 import { PageDto } from 'src/common/dto/page.dto';
 import { PageMetaDto } from 'src/common/dto/page-meta.dto';
 import { Like } from './entities/post-like.entity';
+import { UserService } from '../user/user.service';
 
 @Injectable()
 export class PostService {
@@ -25,7 +26,10 @@ export class PostService {
     private commentRepository: Repository<Comment>,
 
     @InjectRepository(Like)
-    private likeRepository: Repository<Like>
+    private likeRepository: Repository<Like>,
+
+    @InjectRepository(User)
+    private userRepository: Repository<User>
   ) {}
 
   /**
@@ -176,6 +180,7 @@ export class PostService {
     const queryResults = await this.scrapbookRepository
       .createQueryBuilder()
       .leftJoinAndSelect('Scrapbook.user', 'User')
+      .leftJoinAndSelect('Scrapbook.posts', 'Post')
       .where('User.id = :id', { id: user.id })
       .skip(pageOptionsDto.skip)
       .take(pageOptionsDto.take)
@@ -393,8 +398,10 @@ export class PostService {
       throw new HttpException('post already liked', HttpStatus.BAD_REQUEST);
     }
 
+    const dbUser = await this.userRepository.findOneBy({ id: user.id });
+
     const like = new Like();
-    like.likedBy = user;
+    like.likedBy = dbUser;
     like.likedPost = post;
 
     return this.likeRepository.save(like);
@@ -423,5 +430,104 @@ export class PostService {
         return this.likeRepository.delete({ id: post.likes[i].id });
       }
     }
+  }
+
+  async getFollowingScraps(
+    user: User,
+    id: string,
+    pageOptionsDto: PageOptionsDto
+  ): Promise<PageDto<Post>> {
+    const visitedUser = await this.userRepository.findOne({
+      where: { id: id },
+      relations: ['followers', 'followers.followedBy']
+    });
+
+    if (!visitedUser) {
+      throw new HttpException('user does not exist', HttpStatus.BAD_REQUEST);
+    }
+
+    let isFollowingUser = false;
+
+    visitedUser.followers.forEach((follower) => {
+      if (follower.followedBy.id === user.id) {
+        isFollowingUser = true;
+      }
+    });
+
+    if (!isFollowingUser) {
+      throw new HttpException('user is not followed', HttpStatus.BAD_REQUEST);
+    }
+
+    const queryResults = await this.postRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect('Post.postedBy', 'User')
+      .where('User.id = :id', { id: id })
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.take)
+      .orderBy('Post.createdAt', 'DESC')
+      .getManyAndCount()
+      .then((userPostsAndCount) => {
+        return {
+          items: userPostsAndCount[0],
+          itemsCount: userPostsAndCount[1]
+        };
+      });
+
+    const itemCount: number = queryResults.itemsCount;
+    const entities: Post[] = queryResults.items;
+
+    const pageMetaDto: PageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  async getFollowingScrapbooks(
+    user: User,
+    id: string,
+    pageOptionsDto: PageOptionsDto
+  ): Promise<PageDto<Scrapbook>> {
+    const visitedUser = await this.userRepository.findOne({
+      where: { id: id },
+      relations: ['followers', 'followers.followedBy']
+    });
+
+    if (!visitedUser) {
+      throw new HttpException('user does not exist', HttpStatus.BAD_REQUEST);
+    }
+
+    let isFollowingUser = false;
+
+    visitedUser.followers.forEach((follower) => {
+      if (follower.followedBy.id === user.id) {
+        isFollowingUser = true;
+      }
+    });
+
+    if (!isFollowingUser) {
+      throw new HttpException('user is not followed', HttpStatus.BAD_REQUEST);
+    }
+
+    const queryResults = await this.scrapbookRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect('Scrapbook.user', 'User')
+      .leftJoinAndSelect('Scrapbook.posts', 'Post')
+      .where('User.id = :id', { id: id })
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.take)
+      .orderBy('Scrapbook.createdAt', pageOptionsDto.order)
+      .getManyAndCount()
+      .then((userScrapbooksAndCount) => {
+        return {
+          items: userScrapbooksAndCount[0],
+          itemsCount: userScrapbooksAndCount[1]
+        };
+      });
+
+    const itemCount: number = queryResults.itemsCount;
+    const entities: Scrapbook[] = queryResults.items;
+
+    const pageMetaDto: PageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
   }
 }

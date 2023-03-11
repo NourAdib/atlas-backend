@@ -50,7 +50,7 @@ export class MemoryController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get('proximity-memories')
+  @Post('proximity-memories')
   getProximityMemories(
     @Body() body: GetProximityMemoryDto,
     @Request() req,

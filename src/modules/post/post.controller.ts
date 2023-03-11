@@ -129,7 +129,7 @@ export class PostController {
   @Post('scrapbook/:id/add-post/:postId')
   addPostToScrapbook(@Request() req, @Res() res: Response, @Param() params) {
     this.postService
-      .addPostToScrapbook(req.user, req.params.id, req.params.postId)
+      .addPostToScrapbook(req.user, params.id, params.postId)
       .then((post) => {
         return res.status(HttpStatus.OK).json(post);
       })
@@ -280,6 +280,42 @@ export class PostController {
       .unlikePost(req.user, postId)
       .then(() => {
         return res.status(HttpStatus.OK).json({ message: 'Post unliked successfully' });
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('following-scraps/:id')
+  async getFollowingScraps(
+    @Request() req,
+    @Res() res: Response,
+    @Param('id') id: string,
+    @Query() pageOptionsDto: PageOptionsDto
+  ) {
+    this.postService
+      .getFollowingScraps(req.user, id, pageOptionsDto)
+      .then((posts) => {
+        return res.status(HttpStatus.OK).json(posts);
+      })
+      .catch((err) => {
+        return res.status(err.status).json({ message: err.message });
+      });
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('following-scrapbooks/:id')
+  async getFollowingScrapbooks(
+    @Request() req,
+    @Res() res: Response,
+    @Param('id') id: string,
+    @Query() pageOptionsDto: PageOptionsDto
+  ) {
+    this.postService
+      .getFollowingScrapbooks(req.user, id, pageOptionsDto)
+      .then((posts) => {
+        return res.status(HttpStatus.OK).json(posts);
       })
       .catch((err) => {
         return res.status(err.status).json({ message: err.message });

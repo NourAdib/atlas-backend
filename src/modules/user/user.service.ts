@@ -10,7 +10,7 @@ import { User } from './entities/user.entity';
 import { Gender } from '../../constants/gender.enum';
 import { EncryptionService } from '../../common/services/encryption.service';
 import { FirebaseStorageService } from '../../common/services/firebase-storage.service';
-import { UpdateUserPasseordDto } from './dto/password-update.dto';
+import { UpdateUserPasswordDto } from './dto/password-update.dto';
 import { NotificationPreference } from '../../constants/notification-preference.enum';
 import { PageDto } from '../../common/dto/page.dto';
 import { PageOptionsDto } from '../../common/dto/page-options.dto';
@@ -110,7 +110,10 @@ export class UserService {
   }
 
   getUserProfileById(id: string): Promise<User> {
-    return this.usersRepository.findOneBy({ id });
+    return this.usersRepository.findOne({
+      where: { id: id },
+      relations: ['followers', 'followers.followedBy', 'blockedBy', 'blockedBy.blockingUser']
+    });
   }
 
   /**
@@ -287,7 +290,7 @@ export class UserService {
    * @param password the password to be updated to
    * @returns success or failure
    */
-  async updateUserPassword(user: any, body: UpdateUserPasseordDto): Promise<UpdateResult> {
+  async updateUserPassword(user: any, body: UpdateUserPasswordDto): Promise<UpdateResult> {
     const dbUser = await this.usersRepository
       .createQueryBuilder()
       .select(['id', 'email', 'password', 'role'])
@@ -481,7 +484,7 @@ export class UserService {
     notificationPreference: NotificationPreference
   ): Promise<UpdateResult> {
     if (!Object.values(NotificationPreference).includes(notificationPreference)) {
-      throw new BadRequestException('Invalid opiton');
+      throw new BadRequestException('Invalid option');
     }
     return this.usersRepository.update(user.id, { notificationPreference });
   }

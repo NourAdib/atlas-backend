@@ -16,7 +16,7 @@ export class PaymentService {
 
   private endpointSecret = process.env?.STRIPE_WEBHOOK_SECRET;
 
-  private url = '10.6.152.189';
+  private url = '10.6.130.39';
 
   constructor(
     @InjectRepository(User)
