@@ -1,5 +1,8 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { PageMetaDto } from 'src/common/dto/page-meta.dto';
+import { PageOptionsDto } from 'src/common/dto/page-options.dto';
+import { PageDto } from 'src/common/dto/page.dto';
 import { DeleteResult, LessThan, MoreThan, Repository } from 'typeorm';
 import { User } from '../user/entities/user.entity';
 import { CreateEventDto } from './dto/create-event.dto';
@@ -160,11 +163,58 @@ export class EventService {
     return this.eventRepository.delete({ id: eventId });
   }
 
-  async getJoinedEvents(user: User): Promise<Event[]> {
-    return this.eventRepository.find({
-      where: { participants: { id: user.id } },
-      relations: ['clues', 'goal', 'creator', 'participants']
-    });
+  async getJoinedEvents(user: User, pageOptionsDto: PageOptionsDto): Promise<PageDto<Event>> {
+    const queryResults = await this.eventRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect('Event.creator', 'Creator')
+      .leftJoinAndSelect('Event.participants', 'Participants')
+      .leftJoinAndSelect('Event.clues', 'Clues')
+      .leftJoinAndSelect('Event.goal', 'Goal')
+      .where('Participants.id = :id', { id: user.id })
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.take)
+      .orderBy('Event.createdAt', 'DESC')
+      .getManyAndCount()
+      .then((userEventsAndCount) => {
+        return {
+          items: userEventsAndCount[0],
+          itemsCount: userEventsAndCount[1]
+        };
+      });
+
+    const itemCount: number = queryResults.itemsCount;
+    const entities: Event[] = queryResults.items;
+
+    const pageMetaDto: PageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  async getUserEvents(user: User, pageOptionsDto: PageOptionsDto): Promise<PageDto<Event>> {
+    const queryResults = await this.eventRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect('Event.creator', 'Creator')
+      .leftJoinAndSelect('Event.participants', 'Participants')
+      .leftJoinAndSelect('Event.clues', 'Clues')
+      .leftJoinAndSelect('Event.goal', 'Goal')
+      .where('Creator.id = :id', { id: user.id })
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.take)
+      .orderBy('Event.createdAt', 'DESC')
+      .getManyAndCount()
+      .then((userEventsAndCount) => {
+        return {
+          items: userEventsAndCount[0],
+          itemsCount: userEventsAndCount[1]
+        };
+      });
+
+    const itemCount: number = queryResults.itemsCount;
+    const entities: Event[] = queryResults.items;
+
+    const pageMetaDto: PageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
   }
 
   getCoordinatesRadius(lat: number, lon: number): [number, number, number, number] {

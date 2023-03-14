@@ -8,9 +8,11 @@ import {
   Body,
   Get,
   Param,
-  Delete
+  Delete,
+  Query
 } from '@nestjs/common';
 import { Response } from 'express';
+import { PageOptionsDto } from 'src/common/dto/page-options.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CreateEventDto } from './dto/create-event.dto';
 import { GetProximityEventsDto } from './dto/get-proximity-events.dto';
@@ -82,9 +84,24 @@ export class EventController {
 
   @UseGuards(JwtAuthGuard)
   @Get('joined-events')
-  getJoinedEvents(@Request() req, @Res() res: Response) {
+  getJoinedEvents(@Request() req, @Res() res: Response, @Query() pageOptionsDto: PageOptionsDto) {
     this.eventService
-      .getJoinedEvents(req.user)
+      .getJoinedEvents(req.user, pageOptionsDto)
+      .then((events) => {
+        return res.status(HttpStatus.OK).json(events);
+      })
+      .catch((err) => {
+        console.log(err);
+
+        return res.status(err.status).json({ message: err.message });
+      });
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('user-events')
+  getUserEvents(@Request() req, @Res() res: Response, @Query() pageOptionsDto: PageOptionsDto) {
+    this.eventService
+      .getUserEvents(req.user, pageOptionsDto)
       .then((events) => {
         return res.status(HttpStatus.OK).json(events);
       })
