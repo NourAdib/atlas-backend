@@ -1,5 +1,12 @@
 import { BaseEntity } from '../../../common/entities/base.entity';
-import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, OneToMany } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  BeforeInsert,
+  OneToMany,
+  ManyToMany
+} from 'typeorm';
 import { EncryptionService } from '../../../common/services/encryption.service';
 import { Role } from '../../../constants/role.enum';
 import { Post } from '../../post/entities/post.entity';
@@ -17,6 +24,9 @@ import { NotificationPreference } from '../../../constants/notification-preferen
 import { Like } from '../../post/entities/post-like.entity';
 import { SubscriptionPlan } from '../../../constants/subscription-plan.enum';
 import { Memory } from '../../memory/entities/memory.entity';
+import { Event } from '../../../modules/event/entities/event.entity';
+import { EventClue } from '../../../modules/event/entities/eventClues.entity';
+import { EventGoal } from '../../../modules/event/entities/eventGoal.entity';
 
 /**
  * User Entity Class is the class that represents the User table in the database
@@ -156,6 +166,22 @@ export class User extends BaseEntity {
   //A user can make many memories
   @OneToMany(() => Memory, (memory) => memory.user)
   memories: Memory[];
+
+  //A user can make many events
+  @OneToMany(() => Event, (event) => event.creator)
+  eventsCreated: Event[];
+
+  //A user can attend many events
+  @ManyToMany(() => Event, (event) => event.participants)
+  eventsAttended: Event[];
+
+  //A user can make many clues
+  @OneToMany(() => EventClue, (clue) => clue.creator)
+  cluesCreated: EventClue[];
+
+  //A user can make many goals
+  @OneToMany(() => EventGoal, (goal) => goal.creator)
+  goalsCreated: EventGoal[];
 
   //This is a hook that will be executed before the user is inserted in the database
   @BeforeInsert()

@@ -91,7 +91,7 @@ export class MemoryService {
 
   getCoordinatesRadius(lat: number, lon: number): [number, number, number, number] {
     const earthRadius = 6378137; // Earth's radius in meters
-    const radius = 5; // 5-meter radius
+    const radius = 10; // 5-meter radius
 
     const latDiff = (radius / earthRadius) * (180 / Math.PI);
     const lonDiff = ((radius / earthRadius) * (180 / Math.PI)) / Math.cos((lat * Math.PI) / 180);

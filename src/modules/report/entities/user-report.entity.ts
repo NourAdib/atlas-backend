@@ -7,7 +7,7 @@ import { ReportReason } from '../../../constants/report-reason.enum';
 /**
  * User Entity Class is the class that represents the User table in the database
  * This is how we interact with the database table in the application
- * No need for SQL quesries
+ * No need for SQL queries
  */
 @Entity()
 export class UserReport extends BaseEntity {

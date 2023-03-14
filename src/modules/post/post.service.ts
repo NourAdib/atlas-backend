@@ -113,6 +113,7 @@ export class PostService {
       .leftJoinAndSelect('Comment.author', 'CommentUser')
       .leftJoinAndSelect('Post.likes', 'Like')
       .leftJoinAndSelect('Like.likedBy', 'LikeUser')
+      .leftJoinAndSelect('Post.scrapbook', 'Scrapbook')
       .where('Post.id = :id', { id: id })
       .getOne();
 
@@ -210,6 +211,7 @@ export class PostService {
     return this.scrapbookRepository
       .createQueryBuilder()
       .leftJoinAndSelect('Scrapbook.posts', 'Post')
+      .leftJoinAndSelect('Scrapbook.user', 'User')
       .where('Scrapbook.id = :id', { id: id })
       .getOne();
   }

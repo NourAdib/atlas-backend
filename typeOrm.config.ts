@@ -14,6 +14,9 @@ import { Block } from './src/modules/block/entities/block.entity';
 import { Follow } from './src/modules/follow/entities/follow.entity';
 import { FollowRequest } from './src/modules/follow/entities/follow-request.entity';
 import { Memory } from './src/modules/memory/entities/memory.entity';
+import { Event } from './src/modules/event/entities/event.entity';
+import { EventClue } from './src/modules/event/entities/eventClues.entity';
+import { EventGoal } from './src/modules/event/entities/eventGoal.entity';
 
 config();
 
@@ -38,7 +41,10 @@ export default new DataSource({
     Follow,
     FollowRequest,
     Like,
-    Memory
+    Memory,
+    Event,
+    EventClue,
+    EventGoal
   ],
   migrations: ['./migrations/*{.ts,.js}']
 });

@@ -30,6 +30,10 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { TasksModule } from './modules/tasks/tasks.module';
 import { Memory } from './modules/memory/entities/memory.entity';
 import { MemoryModule } from './modules/memory/memory.module';
+import { Event } from './modules/event/entities/event.entity';
+import { EventClue } from './modules/event/entities/eventClues.entity';
+import { EventGoal } from './modules/event/entities/eventGoal.entity';
+import { EventModule } from './modules/event/event.module';
 
 @Module({
   imports: [
@@ -59,7 +63,10 @@ import { MemoryModule } from './modules/memory/memory.module';
           Follow,
           FollowRequest,
           Like,
-          Memory
+          Memory,
+          Event,
+          EventClue,
+          EventGoal
         ],
         synchronize: false,
         autoLoadEntities: true,
@@ -86,7 +93,8 @@ import { MemoryModule } from './modules/memory/memory.module';
     FeedModule,
     PaymentModule,
     MemoryModule,
-    TasksModule
+    TasksModule,
+    EventModule
   ],
   controllers: [],
   providers: [AppService, LocalStrategy]
