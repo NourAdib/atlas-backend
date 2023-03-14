@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DeleteResult, LessThan, MoreThan, Repository } from 'typeorm';
 import { User } from '../user/entities/user.entity';
 import { CreateEventDto } from './dto/create-event.dto';
 import { Event } from './entities/event.entity';
@@ -66,13 +66,119 @@ export class EventService {
     });
   }
 
-  //get proximity event
-//get proximity clues
-
   getEventById(id: string): Promise<Event> {
     return this.eventRepository.findOne({
       where: { id },
       relations: ['clues', 'goal', 'creator', 'participants']
     });
+  }
+
+  async getProximityEvents(user: User, body: any): Promise<Event[]> {
+    const [minLat, maxLat, minLon, maxLon] = this.getCoordinatesRadius(
+      body.latitude,
+      body.longitude
+    );
+
+    return this.eventRepository.find({
+      where: [
+        {
+          longitude: MoreThan(minLon),
+          latitude: MoreThan(minLat)
+        },
+        {
+          longitude: LessThan(maxLon),
+          latitude: LessThan(maxLat)
+        }
+      ],
+      relations: ['clues', 'goal', 'creator', 'participants']
+    });
+  }
+
+  async joinEvent(user: User, eventId: string): Promise<Event> {
+    const event = await this.eventRepository.findOne({
+      where: { id: eventId },
+      relations: ['clues', 'goal', 'creator', 'participants']
+    });
+
+    if (!event) {
+      throw new HttpException('Event not found', HttpStatus.NOT_FOUND);
+    }
+
+    if (event.participants.length >= event.numberOfParticipants) {
+      throw new HttpException('Event is full', HttpStatus.BAD_REQUEST);
+    }
+
+    if (event.participants.some((p) => p.id === user.id)) {
+      throw new HttpException('User already joined event', HttpStatus.BAD_REQUEST);
+    }
+
+    event.participants.push(user);
+
+    await this.eventRepository.save(event);
+
+    return event;
+  }
+
+  async getProximityClues(user: User, body: any): Promise<EventClue[]> {
+    const [minLat, maxLat, minLon, maxLon] = this.getCoordinatesRadius(
+      body.latitude,
+      body.longitude
+    );
+
+    return this.eventClueRepository.find({
+      where: [
+        {
+          longitude: MoreThan(minLon),
+          latitude: MoreThan(minLat)
+        },
+        {
+          longitude: LessThan(maxLon),
+          latitude: LessThan(maxLat)
+        },
+        {
+          event: { participants: { id: user.id } }
+        }
+      ],
+      relations: ['event']
+    });
+  }
+
+  async deleteEventById(user: User, eventId: string): Promise<DeleteResult> {
+    const event = await this.eventRepository.findOne({
+      where: { id: eventId },
+      relations: ['clues', 'goal', 'creator', 'participants']
+    });
+
+    if (!event) {
+      throw new HttpException('Event not found', HttpStatus.NOT_FOUND);
+    }
+
+    if (event.creator.id !== user.id) {
+      throw new HttpException('User is not creator of event', HttpStatus.BAD_REQUEST);
+    }
+
+    return this.eventRepository.delete({ id: eventId });
+  }
+
+  async getJoinedEvents(user: User): Promise<Event[]> {
+    return this.eventRepository.find({
+      where: { participants: { id: user.id } },
+      relations: ['clues', 'goal', 'creator', 'participants']
+    });
+  }
+
+  getCoordinatesRadius(lat: number, lon: number): [number, number, number, number] {
+    const earthRadius = 6378137; // Earth's radius in meters
+    const radius = 100; // 100-meter radius
+
+    const latDiff = (radius / earthRadius) * (180 / Math.PI);
+    const lonDiff = ((radius / earthRadius) * (180 / Math.PI)) / Math.cos((lat * Math.PI) / 180);
+
+    const minLat = lat - latDiff;
+    const maxLat = lat + latDiff;
+    const minLon = lon - lonDiff;
+    const maxLon = lon + lonDiff;
+
+    return [minLat, maxLat, minLon, maxLon];
   }
 }
