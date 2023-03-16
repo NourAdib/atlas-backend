@@ -13,7 +13,10 @@ import {
 } from '@nestjs/common';
 import { Response } from 'express';
 import { PageOptionsDto } from 'src/common/dto/page-options.dto';
+import { Role } from 'src/constants/role.enum';
+import { Roles } from 'src/decorators/roles.decorator';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { RolesGuard } from '../auth/guards/roles.guard';
 import { CreateEventDto } from './dto/create-event.dto';
 import { GetProximityEventsDto } from './dto/get-proximity-events.dto';
 import { EventService } from './event.service';
@@ -53,7 +56,7 @@ export class EventController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get('proximity-events')
+  @Post('proximity-events')
   getProximityEvents(@Request() req, @Res() res: Response, @Body() body: GetProximityEventsDto) {
     this.eventService
       .getProximityEvents(req.user, body)
@@ -68,7 +71,7 @@ export class EventController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get('proximity-clues')
+  @Post('proximity-clues')
   getProximityClues(@Request() req, @Res() res: Response, @Body() body: GetProximityEventsDto) {
     this.eventService
       .getProximityClues(req.user, body)
@@ -102,6 +105,22 @@ export class EventController {
   getUserEvents(@Request() req, @Res() res: Response, @Query() pageOptionsDto: PageOptionsDto) {
     this.eventService
       .getUserEvents(req.user, pageOptionsDto)
+      .then((events) => {
+        return res.status(HttpStatus.OK).json(events);
+      })
+      .catch((err) => {
+        console.log(err);
+
+        return res.status(err.status).json({ message: err.message });
+      });
+  }
+
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Get('active-events')
+  @Roles(Role.Admin)
+  getActiveEvents(@Request() req, @Res() res: Response, @Query() pageOptionsDto: PageOptionsDto) {
+    this.eventService
+      .getActiveEvents(pageOptionsDto)
       .then((events) => {
         return res.status(HttpStatus.OK).json(events);
       })

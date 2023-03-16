@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { PageMetaDto } from 'src/common/dto/page-meta.dto';
 import { PageOptionsDto } from 'src/common/dto/page-options.dto';
 import { PageDto } from 'src/common/dto/page.dto';
-import { DeleteResult, LessThan, MoreThan, Repository } from 'typeorm';
+import { DeleteResult, LessThan, MoreThan, Not, Repository } from 'typeorm';
 import { User } from '../user/entities/user.entity';
 import { CreateEventDto } from './dto/create-event.dto';
 import { Event } from './entities/event.entity';
@@ -58,6 +58,7 @@ export class EventService {
       eventClue.latitude = createEventDto.clues[i].latitude;
       eventClue.longitude = createEventDto.clues[i].longitude;
       eventClue.creator = user;
+      eventClue.date = dbEvent.date;
       eventClue.event = dbEvent;
 
       await this.eventClueRepository.save(eventClue);
@@ -82,19 +83,24 @@ export class EventService {
       body.longitude
     );
 
-    return this.eventRepository.find({
-      where: [
-        {
-          longitude: MoreThan(minLon),
-          latitude: MoreThan(minLat)
-        },
-        {
-          longitude: LessThan(maxLon),
-          latitude: LessThan(maxLat)
-        }
-      ],
-      relations: ['clues', 'goal', 'creator', 'participants']
-    });
+    return this.eventRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect('Event.participants', 'Participants')
+      .leftJoinAndSelect('Event.clues', 'Clues')
+      .leftJoinAndSelect('Event.goal', 'Goal')
+      .leftJoinAndSelect('Event.creator', 'Creator')
+      .where({
+        longitude: MoreThan(minLon),
+        latitude: MoreThan(minLat)
+      })
+      .andWhere({
+        longitude: LessThan(maxLon),
+        latitude: LessThan(maxLat)
+      })
+      .andWhere({
+        date: MoreThan(new Date(Date.now() - 604800000))
+      })
+      .getMany();
   }
 
   async joinEvent(user: User, eventId: string): Promise<Event> {
@@ -128,22 +134,21 @@ export class EventService {
       body.longitude
     );
 
-    return this.eventClueRepository.find({
-      where: [
-        {
-          longitude: MoreThan(minLon),
-          latitude: MoreThan(minLat)
-        },
-        {
-          longitude: LessThan(maxLon),
-          latitude: LessThan(maxLat)
-        },
-        {
-          event: { participants: { id: user.id } }
-        }
-      ],
-      relations: ['event']
-    });
+    return this.eventClueRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect('EventClue.event', 'Event')
+      .leftJoinAndSelect('Event.participants', 'Participants')
+      .where({
+        longitude: MoreThan(minLon),
+        latitude: MoreThan(minLat)
+      })
+      .andWhere({
+        longitude: LessThan(maxLon),
+        latitude: LessThan(maxLat)
+      })
+      .andWhere({ date: MoreThan(new Date(Date.now() - 604800000)) })
+      .andWhere('Participants.id = :id', { id: user.id })
+      .getMany();
   }
 
   async deleteEventById(user: User, eventId: string): Promise<DeleteResult> {
@@ -230,5 +235,32 @@ export class EventService {
     const maxLon = lon + lonDiff;
 
     return [minLat, maxLat, minLon, maxLon];
+  }
+
+  async getActiveEvents(pageOptionsDto: PageOptionsDto): Promise<PageDto<Event>> {
+    const queryResults = await this.eventRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect('Event.creator', 'Creator')
+      .leftJoinAndSelect('Event.participants', 'Participants')
+      .leftJoinAndSelect('Event.clues', 'Clues')
+      .leftJoinAndSelect('Event.goal', 'Goal')
+      .where({ date: MoreThan(new Date(Date.now() - 604800000)) })
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.take)
+      .orderBy('Event.createdAt', 'DESC')
+      .getManyAndCount()
+      .then((userEventsAndCount) => {
+        return {
+          items: userEventsAndCount[0],
+          itemsCount: userEventsAndCount[1]
+        };
+      });
+
+    const itemCount: number = queryResults.itemsCount;
+    const entities: Event[] = queryResults.items;
+
+    const pageMetaDto: PageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
   }
 }

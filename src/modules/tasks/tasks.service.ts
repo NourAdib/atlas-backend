@@ -33,7 +33,7 @@ export class TasksService {
    * Runs at the specified interval
    * Updates the profile picture URL for all users whose profile picture will expire tomorrow
    */
-  @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
+  @Cron(CronExpression.EVERY_MINUTE)
   async updateUserProfileURLs() {
     const tomorrow = new Date(Date.now());
     tomorrow.setDate(tomorrow.getDate() + 1);
@@ -72,7 +72,7 @@ export class TasksService {
    * Runs at the specified interval
    * Updates the post picture URL for all posts whose picture will expire tomorrow
    */
-  @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
+  @Cron(CronExpression.EVERY_MINUTE)
   async updateUserPostURLs() {
     const tomorrow = new Date(Date.now());
     tomorrow.setDate(tomorrow.getDate() + 1);
@@ -111,7 +111,7 @@ export class TasksService {
    * Runs at the specified interval
    * Removes the bans on users whose ban has expired
    */
-  @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
+  @Cron(CronExpression.EVERY_MINUTE)
   async removeExpiredBans() {
     await this.userBanRepository
       .find({
@@ -135,7 +135,7 @@ export class TasksService {
    * Runs at the specified interval
    * Updates the memory picture URL for all posts whose picture will expire tomorrow
    */
-  @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
+  @Cron(CronExpression.EVERY_MINUTE)
   async updateUserMemoryURLs() {
     const tomorrow = new Date(Date.now());
     tomorrow.setDate(tomorrow.getDate() + 1);
@@ -152,7 +152,7 @@ export class TasksService {
         for (let i = 0; i < memories.length; i++) {
           const memory = memories[i];
 
-          if (memory.imageId) {
+          if (memory.imageId && memory.user) {
             if (memory.imageExpiryDate < new Date(Date.now())) {
               const { url, expiryDate } =
                 await new FirebaseStorageService().getMemoryImageSignedURL(

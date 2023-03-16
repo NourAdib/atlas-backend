@@ -11,6 +11,9 @@ export class EventClue extends BaseEntity {
   @Column()
   text: string;
 
+  @Column()
+  date: Date;
+
   @Column({ type: 'decimal', precision: 8, scale: 6, default: 0 })
   latitude: number;
 
