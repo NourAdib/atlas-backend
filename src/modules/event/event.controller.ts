@@ -140,8 +140,6 @@ export class EventController {
         return res.status(HttpStatus.OK).json(event);
       })
       .catch((err) => {
-        console.log(err);
-
         return res.status(err.status).json({ message: err.message });
       });
   }
@@ -155,8 +153,6 @@ export class EventController {
         return res.status(HttpStatus.OK).json({ message: 'Event deleted' });
       })
       .catch((err) => {
-        console.log(err);
-
         return res.status(err.status).json({ message: err.message });
       });
   }

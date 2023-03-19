@@ -8,7 +8,8 @@ import {
   UseGuards,
   ForbiddenException,
   UseInterceptors,
-  UploadedFile
+  UploadedFile,
+  Get
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Response } from 'express';
@@ -74,6 +75,32 @@ export class AuthController {
         }
       }
     });
+  }
+
+  @Get('captcha')
+  getCaptcha(@Res() res: Response) {
+    this.authService
+      .getCaptcha()
+      .then((captcha) => {
+        return res.status(HttpStatus.OK).send(captcha);
+      })
+      .catch((err) => {
+        console.log(err);
+        return res.status(err.status).json({ message: err.message });
+      });
+  }
+
+  @Post('captcha')
+  captchaResult(@Res() res: Response, @Body() captchaResponse) {
+    this.authService
+      .captchaResult(captchaResponse)
+      .then((captcha) => {
+        return res.status(HttpStatus.OK).send(captcha);
+      })
+      .catch((err) => {
+        console.log(err);
+        return res.status(err.status).json({ message: err.message });
+      });
   }
 
   /** creating post route, the route will be admin/signup
