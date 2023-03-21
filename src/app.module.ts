@@ -77,7 +77,8 @@ import { EventModule } from './modules/event/event.module';
         //Migrations Folder
         migrations: ['../migrations/*{.ts,.js}'],
         //Automatically run migrations on app start if needed
-        migrationsRun: true
+        migrationsRun: true,
+        port: 33060
       }),
       inject: [ConfigService]
     }),

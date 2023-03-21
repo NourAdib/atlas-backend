@@ -46,5 +46,6 @@ export default new DataSource({
     EventClue,
     EventGoal
   ],
-  migrations: ['./migrations/*{.ts,.js}']
+  migrations: ['./migrations/*{.ts,.js}'],
+  port: 33060
 });
