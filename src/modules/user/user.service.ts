@@ -495,7 +495,7 @@ export class UserService {
       .where('user.username LIKE :searchTerm', { searchTerm: `%${searchTerm}%` })
       .skip(pageOptionsDto.skip)
       .take(pageOptionsDto.take)
-      .orderBy('User.username', pageOptionsDto.order)
+      .orderBy('user.username', pageOptionsDto.order)
       .getManyAndCount()
       .then((usersAndCount) => {
         return {

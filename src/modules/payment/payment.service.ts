@@ -16,7 +16,7 @@ export class PaymentService {
 
   private endpointSecret = process.env?.STRIPE_WEBHOOK_SECRET;
 
-  private url = '10.6.130.39';
+  private url = 'atlas-backend-xtkhgxenvq-el.a.run.app';
 
   constructor(
     @InjectRepository(User)
@@ -64,8 +64,8 @@ export class PaymentService {
           quantity: 1
         }
       ],
-      success_url: `http://${this.url}:3000/payment/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `http://${this.url}:3000/payment/cancel?session_id={CHECKOUT_SESSION_ID}`
+      success_url: `https://${this.url}:443/payment/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `https://${this.url}:443/payment/cancel?session_id={CHECKOUT_SESSION_ID}`
     });
 
     return session.url;
