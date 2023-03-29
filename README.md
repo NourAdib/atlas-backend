@@ -12,8 +12,8 @@ The list of Envs:
 
 1. Database Host
 2. Database Name
-3. Databse Username
-4. Databse Password
+3. Database Username
+4. Database Password
 5. Secret
 6. Session Driver
 7. Firebase Type
@@ -22,6 +22,9 @@ The list of Envs:
 10. Firebase Private Key
 11. Stripe Test Key
 12. Stripe Webhook Secret
+13. Port
+14. reCaptcha Site Key
+15. reCaptcha Secret Key
 
 ### Migrations Run
 
@@ -34,6 +37,18 @@ The list of Envs:
 ### Developer Mode
 
 `npm run start:dev`
+
+### Load Tests Run
+
+The artillery package must be installed first as it is a global package
+
+`npm install -g artillery`
+
+`artillery run test/load_testing/test.json`
+
+### Unit and Integration Test Run
+
+`npm run test`
 
 ## Used Repo Template
 

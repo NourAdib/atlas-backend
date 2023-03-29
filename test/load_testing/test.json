@@ -1,0 +1,33 @@
+{
+    "config": {
+        "target": "http://127.0.0.1:3000",
+        "phases": [
+            {
+                "name": "Creating Scraps",
+                "duration": 10,
+                "arrivalRate": 300
+            }
+        ]
+    },
+    "scenarios": [
+        {
+            "flow": [
+                {
+                    "post": {
+                        "url": "/post/create",
+                        "headers": {
+                            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vdXJAYXRsYXMuY29tIiwic3ViIjoiNTYzYWYwOWMtODVmMC00Y2ViLTk1ZmMtMmQwMjEyMmJmZTE4Iiwicm9sZSI6InN0YW5kYXJkIiwic3Vic2NyaXB0aW9uUGxhbiI6IlByZW1pdW0iLCJpYXQiOjE2ODAwNzcyMDEsImV4cCI6MTY4MDA4NDQwMX0.TZF7ZmvcVBxyuGRqo-OkRQTeDdzua3Sf7htuUnn8vdE"
+                        },
+                        "json": {
+                            "caption": "Load Test Caption",
+                            "tag": "personal",
+                            "type": "",
+                            "location": "5.29",
+                            "visibility": "private"
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}
