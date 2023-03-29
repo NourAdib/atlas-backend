@@ -1,3 +1,6 @@
+/**
+ * Notification preference enum
+ */
 export enum NotificationPreference {
   All = 'all',
   None = 'none',
