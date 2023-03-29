@@ -16,7 +16,12 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  //Invoked after Passport has verified the token
+  /**
+   * validate the return user object from the jwt authentication
+   * Invoked after Passport has verified the token
+   * @param payload the payload of the token
+   * @returns the user object
+   */
   async validate(payload: any) {
     return {
       id: payload.sub,
