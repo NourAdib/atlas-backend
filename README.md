@@ -1,6 +1,6 @@
 # Server and Build Status
 
-![example workflow](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
+[![Build Status](https://github.com/NourAdib/atlas-backend/actions/workflows/main.yaml/badge.svg)](https://github.com/NourAdib/atlas-backend/actions/workflows/main.yaml)
 
 <br />
 
