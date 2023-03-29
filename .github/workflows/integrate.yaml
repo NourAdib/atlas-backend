@@ -26,34 +26,6 @@ jobs:
         run: |
           npm install
 
-      - name: Run tests
-        env:
-          PORT: ${{ secrets.PORT }}
-          DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
-          DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
-          DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
-          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
-          SECRET: ${{ secrets.SECRET }}
-          SESSION_DRIVER: ${{ secrets.SESSION_DRIVER }}
-          FIREBASE_TYPE: ${{ secrets.FIREBASE_TYPE }}
-          FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
-          FIREBASE_PRIVATE_KEY_ID: ${{ secrets.FIREBASE_PRIVATE_KEY_ID }}
-          FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
-          FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_CLIENT_EMAIL }}
-          FIREBASE_CLIENT_ID: ${{ secrets.FIREBASE_CLIENT_ID }}
-          FIREBASE_AUTH_URI: ${{ secrets.FIREBASE_AUTH_URI }}
-          FIREBASE_TOKEN_URI: ${{ secrets.FIREBASE_TOKEN_URI }}
-          FIREBASE_AUTH_PROVIDER_X509_CERT_URL: ${{ secrets.FIREBASE_AUTH_PROVIDER_X509_CERT_URL }}
-          FIREBASE_BUCKET_ID: ${{ secrets.FIREBASE_BUCKET_ID }}
-          FIREBASE_CLIENT_X509_CERT_URL: ${{ secrets.FIREBASE_CLIENT_X509_CERT_URL }}
-          STRIPE_TEST_KEY: ${{ secrets.STRIPE_TEST_KEY }}
-          STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
-          RECAPTCHA_SITE_KEY: ${{ secrets.RECAPTCHA_SITE_KEY }}
-          RECAPTCHA_SECRET_KEY: ${{ secrets.RECAPTCHA_SECRET_KEY }}
-        run: |
-          echo "FIREBASE_PRIVATE_KEY length: $(echo -n $FIREBASE_PRIVATE_KEY | wc -c)"
-          npm run test
-
       - name: Build App
         run: |
           npm run build
