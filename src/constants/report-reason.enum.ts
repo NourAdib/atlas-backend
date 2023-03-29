@@ -1,3 +1,6 @@
+/**
+ * report reason enum
+ */
 export enum ReportReason {
   Spam = 'spam',
   Inappropriate = 'inappropriate',
