@@ -12,9 +12,9 @@ import {
   Query
 } from '@nestjs/common';
 import { Response } from 'express';
-import { PageOptionsDto } from '../../common/dto/page-options.dto';
-import { Role } from '../../constants/role.enum';
-import { Roles } from '../../decorators/roles.decorator';
+import { PageOptionsDto } from 'src/common/dto/page-options.dto';
+import { Role } from 'src/constants/role.enum';
+import { Roles } from 'src/decorators/roles.decorator';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { AppealsService } from './appeals.service';
@@ -125,7 +125,12 @@ export class AppealsController {
         return res.status(err.status).json({ message: err.message });
       });
   }
-
+  /**
+   * get all post appeals
+   * @param req the request object
+   * @param res the response object
+   * @param pageOptionsDto the page options
+   */
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Get('post-appeals')
   @Roles(Role.Admin)
