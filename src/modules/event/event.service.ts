@@ -1,8 +1,8 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { PageMetaDto } from '../../common/dto/page-meta.dto';
-import { PageOptionsDto } from '../../common/dto/page-options.dto';
-import { PageDto } from '../../common/dto/page.dto';
+import { PageMetaDto } from 'src/common/dto/page-meta.dto';
+import { PageOptionsDto } from 'src/common/dto/page-options.dto';
+import { PageDto } from 'src/common/dto/page.dto';
 import { DeleteResult, LessThan, MoreThan, Repository } from 'typeorm';
 import { User } from '../user/entities/user.entity';
 import { CreateEventDto } from './dto/create-event.dto';
@@ -25,7 +25,6 @@ export class EventService {
     @InjectRepository(User)
     private userRepository: Repository<User>
   ) {}
-
   async createEvent(user: User, createEventDto: CreateEventDto): Promise<Event> {
     const newEvent = new Event();
     newEvent.name = createEventDto.name;
@@ -69,14 +68,23 @@ export class EventService {
       relations: ['clues', 'goal', 'creator', 'participants']
     });
   }
-
+  /**
+   * gets all events from the database
+   * @param id the id of the event
+   * @returns the event with the given id
+   */
   getEventById(id: string): Promise<Event> {
     return this.eventRepository.findOne({
       where: { id },
       relations: ['clues', 'goal', 'creator', 'participants']
     });
   }
-
+  /**
+   * gets all events from the database which are within the given radius
+   * @param user the user that is requesting the events
+   * @param body the body of the request
+   * @returns the events that are in the proximity of the user
+   */
   async getProximityEvents(user: User, body: any): Promise<Event[]> {
     const [minLat, maxLat, minLon, maxLon] = this.getCoordinatesRadius(
       body.latitude,
@@ -102,7 +110,12 @@ export class EventService {
       })
       .getMany();
   }
-
+  /**
+   * joins an event
+   * @param user the user that is requesting the events
+   * @param eventId the id of the event
+   * @returns the event with the given id
+   */
   async joinEvent(user: User, eventId: string): Promise<Event> {
     const event = await this.eventRepository.findOne({
       where: { id: eventId },
@@ -127,7 +140,12 @@ export class EventService {
 
     return event;
   }
-
+  /**
+   * gets the clues of an event which are within the given radius
+   * @param user the user that is requesting the events
+   * @param body the body of the request
+   * @returns the events that are in the proximity of the user
+   */
   async getProximityClues(user: User, body: any): Promise<EventClue[]> {
     const [minLat, maxLat, minLon, maxLon] = this.getCoordinatesRadius(
       body.latitude,
@@ -150,7 +168,12 @@ export class EventService {
       .andWhere('Participants.id = :id', { id: user.id })
       .getMany();
   }
-
+  /**
+   * deletes an event
+   * @param user the user that is requesting the events
+   * @param eventId the id of the event
+   * @returns the event with the given id
+   */
   async deleteEventById(user: User, eventId: string): Promise<DeleteResult> {
     const event = await this.eventRepository.findOne({
       where: { id: eventId },
@@ -167,7 +190,12 @@ export class EventService {
 
     return this.eventRepository.delete({ id: eventId });
   }
-
+  /**
+   * gets all joined events of a user
+   * @param user the user that is requesting the events
+   * @param pageOptionsDto the page options
+   * @returns the events that are in the proximity of the user
+   */
   async getJoinedEvents(user: User, pageOptionsDto: PageOptionsDto): Promise<PageDto<Event>> {
     const queryResults = await this.eventRepository
       .createQueryBuilder()
@@ -194,7 +222,12 @@ export class EventService {
 
     return new PageDto(entities, pageMetaDto);
   }
-
+  /**
+   * get all events of a user
+   * @param user the user that is requesting the events
+   * @param pageOptionsDto the page options
+   * @returns the events that are in the proximity of the user
+   */
   async getUserEvents(user: User, pageOptionsDto: PageOptionsDto): Promise<PageDto<Event>> {
     const queryResults = await this.eventRepository
       .createQueryBuilder()
@@ -221,7 +254,12 @@ export class EventService {
 
     return new PageDto(entities, pageMetaDto);
   }
-
+  /**
+   * gets the coordinates of the radius
+   * @param lat the latitude of the user
+   * @param lon the longitude of the user
+   * @returns the coordinates of the radius
+   */
   getCoordinatesRadius(lat: number, lon: number): [number, number, number, number] {
     const earthRadius = 6378137; // Earth's radius in meters
     const radius = 100; // 100-meter radius
@@ -236,7 +274,11 @@ export class EventService {
 
     return [minLat, maxLat, minLon, maxLon];
   }
-
+  /**
+   * get
+   * @param pageOptionsDto the page options
+   * @returns the events that are in the proximity of the user
+   */
   async getActiveEvents(pageOptionsDto: PageOptionsDto): Promise<PageDto<Event>> {
     const queryResults = await this.eventRepository
       .createQueryBuilder()
