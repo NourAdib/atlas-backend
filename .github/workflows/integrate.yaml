@@ -26,36 +26,57 @@ jobs:
         run: |
           npm install
 
-      - name: 'Create env file'
-        env:
-          PORT: ${{ secrets.PORT }}
-          DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
-          DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
-          DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
-          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
-          DATABASE_HOST: ${{ secrets.PORT }}
-          SECRET: ${{ secrets.SECRET }}
-          SESSION_DRIVER: ${{ secrets.SESSION_DRIVER }}
-          FIREBASE_TYPE: ${{ secrets.FIREBASE_TYPE }}
-          DATABASE_HOST: ${{ secrets.PORT }}
-          FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
-          FIREBASE_PRIVATE_KEY_ID: ${{ secrets.FIREBASE_PRIVATE_KEY_ID }}
-          FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
-          FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_CLIENT_EMAIL }}
-          FIREBASE_CLIENT_ID: ${{ secrets.FIREBASE_CLIENT_ID }}
-          FIREBASE_AUTH_URI: ${{ secrets.FIREBASE_AUTH_URI }}
-          FIREBASE_TOKEN_URI: ${{ secrets.FIREBASE_TOKEN_URI }}
-          FIREBASE_AUTH_PROVIDER_X509_CERT_URL: ${{ secrets.FIREBASE_AUTH_PROVIDER_X509_CERT_URL }}
-          FIREBASE_BUCKET_ID: ${{ secrets.FIREBASE_BUCKET_ID }}
-          FIREBASE_CLIENT_X509_CERT_URL: ${{ secrets.FIREBASE_CLIENT_X509_CERT_URL }}
-          FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
-          STRIPE_TEST_KEY: ${{ secrets.STRIPE_TEST_KEY }}
-          STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
-          RECAPTCHA_SITE_KEY: ${{ secrets.RECAPTCHA_SITE_KEY }}
-          RECAPTCHA_SECRET_KEY: ${{ secrets.RECAPTCHA_SECRET_KEY }}
-
-
       - name: Run tests
+              env:
+          PORT: ${{ secrets.PORT }}
+        env:
+          DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
+        env:
+          DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+        env:
+          DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
+        env:
+          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+        env:
+          DATABASE_HOST: ${{ secrets.PORT }}
+        env:
+          SECRET: ${{ secrets.SECRET }}
+        env:
+          SESSION_DRIVER: ${{ secrets.SESSION_DRIVER }}
+        env:
+          FIREBASE_TYPE: ${{ secrets.FIREBASE_TYPE }}
+        env:
+          DATABASE_HOST: ${{ secrets.PORT }}
+        env:
+          FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
+        env:
+          FIREBASE_PRIVATE_KEY_ID: ${{ secrets.FIREBASE_PRIVATE_KEY_ID }}
+        env:
+          FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
+        env:
+          FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_CLIENT_EMAIL }}
+        env:
+          FIREBASE_CLIENT_ID: ${{ secrets.FIREBASE_CLIENT_ID }}
+        env:
+          FIREBASE_AUTH_URI: ${{ secrets.FIREBASE_AUTH_URI }}
+        env:
+          FIREBASE_TOKEN_URI: ${{ secrets.FIREBASE_TOKEN_URI }}
+        env:
+          FIREBASE_AUTH_PROVIDER_X509_CERT_URL: ${{ secrets.FIREBASE_AUTH_PROVIDER_X509_CERT_URL }}
+        env:
+          FIREBASE_BUCKET_ID: ${{ secrets.FIREBASE_BUCKET_ID }}
+        env:
+          FIREBASE_CLIENT_X509_CERT_URL: ${{ secrets.FIREBASE_CLIENT_X509_CERT_URL }}
+        env:
+          FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
+        env:
+          STRIPE_TEST_KEY: ${{ secrets.STRIPE_TEST_KEY }}
+        env:
+          STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
+        env:
+          RECAPTCHA_SITE_KEY: ${{ secrets.RECAPTCHA_SITE_KEY }}
+        env:
+          RECAPTCHA_SECRET_KEY: ${{ secrets.RECAPTCHA_SECRET_KEY }}
         run: |
           npm run test
 
