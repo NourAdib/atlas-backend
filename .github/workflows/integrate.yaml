@@ -26,7 +26,7 @@ jobs:
         run: |
           npm install
 
-      - name: 'Create env file'
+      - name: Run tests
         env:
           PORT: ${{ secrets.PORT }}
           DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
@@ -53,9 +53,6 @@ jobs:
           STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
           RECAPTCHA_SITE_KEY: ${{ secrets.RECAPTCHA_SITE_KEY }}
           RECAPTCHA_SECRET_KEY: ${{ secrets.RECAPTCHA_SECRET_KEY }}
-
-
-      - name: Run tests
         run: |
           npm run test
 
