@@ -13,8 +13,8 @@ import {
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Response } from 'express';
-import { Role } from '../../constants/role.enum';
-import { Roles } from '../../decorators/roles.decorator';
+import { Role } from 'src/constants/role.enum';
+import { Roles } from 'src/decorators/roles.decorator';
 import { User } from '../user/entities/user.entity';
 import { UserService } from '../user/user.service';
 import { AuthService } from './auth.service';
@@ -76,7 +76,10 @@ export class AuthController {
       }
     });
   }
-
+  /**
+   * get captcha response
+   * @param res the response object we will send back to the user
+   */
   @Get('captcha')
   getCaptcha(@Res() res: Response) {
     this.authService
@@ -89,7 +92,11 @@ export class AuthController {
         return res.status(err.status).json({ message: err.message });
       });
   }
-
+  /**
+   * post captcha response
+   * @param res the response object we will send back to the user
+   * @param captchaResponse the response from the captcha
+   */
   @Post('captcha')
   captchaResult(@Res() res: Response, @Body() captchaResponse) {
     this.authService
