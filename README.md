@@ -1,3 +1,9 @@
+# Server and Build Status
+
+![example workflow](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
+
+<br />
+
 # Running The Server
 
 ## Prerequisites
@@ -50,6 +56,7 @@ The artillery package must be installed first as it is a global package
 
 `npm run test`
 
-## Used Repo Template
-![example workflow](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
-https://github.com/NarHakobyan/awesome-nest-boilerplate
+## Used Repos
+
+1. https://github.com/NarHakobyan/awesome-nest-boilerplate, used for file structure
+2. https://github.com/jmcdo29/testing-nestjs, used for testing structure
