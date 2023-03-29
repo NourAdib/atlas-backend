@@ -9,7 +9,7 @@ import { credential } from 'firebase-admin';
 /**
  * This is the service account key for the firebase project
  */
-const serviceAccount = JSON.parse(process.env?.FIREBASE_PRIVATE_KEY);
+const serviceAccount = JSON.parse(process.env?.FIREBASE_PRIVATE_KEY.toString());
 
 /**
  * This is the firebase config for the firebase project
