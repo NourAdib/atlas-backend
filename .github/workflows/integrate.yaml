@@ -51,6 +51,7 @@ jobs:
           RECAPTCHA_SITE_KEY: ${{ secrets.RECAPTCHA_SITE_KEY }}
           RECAPTCHA_SECRET_KEY: ${{ secrets.RECAPTCHA_SECRET_KEY }}
         run: |
+          echo $FIREBASE_PRIVATE_KEY_ID
           npm run test
 
       - name: Build App
