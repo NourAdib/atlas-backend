@@ -51,5 +51,5 @@ The artillery package must be installed first as it is a global package
 `npm run test`
 
 ## Used Repo Template
-
+![example workflow](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
 https://github.com/NarHakobyan/awesome-nest-boilerplate
