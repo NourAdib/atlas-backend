@@ -27,7 +27,7 @@ jobs:
           npm install
 
       - name: Run tests
-              env:
+        env:
           PORT: ${{ secrets.PORT }}
         env:
           DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
