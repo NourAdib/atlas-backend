@@ -1,5 +1,5 @@
 import { IsEnum, IsNotEmpty } from 'class-validator';
-import { ReportReason } from 'src/constants/report-reason.enum';
+import { ReportReason } from '../../../constants/report-reason.enum';
 
 /**
  * This is the DTO for creating a reports for both user and post

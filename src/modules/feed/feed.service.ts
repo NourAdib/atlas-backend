@@ -1,9 +1,9 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { PageMetaDto } from 'src/common/dto/page-meta.dto';
-import { PageOptionsDto } from 'src/common/dto/page-options.dto';
-import { PageDto } from 'src/common/dto/page.dto';
-import { Visibility } from 'src/constants/visibility.enum';
+import { PageMetaDto } from '../../common/dto/page-meta.dto';
+import { PageOptionsDto } from '../../common/dto/page-options.dto';
+import { PageDto } from '../../common/dto/page.dto';
+import { Visibility } from '../../constants/visibility.enum';
 import { Repository } from 'typeorm';
 import { Post } from '../post/entities/post.entity';
 import { User } from '../user/entities/user.entity';

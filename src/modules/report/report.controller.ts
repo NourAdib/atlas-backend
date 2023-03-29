@@ -1,9 +1,9 @@
 import { Controller, UseGuards, Res, Request, Post, Body, HttpStatus } from '@nestjs/common';
 import { Get, Param, Query } from '@nestjs/common/decorators';
 import { Response } from 'express';
-import { PageOptionsDto } from 'src/common/dto/page-options.dto';
-import { Role } from 'src/constants/role.enum';
-import { Roles } from 'src/decorators/roles.decorator';
+import { PageOptionsDto } from '../../common/dto/page-options.dto';
+import { Role } from '../../constants/role.enum';
+import { Roles } from '../../decorators/roles.decorator';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { ReportDto } from './dto/report.dto';

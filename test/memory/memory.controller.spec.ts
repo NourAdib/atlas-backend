@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { MemoryService } from '../../src/modules/memory/memory.service';
 import { MemoryController } from '../../src/modules/memory/memory.controller';
 
 describe('MemoryController', () => {
@@ -6,7 +7,13 @@ describe('MemoryController', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [MemoryController]
+      controllers: [MemoryController],
+      providers: [
+        {
+          provide: MemoryService,
+          useValue: {}
+        }
+      ]
     }).compile();
 
     controller = module.get<MemoryController>(MemoryController);

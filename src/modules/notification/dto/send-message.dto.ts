@@ -1,5 +1,5 @@
 import { IsEnum, IsNotEmpty, IsOptional, IsUUID } from 'class-validator';
-import { NotificationTargetGroup } from 'src/constants/notification-target-group.enum';
+import { NotificationTargetGroup } from '../../../constants/notification-target-group.enum';
 
 export class SendNotificationDto {
   @IsNotEmpty()

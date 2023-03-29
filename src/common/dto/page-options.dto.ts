@@ -1,5 +1,5 @@
 import { IsEnum, IsInt, IsOptional, Max, Min } from 'class-validator';
-import { Order } from 'src/constants/order.enum';
+import { Order } from '../../constants/order.enum';
 
 /**
  * PageOptionsDto

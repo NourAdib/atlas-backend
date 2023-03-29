@@ -1,5 +1,5 @@
 import { IsEnum, IsLatitude, IsLongitude, IsNotEmpty } from 'class-validator';
-import { Visibility } from 'src/constants/visibility.enum';
+import { Visibility } from '../../../constants/visibility.enum';
 
 /**
  * This is the DTO for creating a post

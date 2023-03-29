@@ -1,5 +1,5 @@
 import { IsEnum, IsNotEmpty } from 'class-validator';
-import { Visibility } from 'src/constants/visibility.enum';
+import { Visibility } from '../../../constants/visibility.enum';
 import { Post } from '../entities/post.entity';
 
 /**

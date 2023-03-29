@@ -4,7 +4,7 @@ import * as dotenv from 'dotenv';
 import { User } from '../user/entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, UpdateResult } from 'typeorm';
-import { SubscriptionPlan } from 'src/constants/subscription-plan.enum';
+import { SubscriptionPlan } from '../../constants/subscription-plan.enum';
 import { NotificationService } from '../notification/notification.service';
 dotenv.config();
 

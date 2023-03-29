@@ -2,12 +2,12 @@ import { Controller, Get, HttpStatus, Param, Res, UseGuards, Request } from '@ne
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { AnalyticsService } from './analytics.service';
 import { Response } from 'express';
-import { SubscriptionPlan } from 'src/constants/subscription-plan.enum';
-import { SubscriptionPlans } from 'src/decorators/subscription.decorator';
+import { SubscriptionPlan } from '../../constants/subscription-plan.enum';
+import { SubscriptionPlans } from '../../decorators/subscription.decorator';
 import { SubscriptionsGuard } from '../auth/guards/subscriptions.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
-import { Roles } from 'src/decorators/roles.decorator';
-import { Role } from 'src/constants/role.enum';
+import { Roles } from '../../decorators/roles.decorator';
+import { Role } from '../../constants/role.enum';
 
 @Controller('analytics')
 export class AnalyticsController {

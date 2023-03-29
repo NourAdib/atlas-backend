@@ -4,9 +4,9 @@ import { Not, Repository, UpdateResult } from 'typeorm';
 import { User } from '../user/entities/user.entity';
 import { messaging } from '../../common/services/firebase-admin.service';
 import { SendNotificationDto } from './dto/send-message.dto';
-import { NotificationTargetGroup } from 'src/constants/notification-target-group.enum';
-import { NotificationPreference } from 'src/constants/notification-preference.enum';
-import { Role } from 'src/constants/role.enum';
+import { NotificationTargetGroup } from '../../constants/notification-target-group.enum';
+import { NotificationPreference } from '../../constants/notification-preference.enum';
+import { Role } from '../../constants/role.enum';
 
 @Injectable()
 export class NotificationService {

@@ -10,7 +10,7 @@ import {
   Max,
   Min
 } from 'class-validator';
-import { Visibility } from 'src/constants/visibility.enum';
+import { Visibility } from '../../../constants/visibility.enum';
 import { CreateClueDto } from './create-clue.dto';
 import { CreateGoalDto } from './create-goal.dto';
 

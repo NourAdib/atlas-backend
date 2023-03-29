@@ -15,7 +15,7 @@ import {
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Response } from 'express';
-import { PageOptionsDto } from 'src/common/dto/page-options.dto';
+import { PageOptionsDto } from '../../common/dto/page-options.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { GetProximityMemoryDto } from './dto/get-proximity-memory.dto';
 import { CreateMemoryDto } from './dto/memory-create.dto';

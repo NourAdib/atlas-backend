@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FirebaseStorageService } from 'src/common/services/firebase-storage.service';
-import { BanStatus } from 'src/constants/ban-status.enum';
+import { FirebaseStorageService } from '../../common/services/firebase-storage.service';
+import { BanStatus } from '../../constants/ban-status.enum';
 import { Repository, Not, LessThan } from 'typeorm';
 import { Memory } from '../memory/entities/memory.entity';
 import { Post } from '../post/entities/post.entity';

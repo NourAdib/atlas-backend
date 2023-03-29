@@ -17,8 +17,8 @@ import {
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Response } from 'express';
-import { PageOptionsDto } from 'src/common/dto/page-options.dto';
-import { Visibility } from 'src/constants/visibility.enum';
+import { PageOptionsDto } from '../../common/dto/page-options.dto';
+import { Visibility } from '../../constants/visibility.enum';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CreateCommentDto } from './dto/comment-create.dto';
 import { CreatePostDto } from './dto/post-create.dto';

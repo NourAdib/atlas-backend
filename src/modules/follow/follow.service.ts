@@ -1,9 +1,9 @@
 import { BadRequestException, ForbiddenException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { PageMetaDto } from 'src/common/dto/page-meta.dto';
-import { PageOptionsDto } from 'src/common/dto/page-options.dto';
-import { PageDto } from 'src/common/dto/page.dto';
-import { FollowStatus } from 'src/constants/follow-status.enum';
+import { PageMetaDto } from '../../common/dto/page-meta.dto';
+import { PageOptionsDto } from '../../common/dto/page-options.dto';
+import { PageDto } from '../../common/dto/page.dto';
+import { FollowStatus } from '../../constants/follow-status.enum';
 import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import { User } from '../user/entities/user.entity';
 import { FollowRequest } from './entities/follow-request.entity';

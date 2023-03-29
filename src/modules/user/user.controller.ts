@@ -18,17 +18,17 @@ import {
   UseInterceptors
 } from '@nestjs/common/decorators';
 import { Response } from 'express';
-import { Role } from 'src/constants/role.enum';
+import { Role } from '../../constants/role.enum';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { UserService } from './user.service';
 import { UpdateUserEmailDto } from './dto/email-update.dto';
 import { UpdateUserDateOfBirthDto } from './dto/dateofbirth-update.dto';
 import { UpdateUserPhoneNumberDto } from './dto/phone-update.dto';
-import { Gender } from 'src/constants/gender.enum';
+import { Gender } from '../../constants/gender.enum';
 import { UpdateUserPasswordDto } from './dto/password-update.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { NotificationPreference } from 'src/constants/notification-preference.enum';
-import { PageOptionsDto } from 'src/common/dto/page-options.dto';
+import { NotificationPreference } from '../../constants/notification-preference.enum';
+import { PageOptionsDto } from '../../common/dto/page-options.dto';
 import { UpdateUserBioDto } from './dto/bio-update.dto';
 
 @Controller('user')
@@ -112,7 +112,7 @@ export class UserController {
   @Patch('address')
   updateUserAddress(@Query('address') address: string, @Request() req, @Res() res: Response) {
     if (!address) {
-      throw new BadRequestException('Adress must not be empty');
+      throw new BadRequestException('Address must not be empty');
     }
     this.userService
       .updateUserAddress(req.user, address)
@@ -136,7 +136,7 @@ export class UserController {
       throw new BadRequestException('First name must not be empty');
     }
     if (firstName.length >= 255) {
-      throw new BadRequestException('Name should be less than 256 charecters');
+      throw new BadRequestException('Name should be less than 256 characters');
     }
     this.userService
       .updateUserFirstName(req.user, firstName)
@@ -160,7 +160,7 @@ export class UserController {
       throw new BadRequestException('Last name must not be empty');
     }
     if (lastName.length >= 255) {
-      throw new BadRequestException('Name should be less than 256 charecters');
+      throw new BadRequestException('Name should be less than 256 characters');
     }
     this.userService
       .updateUserLastName(req.user, lastName)
@@ -172,7 +172,7 @@ export class UserController {
       });
   }
   /**
-   * updates the usrename
+   * updates the username
    * @param username the username to be updated
    * @param req the request object
    * @param res the response object
@@ -184,7 +184,7 @@ export class UserController {
       throw new BadRequestException('Username must not be empty');
     }
     if (username.length > 30) {
-      throw new BadRequestException('Userame should be less than 30 charecters');
+      throw new BadRequestException('Username should be less than 30 characters');
     }
     this.userService
       .updateUsername(req.user, username)

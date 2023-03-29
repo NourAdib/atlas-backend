@@ -1,14 +1,14 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FirebaseStorageService } from 'src/common/services/firebase-storage.service';
+import { FirebaseStorageService } from '../../common/services/firebase-storage.service';
 import { DeleteResult, LessThan, MoreThan, Repository } from 'typeorm';
 import { User } from '../user/entities/user.entity';
 import { GetProximityMemoryDto } from './dto/get-proximity-memory.dto';
 import { CreateMemoryDto } from './dto/memory-create.dto';
 import { Memory } from './entities/memory.entity';
-import { PageMetaDto } from 'src/common/dto/page-meta.dto';
-import { PageOptionsDto } from 'src/common/dto/page-options.dto';
-import { PageDto } from 'src/common/dto/page.dto';
+import { PageMetaDto } from '../../common/dto/page-meta.dto';
+import { PageOptionsDto } from '../../common/dto/page-options.dto';
+import { PageDto } from '../../common/dto/page.dto';
 
 @Injectable()
 export class MemoryService {

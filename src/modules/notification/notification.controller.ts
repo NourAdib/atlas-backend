@@ -1,7 +1,7 @@
 import { Controller, UseGuards, Post, Res, Param, Request, HttpStatus, Body } from '@nestjs/common';
 import { Response } from 'express';
-import { Role } from 'src/constants/role.enum';
-import { Roles } from 'src/decorators/roles.decorator';
+import { Role } from '../../constants/role.enum';
+import { Roles } from '../../decorators/roles.decorator';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { SendNotificationDto } from './dto/send-message.dto';

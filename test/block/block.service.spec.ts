@@ -1,24 +1,30 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { NotificationService } from '../../src/modules/notification/notification.service';
+import { BlockService } from '../../src/modules/block/block.service';
 import { User } from '../../src/modules/user/entities/user.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { Block } from '../../src/modules/block/entities/block.entity';
 
-describe('NotificationService', () => {
-  let service: NotificationService;
+describe('BlockService', () => {
+  let service: BlockService;
+  const blockRepoToken = getRepositoryToken(Block);
   const userRepoToken = getRepositoryToken(User);
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        NotificationService,
+        BlockService,
         {
           provide: userRepoToken,
+          useValue: {}
+        },
+        {
+          provide: blockRepoToken,
           useValue: {}
         }
       ]
     }).compile();
 
-    service = module.get<NotificationService>(NotificationService);
+    service = module.get<BlockService>(BlockService);
   });
 
   it('should be defined', () => {

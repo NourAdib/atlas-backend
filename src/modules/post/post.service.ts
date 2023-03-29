@@ -1,17 +1,16 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FirebaseStorageService } from 'src/common/services/firebase-storage.service';
+import { FirebaseStorageService } from '../..//common/services/firebase-storage.service';
 import { DeleteResult, Repository } from 'typeorm';
 import { User } from '../user/entities/user.entity';
 import { CreateCommentDto } from './dto/comment-create.dto';
 import { Post } from './entities/post.entity';
 import { Scrapbook } from './entities/scrapbook.entity';
 import { Comment } from './entities/comment.entity';
-import { PageOptionsDto } from 'src/common/dto/page-options.dto';
-import { PageDto } from 'src/common/dto/page.dto';
-import { PageMetaDto } from 'src/common/dto/page-meta.dto';
+import { PageOptionsDto } from '../../common/dto/page-options.dto';
+import { PageDto } from '../..//common/dto/page.dto';
+import { PageMetaDto } from '../../common/dto/page-meta.dto';
 import { Like } from './entities/post-like.entity';
-import { UserService } from '../user/user.service';
 
 @Injectable()
 export class PostService {

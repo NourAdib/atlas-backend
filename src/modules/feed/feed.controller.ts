@@ -2,7 +2,7 @@ import { Controller, Get, HttpStatus, Res, UseGuards, Request, Query } from '@ne
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { Response } from 'express';
 import { FeedService } from './feed.service';
-import { PageOptionsDto } from 'src/common/dto/page-options.dto';
+import { PageOptionsDto } from '../../common/dto/page-options.dto';
 
 @Controller('feed')
 export class FeedController {

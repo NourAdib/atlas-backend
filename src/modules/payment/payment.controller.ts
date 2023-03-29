@@ -10,7 +10,6 @@ import {
 } from '@nestjs/common';
 import { Get, Query } from '@nestjs/common/decorators';
 import { Response } from 'express';
-import { join } from 'path';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { PaymentService } from './payment.service';
 

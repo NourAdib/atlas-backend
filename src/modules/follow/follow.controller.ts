@@ -1,7 +1,7 @@
 import { Controller, UseGuards, Res, Request, Post, HttpStatus } from '@nestjs/common';
 import { Delete, Get, Param, Patch, Query } from '@nestjs/common/decorators';
 import { Response } from 'express';
-import { PageOptionsDto } from 'src/common/dto/page-options.dto';
+import { PageOptionsDto } from '../..//common/dto/page-options.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { FollowService } from './follow.service';
 
