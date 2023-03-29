@@ -33,7 +33,6 @@ jobs:
           DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
           DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
           DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
-          DATABASE_HOST: ${{ secrets.PORT }}
           SECRET: ${{ secrets.SECRET }}
           SESSION_DRIVER: ${{ secrets.SESSION_DRIVER }}
           FIREBASE_TYPE: ${{ secrets.FIREBASE_TYPE }}
