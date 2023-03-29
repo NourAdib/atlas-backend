@@ -1,11 +1,13 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Role } from '../../constants/role.enum';
+import { Role } from 'src/constants/role.enum';
 import { Repository } from 'typeorm';
 import { Post } from '../post/entities/post.entity';
 import { User } from '../user/entities/user.entity';
 import { PostAnalyticResposneDto } from './dto/post-analytic-response.dto';
-
+/**
+ * Analytics service
+ */
 @Injectable()
 export class AnalyticsService {
   constructor(
@@ -15,7 +17,12 @@ export class AnalyticsService {
     @InjectRepository(User)
     private userRepository: Repository<User>
   ) {}
-
+  /**
+   * gets admin analytics for a post
+   * @param user the user making the request
+   * @param postId the id of the post
+   * @returns the analytics for the post
+   */
   async getAdminPostAnalytics(user: any, postId: string): Promise<PostAnalyticResposneDto> {
     const post = await this.postRepository.findOne({
       where: { id: postId },
@@ -33,7 +40,6 @@ export class AnalyticsService {
     const interactionCount = commentCount;
     const isTakenDown = post.isTakenDown;
     const createdAt = new Date(post.createdAt);
-
     const response = new PostAnalyticResposneDto();
     response.commentCount = commentCount;
     response.likeCount = 0;
@@ -50,7 +56,12 @@ export class AnalyticsService {
 
     return response;
   }
-
+  /**
+   * gets user analytics for a post
+   * @param user the user making the request
+   * @param postId the id of the post
+   * @returns the analytics for the post
+   */
   async getPostAnalytics(user: any, postId: string): Promise<PostAnalyticResposneDto> {
     const post = await this.postRepository.findOne({
       where: { id: postId },
@@ -74,7 +85,6 @@ export class AnalyticsService {
     const interactionCount = commentCount;
     const isTakenDown = post.isTakenDown;
     const createdAt = new Date(post.createdAt);
-
     const response = new PostAnalyticResposneDto();
     response.commentCount = commentCount;
     response.likeCount = 0;
