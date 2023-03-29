@@ -13,7 +13,12 @@ export class BlockService {
     @InjectRepository(User)
     private userRepository: Repository<User>
   ) {}
-
+  /**
+   * blocks a user
+   * @param id the id of the user to be blocked
+   * @param user the user making the request
+   * @returns the block object
+   */
   async blockUser(id: string, user: any): Promise<Block> {
     const userToBeBlocked = await this.userRepository.findOneBy({ id: id });
 
@@ -46,7 +51,12 @@ export class BlockService {
 
     return await this.blockRepository.save(newBlock);
   }
-
+  /**
+   * unblocks a user
+   * @param id the id of the user to be unblocked
+   * @param user the user making the request
+   * @returns the delete result
+   */
   async unblockUser(id: string, user: any): Promise<DeleteResult> {
     const userToBeUnblocked = await this.userRepository.findOneBy({ id: id });
 
