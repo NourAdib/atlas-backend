@@ -2,7 +2,7 @@ import { HttpService } from '@nestjs/axios';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
-import { EncryptionService } from '../../common/services/encryption.service';
+import { EncryptionService } from 'src/common/services/encryption.service';
 import { Repository } from 'typeorm';
 import { User } from '../user/entities/user.entity';
 import { UserService } from '../user/user.service';
@@ -60,18 +60,29 @@ export class AuthService {
       access_token: this.jwtService.sign(payload)
     };
   }
-
+  /**
+   * checks if the user is banned
+   * @param user the user to check
+   * @returns the user's ban status
+   */
   async isUserBanned(user: any) {
     return this.usersService.isUserBanned(user.id).then((result) => {
       return result;
     });
   }
-
+  /**
+   * gets the captcha html
+   * @returns the captcha html
+   */
   async getCaptcha() {
     const sitekey = process.env.RECAPTCHA_SITE_KEY;
     return `<html> <head> <title>reCAPTCHA demo: Simple page</title> <script src="https://www.google.com/recaptcha/api.js" async defer></script> </head> <body> <form action="?" method="POST"> <div class="g-recaptcha" data-sitekey="${sitekey}"></div> <br/> <input type="submit" value="Submit"> </form> </body></html>`;
   }
-
+  /**
+   * gets the captcha response
+   * @param body the body of the request
+   * @returns the captcha response
+   */
   async captchaResult(body: any) {
     const captchaResponse = await this.validateCaptchaResponse(body['g-recaptcha-response']);
     const response: ReCaptchaResponseDto = JSON.parse(JSON.stringify(captchaResponse));
@@ -82,7 +93,11 @@ export class AuthService {
       throw new BadRequestException('Captcha failed');
     }
   }
-
+  /**
+   * validates the captcha response
+   * @param gReCaptchaResponse the captcha response
+   * @returns the captcha response
+   */
   async validateCaptchaResponse(gReCaptchaResponse: string) {
     const secretKey = process.env.RECAPTCHA_SECRET_KEY;
 
