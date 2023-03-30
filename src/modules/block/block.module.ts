@@ -5,6 +5,9 @@ import { Block } from './entities/block.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from '../user/entities/user.entity';
 
+/**
+ * Block module
+ */
 @Module({
   imports: [TypeOrmModule.forFeature([Block, User])],
   providers: [BlockService],

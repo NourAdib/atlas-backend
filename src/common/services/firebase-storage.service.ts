@@ -108,6 +108,12 @@ export class FirebaseStorageService {
     return { imageId: imageId, url: url, expiryDate: this.expiryDate };
   }
 
+  /**
+   * deleting the an image form a post by id
+   * @param imageId the id of the image to be removed
+   * @param userId the id of the user
+   * @param postId the id of the post
+   */
   async deletePostImage(imageId: any, userId: string, postId: string) {
     const fileName = `users/${userId}/posts/${postId}/${imageId}.png`;
 
@@ -120,6 +126,12 @@ export class FirebaseStorageService {
       });
   }
 
+  /**
+   * get the signed url of an image
+   * @param userId the id of the user
+   * @param imageId the id of the image
+   * @returns the url and expiry date of the image
+   */
   async getSignedURL(userId: string, imageId: string) {
     // The name of the object for which you want a signed URL
     const fileName = `users/${userId}/avatars/${imageId}.png`;
@@ -149,6 +161,13 @@ export class FirebaseStorageService {
     return { url: imageUrl, expiryDate: this.expiryDate };
   }
 
+  /**
+   * get the signed url of an image from a post
+   * @param imageId the id of the image to be removed
+   * @param userId the id of the user
+   * @param postId the id of the post
+   * @returns the url and expiry date of the image
+   */
   async getPostImageSignedURL(imageId: any, userId: string, postId: string) {
     const fileName = `users/${userId}/posts/${postId}/${imageId}.png`;
 
@@ -177,6 +196,13 @@ export class FirebaseStorageService {
     return { url: imageUrl, expiryDate: this.expiryDate };
   }
 
+  /**
+   * get the signed url of an image from a memory
+   * @param imageId the id of the image to be removed
+   * @param userId the id of the user
+   * @param memoryId the id of the memory
+   * @returns the url and expiry date of the image
+   */
   async getMemoryImageSignedURL(imageId: any, userId: string, memoryId: string) {
     const fileName = `users/${userId}/memories/${memoryId}/${imageId}.png`;
 
@@ -205,6 +231,13 @@ export class FirebaseStorageService {
     return { url: imageUrl, expiryDate: this.expiryDate };
   }
 
+  /**
+   * uploading a memory image
+   * @param image the image to be uploaded
+   * @param userId the id of the user
+   * @param memoryId the id of the memory
+   * @returns the image id, url and expiry date
+   */
   async uploadMemoryImage(image: any, userId: string, memoryId: string) {
     const imageId = uuidv4();
 
@@ -223,6 +256,12 @@ export class FirebaseStorageService {
     return { imageId: imageId, url: url, expiryDate: this.expiryDate };
   }
 
+  /**
+   * deleting the an image form a memory by id
+   * @param imageId the id of the image to be removed
+   * @param userId the id of the user
+   * @param memoryId the id of the memory
+   */
   async deleteMemoryImage(imageId: any, userId: string, memoryId: string) {
     const fileName = `users/${userId}/memories/${memoryId}/${imageId}.png`;
 

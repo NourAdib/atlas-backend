@@ -7,6 +7,9 @@ import { EventGoal } from './entities/eventGoal.entity';
 import { EventController } from './event.controller';
 import { EventService } from './event.service';
 
+/**
+ * Event module
+ */
 @Module({
   imports: [TypeOrmModule.forFeature([Event, EventClue, EventGoal, User])],
   controllers: [EventController],

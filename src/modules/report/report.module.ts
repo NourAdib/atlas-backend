@@ -8,6 +8,9 @@ import { UserReport } from './entities/user-report.entity';
 import { ReportController } from './report.controller';
 import { ReportService } from './report.service';
 
+/**
+ * Report module
+ */
 @Module({
   imports: [TypeOrmModule.forFeature([UserReport, PostReport, Post, User, UserBan])],
   controllers: [ReportController],

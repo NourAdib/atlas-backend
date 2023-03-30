@@ -5,6 +5,9 @@ import { User } from '../user/entities/user.entity';
 import { PaymentController } from './payment.controller';
 import { PaymentService } from './payment.service';
 
+/**
+ * Payment module
+ */
 @Module({
   imports: [TypeOrmModule.forFeature([User]), NotificationModule],
   controllers: [PaymentController],

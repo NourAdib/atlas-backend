@@ -3,6 +3,9 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { BaseEntity } from '../../../common/entities/base.entity';
 import { Visibility } from '../../../constants/visibility.enum';
 
+/**
+ * Memory entity
+ */
 @Entity()
 export class Memory extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')

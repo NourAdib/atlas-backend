@@ -17,6 +17,11 @@ import { PaymentService } from './payment.service';
 export class PaymentController {
   constructor(private readonly paymentService: PaymentService) {}
 
+  /**
+   * subscribe to the premium plan
+   * @param req the request object
+   * @param res the response object
+   */
   @UseGuards(JwtAuthGuard)
   @Post('subscribe')
   async subscribe(@Request() req, @Res() res: Response) {
@@ -30,6 +35,11 @@ export class PaymentController {
       });
   }
 
+  /**
+   * unsubscribe from the premium plan
+   * @param req the request object
+   * @param res the response object
+   */
   @UseGuards(JwtAuthGuard)
   @Post('unsubscribe')
   async unsubscribe(@Request() req, @Res() res: Response) {
@@ -43,6 +53,12 @@ export class PaymentController {
       });
   }
 
+  /**
+   * get the success page after payment
+   * @param req the request object
+   * @param res the response object
+   * @param sessionId the id of the stripe session
+   */
   @Get('success')
   async paymentSuccess(
     @Request() req,
@@ -62,6 +78,12 @@ export class PaymentController {
       });
   }
 
+  /**
+   * cancel the payment
+   * @param req the request object
+   * @param res the response object
+   * @param sessionId the id of the stripe session
+   */
   @Get('cancel')
   async paymentCancel(
     @Request() req,
@@ -78,6 +100,11 @@ export class PaymentController {
       });
   }
 
+  /**
+   * listen to the stripe webhook
+   * @param req the request object
+   * @param res the response object
+   */
   @Post('invoicing-webhook')
   async invoicingWebHook(@Req() req: RawBodyRequest<Request>, @Res() res: Response) {
     this.paymentService

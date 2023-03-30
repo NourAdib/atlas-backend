@@ -35,6 +35,9 @@ import { EventClue } from './modules/event/entities/eventClues.entity';
 import { EventGoal } from './modules/event/entities/eventGoal.entity';
 import { EventModule } from './modules/event/event.module';
 
+/**
+ * App module
+ */
 @Module({
   imports: [
     ConfigModule.forRoot(),

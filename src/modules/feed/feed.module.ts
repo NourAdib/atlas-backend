@@ -5,6 +5,9 @@ import { User } from '../user/entities/user.entity';
 import { FeedController } from './feed.controller';
 import { FeedService } from './feed.service';
 
+/**
+ * Feed module
+ */
 @Module({
   imports: [TypeOrmModule.forFeature([Post, User])],
   controllers: [FeedController],

@@ -2,7 +2,9 @@ import { User } from '../../user/entities/user.entity';
 import { Column, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { BaseEntity } from '../../../common/entities/base.entity';
 import { Event } from './event.entity';
-
+/**
+ * Event goal entity
+ */
 @Entity()
 export class EventGoal extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')

@@ -6,6 +6,9 @@ import { TasksService } from './tasks.service';
 import { UserBan } from '../report/entities/user-ban.entity';
 import { Memory } from '../memory/entities/memory.entity';
 
+/**
+ * Tasks module
+ */
 @Module({
   imports: [TypeOrmModule.forFeature([User, Post, UserBan, Memory])],
   providers: [TasksService]

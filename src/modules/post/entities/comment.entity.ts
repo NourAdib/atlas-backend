@@ -3,6 +3,9 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Post } from './post.entity';
 import { BaseEntity } from '../../../common/entities/base.entity';
 
+/**
+ * Comment entity
+ */
 @Entity()
 export class Comment extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')

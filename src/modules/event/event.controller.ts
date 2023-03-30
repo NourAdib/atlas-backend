@@ -24,7 +24,12 @@ import { EventService } from './event.service';
 @Controller('event')
 export class EventController {
   constructor(private eventService: EventService) {}
-
+  /**
+   * creating an event
+   * @param req the request object
+   * @param res the response object
+   * @param body the body of the request
+   */
   @UseGuards(JwtAuthGuard)
   @Post('create-event')
   createEvent(@Request() req, @Res() res: Response, @Body() body: CreateEventDto) {
@@ -40,6 +45,12 @@ export class EventController {
       });
   }
 
+  /**
+   * joining an event by id
+   * @param req the request object
+   * @param res the response object
+   * @param eventId the id of the event
+   */
   @UseGuards(JwtAuthGuard)
   @Post('join-event/:id')
   joinEvent(@Request() req, @Res() res: Response, @Param('id') eventId: string) {
@@ -55,6 +66,12 @@ export class EventController {
       });
   }
 
+  /**
+   * getting all events within a certain radius of the user
+   * @param req the request object
+   * @param res the response object
+   * @param body the body of the request
+   */
   @UseGuards(JwtAuthGuard)
   @Post('proximity-events')
   getProximityEvents(@Request() req, @Res() res: Response, @Body() body: GetProximityEventsDto) {
@@ -70,6 +87,12 @@ export class EventController {
       });
   }
 
+  /**
+   * getting all clues within a certain radius of the user
+   * @param req the request object
+   * @param res the response object
+   * @param body the body of the request
+   */
   @UseGuards(JwtAuthGuard)
   @Post('proximity-clues')
   getProximityClues(@Request() req, @Res() res: Response, @Body() body: GetProximityEventsDto) {
@@ -85,6 +108,12 @@ export class EventController {
       });
   }
 
+  /**
+   * get all joined events of the user
+   * @param req the request object
+   * @param res the response object
+   * @param pageOptionsDto the page options
+   */
   @UseGuards(JwtAuthGuard)
   @Get('joined-events')
   getJoinedEvents(@Request() req, @Res() res: Response, @Query() pageOptionsDto: PageOptionsDto) {
@@ -100,6 +129,12 @@ export class EventController {
       });
   }
 
+  /**
+   * get all events created by the user
+   * @param req the request object
+   * @param res the response object
+   * @param pageOptionsDto the page options
+   */
   @UseGuards(JwtAuthGuard)
   @Get('user-events')
   getUserEvents(@Request() req, @Res() res: Response, @Query() pageOptionsDto: PageOptionsDto) {
@@ -115,6 +150,12 @@ export class EventController {
       });
   }
 
+  /**
+   * get all active events
+   * @param req the request object
+   * @param res the response object
+   * @param pageOptionsDto the page options
+   */
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Get('active-events')
   @Roles(Role.Admin)
@@ -131,6 +172,12 @@ export class EventController {
       });
   }
 
+  /**
+   * get events by id
+   * @param req the request object
+   * @param res the response object
+   * @param eventId the id of the event
+   */
   @UseGuards(JwtAuthGuard)
   @Get('/:id')
   getEventById(@Request() req, @Res() res: Response, @Param('id') eventId: string) {
@@ -144,6 +191,12 @@ export class EventController {
       });
   }
 
+  /**
+   * delete event by id
+   * @param req the request object
+   * @param res the response object
+   * @param eventId the id of the event
+   */
   @UseGuards(JwtAuthGuard)
   @Delete('/:id')
   deleteEventById(@Request() req, @Res() res: Response, @Param('id') eventId: string) {

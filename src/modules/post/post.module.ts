@@ -8,6 +8,9 @@ import { Comment } from './entities/comment.entity';
 import { User } from '../user/entities/user.entity';
 import { Like } from './entities/post-like.entity';
 
+/**
+ * Post module
+ */
 @Module({
   imports: [TypeOrmModule.forFeature([Post, Scrapbook, User, Comment, Like])],
   controllers: [PostController],

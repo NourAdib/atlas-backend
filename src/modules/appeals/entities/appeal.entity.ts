@@ -5,6 +5,9 @@ import { User } from '../../user/entities/user.entity';
 import { ReportStatus } from '../../../constants/report-status.enum';
 import { ReportReason } from '../../../constants/report-reason.enum';
 
+/**
+ * Appeal entity
+ */
 @Entity()
 export class Appeal extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')

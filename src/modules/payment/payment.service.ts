@@ -24,6 +24,11 @@ export class PaymentService {
     private readonly notificationService: NotificationService
   ) {}
 
+  /**
+   * subscribe to a plan
+   * @param user the user
+   * @returns the session url
+   */
   async subscribe(user: User): Promise<string> {
     const dbUser = await this.userRepository.findOne({ where: { id: user.id } });
 
@@ -71,6 +76,11 @@ export class PaymentService {
     return session.url;
   }
 
+  /**
+   * unsubscribe from a plan
+   * @param user the user
+   * @returns the updated user
+   */
   async unsubscribe(user: User): Promise<UpdateResult> {
     const dbUser = await this.userRepository.findOne({ where: { id: user.id } });
 
@@ -100,6 +110,11 @@ export class PaymentService {
       .execute();
   }
 
+  /**
+   * payment successfull
+   * @param sessionId the session id
+   * @returns the updated user
+   */
   async paymentSuccess(sessionId: string): Promise<UpdateResult> {
     const session = await this.stripe.checkout.sessions.retrieve(sessionId);
     const customer = await this.stripe.customers.retrieve(session.customer as string);
@@ -112,6 +127,11 @@ export class PaymentService {
       .execute();
   }
 
+  /**
+   * payment cancelled
+   * @param sessionId tHe session id
+   * @returns The updated user
+   */
   async paymentCancel(sessionId: string): Promise<UpdateResult> {
     const session = await this.stripe.checkout.sessions.retrieve(sessionId);
     const customer = await this.stripe.customers.retrieve(session.customer as string);
@@ -124,6 +144,12 @@ export class PaymentService {
       .execute();
   }
 
+  /**
+   * listning to stripe webhooks
+   * @param stripeSignature the stripe signature
+   * @param body the body
+   * @returns the updated user
+   */
   async invoicingWebHook(stripeSignature: any, body: any) {
     let event;
     try {

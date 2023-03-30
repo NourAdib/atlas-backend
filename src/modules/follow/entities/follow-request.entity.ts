@@ -3,6 +3,9 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { User } from '../../user/entities/user.entity';
 import { FollowStatus } from '../../../constants/follow-status.enum';
 
+/**
+ * Follow request entity
+ */
 @Entity()
 export class FollowRequest extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')

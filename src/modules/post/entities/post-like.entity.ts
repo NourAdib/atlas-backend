@@ -3,6 +3,9 @@ import { User } from '../../user/entities/user.entity';
 import { Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Post } from './post.entity';
 
+/**
+ * Like entity
+ */
 @Entity()
 export class Like extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')

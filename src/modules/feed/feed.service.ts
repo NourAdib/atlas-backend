@@ -18,6 +18,12 @@ export class FeedService {
     private userRepository: Repository<User>
   ) {}
 
+  /**
+   * gets the feed for a user
+   * @param user the user making the request
+   * @param pageOptionsDto the page options
+   * @returns the feed
+   */
   async getFeed(user: any, pageOptionsDto: PageOptionsDto): Promise<PageDto<Post>> {
     const dbUser = await this.userRepository.findOne({
       where: { id: user.id },

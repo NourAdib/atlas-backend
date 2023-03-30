@@ -51,6 +51,12 @@ export class UserService {
     return this.usersRepository.save(newUser);
   }
 
+  /**
+   * creates a new user profile with an image
+   * @param user the user object that contains the user information
+   * @param image the image that will be used as the profile picture
+   * @returns the newly created user
+   */
   async createUserWithImage(user: SignUpUserDto, image: any): Promise<User> {
     const newUser = new User();
     newUser.firstName = user.firstName;
@@ -109,6 +115,11 @@ export class UserService {
     return this.usersRepository.save(newUser);
   }
 
+  /**
+   * gets user profile by id
+   * @param id the id of the user
+   * @returns the user with the id passed in the parameter
+   */
   getUserProfileById(id: string): Promise<User> {
     return this.usersRepository.findOne({
       where: { id: id },
@@ -468,6 +479,12 @@ export class UserService {
       .execute();
   }
 
+  /**
+   * update the users avatar url
+   * @param user the user object that contains the userId
+   * @param url the url to the users avatar
+   * @param expiryDate the expiry date of the url
+   */
   async updateAvatarUrl(user: any, url: string, expiryDate: Date) {
     await this.usersRepository
       .createQueryBuilder()
@@ -479,6 +496,13 @@ export class UserService {
       .where('id = :id', { id: user.id })
       .execute();
   }
+
+  /**
+   * update the users notification preferences
+   * @param user the user object that contains the userId
+   * @param notificationPreference the notification preference to be updated
+   * @returns the result of the update
+   */
   async updateUserNotificationPreferences(
     user: any,
     notificationPreference: NotificationPreference
@@ -489,6 +513,12 @@ export class UserService {
     return this.usersRepository.update(user.id, { notificationPreference });
   }
 
+  /**
+   * search for users that match the search term
+   * @param searchTerm the search term to be used in the query
+   * @param pageOptionsDto the page options to be used in the query
+   * @returns the users that match the search term
+   */
   async searchUsers(searchTerm: string, pageOptionsDto: PageOptionsDto): Promise<PageDto<User>> {
     const queryResults = await this.usersRepository
       .createQueryBuilder('user')
@@ -512,6 +542,10 @@ export class UserService {
     return new PageDto(entities, pageMetaDto);
   }
 
+  /**
+   * deleting a user
+   * @param user the user object that contains the userId
+   */
   async deleteUser(user: any) {
     const dbUser = await this.usersRepository.findOneBy({ id: user.id });
 
@@ -523,6 +557,10 @@ export class UserService {
     await this.usersRepository.delete(dbUser.id);
   }
 
+  /**
+   * removing third party data
+   * @param user the user object that contains the userId
+   */
   async removeThirdPartyData(user: User) {
     if (user.profilePictureId) {
       await new FirebaseStorageService().deleteAvatar(user.profilePictureId, user.id);

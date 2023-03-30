@@ -2,6 +2,7 @@ import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { SubscriptionPlan } from 'src/constants/subscription-plan.enum';
 import { SUBSCRIPTION_PLANS_KEY } from 'src/decorators/subscription.decorator';
+
 /**
  * SubscriptionsGuard checks if the user has the required subscription plans
  */

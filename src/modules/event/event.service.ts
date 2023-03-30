@@ -25,6 +25,13 @@ export class EventService {
     @InjectRepository(User)
     private userRepository: Repository<User>
   ) {}
+
+  /**
+   * creates an event
+   * @param user the user making the request
+   * @param createEventDto the event data
+   * @returns the created event
+   */
   async createEvent(user: User, createEventDto: CreateEventDto): Promise<Event> {
     const newEvent = new Event();
     newEvent.name = createEventDto.name;
@@ -68,6 +75,7 @@ export class EventService {
       relations: ['clues', 'goal', 'creator', 'participants']
     });
   }
+
   /**
    * gets all events from the database
    * @param id the id of the event
@@ -79,6 +87,7 @@ export class EventService {
       relations: ['clues', 'goal', 'creator', 'participants']
     });
   }
+
   /**
    * gets all events from the database which are within the given radius
    * @param user the user that is requesting the events
@@ -110,6 +119,7 @@ export class EventService {
       })
       .getMany();
   }
+
   /**
    * joins an event
    * @param user the user that is requesting the events
@@ -140,6 +150,7 @@ export class EventService {
 
     return event;
   }
+
   /**
    * gets the clues of an event which are within the given radius
    * @param user the user that is requesting the events
@@ -168,6 +179,7 @@ export class EventService {
       .andWhere('Participants.id = :id', { id: user.id })
       .getMany();
   }
+
   /**
    * deletes an event
    * @param user the user that is requesting the events
@@ -190,6 +202,7 @@ export class EventService {
 
     return this.eventRepository.delete({ id: eventId });
   }
+
   /**
    * gets all joined events of a user
    * @param user the user that is requesting the events
@@ -222,6 +235,7 @@ export class EventService {
 
     return new PageDto(entities, pageMetaDto);
   }
+
   /**
    * get all events of a user
    * @param user the user that is requesting the events
@@ -254,6 +268,7 @@ export class EventService {
 
     return new PageDto(entities, pageMetaDto);
   }
+
   /**
    * gets the coordinates of the radius
    * @param lat the latitude of the user
@@ -274,8 +289,9 @@ export class EventService {
 
     return [minLat, maxLat, minLon, maxLon];
   }
+
   /**
-   * get
+   * get all active events
    * @param pageOptionsDto the page options
    * @returns the events that are in the proximity of the user
    */

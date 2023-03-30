@@ -9,6 +9,12 @@ import { FollowService } from './follow.service';
 export class FollowController {
   constructor(private followService: FollowService) {}
 
+  /**
+   * request to follow a user
+   * @param req the request object
+   * @param res the response object
+   * @param id the id of the user to follow
+   */
   @UseGuards(JwtAuthGuard)
   @Post('request-follow/:id')
   async requestFollow(@Request() req, @Res() res: Response, @Param('id') id: string) {
@@ -22,7 +28,12 @@ export class FollowController {
       });
   }
 
-  //Accept Follow
+  /**
+   * accept a follow request
+   * @param req the request object
+   * @param res the response object
+   * @param requestId the id of the follow request
+   */
   @UseGuards(JwtAuthGuard)
   @Patch('accept-follow/:requestId')
   async acceptFollow(@Request() req, @Res() res: Response, @Param('requestId') requestId: string) {
@@ -36,7 +47,12 @@ export class FollowController {
       });
   }
 
-  //Reject Follow
+  /**
+   * reject a follow request
+   * @param req the request object
+   * @param res the response object
+   * @param requestId the id of the follow request
+   */
   @UseGuards(JwtAuthGuard)
   @Patch('reject-follow/:requestId')
   async rejectFollow(@Request() req, @Res() res: Response, @Param('requestId') requestId: string) {
@@ -50,7 +66,12 @@ export class FollowController {
       });
   }
 
-  //Unfollow
+  /**
+   * unfollow a user
+   * @param req the request object
+   * @param res the response object
+   * @param id the id of the user to unfollow
+   */
   @UseGuards(JwtAuthGuard)
   @Delete('unfollow/:id')
   async unfollow(@Request() req, @Res() res: Response, @Param('id') id: string) {
@@ -64,7 +85,12 @@ export class FollowController {
       });
   }
 
-  //Get Followers
+  /**
+   * get all the followers of a user
+   * @param req the request object
+   * @param res the response object
+   * @param pageOptionsDto the page options
+   */
   @UseGuards(JwtAuthGuard)
   @Get('followers')
   async getFollowers(
@@ -82,7 +108,12 @@ export class FollowController {
       });
   }
 
-  //Get Following
+  /**
+   * get all the users a user is following
+   * @param req the request object
+   * @param res the response object
+   * @param pageOptionsDto the page options
+   */
   @UseGuards(JwtAuthGuard)
   @Get('following')
   async getFollowing(
@@ -100,7 +131,12 @@ export class FollowController {
       });
   }
 
-  //Get Follow Requests Received
+  /**
+   * get all the follow requests received by a user
+   * @param req the request object
+   * @param res the response object
+   * @param pageOptionsDto the page options
+   */
   @UseGuards(JwtAuthGuard)
   @Get('follow-requests-received')
   async getFollowRequestsReceived(
@@ -118,7 +154,12 @@ export class FollowController {
       });
   }
 
-  //Get Follow Requests Sent
+  /**
+   * get all the follow requests sent by a user
+   * @param req the request object
+   * @param res the response object
+   * @param pageOptionsDto the page options
+   */
   @UseGuards(JwtAuthGuard)
   @Get('follow-requests-sent')
   async getFollowRequestsSent(

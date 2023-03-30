@@ -4,6 +4,9 @@ import { UserController } from './user.controller';
 import { User } from './entities/user.entity';
 import { UserService } from './user.service';
 
+/**
+ * User module
+ */
 @Module({
   imports: [TypeOrmModule.forFeature([User])],
   controllers: [UserController],

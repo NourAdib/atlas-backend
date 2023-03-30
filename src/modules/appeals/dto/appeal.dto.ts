@@ -1,4 +1,5 @@
 import { IsNotEmpty } from 'class-validator';
+
 /**
  * Data transfer object for appeal
  */

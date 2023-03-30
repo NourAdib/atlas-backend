@@ -9,6 +9,10 @@ export class StripeService {
     apiVersion: '2022-11-15'
   });
 
+  /**
+   * deleting a useras a customer by id
+   * @param customerId the customer id
+   */
   async deleteCustomer(customerId: string): Promise<void> {
     await this.stripe.customers.del(customerId);
   }

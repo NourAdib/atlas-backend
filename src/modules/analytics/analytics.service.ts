@@ -17,6 +17,7 @@ export class AnalyticsService {
     @InjectRepository(User)
     private userRepository: Repository<User>
   ) {}
+
   /**
    * gets admin analytics for a post
    * @param user the user making the request
@@ -56,6 +57,7 @@ export class AnalyticsService {
 
     return response;
   }
+
   /**
    * gets user analytics for a post
    * @param user the user making the request

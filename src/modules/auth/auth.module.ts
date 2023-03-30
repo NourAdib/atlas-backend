@@ -11,6 +11,9 @@ import jwtConfig from './constants';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { LocalStrategy } from './strategies/local.strategy';
 
+/**
+ * Auth module
+ */
 @Module({
   imports: [
     HttpModule,

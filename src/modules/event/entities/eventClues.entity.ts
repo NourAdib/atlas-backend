@@ -2,7 +2,9 @@ import { User } from '../../user/entities/user.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { BaseEntity } from '../../../common/entities/base.entity';
 import { Event } from './event.entity';
-
+/**
+ * Event clue entity
+ */
 @Entity()
 export class EventClue extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')

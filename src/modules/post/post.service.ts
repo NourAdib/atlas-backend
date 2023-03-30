@@ -48,6 +48,13 @@ export class PostService {
     return this.postRepository.save(newPost);
   }
 
+  /**
+   * creates a post with an image
+   * @param user the user sending the request
+   * @param post the post to be created
+   * @param image the image to be uploaded
+   * @returns the created post
+   */
   async createPostWithImage(user: User, post: any, image: any): Promise<Post> {
     const newPost = new Post();
     newPost.caption = post.caption;
@@ -104,6 +111,11 @@ export class PostService {
     return this.scrapbookRepository.save(newScrapbook);
   }
 
+  /**
+   * get posts by id
+   * @param id the id of the post to be deleted
+   * @returns the deleted post
+   */
   async getPostById(id: string): Promise<Post> {
     const post = await this.postRepository
       .createQueryBuilder()
@@ -215,6 +227,13 @@ export class PostService {
       .getOne();
   }
 
+  /**
+   * add a post to a scrapbook(editing scrapbook)
+   * @param user the user sending the request
+   * @param scrapbookId the id of the scrapbook
+   * @param postId the id of the post
+   * @returns the updated scrapbook
+   */
   async addPostToScrapbook(user: any, scrapbookId: string, postId: string): Promise<Scrapbook> {
     const post = await this.postRepository.findOneBy({ id: postId });
 
@@ -241,6 +260,12 @@ export class PostService {
     return await this.scrapbookRepository.save(scrapbook);
   }
 
+  /**
+   * remove a post from a scrapbook(editing scrapbook)
+   * @param scrapbookId the id of the scrapbook
+   * @param postId the id of the post
+   * @returns the updated scrapbook
+   */
   async removePostFromScrapbook(scrapbookId: string, postId: string): Promise<Scrapbook> {
     const scrapbook = await this.scrapbookRepository
       .createQueryBuilder()
@@ -266,6 +291,12 @@ export class PostService {
     return await this.scrapbookRepository.save(scrapbook);
   }
 
+  /**
+   * deleting a scrapbook
+   * @param user the user sending the request
+   * @param postId the id of the post
+   * @returns the updated post
+   */
   async deletePostById(user: any, postId: string): Promise<DeleteResult> {
     const dbPost = await this.getPostById(postId).then((post) => {
       return post;
@@ -281,6 +312,13 @@ export class PostService {
     return await this.postRepository.delete({ id: postId });
   }
 
+  /**
+   * adding a comment to a post
+   * @param user the user sending the request
+   * @param postId the id of the post
+   * @param comment the comment to be added
+   * @returns the updated post
+   */
   async addComment(user: any, postId: string, comment: CreateCommentDto): Promise<Post> {
     const post = await this.getPostById(postId).then((post) => {
       if (!post) {
@@ -298,6 +336,12 @@ export class PostService {
     });
   }
 
+  /**
+   * get all comments of a post
+   * @param postId the id of the post
+   * @param pageOptionsDto the page options
+   * @returns the comments of the post
+   */
   async getPostComments(postId: string, pageOptionsDto: PageOptionsDto): Promise<PageDto<Comment>> {
     const queryResults = await this.commentRepository
       .createQueryBuilder()
@@ -327,6 +371,12 @@ export class PostService {
     return new PageDto(entities, pageMetaDto);
   }
 
+  /**
+   * get all comments of a user
+   * @param userId the id of the user
+   * @param pageOptionsDto the page options
+   * @returns the comments of the user
+   */
   async getUserComments(userId: string, pageOptionsDto: PageOptionsDto): Promise<PageDto<Comment>> {
     const queryResults = await this.commentRepository
       .createQueryBuilder()
@@ -368,6 +418,12 @@ export class PostService {
     return new PageDto(entities, pageMetaDto);
   }
 
+  /**
+   * deleting a comment
+   * @param user the user sending the request
+   * @param commentId the id of the comment
+   * @returns the deleted comment
+   */
   async deleteComment(user: any, commentId: string): Promise<DeleteResult> {
     const comment = await this.commentRepository
       .createQueryBuilder()
@@ -383,6 +439,12 @@ export class PostService {
     return await this.commentRepository.delete({ id: commentId });
   }
 
+  /**
+   * liking a post
+   * @param user the user sending the request
+   * @param postId the id of the post
+   * @returns the updated post
+   */
   async likePost(user: any, postId: string): Promise<Like> {
     const post = await this.getPostById(postId).then((post) => {
       if (!post) {
@@ -408,6 +470,12 @@ export class PostService {
     return this.likeRepository.save(like);
   }
 
+  /**
+   * unliking a post
+   * @param user the user sending the request
+   * @param postId the id of the post
+   * @returns the updated post
+   */
   async unlikePost(user: any, postId: string): Promise<DeleteResult> {
     const post = await this.getPostById(postId).then((post) => {
       if (!post) {
@@ -433,6 +501,13 @@ export class PostService {
     }
   }
 
+  /**
+   * get the scraps of a users followings
+   * @param user the user sending the request
+   * @param id the id of the user
+   * @param pageOptionsDto the page options
+   * @returns the posts of the user
+   */
   async getFollowingScraps(
     user: User,
     id: string,
@@ -482,6 +557,13 @@ export class PostService {
     return new PageDto(entities, pageMetaDto);
   }
 
+  /**
+   * get the scrapbooks of a users followings
+   * @param user the user sending the request
+   * @param id the id of the user
+   * @param pageOptionsDto the page options
+   * @returns the scrapbooks of the user
+   */
   async getFollowingScrapbooks(
     user: User,
     id: string,

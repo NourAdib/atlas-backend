@@ -25,6 +25,14 @@ import { MemoryService } from './memory.service';
 export class MemoryController {
   constructor(private memoryService: MemoryService) {}
 
+  /**
+   * creating a memory
+   * @param body the body of the request
+   * @param req the request object
+   * @param res the response object
+   * @param file the file
+   * @returns the created memory
+   */
   @UseGuards(JwtAuthGuard)
   @Post('create')
   @UseInterceptors(FileInterceptor('image'))
@@ -49,6 +57,13 @@ export class MemoryController {
       });
   }
 
+  /**
+   * getting all memories within a certain proximity
+   * @param body the body of the request
+   * @param req the request object
+   * @param res the response object
+   * @param pageOptionsDto the page options
+   */
   @UseGuards(JwtAuthGuard)
   @Post('proximity-memories')
   getProximityMemories(
@@ -68,6 +83,13 @@ export class MemoryController {
         return res.status(err.status).json({ message: err.message });
       });
   }
+
+  /**
+   * getting all memories of a user
+   * @param req the request object
+   * @param res the response object
+   * @param pageOptionsDto the page options
+   */
   @UseGuards(JwtAuthGuard)
   @Get('user-memories')
   getUserMemories(@Request() req, @Res() res: Response, @Query() pageOptionsDto: PageOptionsDto) {
@@ -81,6 +103,11 @@ export class MemoryController {
       });
   }
 
+  /**
+   * getting a memory by id
+   * @param id the id of the memory
+   * @param res the response object
+   */
   @UseGuards(JwtAuthGuard)
   @Get('/:id')
   getMemoryById(@Param('id') id: string, @Res() res: Response) {
@@ -96,6 +123,12 @@ export class MemoryController {
       });
   }
 
+  /**
+   * deleting a memory by id
+   * @param id the id of the memory
+   * @param req the request object
+   * @param res the response object
+   */
   @UseGuards(JwtAuthGuard)
   @Delete('/:id')
   deleteMemoryById(@Param('id') id: string, @Request() req, @Res() res: Response) {

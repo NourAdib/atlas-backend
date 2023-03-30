@@ -14,7 +14,9 @@ import { User } from '../../user/entities/user.entity';
 import { Visibility } from '../../../constants/visibility.enum';
 import { EventClue } from './eventClues.entity';
 import { EventGoal } from './eventGoal.entity';
-
+/**
+ * Event entity
+ */
 @Entity()
 export class Event extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')

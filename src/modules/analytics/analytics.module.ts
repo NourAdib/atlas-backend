@@ -5,6 +5,9 @@ import { User } from '../user/entities/user.entity';
 import { AnalyticsController } from './analytics.controller';
 import { AnalyticsService } from './analytics.service';
 
+/**
+ * Analytics module
+ */
 @Module({
   imports: [TypeOrmModule.forFeature([Post, User])],
   controllers: [AnalyticsController],

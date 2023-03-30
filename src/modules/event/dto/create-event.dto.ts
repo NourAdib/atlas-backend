@@ -13,7 +13,9 @@ import {
 import { Visibility } from '../../../constants/visibility.enum';
 import { CreateClueDto } from './create-clue.dto';
 import { CreateGoalDto } from './create-goal.dto';
-
+/**
+ * Data transfer object for creating an event
+ */
 export class CreateEventDto {
   @IsNotEmpty()
   name: string;

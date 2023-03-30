@@ -22,6 +22,12 @@ export class FollowService {
     private followsRepository: Repository<Follow>
   ) {}
 
+  /**
+   * requests to follow a user
+   * @param id the id of the user to be followed
+   * @param user the user making the request
+   * @returns the follow request
+   */
   async requestFollow(id: string, user: any): Promise<FollowRequest> {
     const userToBeFollowed = await this.usersRepository.findOneBy({ id: id });
 
@@ -76,6 +82,12 @@ export class FollowService {
     return await this.followRequestsRepository.save(followRequest);
   }
 
+  /**
+   * accepts a follow request
+   * @param id the id of the follow request
+   * @param userToBeFollowed the user to be followed
+   * @returns the follow request
+   */
   async acceptFollow(id: string, userToBeFollowed: any): Promise<Follow> {
     const followRequest = await this.followRequestsRepository.findOne({
       where: { id: id },
@@ -127,6 +139,12 @@ export class FollowService {
     return await this.followsRepository.save(follow);
   }
 
+  /**
+   * rejects a follow request
+   * @param id the id of the follow request
+   * @param userToBeFollowed the user to be followed
+   * @returns the follow request
+   */
   async rejectFollow(id: string, userToBeFollowed: any): Promise<UpdateResult> {
     const followRequest = await this.followRequestsRepository.findOne({
       where: { id: id },
@@ -158,6 +176,12 @@ export class FollowService {
     });
   }
 
+  /**
+   * gets the followers for a user
+   * @param user the user to get the followers for
+   * @param pageOptionsDto the page options
+   * @returns the followers
+   */
   async getFollowers(user: any, pageOptionsDto: PageOptionsDto): Promise<PageDto<User>> {
     const dbUser = await this.usersRepository.findOne({
       where: { id: user.id },
@@ -180,6 +204,12 @@ export class FollowService {
     return new PageDto(entities, pageMetaDto);
   }
 
+  /**
+   * gets the following for a user
+   * @param user the user to get the following for
+   * @param pageOptionsDto the page options
+   * @returns the following
+   */
   async getFollowing(user: any, pageOptionsDto: PageOptionsDto): Promise<PageDto<User>> {
     const dbUser = await this.usersRepository.findOne({
       where: { id: user.id },
@@ -202,6 +232,12 @@ export class FollowService {
     return new PageDto(entities, pageMetaDto);
   }
 
+  /**
+   * gets the follow requests received for a user
+   * @param user the user to get the follow requests for
+   * @param pageOptionsDto the page options
+   * @returns the follow requests
+   */
   async getFollowRequestsReceived(
     user: any,
     pageOptionsDto: PageOptionsDto
@@ -223,6 +259,12 @@ export class FollowService {
     return new PageDto(entities, pageMetaDto);
   }
 
+  /**
+   * get follow requests sent by a user
+   * @param user the user to get the follow requests for
+   * @param pageOptionsDto the page options
+   * @returns the follow requests
+   */
   async getFollowRequestsSent(
     user: any,
     pageOptionsDto: PageOptionsDto
@@ -244,6 +286,12 @@ export class FollowService {
     return new PageDto(entities, pageMetaDto);
   }
 
+  /**
+   * unfollows a user
+   * @param id the id of the user to unfollow
+   * @param user the user requesting the unfollow
+   * @returns the follow request
+   */
   async unfollow(id: string, user: any): Promise<DeleteResult> {
     const userToBeUnfollowed = await this.usersRepository.findOneBy({ id: id });
     const userRequestingUnfollow = await this.usersRepository.findOne({

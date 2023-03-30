@@ -1,5 +1,8 @@
 import { IsBoolean, IsDate, IsNotEmpty, IsNumber, IsOptional, IsUUID, Min } from 'class-validator';
 
+/**
+ * Post Analytic Resposne data transfer object
+ */
 export class PostAnalyticResposneDto {
   @IsNumber()
   @Min(0)

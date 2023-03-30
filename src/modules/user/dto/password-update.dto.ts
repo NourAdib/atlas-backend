@@ -1,5 +1,8 @@
 import { IsNotEmpty, MinLength } from 'class-validator';
 
+/**
+ * Data transfer object for updating a user's password
+ */
 export class UpdateUserPasswordDto {
   @IsNotEmpty()
   currentPassword: string;

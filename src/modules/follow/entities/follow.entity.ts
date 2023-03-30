@@ -2,6 +2,9 @@ import { BaseEntity } from '../../../common/entities/base.entity';
 import { Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { User } from '../../user/entities/user.entity';
 
+/**
+ * Follow entity
+ */
 @Entity()
 export class Follow extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
