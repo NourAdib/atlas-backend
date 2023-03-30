@@ -16,6 +16,12 @@ export class AnalyticsService {
     private userRepository: Repository<User>
   ) {}
 
+  /**
+   * Get the analytics of a post for an admin
+   * @param user the user object
+   * @param postId the id of the post
+   * @returns the analytics of the post
+   */
   async getAdminPostAnalytics(user: any, postId: string): Promise<PostAnalyticResposneDto> {
     const post = await this.postRepository.findOne({
       where: { id: postId },
@@ -51,6 +57,12 @@ export class AnalyticsService {
     return response;
   }
 
+  /**
+   * Get the analytics of a post for a premium user
+   * @param user the user object
+   * @param postId the id of the post
+   * @returns the analytics of the post
+   */
   async getPostAnalytics(user: any, postId: string): Promise<PostAnalyticResposneDto> {
     const post = await this.postRepository.findOne({
       where: { id: postId },

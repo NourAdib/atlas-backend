@@ -7,6 +7,12 @@ import { BlockService } from './block.service';
 export class BlockController {
   constructor(private blockService: BlockService) {}
 
+  /**
+   * Block a user
+   * @param req the request object
+   * @param id the id of the user to block
+   * @param res the response object
+   */
   @UseGuards(JwtAuthGuard)
   @Post('block-user/:id')
   blockUser(@Request() req, @Param('id') id: string, @Res() res: Response) {
@@ -20,6 +26,12 @@ export class BlockController {
       });
   }
 
+  /**
+   * Unblock a user
+   * @param req the request object
+   * @param id the id of the user to unblock
+   * @param res the response object
+   */
   @UseGuards(JwtAuthGuard)
   @Post('unblock-user/:id')
   unblockUser(@Request() req, @Param('id') id: string, @Res() res: Response) {

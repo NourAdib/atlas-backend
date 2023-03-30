@@ -133,14 +133,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="12"
-                            class="link-to-prism">src/modules/block/block.controller.ts:12</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">src/modules/block/block.controller.ts:18</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Block a user</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -151,6 +153,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -164,6 +167,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the request object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>id</td>
@@ -176,6 +183,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the id of the user to block</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>res</td>
@@ -188,6 +199,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the response object</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -232,14 +247,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/modules/block/block.controller.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/modules/block/block.controller.ts:37</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Unblock a user</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -250,6 +267,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -263,6 +281,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the request object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>id</td>
@@ -275,6 +297,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the id of the user to unblock</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>res</td>
@@ -287,6 +313,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the response object</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -317,6 +347,12 @@ import { BlockService } from &#x27;./block.service&#x27;;
 export class BlockController {
   constructor(private blockService: BlockService) {}
 
+  /**
+   * Block a user
+   * @param req the request object
+   * @param id the id of the user to block
+   * @param res the response object
+   */
   @UseGuards(JwtAuthGuard)
   @Post(&#x27;block-user/:id&#x27;)
   blockUser(@Request() req, @Param(&#x27;id&#x27;) id: string, @Res() res: Response) {
@@ -330,6 +366,12 @@ export class BlockController {
       });
   }
 
+  /**
+   * Unblock a user
+   * @param req the request object
+   * @param id the id of the user to unblock
+   * @param res the response object
+   */
   @UseGuards(JwtAuthGuard)
   @Post(&#x27;unblock-user/:id&#x27;)
   unblockUser(@Request() req, @Param(&#x27;id&#x27;) id: string, @Res() res: Response) {

@@ -1,0 +1,1532 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>atlas-backend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">atlas-backend documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li >EventService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/modules/event/event.service.ts</code>
+        </p>
+
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createEvent" >createEvent</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#deleteEventById" >deleteEventById</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getActiveEvents" >getActiveEvents</a>
+                            </li>
+                            <li>
+                                <a href="#getCoordinatesRadius" >getCoordinatesRadius</a>
+                            </li>
+                            <li>
+                                <a href="#getEventById" >getEventById</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getJoinedEvents" >getJoinedEvents</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getProximityClues" >getProximityClues</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getProximityEvents" >getProximityEvents</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getUserEvents" >getUserEvents</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#joinEvent" >joinEvent</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(eventRepository: <a href="../entitys/Event.html" target="_self">Repository&lt;Event&gt;</a>, eventGoalRepository: Repository<EventGoal>, eventClueRepository: Repository<EventClue>, userRepository: <a href="../entitys/User.html" target="_self">Repository&lt;User&gt;</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/modules/event/event.service.ts:14</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>eventRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/Event.html" target="_self" >Repository&lt;Event&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>eventGoalRepository</td>
+                                                  
+                                                        <td>
+                                                                    <code>Repository&lt;EventGoal&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>eventClueRepository</td>
+                                                  
+                                                        <td>
+                                                                    <code>Repository&lt;EventClue&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>userRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/User.html" target="_self" >Repository&lt;User&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createEvent"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>createEvent</b></span>
+                        <a href="#createEvent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createEvent(user: <a href="../entitys/User.html" target="_self">User</a>, createEventDto: <a href="../classes/CreateEventDto.html" target="_self">CreateEventDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/modules/event/event.service.ts:35</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Creates a new event</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="../entitys/User.html" target="_self" >User</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the user who is creating the event</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>createEventDto</td>
+                                    <td>
+                                                <code><a href="../classes/CreateEventDto.html" target="_self" >CreateEventDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the event data</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/Event.html" target="_self" >Promise&lt;Event&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>the created event</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteEventById"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>deleteEventById</b></span>
+                        <a href="#deleteEventById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteEventById(user: <a href="../entitys/User.html" target="_self">User</a>, eventId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="189"
+                            class="link-to-prism">src/modules/event/event.service.ts:189</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Owner of event deletes the event</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="../entitys/User.html" target="_self" >User</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the user who created the event</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>eventId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the id of the event</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;DeleteResult&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>the delete operation results</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getActiveEvents"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getActiveEvents</b></span>
+                        <a href="#getActiveEvents"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getActiveEvents(pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="298"
+                            class="link-to-prism">src/modules/event/event.service.ts:298</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Gets list of currently active events</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the page options</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;Event&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>the active events</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCoordinatesRadius"></a>
+                    <span class="name">
+                        <span ><b>getCoordinatesRadius</b></span>
+                        <a href="#getCoordinatesRadius"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getCoordinatesRadius(lat: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, lon: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="278"
+                            class="link-to-prism">src/modules/event/event.service.ts:278</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Gets the radius of 100m around the user</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>lat</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the latitude of the user</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>lon</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the longitude of the user</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getEventById"></a>
+                    <span class="name">
+                        <span ><b>getEventById</b></span>
+                        <a href="#getEventById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getEventById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="84"
+                            class="link-to-prism">src/modules/event/event.service.ts:84</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Gets an Event by its id</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the id of the event</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/Event.html" target="_self" >Promise&lt;Event&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>the event with the given id</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getJoinedEvents"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getJoinedEvents</b></span>
+                        <a href="#getJoinedEvents"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getJoinedEvents(user: <a href="../entitys/User.html" target="_self">User</a>, pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="212"
+                            class="link-to-prism">src/modules/event/event.service.ts:212</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Gets the events that the user has joined</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="../entitys/User.html" target="_self" >User</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the user requesting the events</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the page options</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;Event&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>the events that the user has joined</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getProximityClues"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getProximityClues</b></span>
+                        <a href="#getProximityClues"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getProximityClues(user: <a href="../entitys/User.html" target="_self">User</a>, body: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="160"
+                            class="link-to-prism">src/modules/event/event.service.ts:160</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The user gets the clues for the event they are in</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="../entitys/User.html" target="_self" >User</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the user who is in the event</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>body</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the body of the request, containing the latitude and longitude of the user</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;EventClue[]&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>the clues that are within a 100m radius of the user</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getProximityEvents"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getProximityEvents</b></span>
+                        <a href="#getProximityEvents"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getProximityEvents(user: <a href="../entitys/User.html" target="_self">User</a>, body: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="97"
+                            class="link-to-prism">src/modules/event/event.service.ts:97</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Gets the proximity events for a user</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="../entitys/User.html" target="_self" >User</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the user who is creating the event</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>body</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the body of the request, containing the latitude and longitude of the user</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/Event.html" target="_self" >Promise&lt;Event[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>the events that are within a 100m radius of the user</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getUserEvents"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getUserEvents</b></span>
+                        <a href="#getUserEvents"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getUserEvents(user: <a href="../entitys/User.html" target="_self">User</a>, pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="245"
+                            class="link-to-prism">src/modules/event/event.service.ts:245</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Gets the events that the user has created</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="../entitys/User.html" target="_self" >User</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the user requesting the events</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the page options</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;Event&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>the events that the user has created</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="joinEvent"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>joinEvent</b></span>
+                        <a href="#joinEvent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>joinEvent(user: <a href="../entitys/User.html" target="_self">User</a>, eventId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="129"
+                            class="link-to-prism">src/modules/event/event.service.ts:129</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>A User Joins an Event</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="../entitys/User.html" target="_self" >User</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the user who is joining the event</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>eventId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the id of the event</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/Event.html" target="_self" >Promise&lt;Event&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>the event that the user joined</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpException, HttpStatus, Injectable } from &#x27;@nestjs/common&#x27;;
+import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
+import { PageMetaDto } from &#x27;../../common/dto/page-meta.dto&#x27;;
+import { PageOptionsDto } from &#x27;../../common/dto/page-options.dto&#x27;;
+import { PageDto } from &#x27;../../common/dto/page.dto&#x27;;
+import { DeleteResult, LessThan, MoreThan, Repository } from &#x27;typeorm&#x27;;
+import { User } from &#x27;../user/entities/user.entity&#x27;;
+import { CreateEventDto } from &#x27;./dto/create-event.dto&#x27;;
+import { Event } from &#x27;./entities/event.entity&#x27;;
+import { EventClue } from &#x27;./entities/eventClues.entity&#x27;;
+import { EventGoal } from &#x27;./entities/eventGoal.entity&#x27;;
+
+@Injectable()
+export class EventService {
+  constructor(
+    @InjectRepository(Event)
+    private eventRepository: Repository&lt;Event&gt;,
+
+    @InjectRepository(EventGoal)
+    private eventGoalRepository: Repository&lt;EventGoal&gt;,
+
+    @InjectRepository(EventClue)
+    private eventClueRepository: Repository&lt;EventClue&gt;,
+
+    @InjectRepository(User)
+    private userRepository: Repository&lt;User&gt;
+  ) {}
+
+  /**
+   * Creates a new event
+   * @param user the user who is creating the event
+   * @param createEventDto the event data
+   * @returns the created event
+   */
+  async createEvent(user: User, createEventDto: CreateEventDto): Promise&lt;Event&gt; {
+    const newEvent &#x3D; new Event();
+    newEvent.name &#x3D; createEventDto.name;
+    newEvent.description &#x3D; createEventDto.description;
+    newEvent.numberOfParticipants &#x3D; createEventDto.numberOfParticipants;
+    newEvent.latitude &#x3D; createEventDto.latitude;
+    newEvent.longitude &#x3D; createEventDto.longitude;
+    newEvent.visibility &#x3D; createEventDto.visibility;
+    newEvent.date &#x3D; createEventDto.date;
+    newEvent.creator &#x3D; user;
+
+    const eventGoal &#x3D; new EventGoal();
+    eventGoal.text &#x3D; createEventDto.goal.text;
+    eventGoal.latitude &#x3D; createEventDto.goal.latitude;
+    eventGoal.longitude &#x3D; createEventDto.goal.longitude;
+    eventGoal.creator &#x3D; user;
+
+    const dbEventGoal &#x3D; await this.eventGoalRepository.save(eventGoal);
+    newEvent.goal &#x3D; dbEventGoal;
+
+    const dbEvent &#x3D; await this.eventRepository.save(newEvent);
+
+    dbEventGoal.event &#x3D; dbEvent;
+
+    await this.eventGoalRepository.save(dbEventGoal);
+
+    for (let i &#x3D; 0; i &lt; createEventDto.clues.length; i++) {
+      const eventClue &#x3D; new EventClue();
+      eventClue.text &#x3D; createEventDto.clues[i].text;
+      eventClue.latitude &#x3D; createEventDto.clues[i].latitude;
+      eventClue.longitude &#x3D; createEventDto.clues[i].longitude;
+      eventClue.creator &#x3D; user;
+      eventClue.date &#x3D; dbEvent.date;
+      eventClue.event &#x3D; dbEvent;
+
+      await this.eventClueRepository.save(eventClue);
+    }
+
+    return this.eventRepository.findOne({
+      where: { id: dbEvent.id },
+      relations: [&#x27;clues&#x27;, &#x27;goal&#x27;, &#x27;creator&#x27;, &#x27;participants&#x27;]
+    });
+  }
+
+  /**
+   * Gets an Event by its id
+   * @param id the id of the event
+   * @returns the event with the given id
+   */
+  getEventById(id: string): Promise&lt;Event&gt; {
+    return this.eventRepository.findOne({
+      where: { id },
+      relations: [&#x27;clues&#x27;, &#x27;goal&#x27;, &#x27;creator&#x27;, &#x27;participants&#x27;]
+    });
+  }
+
+  /**
+   * Gets the proximity events for a user
+   * @param user the user who is creating the event
+   * @param body the body of the request, containing the latitude and longitude of the user
+   * @returns the events that are within a 100m radius of the user
+   */
+  async getProximityEvents(user: User, body: any): Promise&lt;Event[]&gt; {
+    const [minLat, maxLat, minLon, maxLon] &#x3D; this.getCoordinatesRadius(
+      body.latitude,
+      body.longitude
+    );
+
+    return this.eventRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect(&#x27;Event.participants&#x27;, &#x27;Participants&#x27;)
+      .leftJoinAndSelect(&#x27;Event.clues&#x27;, &#x27;Clues&#x27;)
+      .leftJoinAndSelect(&#x27;Event.goal&#x27;, &#x27;Goal&#x27;)
+      .leftJoinAndSelect(&#x27;Event.creator&#x27;, &#x27;Creator&#x27;)
+      .where({
+        longitude: MoreThan(minLon),
+        latitude: MoreThan(minLat)
+      })
+      .andWhere({
+        longitude: LessThan(maxLon),
+        latitude: LessThan(maxLat)
+      })
+      .andWhere({
+        date: MoreThan(new Date(Date.now() - 604800000))
+      })
+      .getMany();
+  }
+
+  /**
+   * A User Joins an Event
+   * @param user the user who is joining the event
+   * @param eventId the id of the event
+   * @returns the event that the user joined
+   */
+  async joinEvent(user: User, eventId: string): Promise&lt;Event&gt; {
+    const event &#x3D; await this.eventRepository.findOne({
+      where: { id: eventId },
+      relations: [&#x27;clues&#x27;, &#x27;goal&#x27;, &#x27;creator&#x27;, &#x27;participants&#x27;]
+    });
+
+    if (!event) {
+      throw new HttpException(&#x27;Event not found&#x27;, HttpStatus.NOT_FOUND);
+    }
+
+    if (event.participants.length &gt;&#x3D; event.numberOfParticipants) {
+      throw new HttpException(&#x27;Event is full&#x27;, HttpStatus.BAD_REQUEST);
+    }
+
+    if (event.participants.some((p) &#x3D;&gt; p.id &#x3D;&#x3D;&#x3D; user.id)) {
+      throw new HttpException(&#x27;User already joined event&#x27;, HttpStatus.BAD_REQUEST);
+    }
+
+    event.participants.push(user);
+
+    await this.eventRepository.save(event);
+
+    return event;
+  }
+
+  /**
+   * The user gets the clues for the event they are in
+   * @param user the user who is in the event
+   * @param body the body of the request, containing the latitude and longitude of the user
+   * @returns the clues that are within a 100m radius of the user
+   */
+  async getProximityClues(user: User, body: any): Promise&lt;EventClue[]&gt; {
+    const [minLat, maxLat, minLon, maxLon] &#x3D; this.getCoordinatesRadius(
+      body.latitude,
+      body.longitude
+    );
+
+    return this.eventClueRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect(&#x27;EventClue.event&#x27;, &#x27;Event&#x27;)
+      .leftJoinAndSelect(&#x27;Event.participants&#x27;, &#x27;Participants&#x27;)
+      .where({
+        longitude: MoreThan(minLon),
+        latitude: MoreThan(minLat)
+      })
+      .andWhere({
+        longitude: LessThan(maxLon),
+        latitude: LessThan(maxLat)
+      })
+      .andWhere({ date: MoreThan(new Date(Date.now() - 604800000)) })
+      .andWhere(&#x27;Participants.id &#x3D; :id&#x27;, { id: user.id })
+      .getMany();
+  }
+
+  /**
+   * Owner of event deletes the event
+   * @param user the user who created the event
+   * @param eventId the id of the event
+   * @returns the delete operation results
+   */
+  async deleteEventById(user: User, eventId: string): Promise&lt;DeleteResult&gt; {
+    const event &#x3D; await this.eventRepository.findOne({
+      where: { id: eventId },
+      relations: [&#x27;clues&#x27;, &#x27;goal&#x27;, &#x27;creator&#x27;, &#x27;participants&#x27;]
+    });
+
+    if (!event) {
+      throw new HttpException(&#x27;Event not found&#x27;, HttpStatus.NOT_FOUND);
+    }
+
+    if (event.creator.id !&#x3D;&#x3D; user.id) {
+      throw new HttpException(&#x27;User is not creator of event&#x27;, HttpStatus.BAD_REQUEST);
+    }
+
+    return this.eventRepository.delete({ id: eventId });
+  }
+
+  /**
+   * Gets the events that the user has joined
+   * @param user the user requesting the events
+   * @param pageOptionsDto the page options
+   * @returns the events that the user has joined
+   */
+  async getJoinedEvents(user: User, pageOptionsDto: PageOptionsDto): Promise&lt;PageDto&lt;Event&gt;&gt; {
+    const queryResults &#x3D; await this.eventRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect(&#x27;Event.creator&#x27;, &#x27;Creator&#x27;)
+      .leftJoinAndSelect(&#x27;Event.participants&#x27;, &#x27;Participants&#x27;)
+      .leftJoinAndSelect(&#x27;Event.clues&#x27;, &#x27;Clues&#x27;)
+      .leftJoinAndSelect(&#x27;Event.goal&#x27;, &#x27;Goal&#x27;)
+      .where(&#x27;Participants.id &#x3D; :id&#x27;, { id: user.id })
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.take)
+      .orderBy(&#x27;Event.createdAt&#x27;, &#x27;DESC&#x27;)
+      .getManyAndCount()
+      .then((userEventsAndCount) &#x3D;&gt; {
+        return {
+          items: userEventsAndCount[0],
+          itemsCount: userEventsAndCount[1]
+        };
+      });
+
+    const itemCount: number &#x3D; queryResults.itemsCount;
+    const entities: Event[] &#x3D; queryResults.items;
+
+    const pageMetaDto: PageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  /**
+   * Gets the events that the user has created
+   * @param user the user requesting the events
+   * @param pageOptionsDto the page options
+   * @returns the events that the user has created
+   */
+  async getUserEvents(user: User, pageOptionsDto: PageOptionsDto): Promise&lt;PageDto&lt;Event&gt;&gt; {
+    const queryResults &#x3D; await this.eventRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect(&#x27;Event.creator&#x27;, &#x27;Creator&#x27;)
+      .leftJoinAndSelect(&#x27;Event.participants&#x27;, &#x27;Participants&#x27;)
+      .leftJoinAndSelect(&#x27;Event.clues&#x27;, &#x27;Clues&#x27;)
+      .leftJoinAndSelect(&#x27;Event.goal&#x27;, &#x27;Goal&#x27;)
+      .where(&#x27;Creator.id &#x3D; :id&#x27;, { id: user.id })
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.take)
+      .orderBy(&#x27;Event.createdAt&#x27;, &#x27;DESC&#x27;)
+      .getManyAndCount()
+      .then((userEventsAndCount) &#x3D;&gt; {
+        return {
+          items: userEventsAndCount[0],
+          itemsCount: userEventsAndCount[1]
+        };
+      });
+
+    const itemCount: number &#x3D; queryResults.itemsCount;
+    const entities: Event[] &#x3D; queryResults.items;
+
+    const pageMetaDto: PageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  /**
+   * Gets the radius of 100m around the user
+   * @param lat the latitude of the user
+   * @param lon the longitude of the user
+   * @returns the coordinates of the square that is 100m around the user
+   */
+  getCoordinatesRadius(lat: number, lon: number): [number, number, number, number] {
+    const earthRadius &#x3D; 6378137; // Earth&#x27;s radius in meters
+    const radius &#x3D; 100; // 100-meter radius
+
+    const latDiff &#x3D; (radius / earthRadius) * (180 / Math.PI);
+    const lonDiff &#x3D; ((radius / earthRadius) * (180 / Math.PI)) / Math.cos((lat * Math.PI) / 180);
+
+    const minLat &#x3D; lat - latDiff;
+    const maxLat &#x3D; lat + latDiff;
+    const minLon &#x3D; lon - lonDiff;
+    const maxLon &#x3D; lon + lonDiff;
+
+    return [minLat, maxLat, minLon, maxLon];
+  }
+
+  /**
+   * Gets list of currently active events
+   * @param pageOptionsDto the page options
+   * @returns the active events
+   */
+  async getActiveEvents(pageOptionsDto: PageOptionsDto): Promise&lt;PageDto&lt;Event&gt;&gt; {
+    const queryResults &#x3D; await this.eventRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect(&#x27;Event.creator&#x27;, &#x27;Creator&#x27;)
+      .leftJoinAndSelect(&#x27;Event.participants&#x27;, &#x27;Participants&#x27;)
+      .leftJoinAndSelect(&#x27;Event.clues&#x27;, &#x27;Clues&#x27;)
+      .leftJoinAndSelect(&#x27;Event.goal&#x27;, &#x27;Goal&#x27;)
+      .where({ date: MoreThan(new Date(Date.now() - 604800000)) })
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.take)
+      .orderBy(&#x27;Event.createdAt&#x27;, &#x27;DESC&#x27;)
+      .getManyAndCount()
+      .then((userEventsAndCount) &#x3D;&gt; {
+        return {
+          items: userEventsAndCount[0],
+          itemsCount: userEventsAndCount[1]
+        };
+      });
+
+    const itemCount: number &#x3D; queryResults.itemsCount;
+    const entities: Event[] &#x3D; queryResults.items;
+
+    const pageMetaDto: PageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'EventService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

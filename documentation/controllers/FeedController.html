@@ -130,14 +130,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="13"
-                            class="link-to-prism">src/modules/feed/feed.controller.ts:13</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/modules/feed/feed.controller.ts:19</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Gets the feed</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -148,6 +150,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -161,6 +164,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the request object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>res</td>
@@ -173,6 +180,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the response object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>pageOptionsDto</td>
@@ -185,6 +196,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the page options</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -210,12 +225,18 @@
 import { JwtAuthGuard } from &#x27;../auth/guards/jwt-auth.guard&#x27;;
 import { Response } from &#x27;express&#x27;;
 import { FeedService } from &#x27;./feed.service&#x27;;
-import { PageOptionsDto } from &#x27;src/common/dto/page-options.dto&#x27;;
+import { PageOptionsDto } from &#x27;../../common/dto/page-options.dto&#x27;;
 
 @Controller(&#x27;feed&#x27;)
 export class FeedController {
   constructor(private feedService: FeedService) {}
 
+  /**
+   * Gets the feed
+   * @param req the request object
+   * @param res the response object
+   * @param pageOptionsDto the page options
+   */
   @UseGuards(JwtAuthGuard)
   @Get()
   getFeed(@Request() req, @Res() res: Response, @Query() pageOptionsDto: PageOptionsDto) {

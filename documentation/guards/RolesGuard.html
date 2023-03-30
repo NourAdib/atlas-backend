@@ -226,8 +226,8 @@
         <div class="tab-pane fade  tab-source-code" id="c-source">
             <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, CanActivate, ExecutionContext } from &#x27;@nestjs/common&#x27;;
 import { Reflector } from &#x27;@nestjs/core&#x27;;
-import { Role } from &#x27;src/constants/role.enum&#x27;;
-import { ROLES_KEY } from &#x27;src/decorators/roles.decorator&#x27;;
+import { Role } from &#x27;../../../constants/role.enum&#x27;;
+import { ROLES_KEY } from &#x27;../../../decorators/roles.decorator&#x27;;
 
 @Injectable()
 export class RolesGuard implements CanActivate {

@@ -84,6 +84,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#getAdminPostAnalytics" >getAdminPostAnalytics</a>
+                            </li>
+                            <li>
                                 <a href="#getPostAnalytics" >getPostAnalytics</a>
                             </li>
                         </ul>
@@ -107,6 +110,119 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="getAdminPostAnalytics"></a>
+                    <span class="name">
+                        <span ><b>getAdminPostAnalytics</b></span>
+                        <a href="#getAdminPostAnalytics"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getAdminPostAnalytics(req, postId, res: Response)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@UseGuards(JwtAuthGuard, RolesGuard)<br />@Get(&#x27;admin/post/:id&#x27;)<br />@Roles(Role.Admin)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/modules/analytics/analytics.controller.ts:25</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This API is only accessible to admins and allows them to view the analytics of any post</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>req</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the request object</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>postId</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the id of the post</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>res</td>
+                                    <td>
+                                            <code>Response</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the response object</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getPostAnalytics"></a>
                     <span class="name">
                         <span ><b>getPostAnalytics</b></span>
@@ -124,20 +240,22 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@UseGuards(JwtAuthGuard)<br />@Get(&#x27;post/:id&#x27;)<br /></code>
+                    <code>@UseGuards(JwtAuthGuard, SubscriptionsGuard)<br />@Get(&#x27;post/:id&#x27;)<br />@SubscriptionPlans(SubscriptionPlan.Premium)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="12"
-                            class="link-to-prism">src/modules/analytics/analytics.controller.ts:12</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="45"
+                            class="link-to-prism">src/modules/analytics/analytics.controller.ts:45</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>This API is only accessible to premium user and allows them to view the analytics of only their post</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -148,6 +266,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -161,6 +280,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the request object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>postId</td>
@@ -172,6 +295,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the id of the post</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>res</td>
@@ -184,6 +311,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the response object</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -209,13 +340,46 @@
 import { JwtAuthGuard } from &#x27;../auth/guards/jwt-auth.guard&#x27;;
 import { AnalyticsService } from &#x27;./analytics.service&#x27;;
 import { Response } from &#x27;express&#x27;;
+import { SubscriptionPlan } from &#x27;../../constants/subscription-plan.enum&#x27;;
+import { SubscriptionPlans } from &#x27;../../decorators/subscription.decorator&#x27;;
+import { SubscriptionsGuard } from &#x27;../auth/guards/subscriptions.guard&#x27;;
+import { RolesGuard } from &#x27;../auth/guards/roles.guard&#x27;;
+import { Roles } from &#x27;../../decorators/roles.decorator&#x27;;
+import { Role } from &#x27;../../constants/role.enum&#x27;;
 
 @Controller(&#x27;analytics&#x27;)
 export class AnalyticsController {
   constructor(private analyticsService: AnalyticsService) {}
 
-  @UseGuards(JwtAuthGuard)
+  /**
+   * This API is only accessible to admins and allows them to view the analytics of any post
+   * @param req the request object
+   * @param postId the id of the post
+   * @param res the response object
+   */
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Get(&#x27;admin/post/:id&#x27;)
+  @Roles(Role.Admin)
+  getAdminPostAnalytics(@Request() req, @Param(&#x27;id&#x27;) postId, @Res() res: Response) {
+    this.analyticsService
+      .getAdminPostAnalytics(req.user, postId)
+      .then((analytics) &#x3D;&gt; {
+        return res.status(HttpStatus.OK).json(analytics);
+      })
+      .catch((err) &#x3D;&gt; {
+        return res.status(err.status).json({ message: err.message });
+      });
+  }
+
+  /**
+   * This API is only accessible to premium user and allows them to view the analytics of only their post
+   * @param req the request object
+   * @param postId the id of the post
+   * @param res the response object
+   */
+  @UseGuards(JwtAuthGuard, SubscriptionsGuard)
   @Get(&#x27;post/:id&#x27;)
+  @SubscriptionPlans(SubscriptionPlan.Premium)
   getPostAnalytics(@Request() req, @Param(&#x27;id&#x27;) postId, @Res() res: Response) {
     this.analyticsService
       .getPostAnalytics(req.user, postId)

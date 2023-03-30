@@ -66,7 +66,7 @@
             <p class="comment">
                 <p>User Entity Class is the class that represents the User table in the database
 This is how we interact with the database table in the application
-No need for SQL quesries</p>
+No need for SQL queries</p>
 
             </p>
 
@@ -102,6 +102,9 @@ No need for SQL quesries</p>
                                 <a href="#blocks" >blocks</a>
                             </li>
                             <li>
+                                <a href="#cluesCreated" >cluesCreated</a>
+                            </li>
+                            <li>
                                 <a href="#comments" >comments</a>
                             </li>
                             <li>
@@ -109,6 +112,12 @@ No need for SQL quesries</p>
                             </li>
                             <li>
                                 <a href="#email" >email</a>
+                            </li>
+                            <li>
+                                <a href="#eventsAttended" >eventsAttended</a>
+                            </li>
+                            <li>
+                                <a href="#eventsCreated" >eventsCreated</a>
                             </li>
                             <li>
                                 <a href="#fcmToken" >fcmToken</a>
@@ -138,6 +147,9 @@ No need for SQL quesries</p>
                                 <a href="#gender" >gender</a>
                             </li>
                             <li>
+                                <a href="#goalsCreated" >goalsCreated</a>
+                            </li>
+                            <li>
                                 <a href="#hasStripAccount" >hasStripAccount</a>
                             </li>
                             <li>
@@ -151,6 +163,9 @@ No need for SQL quesries</p>
                             </li>
                             <li>
                                 <a href="#likes" >likes</a>
+                            </li>
+                            <li>
+                                <a href="#memories" >memories</a>
                             </li>
                             <li>
                                 <a href="#notificationPreference" >notificationPreference</a>
@@ -248,7 +263,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/modules/user/entities/user.entity.ts:57</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/modules/user/entities/user.entity.ts:60</a></div>
                         </td>
                     </tr>
 
@@ -283,7 +298,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/modules/user/entities/user.entity.ts:133</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/modules/user/entities/user.entity.ts:136</a></div>
                         </td>
                     </tr>
 
@@ -318,7 +333,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/modules/user/entities/user.entity.ts:125</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/modules/user/entities/user.entity.ts:128</a></div>
                         </td>
                     </tr>
 
@@ -358,7 +373,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/modules/user/entities/user.entity.ts:102</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/modules/user/entities/user.entity.ts:105</a></div>
                         </td>
                     </tr>
 
@@ -393,7 +408,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/modules/user/entities/user.entity.ts:141</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/modules/user/entities/user.entity.ts:144</a></div>
                         </td>
                     </tr>
 
@@ -428,7 +443,42 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/modules/user/entities/user.entity.ts:137</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/modules/user/entities/user.entity.ts:140</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cluesCreated"></a>
+                    <span class="name">
+                        <span ><b>cluesCreated</b></span>
+                        <a href="#cluesCreated"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventClue[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @OneToMany(undefined, clue &#x3D;&gt; clue.creator)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="180" class="link-to-prism">src/modules/user/entities/user.entity.ts:180</a></div>
                         </td>
                     </tr>
 
@@ -463,7 +513,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/modules/user/entities/user.entity.ts:129</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/modules/user/entities/user.entity.ts:132</a></div>
                         </td>
                     </tr>
 
@@ -498,7 +548,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/modules/user/entities/user.entity.ts:60</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/modules/user/entities/user.entity.ts:63</a></div>
                         </td>
                     </tr>
 
@@ -533,7 +583,77 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/modules/user/entities/user.entity.ts:45</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/modules/user/entities/user.entity.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="eventsAttended"></a>
+                    <span class="name">
+                        <span ><b>eventsAttended</b></span>
+                        <a href="#eventsAttended"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../entitys/Event.html" target="_self" >Event[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ManyToMany(undefined, event &#x3D;&gt; event.participants)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="176" class="link-to-prism">src/modules/user/entities/user.entity.ts:176</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="eventsCreated"></a>
+                    <span class="name">
+                        <span ><b>eventsCreated</b></span>
+                        <a href="#eventsCreated"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../entitys/Event.html" target="_self" >Event[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @OneToMany(undefined, event &#x3D;&gt; event.creator)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">src/modules/user/entities/user.entity.ts:172</a></div>
                         </td>
                     </tr>
 
@@ -573,7 +693,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/modules/user/entities/user.entity.ts:78</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/modules/user/entities/user.entity.ts:81</a></div>
                         </td>
                     </tr>
 
@@ -608,7 +728,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/modules/user/entities/user.entity.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/modules/user/entities/user.entity.ts:42</a></div>
                         </td>
                     </tr>
 
@@ -643,7 +763,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/modules/user/entities/user.entity.ts:149</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/modules/user/entities/user.entity.ts:152</a></div>
                         </td>
                     </tr>
 
@@ -683,7 +803,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/modules/user/entities/user.entity.ts:96</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/modules/user/entities/user.entity.ts:99</a></div>
                         </td>
                     </tr>
 
@@ -718,7 +838,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/modules/user/entities/user.entity.ts:145</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/modules/user/entities/user.entity.ts:148</a></div>
                         </td>
                     </tr>
 
@@ -758,7 +878,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/modules/user/entities/user.entity.ts:99</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/modules/user/entities/user.entity.ts:102</a></div>
                         </td>
                     </tr>
 
@@ -793,7 +913,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/modules/user/entities/user.entity.ts:157</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/modules/user/entities/user.entity.ts:160</a></div>
                         </td>
                     </tr>
 
@@ -828,7 +948,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/modules/user/entities/user.entity.ts:153</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/modules/user/entities/user.entity.ts:156</a></div>
                         </td>
                     </tr>
 
@@ -868,7 +988,42 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/modules/user/entities/user.entity.ts:75</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/modules/user/entities/user.entity.ts:78</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goalsCreated"></a>
+                    <span class="name">
+                        <span ><b>goalsCreated</b></span>
+                        <a href="#goalsCreated"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventGoal[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @OneToMany(undefined, goal &#x3D;&gt; goal.creator)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">src/modules/user/entities/user.entity.ts:184</a></div>
                         </td>
                     </tr>
 
@@ -908,7 +1063,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/modules/user/entities/user.entity.ts:87</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/modules/user/entities/user.entity.ts:90</a></div>
                         </td>
                     </tr>
 
@@ -943,7 +1098,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/modules/user/entities/user.entity.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/modules/user/entities/user.entity.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -983,7 +1138,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/modules/user/entities/user.entity.ts:84</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/modules/user/entities/user.entity.ts:87</a></div>
                         </td>
                     </tr>
 
@@ -1018,7 +1173,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/modules/user/entities/user.entity.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/modules/user/entities/user.entity.ts:45</a></div>
                         </td>
                     </tr>
 
@@ -1053,7 +1208,42 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="161" class="link-to-prism">src/modules/user/entities/user.entity.ts:161</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">src/modules/user/entities/user.entity.ts:164</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="memories"></a>
+                    <span class="name">
+                        <span ><b>memories</b></span>
+                        <a href="#memories"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../entitys/Memory.html" target="_self" >Memory[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @OneToMany(undefined, memory &#x3D;&gt; memory.user)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="168" class="link-to-prism">src/modules/user/entities/user.entity.ts:168</a></div>
                         </td>
                     </tr>
 
@@ -1093,7 +1283,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/modules/user/entities/user.entity.ts:81</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/modules/user/entities/user.entity.ts:84</a></div>
                         </td>
                     </tr>
 
@@ -1128,7 +1318,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/modules/user/entities/user.entity.ts:51</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/modules/user/entities/user.entity.ts:54</a></div>
                         </td>
                     </tr>
 
@@ -1163,7 +1353,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/modules/user/entities/user.entity.ts:54</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/modules/user/entities/user.entity.ts:57</a></div>
                         </td>
                     </tr>
 
@@ -1198,7 +1388,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/modules/user/entities/user.entity.ts:106</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/modules/user/entities/user.entity.ts:109</a></div>
                         </td>
                     </tr>
 
@@ -1233,7 +1423,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/modules/user/entities/user.entity.ts:72</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/modules/user/entities/user.entity.ts:75</a></div>
                         </td>
                     </tr>
 
@@ -1273,7 +1463,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/modules/user/entities/user.entity.ts:69</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/modules/user/entities/user.entity.ts:72</a></div>
                         </td>
                     </tr>
 
@@ -1313,7 +1503,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/modules/user/entities/user.entity.ts:66</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/modules/user/entities/user.entity.ts:69</a></div>
                         </td>
                     </tr>
 
@@ -1348,7 +1538,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/modules/user/entities/user.entity.ts:114</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/modules/user/entities/user.entity.ts:117</a></div>
                         </td>
                     </tr>
 
@@ -1383,7 +1573,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/modules/user/entities/user.entity.ts:118</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/modules/user/entities/user.entity.ts:121</a></div>
                         </td>
                     </tr>
 
@@ -1418,7 +1608,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/modules/user/entities/user.entity.ts:122</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/modules/user/entities/user.entity.ts:125</a></div>
                         </td>
                     </tr>
 
@@ -1453,7 +1643,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/modules/user/entities/user.entity.ts:63</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/modules/user/entities/user.entity.ts:66</a></div>
                         </td>
                     </tr>
 
@@ -1488,7 +1678,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/modules/user/entities/user.entity.ts:110</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/modules/user/entities/user.entity.ts:113</a></div>
                         </td>
                     </tr>
 
@@ -1528,7 +1718,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/modules/user/entities/user.entity.ts:90</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/modules/user/entities/user.entity.ts:93</a></div>
                         </td>
                     </tr>
 
@@ -1568,7 +1758,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/modules/user/entities/user.entity.ts:93</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/modules/user/entities/user.entity.ts:96</a></div>
                         </td>
                     </tr>
 
@@ -1603,7 +1793,7 @@ No need for SQL quesries</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/modules/user/entities/user.entity.ts:48</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/modules/user/entities/user.entity.ts:51</a></div>
                         </td>
                     </tr>
 
@@ -1622,7 +1812,7 @@ import {
   Column,
   BeforeInsert,
   OneToMany,
-  AfterLoad
+  ManyToMany
 } from &#x27;typeorm&#x27;;
 import { EncryptionService } from &#x27;../../../common/services/encryption.service&#x27;;
 import { Role } from &#x27;../../../constants/role.enum&#x27;;
@@ -1633,7 +1823,6 @@ import { PostReport } from &#x27;../../report/entities/post-report.entity&#x27;;
 import { UserReport } from &#x27;../../report/entities/user-report.entity&#x27;;
 import { Gender } from &#x27;../../../constants/gender.enum&#x27;;
 import { UserBan } from &#x27;../../report/entities/user-ban.entity&#x27;;
-import { FirebaseStorageService } from &#x27;../../../common/services/firebase-storage.service&#x27;;
 import { Appeal } from &#x27;../../appeals/entities/appeal.entity&#x27;;
 import { Block } from &#x27;../../block/entities/block.entity&#x27;;
 import { Follow } from &#x27;../../../modules/follow/entities/follow.entity&#x27;;
@@ -1641,11 +1830,15 @@ import { FollowRequest } from &#x27;../../../modules/follow/entities/follow-requ
 import { NotificationPreference } from &#x27;../../../constants/notification-preference.enum&#x27;;
 import { Like } from &#x27;../../post/entities/post-like.entity&#x27;;
 import { SubscriptionPlan } from &#x27;../../../constants/subscription-plan.enum&#x27;;
+import { Memory } from &#x27;../../memory/entities/memory.entity&#x27;;
+import { Event } from &#x27;../../../modules/event/entities/event.entity&#x27;;
+import { EventClue } from &#x27;../../../modules/event/entities/eventClues.entity&#x27;;
+import { EventGoal } from &#x27;../../../modules/event/entities/eventGoal.entity&#x27;;
 
 /**
  * User Entity Class is the class that represents the User table in the database
  * This is how we interact with the database table in the application
- * No need for SQL quesries
+ * No need for SQL queries
  */
 @Entity()
 export class User extends BaseEntity {
@@ -1776,6 +1969,26 @@ export class User extends BaseEntity {
   //A user can have many likes
   @OneToMany(() &#x3D;&gt; Like, (like) &#x3D;&gt; like.likedBy)
   likes: Like[];
+
+  //A user can make many memories
+  @OneToMany(() &#x3D;&gt; Memory, (memory) &#x3D;&gt; memory.user)
+  memories: Memory[];
+
+  //A user can make many events
+  @OneToMany(() &#x3D;&gt; Event, (event) &#x3D;&gt; event.creator)
+  eventsCreated: Event[];
+
+  //A user can attend many events
+  @ManyToMany(() &#x3D;&gt; Event, (event) &#x3D;&gt; event.participants)
+  eventsAttended: Event[];
+
+  //A user can make many clues
+  @OneToMany(() &#x3D;&gt; EventClue, (clue) &#x3D;&gt; clue.creator)
+  cluesCreated: EventClue[];
+
+  //A user can make many goals
+  @OneToMany(() &#x3D;&gt; EventGoal, (goal) &#x3D;&gt; goal.creator)
+  goalsCreated: EventGoal[];
 
   //This is a hook that will be executed before the user is inserted in the database
   @BeforeInsert()

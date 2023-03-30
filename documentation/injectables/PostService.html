@@ -107,6 +107,14 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#getFollowingScrapbooks" >getFollowingScrapbooks</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getFollowingScraps" >getFollowingScraps</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#getPostById" >getPostById</a>
                             </li>
                             <li>
@@ -158,7 +166,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(postRepository: <a href="../entitys/Post.html" target="_self">Repository&lt;Post&gt;</a>, scrapbookRepository: <a href="../entitys/Scrapbook.html" target="_self">Repository&lt;Scrapbook&gt;</a>, commentRepository: <a href="../entitys/Comment.html" target="_self">Repository&lt;Comment&gt;</a>, likeRepository: <a href="../entitys/Like.html" target="_self">Repository&lt;Like&gt;</a>)</code>
+<code>constructor(postRepository: <a href="../entitys/Post.html" target="_self">Repository&lt;Post&gt;</a>, scrapbookRepository: <a href="../entitys/Scrapbook.html" target="_self">Repository&lt;Scrapbook&gt;</a>, commentRepository: <a href="../entitys/Comment.html" target="_self">Repository&lt;Comment&gt;</a>, likeRepository: <a href="../entitys/Like.html" target="_self">Repository&lt;Like&gt;</a>, userRepository: <a href="../entitys/User.html" target="_self">Repository&lt;User&gt;</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -228,6 +236,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>userRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/User.html" target="_self" >Repository&lt;User&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -264,14 +284,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="278"
-                            class="link-to-prism">src/modules/post/post.service.ts:278</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="315"
+                            class="link-to-prism">src/modules/post/post.service.ts:315</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Adds a comment to a post</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -282,6 +304,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -296,6 +319,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the user sending the request</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>postId</td>
@@ -308,6 +335,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the id of the post</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>comment</td>
@@ -320,6 +351,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the comment to add</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -331,7 +366,8 @@
 
                     </div>
                     <div class="io-description">
-                        
+                        <p>the updated post</p>
+
                     </div>
                 </td>
             </tr>
@@ -359,14 +395,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="212"
-                            class="link-to-prism">src/modules/post/post.service.ts:212</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="230"
+                            class="link-to-prism">src/modules/post/post.service.ts:230</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Adds a post to a scrapbook</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -377,6 +415,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -391,6 +430,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the user sending the request</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>scrapbookId</td>
@@ -403,6 +446,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the id of the scrapbook</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>postId</td>
@@ -415,6 +462,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the id of the post</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -426,7 +477,8 @@
 
                     </div>
                     <div class="io-description">
-                        
+                        <p>the updated scrapbook</p>
+
                     </div>
                 </td>
             </tr>
@@ -452,8 +504,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">src/modules/post/post.service.ts:37</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/modules/post/post.service.ts:40</a></div>
                 </td>
             </tr>
 
@@ -547,8 +599,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">src/modules/post/post.service.ts:48</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="51"
+                            class="link-to-prism">src/modules/post/post.service.ts:51</a></div>
                 </td>
             </tr>
 
@@ -642,8 +694,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="85"
-                            class="link-to-prism">src/modules/post/post.service.ts:85</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="88"
+                            class="link-to-prism">src/modules/post/post.service.ts:88</a></div>
                 </td>
             </tr>
 
@@ -737,14 +789,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="365"
-                            class="link-to-prism">src/modules/post/post.service.ts:365</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="420"
+                            class="link-to-prism">src/modules/post/post.service.ts:420</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Deletes a comment by id</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -755,6 +809,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -769,6 +824,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the user sending the request</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>commentId</td>
@@ -781,6 +840,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the id of the comment</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -792,7 +855,8 @@
 
                     </div>
                     <div class="io-description">
-                        
+                        <p>the delete operation results</p>
+
                     </div>
                 </td>
             </tr>
@@ -820,14 +884,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="263"
-                            class="link-to-prism">src/modules/post/post.service.ts:263</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="293"
+                            class="link-to-prism">src/modules/post/post.service.ts:293</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Deletes a post by id</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -838,6 +904,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -852,6 +919,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the user sending the request</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>postId</td>
@@ -864,6 +935,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the id of the post</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -875,7 +950,230 @@
 
                     </div>
                     <div class="io-description">
+                        <p>the delete operation results</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getFollowingScrapbooks"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getFollowingScrapbooks</b></span>
+                        <a href="#getFollowingScrapbooks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getFollowingScrapbooks(user: <a href="../entitys/User.html" target="_self">User</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="560"
+                            class="link-to-prism">src/modules/post/post.service.ts:560</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Gets the scrapbooks of the user being followed</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
                         
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="../entitys/User.html" target="_self" >User</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the user sending the request</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the id of the user being followed</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the page options</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;Scrapbook&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>the scrapbooks</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getFollowingScraps"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getFollowingScraps</b></span>
+                        <a href="#getFollowingScraps"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getFollowingScraps(user: <a href="../entitys/User.html" target="_self">User</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="504"
+                            class="link-to-prism">src/modules/post/post.service.ts:504</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Gets the scraps of the user being followed</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="../entitys/User.html" target="_self" >User</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the user sending the request</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the is of the user being followed</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the page options</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;Post&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>the posts</p>
+
                     </div>
                 </td>
             </tr>
@@ -903,14 +1201,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="104"
-                            class="link-to-prism">src/modules/post/post.service.ts:104</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="112"
+                            class="link-to-prism">src/modules/post/post.service.ts:112</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Gets a post by id</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -921,6 +1221,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -935,6 +1236,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the id of the post</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -946,7 +1251,8 @@
 
                     </div>
                     <div class="io-description">
-                        
+                        <p>the post with the given id</p>
+
                     </div>
                 </td>
             </tr>
@@ -974,14 +1280,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="295"
-                            class="link-to-prism">src/modules/post/post.service.ts:295</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="338"
+                            class="link-to-prism">src/modules/post/post.service.ts:338</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>The comments for the given post</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -992,6 +1300,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1006,6 +1315,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the id of the post</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>pageOptionsDto</td>
@@ -1018,6 +1331,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the page options</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1029,7 +1346,8 @@
 
                     </div>
                     <div class="io-description">
-                        
+                        <p>the comments for the given post</p>
+
                     </div>
                 </td>
             </tr>
@@ -1055,8 +1373,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="204"
-                            class="link-to-prism">src/modules/post/post.service.ts:204</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="214"
+                            class="link-to-prism">src/modules/post/post.service.ts:214</a></div>
                 </td>
             </tr>
 
@@ -1134,14 +1452,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="324"
-                            class="link-to-prism">src/modules/post/post.service.ts:324</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="373"
+                            class="link-to-prism">src/modules/post/post.service.ts:373</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Gets the comments for the given user</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -1152,6 +1472,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1166,6 +1487,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the id of the user</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>pageOptionsDto</td>
@@ -1178,6 +1503,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the page options</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1189,7 +1518,8 @@
 
                     </div>
                     <div class="io-description">
-                        
+                        <p>the comments for the given user</p>
+
                     </div>
                 </td>
             </tr>
@@ -1217,8 +1547,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="146"
-                            class="link-to-prism">src/modules/post/post.service.ts:146</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="155"
+                            class="link-to-prism">src/modules/post/post.service.ts:155</a></div>
                 </td>
             </tr>
 
@@ -1310,8 +1640,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="175"
-                            class="link-to-prism">src/modules/post/post.service.ts:175</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="184"
+                            class="link-to-prism">src/modules/post/post.service.ts:184</a></div>
                 </td>
             </tr>
 
@@ -1403,14 +1733,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="380"
-                            class="link-to-prism">src/modules/post/post.service.ts:380</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="441"
+                            class="link-to-prism">src/modules/post/post.service.ts:441</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Likes a post</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -1421,6 +1753,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1435,6 +1768,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the user sending the request</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>postId</td>
@@ -1447,6 +1784,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the id of the post</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1458,7 +1799,8 @@
 
                     </div>
                     <div class="io-description">
-                        
+                        <p>the like</p>
+
                     </div>
                 </td>
             </tr>
@@ -1486,14 +1828,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="238"
-                            class="link-to-prism">src/modules/post/post.service.ts:238</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="262"
+                            class="link-to-prism">src/modules/post/post.service.ts:262</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Removes a post from a scrapbook</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -1504,6 +1848,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1518,6 +1863,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the id of the scrapbook</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>postId</td>
@@ -1530,6 +1879,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the id of the post</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1541,7 +1894,8 @@
 
                     </div>
                     <div class="io-description">
-                        
+                        <p>the updated scrapbook</p>
+
                     </div>
                 </td>
             </tr>
@@ -1569,14 +1923,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="403"
-                            class="link-to-prism">src/modules/post/post.service.ts:403</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="472"
+                            class="link-to-prism">src/modules/post/post.service.ts:472</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Unlikes a post</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -1587,6 +1943,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1601,6 +1958,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the user sending the request</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>postId</td>
@@ -1613,6 +1974,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the id of the post</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1624,7 +1989,8 @@
 
                     </div>
                     <div class="io-description">
-                        
+                        <p>the delete operation results</p>
+
                     </div>
                 </td>
             </tr>
@@ -1638,16 +2004,16 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpException, HttpStatus, Injectable } from &#x27;@nestjs/common&#x27;;
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
-import { FirebaseStorageService } from &#x27;src/common/services/firebase-storage.service&#x27;;
+import { FirebaseStorageService } from &#x27;../..//common/services/firebase-storage.service&#x27;;
 import { DeleteResult, Repository } from &#x27;typeorm&#x27;;
 import { User } from &#x27;../user/entities/user.entity&#x27;;
 import { CreateCommentDto } from &#x27;./dto/comment-create.dto&#x27;;
 import { Post } from &#x27;./entities/post.entity&#x27;;
 import { Scrapbook } from &#x27;./entities/scrapbook.entity&#x27;;
 import { Comment } from &#x27;./entities/comment.entity&#x27;;
-import { PageOptionsDto } from &#x27;src/common/dto/page-options.dto&#x27;;
-import { PageDto } from &#x27;src/common/dto/page.dto&#x27;;
-import { PageMetaDto } from &#x27;src/common/dto/page-meta.dto&#x27;;
+import { PageOptionsDto } from &#x27;../../common/dto/page-options.dto&#x27;;
+import { PageDto } from &#x27;../..//common/dto/page.dto&#x27;;
+import { PageMetaDto } from &#x27;../../common/dto/page-meta.dto&#x27;;
 import { Like } from &#x27;./entities/post-like.entity&#x27;;
 
 @Injectable()
@@ -1663,7 +2029,10 @@ export class PostService {
     private commentRepository: Repository&lt;Comment&gt;,
 
     @InjectRepository(Like)
-    private likeRepository: Repository&lt;Like&gt;
+    private likeRepository: Repository&lt;Like&gt;,
+
+    @InjectRepository(User)
+    private userRepository: Repository&lt;User&gt;
   ) {}
 
   /**
@@ -1739,6 +2108,11 @@ export class PostService {
     return this.scrapbookRepository.save(newScrapbook);
   }
 
+  /**
+   * Gets a post by id
+   * @param id the id of the post
+   * @returns the post with the given id
+   */
   async getPostById(id: string): Promise&lt;Post&gt; {
     const post &#x3D; await this.postRepository
       .createQueryBuilder()
@@ -1747,6 +2121,7 @@ export class PostService {
       .leftJoinAndSelect(&#x27;Comment.author&#x27;, &#x27;CommentUser&#x27;)
       .leftJoinAndSelect(&#x27;Post.likes&#x27;, &#x27;Like&#x27;)
       .leftJoinAndSelect(&#x27;Like.likedBy&#x27;, &#x27;LikeUser&#x27;)
+      .leftJoinAndSelect(&#x27;Post.scrapbook&#x27;, &#x27;Scrapbook&#x27;)
       .where(&#x27;Post.id &#x3D; :id&#x27;, { id: id })
       .getOne();
 
@@ -1814,6 +2189,7 @@ export class PostService {
     const queryResults &#x3D; await this.scrapbookRepository
       .createQueryBuilder()
       .leftJoinAndSelect(&#x27;Scrapbook.user&#x27;, &#x27;User&#x27;)
+      .leftJoinAndSelect(&#x27;Scrapbook.posts&#x27;, &#x27;Post&#x27;)
       .where(&#x27;User.id &#x3D; :id&#x27;, { id: user.id })
       .skip(pageOptionsDto.skip)
       .take(pageOptionsDto.take)
@@ -1843,10 +2219,18 @@ export class PostService {
     return this.scrapbookRepository
       .createQueryBuilder()
       .leftJoinAndSelect(&#x27;Scrapbook.posts&#x27;, &#x27;Post&#x27;)
+      .leftJoinAndSelect(&#x27;Scrapbook.user&#x27;, &#x27;User&#x27;)
       .where(&#x27;Scrapbook.id &#x3D; :id&#x27;, { id: id })
       .getOne();
   }
 
+  /**
+   * Adds a post to a scrapbook
+   * @param user the user sending the request
+   * @param scrapbookId the id of the scrapbook
+   * @param postId the id of the post
+   * @returns the updated scrapbook
+   */
   async addPostToScrapbook(user: any, scrapbookId: string, postId: string): Promise&lt;Scrapbook&gt; {
     const post &#x3D; await this.postRepository.findOneBy({ id: postId });
 
@@ -1873,6 +2257,12 @@ export class PostService {
     return await this.scrapbookRepository.save(scrapbook);
   }
 
+  /**
+   * Removes a post from a scrapbook
+   * @param scrapbookId the id of the scrapbook
+   * @param postId the id of the post
+   * @returns the updated scrapbook
+   */
   async removePostFromScrapbook(scrapbookId: string, postId: string): Promise&lt;Scrapbook&gt; {
     const scrapbook &#x3D; await this.scrapbookRepository
       .createQueryBuilder()
@@ -1898,6 +2288,12 @@ export class PostService {
     return await this.scrapbookRepository.save(scrapbook);
   }
 
+  /**
+   * Deletes a post by id
+   * @param user the user sending the request
+   * @param postId the id of the post
+   * @returns the delete operation results
+   */
   async deletePostById(user: any, postId: string): Promise&lt;DeleteResult&gt; {
     const dbPost &#x3D; await this.getPostById(postId).then((post) &#x3D;&gt; {
       return post;
@@ -1913,6 +2309,13 @@ export class PostService {
     return await this.postRepository.delete({ id: postId });
   }
 
+  /**
+   * Adds a comment to a post
+   * @param user the user sending the request
+   * @param postId the id of the post
+   * @param comment the comment to add
+   * @returns the updated post
+   */
   async addComment(user: any, postId: string, comment: CreateCommentDto): Promise&lt;Post&gt; {
     const post &#x3D; await this.getPostById(postId).then((post) &#x3D;&gt; {
       if (!post) {
@@ -1930,6 +2333,12 @@ export class PostService {
     });
   }
 
+  /**
+   * The comments for the given post
+   * @param postId the id of the post
+   * @param pageOptionsDto the page options
+   * @returns the comments for the given post
+   */
   async getPostComments(postId: string, pageOptionsDto: PageOptionsDto): Promise&lt;PageDto&lt;Comment&gt;&gt; {
     const queryResults &#x3D; await this.commentRepository
       .createQueryBuilder()
@@ -1959,6 +2368,12 @@ export class PostService {
     return new PageDto(entities, pageMetaDto);
   }
 
+  /**
+   * Gets the comments for the given user
+   * @param userId the id of the user
+   * @param pageOptionsDto the page options
+   * @returns the comments for the given user
+   */
   async getUserComments(userId: string, pageOptionsDto: PageOptionsDto): Promise&lt;PageDto&lt;Comment&gt;&gt; {
     const queryResults &#x3D; await this.commentRepository
       .createQueryBuilder()
@@ -2000,6 +2415,12 @@ export class PostService {
     return new PageDto(entities, pageMetaDto);
   }
 
+  /**
+   * Deletes a comment by id
+   * @param user the user sending the request
+   * @param commentId the id of the comment
+   * @returns the delete operation results
+   */
   async deleteComment(user: any, commentId: string): Promise&lt;DeleteResult&gt; {
     const comment &#x3D; await this.commentRepository
       .createQueryBuilder()
@@ -2015,6 +2436,12 @@ export class PostService {
     return await this.commentRepository.delete({ id: commentId });
   }
 
+  /**
+   * Likes a post
+   * @param user the user sending the request
+   * @param postId the id of the post
+   * @returns the like
+   */
   async likePost(user: any, postId: string): Promise&lt;Like&gt; {
     const post &#x3D; await this.getPostById(postId).then((post) &#x3D;&gt; {
       if (!post) {
@@ -2031,13 +2458,21 @@ export class PostService {
       throw new HttpException(&#x27;post already liked&#x27;, HttpStatus.BAD_REQUEST);
     }
 
+    const dbUser &#x3D; await this.userRepository.findOneBy({ id: user.id });
+
     const like &#x3D; new Like();
-    like.likedBy &#x3D; user;
+    like.likedBy &#x3D; dbUser;
     like.likedPost &#x3D; post;
 
     return this.likeRepository.save(like);
   }
 
+  /**
+   * Unlikes a post
+   * @param user the user sending the request
+   * @param postId the id of the post
+   * @returns the delete operation results
+   */
   async unlikePost(user: any, postId: string): Promise&lt;DeleteResult&gt; {
     const post &#x3D; await this.getPostById(postId).then((post) &#x3D;&gt; {
       if (!post) {
@@ -2061,6 +2496,119 @@ export class PostService {
         return this.likeRepository.delete({ id: post.likes[i].id });
       }
     }
+  }
+
+  /**
+   * Gets the scraps of the user being followed
+   * @param user the user sending the request
+   * @param id the is of the user being followed
+   * @param pageOptionsDto the page options
+   * @returns the posts
+   */
+  async getFollowingScraps(
+    user: User,
+    id: string,
+    pageOptionsDto: PageOptionsDto
+  ): Promise&lt;PageDto&lt;Post&gt;&gt; {
+    const visitedUser &#x3D; await this.userRepository.findOne({
+      where: { id: id },
+      relations: [&#x27;followers&#x27;, &#x27;followers.followedBy&#x27;]
+    });
+
+    if (!visitedUser) {
+      throw new HttpException(&#x27;user does not exist&#x27;, HttpStatus.BAD_REQUEST);
+    }
+
+    let isFollowingUser &#x3D; false;
+
+    visitedUser.followers.forEach((follower) &#x3D;&gt; {
+      if (follower.followedBy.id &#x3D;&#x3D;&#x3D; user.id) {
+        isFollowingUser &#x3D; true;
+      }
+    });
+
+    if (!isFollowingUser) {
+      throw new HttpException(&#x27;user is not followed&#x27;, HttpStatus.BAD_REQUEST);
+    }
+
+    const queryResults &#x3D; await this.postRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect(&#x27;Post.postedBy&#x27;, &#x27;User&#x27;)
+      .where(&#x27;User.id &#x3D; :id&#x27;, { id: id })
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.take)
+      .orderBy(&#x27;Post.createdAt&#x27;, &#x27;DESC&#x27;)
+      .getManyAndCount()
+      .then((userPostsAndCount) &#x3D;&gt; {
+        return {
+          items: userPostsAndCount[0],
+          itemsCount: userPostsAndCount[1]
+        };
+      });
+
+    const itemCount: number &#x3D; queryResults.itemsCount;
+    const entities: Post[] &#x3D; queryResults.items;
+
+    const pageMetaDto: PageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  /**
+   * Gets the scrapbooks of the user being followed
+   * @param user the user sending the request
+   * @param id the id of the user being followed
+   * @param pageOptionsDto the page options
+   * @returns the scrapbooks
+   */
+  async getFollowingScrapbooks(
+    user: User,
+    id: string,
+    pageOptionsDto: PageOptionsDto
+  ): Promise&lt;PageDto&lt;Scrapbook&gt;&gt; {
+    const visitedUser &#x3D; await this.userRepository.findOne({
+      where: { id: id },
+      relations: [&#x27;followers&#x27;, &#x27;followers.followedBy&#x27;]
+    });
+
+    if (!visitedUser) {
+      throw new HttpException(&#x27;user does not exist&#x27;, HttpStatus.BAD_REQUEST);
+    }
+
+    let isFollowingUser &#x3D; false;
+
+    visitedUser.followers.forEach((follower) &#x3D;&gt; {
+      if (follower.followedBy.id &#x3D;&#x3D;&#x3D; user.id) {
+        isFollowingUser &#x3D; true;
+      }
+    });
+
+    if (!isFollowingUser) {
+      throw new HttpException(&#x27;user is not followed&#x27;, HttpStatus.BAD_REQUEST);
+    }
+
+    const queryResults &#x3D; await this.scrapbookRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect(&#x27;Scrapbook.user&#x27;, &#x27;User&#x27;)
+      .leftJoinAndSelect(&#x27;Scrapbook.posts&#x27;, &#x27;Post&#x27;)
+      .where(&#x27;User.id &#x3D; :id&#x27;, { id: id })
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.take)
+      .orderBy(&#x27;Scrapbook.createdAt&#x27;, pageOptionsDto.order)
+      .getManyAndCount()
+      .then((userScrapbooksAndCount) &#x3D;&gt; {
+        return {
+          items: userScrapbooksAndCount[0],
+          itemsCount: userScrapbooksAndCount[1]
+        };
+      });
+
+    const itemCount: number &#x3D; queryResults.itemsCount;
+    const entities: Scrapbook[] &#x3D; queryResults.items;
+
+    const pageMetaDto: PageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
   }
 }
 </code></pre>

@@ -133,14 +133,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/modules/notification/notification.controller.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/modules/notification/notification.controller.ts:42</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Send a notification to users</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -151,6 +153,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -164,6 +167,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the request object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>res</td>
@@ -176,6 +183,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the response object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>body</td>
@@ -188,6 +199,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the body of the request</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -232,14 +247,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/modules/notification/notification.controller.ts:16</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">src/modules/notification/notification.controller.ts:22</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Sign up a user to receive notifications</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -250,6 +267,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -263,6 +281,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the request object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>res</td>
@@ -275,6 +297,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the response object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>fcmToken</td>
@@ -287,6 +313,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the fcm token</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -310,8 +340,8 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, UseGuards, Post, Res, Param, Request, HttpStatus, Body } from &#x27;@nestjs/common&#x27;;
 import { Response } from &#x27;express&#x27;;
-import { Role } from &#x27;src/constants/role.enum&#x27;;
-import { Roles } from &#x27;src/decorators/roles.decorator&#x27;;
+import { Role } from &#x27;../../constants/role.enum&#x27;;
+import { Roles } from &#x27;../../decorators/roles.decorator&#x27;;
 import { JwtAuthGuard } from &#x27;../auth/guards/jwt-auth.guard&#x27;;
 import { RolesGuard } from &#x27;../auth/guards/roles.guard&#x27;;
 import { SendNotificationDto } from &#x27;./dto/send-message.dto&#x27;;
@@ -321,6 +351,12 @@ import { NotificationService } from &#x27;./notification.service&#x27;;
 export class NotificationController {
   constructor(private notificationService: NotificationService) {}
 
+  /**
+   * Sign up a user to receive notifications
+   * @param req the request object
+   * @param res the response object
+   * @param fcmToken the fcm token
+   */
   @UseGuards(JwtAuthGuard)
   @Post(&#x27;signup/:fcmToken&#x27;)
   signup(@Request() req, @Res() res: Response, @Param(&#x27;fcmToken&#x27;) fcmToken: string) {
@@ -334,6 +370,12 @@ export class NotificationController {
       });
   }
 
+  /**
+   * Send a notification to users
+   * @param req the request object
+   * @param res the response object
+   * @param body the body of the request
+   */
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Post(&#x27;send&#x27;)
   @Roles(Role.Admin)

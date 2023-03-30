@@ -80,6 +80,10 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#getAdminPostAnalytics" >getAdminPostAnalytics</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#getPostAnalytics" >getPostAnalytics</a>
                             </li>
                         </ul>
@@ -164,6 +168,101 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="getAdminPostAnalytics"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getAdminPostAnalytics</b></span>
+                        <a href="#getAdminPostAnalytics"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAdminPostAnalytics(user: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, postId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/modules/analytics/analytics.service.ts:25</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Get the analytics of a post for an admin</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the user object</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>postId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the id of the post</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PostAnalyticResposneDto.html" target="_self" >Promise&lt;PostAnalyticResposneDto&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>the analytics of the post</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getPostAnalytics"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -182,14 +281,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">src/modules/analytics/analytics.service.ts:19</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">src/modules/analytics/analytics.service.ts:66</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Get the analytics of a post for a premium user</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -200,6 +301,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -214,6 +316,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the user object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>postId</td>
@@ -226,6 +332,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the id of the post</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -237,7 +347,8 @@
 
                     </div>
                     <div class="io-description">
-                        
+                        <p>the analytics of the post</p>
+
                     </div>
                 </td>
             </tr>
@@ -251,7 +362,7 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException, Injectable } from &#x27;@nestjs/common&#x27;;
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
-import { Role } from &#x27;src/constants/role.enum&#x27;;
+import { Role } from &#x27;../../constants/role.enum&#x27;;
 import { Repository } from &#x27;typeorm&#x27;;
 import { Post } from &#x27;../post/entities/post.entity&#x27;;
 import { User } from &#x27;../user/entities/user.entity&#x27;;
@@ -267,6 +378,53 @@ export class AnalyticsService {
     private userRepository: Repository&lt;User&gt;
   ) {}
 
+  /**
+   * Get the analytics of a post for an admin
+   * @param user the user object
+   * @param postId the id of the post
+   * @returns the analytics of the post
+   */
+  async getAdminPostAnalytics(user: any, postId: string): Promise&lt;PostAnalyticResposneDto&gt; {
+    const post &#x3D; await this.postRepository.findOne({
+      where: { id: postId },
+      relations: [&#x27;postedBy&#x27;, &#x27;reportsAgainst&#x27;, &#x27;scrapbook&#x27;, &#x27;comments&#x27;, &#x27;appeals&#x27;]
+    });
+
+    if (!post) {
+      throw new BadRequestException(&#x27;Post does not exist&#x27;);
+    }
+
+    const commentCount &#x3D; post.comments.length;
+    const reportCount &#x3D; post.reportsAgainst.length;
+    const appealCount &#x3D; post.appeals.length;
+    const isPartOfScrapbook &#x3D; post.scrapbook ? true : false;
+    const interactionCount &#x3D; commentCount;
+    const isTakenDown &#x3D; post.isTakenDown;
+    const createdAt &#x3D; new Date(post.createdAt);
+
+    const response &#x3D; new PostAnalyticResposneDto();
+    response.commentCount &#x3D; commentCount;
+    response.likeCount &#x3D; 0;
+    response.interactionCount &#x3D; interactionCount;
+    response.isTakenDown &#x3D; isTakenDown;
+    response.reportCount &#x3D; reportCount;
+    response.appealCount &#x3D; appealCount;
+    response.createdAt &#x3D; createdAt;
+    response.isPartOfScrapbook &#x3D; isPartOfScrapbook;
+
+    if (isPartOfScrapbook) {
+      response.scrapbookId &#x3D; post.scrapbook.id;
+    }
+
+    return response;
+  }
+
+  /**
+   * Get the analytics of a post for a premium user
+   * @param user the user object
+   * @param postId the id of the post
+   * @returns the analytics of the post
+   */
   async getPostAnalytics(user: any, postId: string): Promise&lt;PostAnalyticResposneDto&gt; {
     const post &#x3D; await this.postRepository.findOne({
       where: { id: postId },

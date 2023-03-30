@@ -29,6 +29,13 @@ import { PostService } from './post.service';
 export class PostController {
   constructor(private postService: PostService) {}
 
+  /**
+   * Creates a new post
+   * @param body the request body
+   * @param req the request object
+   * @param res the response object
+   * @param file the file object
+   */
   @UseGuards(JwtAuthGuard)
   @Post('create')
   @UseInterceptors(FileInterceptor('image'))
@@ -74,6 +81,11 @@ export class PostController {
       });
   }
 
+  /**
+   * Gets the posts by id
+   * @param id the id of the post
+   * @param res the response object
+   */
   @UseGuards(JwtAuthGuard)
   @Get('/:id')
   getPostById(@Param('id') id: string, @Res() res: Response) {
@@ -87,6 +99,11 @@ export class PostController {
       });
   }
 
+  /**
+   * Deletes a post by id
+   * @param req the request object
+   * @param res the response object
+   */
   @UseGuards(JwtAuthGuard)
   @Delete('/:id')
   deletePostById(@Request() req, @Res() res: Response) {
@@ -195,6 +212,13 @@ export class PostController {
   }
 
   /************************** COMMENTS APIs **************************/
+  /**
+   * Adds a comment to a post
+   * @param body the body of the comment
+   * @param req the request object
+   * @param res the response object
+   * @param postId the id of the post
+   */
   @UseGuards(JwtAuthGuard)
   @Post('comment/:id')
   addComment(
@@ -213,6 +237,12 @@ export class PostController {
       });
   }
 
+  /**
+   * Gets the comments of a post
+   * @param postId the id of the post
+   * @param res the response object
+   * @param pageOptionsDto the page options
+   */
   @UseGuards(JwtAuthGuard)
   @Get('post-comments/:id')
   getPostComments(
@@ -230,6 +260,12 @@ export class PostController {
       });
   }
 
+  /**
+   * Gets the comments of a user
+   * @param userId the id of the user
+   * @param res the response object
+   * @param pageOptionsDto the page options
+   */
   @UseGuards(JwtAuthGuard)
   @Get('user-comments/:id')
   getUserComments(
@@ -247,6 +283,12 @@ export class PostController {
       });
   }
 
+  /**
+   * Deletes a comment
+   * @param req the request object
+   * @param res the response object
+   * @param commentId the id of the comment
+   */
   @UseGuards(JwtAuthGuard)
   @Delete('comment/:id')
   deleteComment(@Request() req, @Res() res: Response, @Param('id') commentId: string) {
@@ -260,6 +302,12 @@ export class PostController {
       });
   }
 
+  /**
+   * Likes a post
+   * @param req the request object
+   * @param res the response object
+   * @param postId the id of the post
+   */
   @UseGuards(JwtAuthGuard)
   @Post('like/:id')
   likePost(@Request() req, @Res() res: Response, @Param('id') postId: string) {
@@ -273,6 +321,12 @@ export class PostController {
       });
   }
 
+  /**
+   * Unlikes a post
+   * @param req the request object
+   * @param res the response object
+   * @param postId the id of the post
+   */
   @UseGuards(JwtAuthGuard)
   @Delete('unlike/:id')
   unlike(@Request() req, @Res() res: Response, @Param('id') postId: string) {
@@ -286,6 +340,13 @@ export class PostController {
       });
   }
 
+  /**
+   * Gets the scraps of a user by id
+   * @param req the request object
+   * @param res the response object
+   * @param id the id of the user
+   * @param pageOptionsDto the page options
+   */
   @UseGuards(JwtAuthGuard)
   @Get('following-scraps/:id')
   async getFollowingScraps(
@@ -304,6 +365,13 @@ export class PostController {
       });
   }
 
+  /**
+   * Gets the scrapbooks of a user by id
+   * @param req the request object
+   * @param res the response object
+   * @param id the id of the user
+   * @param pageOptionsDto the page options
+   */
   @UseGuards(JwtAuthGuard)
   @Get('following-scrapbooks/:id')
   async getFollowingScrapbooks(

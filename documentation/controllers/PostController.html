@@ -102,6 +102,14 @@
                                 <a href="#deletePostById" >deletePostById</a>
                             </li>
                             <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getFollowingScrapbooks" >getFollowingScrapbooks</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getFollowingScraps" >getFollowingScraps</a>
+                            </li>
+                            <li>
                                 <a href="#getPostById" >getPostById</a>
                             </li>
                             <li>
@@ -172,15 +180,15 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="200"
-                            class="link-to-prism">src/modules/post/post.controller.ts:200</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="224"
+                            class="link-to-prism">src/modules/post/post.controller.ts:224</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>COMMENTS APIs</p>
+                    <div class="io-description"><p>Adds a comment to a post</p>
 </div>
 
                     <div class="io-description">
@@ -285,8 +293,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="130"
-                            class="link-to-prism">src/modules/post/post.controller.ts:130</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="147"
+                            class="link-to-prism">src/modules/post/post.controller.ts:147</a></div>
                 </td>
             </tr>
 
@@ -398,14 +406,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/modules/post/post.controller.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/modules/post/post.controller.ts:42</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Creates a new post</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -416,6 +426,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -430,6 +441,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the request body</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>req</td>
@@ -441,6 +456,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the request object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>res</td>
@@ -453,6 +472,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the response object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>file</td>
@@ -464,6 +487,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the file object</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -508,8 +535,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="112"
-                            class="link-to-prism">src/modules/post/post.controller.ts:112</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="129"
+                            class="link-to-prism">src/modules/post/post.controller.ts:129</a></div>
                 </td>
             </tr>
 
@@ -609,14 +636,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="252"
-                            class="link-to-prism">src/modules/post/post.controller.ts:252</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="294"
+                            class="link-to-prism">src/modules/post/post.controller.ts:294</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Deletes a comment</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -627,6 +656,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -640,6 +670,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the request object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>res</td>
@@ -652,6 +686,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the response object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>commentId</td>
@@ -664,6 +702,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the id of the comment</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -708,14 +750,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="92"
-                            class="link-to-prism">src/modules/post/post.controller.ts:92</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="109"
+                            class="link-to-prism">src/modules/post/post.controller.ts:109</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Deletes a post by id</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -726,6 +770,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -739,6 +784,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the request object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>res</td>
@@ -751,6 +800,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the response object</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -759,6 +812,270 @@
                     </div>
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getFollowingScrapbooks"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getFollowingScrapbooks</b></span>
+                        <a href="#getFollowingScrapbooks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getFollowingScrapbooks(req, res: Response, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@UseGuards(JwtAuthGuard)<br />@Get(&#x27;following-scrapbooks/:id&#x27;)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="377"
+                            class="link-to-prism">src/modules/post/post.controller.ts:377</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Gets the scrapbooks of a user by id</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>req</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the request object</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>res</td>
+                                    <td>
+                                            <code>Response</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the response object</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the id of the user</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the page options</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getFollowingScraps"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getFollowingScraps</b></span>
+                        <a href="#getFollowingScraps"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getFollowingScraps(req, res: Response, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@UseGuards(JwtAuthGuard)<br />@Get(&#x27;following-scraps/:id&#x27;)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="352"
+                            class="link-to-prism">src/modules/post/post.controller.ts:352</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Gets the scraps of a user by id</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>req</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the request object</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>res</td>
+                                    <td>
+                                            <code>Response</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the response object</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the id of the user</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the page options</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                     </div>
                     <div class="io-description">
@@ -795,14 +1112,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="79"
-                            class="link-to-prism">src/modules/post/post.controller.ts:79</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="91"
+                            class="link-to-prism">src/modules/post/post.controller.ts:91</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Gets the posts by id</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -813,6 +1132,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -827,6 +1147,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the id of the post</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>res</td>
@@ -839,6 +1163,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the response object</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -883,14 +1211,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="218"
-                            class="link-to-prism">src/modules/post/post.controller.ts:218</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="248"
+                            class="link-to-prism">src/modules/post/post.controller.ts:248</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Gets the comments of a post</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -901,6 +1231,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -915,6 +1246,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the id of the post</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>res</td>
@@ -927,6 +1262,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the response object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>pageOptionsDto</td>
@@ -939,6 +1278,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the page options</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -983,14 +1326,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="235"
-                            class="link-to-prism">src/modules/post/post.controller.ts:235</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="271"
+                            class="link-to-prism">src/modules/post/post.controller.ts:271</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Gets the comments of a user</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -1001,6 +1346,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1015,6 +1361,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the id of the user</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>res</td>
@@ -1027,6 +1377,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the response object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>pageOptionsDto</td>
@@ -1039,6 +1393,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the page options</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1083,8 +1441,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="66"
-                            class="link-to-prism">src/modules/post/post.controller.ts:66</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">src/modules/post/post.controller.ts:73</a></div>
                 </td>
             </tr>
 
@@ -1195,8 +1553,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="186"
-                            class="link-to-prism">src/modules/post/post.controller.ts:186</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="203"
+                            class="link-to-prism">src/modules/post/post.controller.ts:203</a></div>
                 </td>
             </tr>
 
@@ -1308,8 +1666,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="167"
-                            class="link-to-prism">src/modules/post/post.controller.ts:167</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="184"
+                            class="link-to-prism">src/modules/post/post.controller.ts:184</a></div>
                 </td>
             </tr>
 
@@ -1420,14 +1778,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="265"
-                            class="link-to-prism">src/modules/post/post.controller.ts:265</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="313"
+                            class="link-to-prism">src/modules/post/post.controller.ts:313</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Likes a post</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -1438,6 +1798,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1451,6 +1812,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the request object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>res</td>
@@ -1463,6 +1828,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the response object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>postId</td>
@@ -1475,6 +1844,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the id of the post</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1519,8 +1892,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="149"
-                            class="link-to-prism">src/modules/post/post.controller.ts:149</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="166"
+                            class="link-to-prism">src/modules/post/post.controller.ts:166</a></div>
                 </td>
             </tr>
 
@@ -1632,14 +2005,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="278"
-                            class="link-to-prism">src/modules/post/post.controller.ts:278</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="332"
+                            class="link-to-prism">src/modules/post/post.controller.ts:332</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Unlikes a post</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -1650,6 +2025,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1663,6 +2039,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the request object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>res</td>
@@ -1675,6 +2055,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the response object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>postId</td>
@@ -1687,6 +2071,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the id of the post</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1727,8 +2115,8 @@
 } from &#x27;@nestjs/common&#x27;;
 import { FileInterceptor } from &#x27;@nestjs/platform-express&#x27;;
 import { Response } from &#x27;express&#x27;;
-import { PageOptionsDto } from &#x27;src/common/dto/page-options.dto&#x27;;
-import { Visibility } from &#x27;src/constants/visibility.enum&#x27;;
+import { PageOptionsDto } from &#x27;../../common/dto/page-options.dto&#x27;;
+import { Visibility } from &#x27;../../constants/visibility.enum&#x27;;
 import { JwtAuthGuard } from &#x27;../auth/guards/jwt-auth.guard&#x27;;
 import { CreateCommentDto } from &#x27;./dto/comment-create.dto&#x27;;
 import { CreatePostDto } from &#x27;./dto/post-create.dto&#x27;;
@@ -1739,6 +2127,13 @@ import { PostService } from &#x27;./post.service&#x27;;
 export class PostController {
   constructor(private postService: PostService) {}
 
+  /**
+   * Creates a new post
+   * @param body the request body
+   * @param req the request object
+   * @param res the response object
+   * @param file the file object
+   */
   @UseGuards(JwtAuthGuard)
   @Post(&#x27;create&#x27;)
   @UseInterceptors(FileInterceptor(&#x27;image&#x27;))
@@ -1784,6 +2179,11 @@ export class PostController {
       });
   }
 
+  /**
+   * Gets the posts by id
+   * @param id the id of the post
+   * @param res the response object
+   */
   @UseGuards(JwtAuthGuard)
   @Get(&#x27;/:id&#x27;)
   getPostById(@Param(&#x27;id&#x27;) id: string, @Res() res: Response) {
@@ -1797,6 +2197,11 @@ export class PostController {
       });
   }
 
+  /**
+   * Deletes a post by id
+   * @param req the request object
+   * @param res the response object
+   */
   @UseGuards(JwtAuthGuard)
   @Delete(&#x27;/:id&#x27;)
   deletePostById(@Request() req, @Res() res: Response) {
@@ -1839,7 +2244,7 @@ export class PostController {
   @Post(&#x27;scrapbook/:id/add-post/:postId&#x27;)
   addPostToScrapbook(@Request() req, @Res() res: Response, @Param() params) {
     this.postService
-      .addPostToScrapbook(req.user, req.params.id, req.params.postId)
+      .addPostToScrapbook(req.user, params.id, params.postId)
       .then((post) &#x3D;&gt; {
         return res.status(HttpStatus.OK).json(post);
       })
@@ -1905,6 +2310,13 @@ export class PostController {
   }
 
   /************************** COMMENTS APIs **************************/
+  /**
+   * Adds a comment to a post
+   * @param body the body of the comment
+   * @param req the request object
+   * @param res the response object
+   * @param postId the id of the post
+   */
   @UseGuards(JwtAuthGuard)
   @Post(&#x27;comment/:id&#x27;)
   addComment(
@@ -1923,6 +2335,12 @@ export class PostController {
       });
   }
 
+  /**
+   * Gets the comments of a post
+   * @param postId the id of the post
+   * @param res the response object
+   * @param pageOptionsDto the page options
+   */
   @UseGuards(JwtAuthGuard)
   @Get(&#x27;post-comments/:id&#x27;)
   getPostComments(
@@ -1940,6 +2358,12 @@ export class PostController {
       });
   }
 
+  /**
+   * Gets the comments of a user
+   * @param userId the id of the user
+   * @param res the response object
+   * @param pageOptionsDto the page options
+   */
   @UseGuards(JwtAuthGuard)
   @Get(&#x27;user-comments/:id&#x27;)
   getUserComments(
@@ -1957,6 +2381,12 @@ export class PostController {
       });
   }
 
+  /**
+   * Deletes a comment
+   * @param req the request object
+   * @param res the response object
+   * @param commentId the id of the comment
+   */
   @UseGuards(JwtAuthGuard)
   @Delete(&#x27;comment/:id&#x27;)
   deleteComment(@Request() req, @Res() res: Response, @Param(&#x27;id&#x27;) commentId: string) {
@@ -1970,6 +2400,12 @@ export class PostController {
       });
   }
 
+  /**
+   * Likes a post
+   * @param req the request object
+   * @param res the response object
+   * @param postId the id of the post
+   */
   @UseGuards(JwtAuthGuard)
   @Post(&#x27;like/:id&#x27;)
   likePost(@Request() req, @Res() res: Response, @Param(&#x27;id&#x27;) postId: string) {
@@ -1983,6 +2419,12 @@ export class PostController {
       });
   }
 
+  /**
+   * Unlikes a post
+   * @param req the request object
+   * @param res the response object
+   * @param postId the id of the post
+   */
   @UseGuards(JwtAuthGuard)
   @Delete(&#x27;unlike/:id&#x27;)
   unlike(@Request() req, @Res() res: Response, @Param(&#x27;id&#x27;) postId: string) {
@@ -1990,6 +2432,56 @@ export class PostController {
       .unlikePost(req.user, postId)
       .then(() &#x3D;&gt; {
         return res.status(HttpStatus.OK).json({ message: &#x27;Post unliked successfully&#x27; });
+      })
+      .catch((err) &#x3D;&gt; {
+        return res.status(err.status).json({ message: err.message });
+      });
+  }
+
+  /**
+   * Gets the scraps of a user by id
+   * @param req the request object
+   * @param res the response object
+   * @param id the id of the user
+   * @param pageOptionsDto the page options
+   */
+  @UseGuards(JwtAuthGuard)
+  @Get(&#x27;following-scraps/:id&#x27;)
+  async getFollowingScraps(
+    @Request() req,
+    @Res() res: Response,
+    @Param(&#x27;id&#x27;) id: string,
+    @Query() pageOptionsDto: PageOptionsDto
+  ) {
+    this.postService
+      .getFollowingScraps(req.user, id, pageOptionsDto)
+      .then((posts) &#x3D;&gt; {
+        return res.status(HttpStatus.OK).json(posts);
+      })
+      .catch((err) &#x3D;&gt; {
+        return res.status(err.status).json({ message: err.message });
+      });
+  }
+
+  /**
+   * Gets the scrapbooks of a user by id
+   * @param req the request object
+   * @param res the response object
+   * @param id the id of the user
+   * @param pageOptionsDto the page options
+   */
+  @UseGuards(JwtAuthGuard)
+  @Get(&#x27;following-scrapbooks/:id&#x27;)
+  async getFollowingScrapbooks(
+    @Request() req,
+    @Res() res: Response,
+    @Param(&#x27;id&#x27;) id: string,
+    @Query() pageOptionsDto: PageOptionsDto
+  ) {
+    this.postService
+      .getFollowingScrapbooks(req.user, id, pageOptionsDto)
+      .then((posts) &#x3D;&gt; {
+        return res.status(HttpStatus.OK).json(posts);
       })
       .catch((err) &#x3D;&gt; {
         return res.status(err.status).json({ message: err.message });

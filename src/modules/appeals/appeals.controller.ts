@@ -126,6 +126,12 @@ export class AppealsController {
       });
   }
 
+  /**
+   * Gets the post appeals for an admin
+   * @param req the request object
+   * @param res the response object
+   * @param pageOptionsDto the page options
+   */
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Get('post-appeals')
   @Roles(Role.Admin)

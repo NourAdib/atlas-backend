@@ -17,6 +17,13 @@ export class MemoryService {
     private memoryRepository: Repository<Memory>
   ) {}
 
+  /**
+   * Creates a memory
+   * @param user the user who created the memory
+   * @param memory the memory to be created
+   * @param image the image to be uploaded
+   * @returns the created memory
+   */
   async createMemory(user: User, memory: CreateMemoryDto, image: any): Promise<Memory> {
     const newMemory = new Memory();
     newMemory.location = memory.location;
@@ -49,6 +56,13 @@ export class MemoryService {
     });
   }
 
+  /**
+   * Gets the nearby memories of the user sending the request
+   * @param user the user who created the memory
+   * @param body the body of the request
+   * @param pageOptionsDto the page options
+   * @returns the memories
+   */
   async getProximityMemories(
     user: User,
     body: GetProximityMemoryDto,
@@ -89,6 +103,12 @@ export class MemoryService {
     return new PageDto(entities, pageMetaDto);
   }
 
+  /**
+   * Gets the coordinates of a 10m radius
+   * @param lat the latitude of the user
+   * @param lon the longitude of the user
+   * @returns the coordinates of the radius
+   */
   getCoordinatesRadius(lat: number, lon: number): [number, number, number, number] {
     const earthRadius = 6378137; // Earth's radius in meters
     const radius = 10; // 5-meter radius
@@ -104,6 +124,11 @@ export class MemoryService {
     return [minLat, maxLat, minLon, maxLon];
   }
 
+  /**
+   * Gets a memory by its id
+   * @param id the id of the memory
+   * @returns the memory
+   */
   async getMemoryById(id: string): Promise<Memory> {
     const memory = await this.memoryRepository
       .createQueryBuilder()
@@ -138,6 +163,12 @@ export class MemoryService {
     return memory;
   }
 
+  /**
+   * Deletes a memory by its id
+   * @param user the user who created the memory
+   * @param memoryId the id of the memory
+   * @returns the deleted operation results
+   */
   async deleteMemoryById(user: any, memoryId: string): Promise<DeleteResult> {
     const dbMemory = await this.getMemoryById(memoryId).then((memory) => {
       return memory;
@@ -153,6 +184,12 @@ export class MemoryService {
     return await this.memoryRepository.delete({ id: memoryId });
   }
 
+  /**
+   * Gets the memories of the user sending the request
+   * @param user the user who created the memory
+   * @param pageOptionsDto the page options
+   * @returns the memories
+   */
   async getUserMemories(user: any, pageOptionsDto: PageOptionsDto): Promise<PageDto<Memory>> {
     const queryResults = await this.memoryRepository
       .createQueryBuilder()

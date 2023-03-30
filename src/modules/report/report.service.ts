@@ -30,6 +30,12 @@ export class ReportService {
     private userBanRepository: Repository<UserBan>
   ) {}
 
+  /**
+   * Reports a post
+   * @param user the user who is reporting the post
+   * @param body the body of the request
+   * @returns the report
+   */
   async reportPost(user: any, body: any): Promise<PostReport> {
     const newReport = new PostReport();
     newReport.reportedBy = user;
@@ -87,6 +93,12 @@ export class ReportService {
     return this.postReportsRepository.save(newReport);
   }
 
+  /**
+   * Reports a user
+   * @param user the user who is reporting the user
+   * @param body the body of the request
+   * @returns the report
+   */
   async reportUser(user: any, body: any): Promise<UserReport> {
     const newReport = new UserReport();
     newReport.reportedBy = user;
@@ -136,6 +148,12 @@ export class ReportService {
     return this.userReportsRepository.save(newReport);
   }
 
+  /**
+   * Gets all post reports
+   * @param id the id of the post to get reports for
+   * @param pageOptionsDto the page options
+   * @returns the reports
+   */
   async getPostReports(id: string, pageOptionsDto: PageOptionsDto): Promise<PageDto<PostReport>> {
     const queryResults = await this.postReportsRepository
       .createQueryBuilder()
@@ -162,6 +180,12 @@ export class ReportService {
     return new PageDto(entities, pageMetaDto);
   }
 
+  /**
+   * Gets all user reports
+   * @param id the id of the user to get reports for
+   * @param pageOptionsDto the page options
+   * @returns the reports
+   */
   async getUserReports(id: string, pageOptionsDto: PageOptionsDto): Promise<PageDto<UserReport>> {
     const queryResults = await this.userReportsRepository
       .createQueryBuilder()
@@ -187,6 +211,12 @@ export class ReportService {
     return new PageDto(entities, pageMetaDto);
   }
 
+  /**
+   * Bans a user
+   * @param userId the id of the user to ban
+   * @param reportId the id of the report
+   * @returns the ban
+   */
   async banUser(userId: string, reportId: string): Promise<UserBan> {
     const newBan = new UserBan();
 
@@ -220,6 +250,12 @@ export class ReportService {
     return this.userBanRepository.save(newBan);
   }
 
+  /**
+   * Ban the post
+   * @param postId the id of the post to ban
+   * @param reportId the id of the report
+   * @returns the update result
+   */
   async banPost(postId: string, reportId: string): Promise<UpdateResult> {
     const post = await this.postRepository.findOne({
       where: { id: postId },
@@ -249,6 +285,11 @@ export class ReportService {
       .execute();
   }
 
+  /**
+   * unban the post
+   * @param postId the id of the post to unban
+   * @returns the update result
+   */
   async unbanPost(id: string): Promise<UpdateResult> {
     const post = await this.postRepository.findOne({
       where: { id: id }
@@ -266,6 +307,11 @@ export class ReportService {
       .execute();
   }
 
+  /**
+   * Gets all reported posts
+   * @param pageOptionsDto the page options
+   * @returns the reported posts
+   */
   async getReportedPosts(pageOptionsDto: PageOptionsDto): Promise<PageDto<PostReport>> {
     const queryResults = await this.postReportsRepository
       .createQueryBuilder()
@@ -294,6 +340,11 @@ export class ReportService {
     return new PageDto(entities, pageMetaDto);
   }
 
+  /**
+   * Gets all reported users
+   * @param pageOptionsDto the page options
+   * @returns the reported users
+   */
   async getReportedUsers(pageOptionsDto: PageOptionsDto): Promise<PageDto<UserReport>> {
     const queryResults = await this.userReportsRepository
       .createQueryBuilder()

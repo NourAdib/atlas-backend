@@ -31,6 +31,10 @@
                <div class="content getting-started">
                    <div class="content-data">
 
+<h1 id="server-and-build-status">Server and Build Status</h1>
+<p><img src="https://github.com/github/docs/actions/workflows/main.yml/badge.svg" alt="example workflow" class="img-responsive"></p>
+<br />
+
 <h1 id="running-the-server">Running The Server</h1>
 <h2 id="prerequisites">Prerequisites</h2>
 <ol>
@@ -43,8 +47,8 @@
 <ol>
 <li>Database Host</li>
 <li>Database Name</li>
-<li>Databse Username</li>
-<li>Databse Password</li>
+<li>Database Username</li>
+<li>Database Password</li>
 <li>Secret</li>
 <li>Session Driver</li>
 <li>Firebase Type</li>
@@ -53,6 +57,9 @@
 <li>Firebase Private Key</li>
 <li>Stripe Test Key</li>
 <li>Stripe Webhook Secret</li>
+<li>Port</li>
+<li>reCaptcha Site Key</li>
+<li>reCaptcha Secret Key</li>
 </ol>
 <h3 id="migrations-run">Migrations Run</h3>
 <p><code>npm run typeorm:run-migrations</code></p>
@@ -60,8 +67,17 @@
 <p><code>npm run start</code></p>
 <h3 id="developer-mode">Developer Mode</h3>
 <p><code>npm run start:dev</code></p>
-<h2 id="used-repo-template">Used Repo Template</h2>
-<p><a href="https://github.com/NarHakobyan/awesome-nest-boilerplate">https://github.com/NarHakobyan/awesome-nest-boilerplate</a></p>
+<h3 id="load-tests-run">Load Tests Run</h3>
+<p>The artillery package must be installed first as it is a global package</p>
+<p><code>npm install -g artillery</code></p>
+<p><code>artillery run test/load_testing/test.json</code></p>
+<h3 id="unit-and-integration-test-run">Unit and Integration Test Run</h3>
+<p><code>npm run test</code></p>
+<h2 id="used-repos">Used Repos</h2>
+<ol>
+<li><a href="https://github.com/NarHakobyan/awesome-nest-boilerplate">https://github.com/NarHakobyan/awesome-nest-boilerplate</a>, used for file structure</li>
+<li><a href="https://github.com/jmcdo29/testing-nestjs">https://github.com/jmcdo29/testing-nestjs</a>, used for testing structure</li>
+</ol>
 
 
 

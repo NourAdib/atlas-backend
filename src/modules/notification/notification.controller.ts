@@ -11,6 +11,12 @@ import { NotificationService } from './notification.service';
 export class NotificationController {
   constructor(private notificationService: NotificationService) {}
 
+  /**
+   * Sign up a user to receive notifications
+   * @param req the request object
+   * @param res the response object
+   * @param fcmToken the fcm token
+   */
   @UseGuards(JwtAuthGuard)
   @Post('signup/:fcmToken')
   signup(@Request() req, @Res() res: Response, @Param('fcmToken') fcmToken: string) {
@@ -24,6 +30,12 @@ export class NotificationController {
       });
   }
 
+  /**
+   * Send a notification to users
+   * @param req the request object
+   * @param res the response object
+   * @param body the body of the request
+   */
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Post('send')
   @Roles(Role.Admin)

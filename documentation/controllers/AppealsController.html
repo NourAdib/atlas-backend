@@ -256,14 +256,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="132"
-                            class="link-to-prism">src/modules/appeals/appeals.controller.ts:132</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="138"
+                            class="link-to-prism">src/modules/appeals/appeals.controller.ts:138</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Gets the post appeals for an admin</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -274,6 +276,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -287,6 +290,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the request object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>res</td>
@@ -299,6 +306,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the response object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>pageOptionsDto</td>
@@ -311,6 +322,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the page options</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -808,9 +823,9 @@
   Query
 } from &#x27;@nestjs/common&#x27;;
 import { Response } from &#x27;express&#x27;;
-import { PageOptionsDto } from &#x27;src/common/dto/page-options.dto&#x27;;
-import { Role } from &#x27;src/constants/role.enum&#x27;;
-import { Roles } from &#x27;src/decorators/roles.decorator&#x27;;
+import { PageOptionsDto } from &#x27;../../common/dto/page-options.dto&#x27;;
+import { Role } from &#x27;../../constants/role.enum&#x27;;
+import { Roles } from &#x27;../../decorators/roles.decorator&#x27;;
 import { JwtAuthGuard } from &#x27;../auth/guards/jwt-auth.guard&#x27;;
 import { RolesGuard } from &#x27;../auth/guards/roles.guard&#x27;;
 import { AppealsService } from &#x27;./appeals.service&#x27;;
@@ -922,6 +937,12 @@ export class AppealsController {
       });
   }
 
+  /**
+   * Gets the post appeals for an admin
+   * @param req the request object
+   * @param res the response object
+   * @param pageOptionsDto the page options
+   */
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Get(&#x27;post-appeals&#x27;)
   @Roles(Role.Admin)

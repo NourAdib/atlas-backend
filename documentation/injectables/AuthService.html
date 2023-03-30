@@ -80,11 +80,23 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#captchaResult" >captchaResult</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getCaptcha" >getCaptcha</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#isUserBanned" >isUserBanned</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
                                 <a href="#login" >login</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#validateCaptchaResponse" >validateCaptchaResponse</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -108,12 +120,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(usersService: <a href="../injectables/UserService.html" target="_self">UserService</a>, jwtService: JwtService, usersRepository: <a href="../entitys/User.html" target="_self">Repository&lt;User&gt;</a>)</code>
+<code>constructor(usersService: <a href="../injectables/UserService.html" target="_self">UserService</a>, jwtService: JwtService, httpService: HttpService, usersRepository: <a href="../entitys/User.html" target="_self">Repository&lt;User&gt;</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/modules/auth/auth.service.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/modules/auth/auth.service.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -155,6 +167,18 @@
                                                     
                                                 </tr>
                                                 <tr>
+                                                        <td>httpService</td>
+                                                  
+                                                        <td>
+                                                                    <code>HttpService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
                                                         <td>usersRepository</td>
                                                   
                                                         <td>
@@ -184,6 +208,116 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="captchaResult"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>captchaResult</b></span>
+                        <a href="#captchaResult"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>captchaResult(body: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="75"
+                            class="link-to-prism">src/modules/auth/auth.service.ts:75</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>body</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCaptcha"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getCaptcha</b></span>
+                        <a href="#getCaptcha"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getCaptcha()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">src/modules/auth/auth.service.ts:70</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="isUserBanned"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -202,8 +336,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="56"
-                            class="link-to-prism">src/modules/auth/auth.service.ts:56</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="64"
+                            class="link-to-prism">src/modules/auth/auth.service.ts:64</a></div>
                 </td>
             </tr>
 
@@ -273,8 +407,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="49"
-                            class="link-to-prism">src/modules/auth/auth.service.ts:49</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="52"
+                            class="link-to-prism">src/modules/auth/auth.service.ts:52</a></div>
                 </td>
             </tr>
 
@@ -334,6 +468,77 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="validateCaptchaResponse"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>validateCaptchaResponse</b></span>
+                        <a href="#validateCaptchaResponse"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>validateCaptchaResponse(gReCaptchaResponse: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="86"
+                            class="link-to-prism">src/modules/auth/auth.service.ts:86</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>gReCaptchaResponse</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="validateUser"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -352,8 +557,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/modules/auth/auth.service.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/modules/auth/auth.service.ts:27</a></div>
                 </td>
             </tr>
 
@@ -431,19 +636,22 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException, Injectable } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpService } from &#x27;@nestjs/axios&#x27;;
+import { BadRequestException, Injectable } from &#x27;@nestjs/common&#x27;;
 import { JwtService } from &#x27;@nestjs/jwt&#x27;;
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
-import { EncryptionService } from &#x27;src/common/services/encryption.service&#x27;;
+import { EncryptionService } from &#x27;../../common/services/encryption.service&#x27;;
 import { Repository } from &#x27;typeorm&#x27;;
 import { User } from &#x27;../user/entities/user.entity&#x27;;
 import { UserService } from &#x27;../user/user.service&#x27;;
+import { ReCaptchaResponseDto } from &#x27;./dto/captcha-response.dto&#x27;;
 
 @Injectable()
 export class AuthService {
   constructor(
     private usersService: UserService,
     private jwtService: JwtService,
+    private readonly httpService: HttpService,
     @InjectRepository(User)
     private usersRepository: Repository&lt;User&gt;
   ) {}
@@ -457,7 +665,7 @@ export class AuthService {
   async validateUser(email: string, pass: string): Promise&lt;any&gt; {
     const user &#x3D; await this.usersRepository
       .createQueryBuilder()
-      .select([&#x27;id&#x27;, &#x27;email&#x27;, &#x27;password&#x27;, &#x27;role&#x27;])
+      .select([&#x27;id&#x27;, &#x27;email&#x27;, &#x27;password&#x27;, &#x27;role&#x27;, &#x27;subscriptionPlan&#x27;])
       .where(&#x27;email &#x3D; :email&#x27;, { email: email })
       .getRawOne();
 
@@ -480,7 +688,12 @@ export class AuthService {
    * @returns the JWT token
    */
   async login(user: any) {
-    const payload &#x3D; { email: user.email, sub: user.id, role: user.role };
+    const payload &#x3D; {
+      email: user.email,
+      sub: user.id,
+      role: user.role,
+      subscriptionPlan: user.subscriptionPlan
+    };
     return {
       access_token: this.jwtService.sign(payload)
     };
@@ -490,6 +703,41 @@ export class AuthService {
     return this.usersService.isUserBanned(user.id).then((result) &#x3D;&gt; {
       return result;
     });
+  }
+
+  async getCaptcha() {
+    const sitekey &#x3D; process.env.RECAPTCHA_SITE_KEY;
+    return &#x60;&lt;html&gt; &lt;head&gt; &lt;title&gt;reCAPTCHA demo: Simple page&lt;/title&gt; &lt;script src&#x3D;&quot;https://www.google.com/recaptcha/api.js&quot; async defer&gt;&lt;/script&gt; &lt;/head&gt; &lt;body&gt; &lt;form action&#x3D;&quot;?&quot; method&#x3D;&quot;POST&quot;&gt; &lt;div class&#x3D;&quot;g-recaptcha&quot; data-sitekey&#x3D;&quot;${sitekey}&quot;&gt;&lt;/div&gt; &lt;br/&gt; &lt;input type&#x3D;&quot;submit&quot; value&#x3D;&quot;Submit&quot;&gt; &lt;/form&gt; &lt;/body&gt;&lt;/html&gt;&#x60;;
+  }
+
+  async captchaResult(body: any) {
+    const captchaResponse &#x3D; await this.validateCaptchaResponse(body[&#x27;g-recaptcha-response&#x27;]);
+    const response: ReCaptchaResponseDto &#x3D; JSON.parse(JSON.stringify(captchaResponse));
+
+    if (response.success) {
+      return &#x27;&lt;html&gt;&lt;head&gt;&lt;link href&#x3D;&quot;https://fonts.googleapis.com/css?family&#x3D;Nunito+Sans:400,400i,700,900&amp;display&#x3D;swap&quot; rel&#x3D;&quot;stylesheet&quot;&gt;&lt;/head&gt;&lt;style&gt;body { text-align: center; padding: 40px 0; background: #EBF0F5; } h1 { color: #88B04B; font-family: &quot;Nunito Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; font-weight: 900; font-size: 40px; margin-bottom: 10px; } p { color: #404F5E; font-family: &quot;Nunito Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; font-size: 20px; margin: 0; } i { color: #9ABC66; font-size: 100px; line-height: 200px; margin-left: -15px; } .card { background: white; padding: 60px; border-radius: 4px; box-shadow: 0 2px 3px #C8D0D8; display: inline-block; margin: 0 auto; } &lt;/style&gt; &lt;body&gt; &lt;div class&#x3D;&quot;card&quot;&gt; &lt;div style&#x3D;&quot;border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;&quot;&gt; &lt;i class&#x3D;&quot;checkmark&quot;&gt;✓&lt;/i&gt; &lt;/div&gt; &lt;h1&gt;Success&lt;/h1&gt; &lt;p&gt;Verification successful, you can now close this page&lt;/p&gt; &lt;/div&gt; &lt;/body&gt; &lt;/html&gt;&#x27;;
+    } else {
+      throw new BadRequestException(&#x27;Captcha failed&#x27;);
+    }
+  }
+
+  async validateCaptchaResponse(gReCaptchaResponse: string) {
+    const secretKey &#x3D; process.env.RECAPTCHA_SECRET_KEY;
+
+    const config &#x3D; {
+      method: &#x27;post&#x27;,
+      maxBodyLength: Infinity,
+      url: &#x60;https://www.google.com/recaptcha/api/siteverify?response&#x3D;${gReCaptchaResponse}&amp;secret&#x3D;${secretKey}&#x60;
+    };
+
+    return this.httpService
+      .axiosRef(config)
+      .then(function (response) {
+        return response.data;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 }
 </code></pre>

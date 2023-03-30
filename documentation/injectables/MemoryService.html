@@ -1,0 +1,1043 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>atlas-backend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">atlas-backend documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li >MemoryService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/modules/memory/memory.service.ts</code>
+        </p>
+
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createMemory" >createMemory</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#deleteMemoryById" >deleteMemoryById</a>
+                            </li>
+                            <li>
+                                <a href="#getCoordinatesRadius" >getCoordinatesRadius</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getMemoryById" >getMemoryById</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getProximityMemories" >getProximityMemories</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getUserMemories" >getUserMemories</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(memoryRepository: <a href="../entitys/Memory.html" target="_self">Repository&lt;Memory&gt;</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/modules/memory/memory.service.ts:14</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>memoryRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/Memory.html" target="_self" >Repository&lt;Memory&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createMemory"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>createMemory</b></span>
+                        <a href="#createMemory"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createMemory(user: <a href="../entitys/User.html" target="_self">User</a>, memory: <a href="../classes/CreateMemoryDto.html" target="_self">CreateMemoryDto</a>, image: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/modules/memory/memory.service.ts:27</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Creates a memory</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="../entitys/User.html" target="_self" >User</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the user who created the memory</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>memory</td>
+                                    <td>
+                                                <code><a href="../classes/CreateMemoryDto.html" target="_self" >CreateMemoryDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the memory to be created</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>image</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the image to be uploaded</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/Memory.html" target="_self" >Promise&lt;Memory&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>the created memory</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteMemoryById"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>deleteMemoryById</b></span>
+                        <a href="#deleteMemoryById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteMemoryById(user: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, memoryId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="172"
+                            class="link-to-prism">src/modules/memory/memory.service.ts:172</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Deletes a memory by its id</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the user who created the memory</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>memoryId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the id of the memory</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;DeleteResult&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>the deleted operation results</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCoordinatesRadius"></a>
+                    <span class="name">
+                        <span ><b>getCoordinatesRadius</b></span>
+                        <a href="#getCoordinatesRadius"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getCoordinatesRadius(lat: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, lon: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="112"
+                            class="link-to-prism">src/modules/memory/memory.service.ts:112</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Gets the coordinates of a 10m radius</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>lat</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the latitude of the user</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>lon</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the longitude of the user</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getMemoryById"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getMemoryById</b></span>
+                        <a href="#getMemoryById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getMemoryById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="132"
+                            class="link-to-prism">src/modules/memory/memory.service.ts:132</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Gets a memory by its id</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the id of the memory</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/Memory.html" target="_self" >Promise&lt;Memory&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>the memory</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getProximityMemories"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getProximityMemories</b></span>
+                        <a href="#getProximityMemories"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getProximityMemories(user: <a href="../entitys/User.html" target="_self">User</a>, body: <a href="../classes/GetProximityMemoryDto.html" target="_self">GetProximityMemoryDto</a>, pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">src/modules/memory/memory.service.ts:66</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Gets the nearby memories of the user sending the request</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="../entitys/User.html" target="_self" >User</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the user who created the memory</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>body</td>
+                                    <td>
+                                                <code><a href="../classes/GetProximityMemoryDto.html" target="_self" >GetProximityMemoryDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the body of the request</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the page options</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;Memory&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>the memories</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getUserMemories"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getUserMemories</b></span>
+                        <a href="#getUserMemories"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getUserMemories(user: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="193"
+                            class="link-to-prism">src/modules/memory/memory.service.ts:193</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Gets the memories of the user sending the request</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the user who created the memory</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the page options</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;Memory&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>the memories</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpException, HttpStatus, Injectable } from &#x27;@nestjs/common&#x27;;
+import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
+import { FirebaseStorageService } from &#x27;../../common/services/firebase-storage.service&#x27;;
+import { DeleteResult, LessThan, MoreThan, Repository } from &#x27;typeorm&#x27;;
+import { User } from &#x27;../user/entities/user.entity&#x27;;
+import { GetProximityMemoryDto } from &#x27;./dto/get-proximity-memory.dto&#x27;;
+import { CreateMemoryDto } from &#x27;./dto/memory-create.dto&#x27;;
+import { Memory } from &#x27;./entities/memory.entity&#x27;;
+import { PageMetaDto } from &#x27;../../common/dto/page-meta.dto&#x27;;
+import { PageOptionsDto } from &#x27;../../common/dto/page-options.dto&#x27;;
+import { PageDto } from &#x27;../../common/dto/page.dto&#x27;;
+
+@Injectable()
+export class MemoryService {
+  constructor(
+    @InjectRepository(Memory)
+    private memoryRepository: Repository&lt;Memory&gt;
+  ) {}
+
+  /**
+   * Creates a memory
+   * @param user the user who created the memory
+   * @param memory the memory to be created
+   * @param image the image to be uploaded
+   * @returns the created memory
+   */
+  async createMemory(user: User, memory: CreateMemoryDto, image: any): Promise&lt;Memory&gt; {
+    const newMemory &#x3D; new Memory();
+    newMemory.location &#x3D; memory.location;
+    newMemory.latitude &#x3D; memory.latitude;
+    newMemory.longitude &#x3D; memory.longitude;
+    newMemory.location &#x3D; memory.location;
+    newMemory.visibility &#x3D; memory.visibility;
+    newMemory.user &#x3D; user;
+
+    const savedMemory &#x3D; await this.memoryRepository.save(newMemory);
+    const { imageId, url, expiryDate } &#x3D; await new FirebaseStorageService().uploadMemoryImage(
+      image.buffer,
+      user.id,
+      savedMemory.id
+    );
+
+    await this.memoryRepository
+      .createQueryBuilder()
+      .update(Memory)
+      .set({
+        imageId: imageId,
+        imageUrl: url,
+        imageExpiryDate: new Date(expiryDate)
+      })
+      .where(&#x27;id &#x3D; :id&#x27;, { id: savedMemory.id })
+      .execute();
+
+    return this.memoryRepository.findOneBy({ id: savedMemory.id }).then((memory) &#x3D;&gt; {
+      return memory;
+    });
+  }
+
+  /**
+   * Gets the nearby memories of the user sending the request
+   * @param user the user who created the memory
+   * @param body the body of the request
+   * @param pageOptionsDto the page options
+   * @returns the memories
+   */
+  async getProximityMemories(
+    user: User,
+    body: GetProximityMemoryDto,
+    pageOptionsDto: PageOptionsDto
+  ): Promise&lt;PageDto&lt;Memory&gt;&gt; {
+    const [minLat, maxLat, minLon, maxLon] &#x3D; this.getCoordinatesRadius(
+      body.latitude,
+      body.longitude
+    );
+
+    const queryResults &#x3D; await this.memoryRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect(&#x27;Memory.user&#x27;, &#x27;User&#x27;)
+      .where({
+        longitude: MoreThan(minLon),
+        latitude: MoreThan(minLat)
+      })
+      .andWhere({
+        longitude: LessThan(maxLon),
+        latitude: LessThan(maxLat)
+      })
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.take)
+      .orderBy(&#x27;Memory.createdAt&#x27;, pageOptionsDto.order)
+      .getManyAndCount()
+      .then((userMemoriesAndCount) &#x3D;&gt; {
+        return {
+          items: userMemoriesAndCount[0],
+          itemsCount: userMemoriesAndCount[1]
+        };
+      });
+
+    const itemCount: number &#x3D; queryResults.itemsCount;
+    const entities: Memory[] &#x3D; queryResults.items;
+
+    const pageMetaDto: PageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  /**
+   * Gets the coordinates of a 10m radius
+   * @param lat the latitude of the user
+   * @param lon the longitude of the user
+   * @returns the coordinates of the radius
+   */
+  getCoordinatesRadius(lat: number, lon: number): [number, number, number, number] {
+    const earthRadius &#x3D; 6378137; // Earth&#x27;s radius in meters
+    const radius &#x3D; 10; // 5-meter radius
+
+    const latDiff &#x3D; (radius / earthRadius) * (180 / Math.PI);
+    const lonDiff &#x3D; ((radius / earthRadius) * (180 / Math.PI)) / Math.cos((lat * Math.PI) / 180);
+
+    const minLat &#x3D; lat - latDiff;
+    const maxLat &#x3D; lat + latDiff;
+    const minLon &#x3D; lon - lonDiff;
+    const maxLon &#x3D; lon + lonDiff;
+
+    return [minLat, maxLat, minLon, maxLon];
+  }
+
+  /**
+   * Gets a memory by its id
+   * @param id the id of the memory
+   * @returns the memory
+   */
+  async getMemoryById(id: string): Promise&lt;Memory&gt; {
+    const memory &#x3D; await this.memoryRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect(&#x27;Memory.user&#x27;, &#x27;User&#x27;)
+      .where(&#x27;Memory.id &#x3D; :id&#x27;, { id: id })
+      .getOne();
+
+    if (!memory) {
+      throw new HttpException(&#x27;Memory not found&#x27;, HttpStatus.NOT_FOUND);
+    }
+
+    if (memory.imageId) {
+      if (memory.imageId &amp;&amp; memory.imageExpiryDate &lt; new Date(Date.now())) {
+        const { url, expiryDate } &#x3D; await new FirebaseStorageService().getMemoryImageSignedURL(
+          memory.imageId,
+          memory.user.id,
+          memory.id
+        );
+
+        this.memoryRepository
+          .createQueryBuilder()
+          .update(Memory)
+          .set({
+            imageExpiryDate: new Date(expiryDate),
+            imageUrl: url
+          })
+          .where(&#x27;id &#x3D; :id&#x27;, { id: memory.id })
+          .execute();
+      }
+    }
+
+    return memory;
+  }
+
+  /**
+   * Deletes a memory by its id
+   * @param user the user who created the memory
+   * @param memoryId the id of the memory
+   * @returns the deleted operation results
+   */
+  async deleteMemoryById(user: any, memoryId: string): Promise&lt;DeleteResult&gt; {
+    const dbMemory &#x3D; await this.getMemoryById(memoryId).then((memory) &#x3D;&gt; {
+      return memory;
+    });
+
+    if (!dbMemory) {
+      throw new HttpException(&#x27;Memory does not exist&#x27;, HttpStatus.NO_CONTENT);
+    }
+
+    if (dbMemory.imageId) {
+      await new FirebaseStorageService().deleteMemoryImage(dbMemory.imageId, user.id, dbMemory.id);
+    }
+    return await this.memoryRepository.delete({ id: memoryId });
+  }
+
+  /**
+   * Gets the memories of the user sending the request
+   * @param user the user who created the memory
+   * @param pageOptionsDto the page options
+   * @returns the memories
+   */
+  async getUserMemories(user: any, pageOptionsDto: PageOptionsDto): Promise&lt;PageDto&lt;Memory&gt;&gt; {
+    const queryResults &#x3D; await this.memoryRepository
+      .createQueryBuilder()
+      .leftJoinAndSelect(&#x27;Memory.user&#x27;, &#x27;User&#x27;)
+      .where(&#x27;User.id &#x3D; :id&#x27;, { id: user.id })
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.take)
+      .orderBy(&#x27;Memory.createdAt&#x27;, &#x27;DESC&#x27;)
+      .getManyAndCount()
+      .then((userPostsAndCount) &#x3D;&gt; {
+        return {
+          items: userPostsAndCount[0],
+          itemsCount: userPostsAndCount[1]
+        };
+      });
+
+    const itemCount: number &#x3D; queryResults.itemsCount;
+    const entities: Memory[] &#x3D; queryResults.items;
+
+    const pageMetaDto: PageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'MemoryService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

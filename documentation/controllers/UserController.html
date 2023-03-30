@@ -311,14 +311,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="415"
-                            class="link-to-prism">src/modules/user/user.controller.ts:415</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="433"
+                            class="link-to-prism">src/modules/user/user.controller.ts:433</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Deletes a user</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -329,6 +331,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -342,6 +345,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the request object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>res</td>
@@ -354,6 +361,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the response object</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -798,14 +809,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="397"
-                            class="link-to-prism">src/modules/user/user.controller.ts:397</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="410"
+                            class="link-to-prism">src/modules/user/user.controller.ts:410</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Searches for users by username</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -816,6 +829,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -829,6 +843,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the request object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>res</td>
@@ -841,6 +859,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the response object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>searchTerm</td>
@@ -853,6 +875,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the search term to search for</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>pageOptionsDto</td>
@@ -865,6 +891,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the page options</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1830,7 +1860,7 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>updates the usrename</p>
+                    <div class="io-description"><p>updates the username</p>
 </div>
 
                     <div class="io-description">
@@ -1932,20 +1962,22 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@UseGuards(JwtAuthGuard)<br />@Patch(&#x27;notification-prefences&#x27;)<br /></code>
+                    <code>@UseGuards(JwtAuthGuard)<br />@Patch(&#x27;notification-preferences&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="380"
-                            class="link-to-prism">src/modules/user/user.controller.ts:380</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="386"
+                            class="link-to-prism">src/modules/user/user.controller.ts:386</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Updates a users notification preferences</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -1956,6 +1988,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1969,6 +2002,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the request object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>res</td>
@@ -1981,6 +2018,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the response object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>notificationPreferences</td>
@@ -1993,6 +2034,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the notification preferences to update to</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -2023,7 +2068,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>updateUserPassword(req, res: Response, body: <a href="../classes/UpdateUserPasseordDto.html" target="_self">UpdateUserPasseordDto</a>)</code>
+<code>updateUserPassword(req, res: Response, body: <a href="../classes/UpdateUserPasswordDto.html" target="_self">UpdateUserPasswordDto</a>)</code>
                 </td>
             </tr>
 
@@ -2093,7 +2138,7 @@
                                 <tr>
                                     <td>body</td>
                                     <td>
-                                                <code><a href="../classes/UpdateUserPasseordDto.html" target="_self" >UpdateUserPasseordDto</a></code>
+                                                <code><a href="../classes/UpdateUserPasswordDto.html" target="_self" >UpdateUserPasswordDto</a></code>
                                     </td>
 
                                     <td>
@@ -2372,17 +2417,17 @@ import {
   UseInterceptors
 } from &#x27;@nestjs/common/decorators&#x27;;
 import { Response } from &#x27;express&#x27;;
-import { Role } from &#x27;src/constants/role.enum&#x27;;
+import { Role } from &#x27;../../constants/role.enum&#x27;;
 import { JwtAuthGuard } from &#x27;../auth/guards/jwt-auth.guard&#x27;;
 import { UserService } from &#x27;./user.service&#x27;;
 import { UpdateUserEmailDto } from &#x27;./dto/email-update.dto&#x27;;
 import { UpdateUserDateOfBirthDto } from &#x27;./dto/dateofbirth-update.dto&#x27;;
 import { UpdateUserPhoneNumberDto } from &#x27;./dto/phone-update.dto&#x27;;
-import { Gender } from &#x27;src/constants/gender.enum&#x27;;
-import { UpdateUserPasseordDto } from &#x27;./dto/password-update.dto&#x27;;
+import { Gender } from &#x27;../../constants/gender.enum&#x27;;
+import { UpdateUserPasswordDto } from &#x27;./dto/password-update.dto&#x27;;
 import { FileInterceptor } from &#x27;@nestjs/platform-express&#x27;;
-import { NotificationPreference } from &#x27;src/constants/notification-preference.enum&#x27;;
-import { PageOptionsDto } from &#x27;src/common/dto/page-options.dto&#x27;;
+import { NotificationPreference } from &#x27;../../constants/notification-preference.enum&#x27;;
+import { PageOptionsDto } from &#x27;../../common/dto/page-options.dto&#x27;;
 import { UpdateUserBioDto } from &#x27;./dto/bio-update.dto&#x27;;
 
 @Controller(&#x27;user&#x27;)
@@ -2466,7 +2511,7 @@ export class UserController {
   @Patch(&#x27;address&#x27;)
   updateUserAddress(@Query(&#x27;address&#x27;) address: string, @Request() req, @Res() res: Response) {
     if (!address) {
-      throw new BadRequestException(&#x27;Adress must not be empty&#x27;);
+      throw new BadRequestException(&#x27;Address must not be empty&#x27;);
     }
     this.userService
       .updateUserAddress(req.user, address)
@@ -2490,7 +2535,7 @@ export class UserController {
       throw new BadRequestException(&#x27;First name must not be empty&#x27;);
     }
     if (firstName.length &gt;&#x3D; 255) {
-      throw new BadRequestException(&#x27;Name should be less than 256 charecters&#x27;);
+      throw new BadRequestException(&#x27;Name should be less than 256 characters&#x27;);
     }
     this.userService
       .updateUserFirstName(req.user, firstName)
@@ -2514,7 +2559,7 @@ export class UserController {
       throw new BadRequestException(&#x27;Last name must not be empty&#x27;);
     }
     if (lastName.length &gt;&#x3D; 255) {
-      throw new BadRequestException(&#x27;Name should be less than 256 charecters&#x27;);
+      throw new BadRequestException(&#x27;Name should be less than 256 characters&#x27;);
     }
     this.userService
       .updateUserLastName(req.user, lastName)
@@ -2526,7 +2571,7 @@ export class UserController {
       });
   }
   /**
-   * updates the usrename
+   * updates the username
    * @param username the username to be updated
    * @param req the request object
    * @param res the response object
@@ -2538,7 +2583,7 @@ export class UserController {
       throw new BadRequestException(&#x27;Username must not be empty&#x27;);
     }
     if (username.length &gt; 30) {
-      throw new BadRequestException(&#x27;Userame should be less than 30 charecters&#x27;);
+      throw new BadRequestException(&#x27;Username should be less than 30 characters&#x27;);
     }
     this.userService
       .updateUsername(req.user, username)
@@ -2638,7 +2683,7 @@ export class UserController {
    */
   @UseGuards(JwtAuthGuard)
   @Patch(&#x27;password&#x27;)
-  updateUserPassword(@Request() req, @Res() res: Response, @Body() body: UpdateUserPasseordDto) {
+  updateUserPassword(@Request() req, @Res() res: Response, @Body() body: UpdateUserPasswordDto) {
     if (body.password !&#x3D;&#x3D; body.confirmPassword) {
       throw new BadRequestException(&#x27;Passwords do not match&#x27;);
     }
@@ -2729,8 +2774,14 @@ export class UserController {
       });
   }
 
+  /**
+   * Updates a users notification preferences
+   * @param req the request object
+   * @param res the response object
+   * @param notificationPreferences the notification preferences to update to
+   */
   @UseGuards(JwtAuthGuard)
-  @Patch(&#x27;notification-prefences&#x27;)
+  @Patch(&#x27;notification-preferences&#x27;)
   async updateUserNotificationPreferences(
     @Request() req,
     @Res() res: Response,
@@ -2746,6 +2797,13 @@ export class UserController {
       });
   }
 
+  /**
+   * Searches for users by username
+   * @param req the request object
+   * @param res the response object
+   * @param searchTerm the search term to search for
+   * @param pageOptionsDto the page options
+   */
   @UseGuards(JwtAuthGuard)
   @Get(&#x27;search&#x27;)
   async searchUsers(
@@ -2764,6 +2822,11 @@ export class UserController {
       });
   }
 
+  /**
+   * Deletes a user
+   * @param req the request object
+   * @param res the response object
+   */
   @UseGuards(JwtAuthGuard)
   @Delete(&#x27;delete&#x27;)
   async deleteUser(@Request() req, @Res() res: Response) {

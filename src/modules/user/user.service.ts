@@ -468,6 +468,12 @@ export class UserService {
       .execute();
   }
 
+  /**
+   * Updates the users avatar url
+   * @param user the user object that contains the userId
+   * @param url the url to the users avatar
+   * @param expiryDate the expiry date of the url
+   */
   async updateAvatarUrl(user: any, url: string, expiryDate: Date) {
     await this.usersRepository
       .createQueryBuilder()
@@ -479,6 +485,13 @@ export class UserService {
       .where('id = :id', { id: user.id })
       .execute();
   }
+
+  /**
+   * Updates the users notification preferences
+   * @param user the user object that contains the userId
+   * @param notificationPreference the notification preference to be updated
+   * @returns the result of the update
+   */
   async updateUserNotificationPreferences(
     user: any,
     notificationPreference: NotificationPreference
@@ -489,6 +502,12 @@ export class UserService {
     return this.usersRepository.update(user.id, { notificationPreference });
   }
 
+  /**
+   * Searches for users by username
+   * @param searchTerm the search term to be used in the query
+   * @param pageOptionsDto the page options
+   * @returns the users that match the search term
+   */
   async searchUsers(searchTerm: string, pageOptionsDto: PageOptionsDto): Promise<PageDto<User>> {
     const queryResults = await this.usersRepository
       .createQueryBuilder('user')
@@ -512,6 +531,10 @@ export class UserService {
     return new PageDto(entities, pageMetaDto);
   }
 
+  /**
+   * Deletes the user
+   * @param user the user object that contains the userId
+   */
   async deleteUser(user: any) {
     const dbUser = await this.usersRepository.findOneBy({ id: user.id });
 
@@ -523,6 +546,10 @@ export class UserService {
     await this.usersRepository.delete(dbUser.id);
   }
 
+  /**
+   * Removes the users third party data
+   * @param user the user object that contains the userId
+   */
   async removeThirdPartyData(user: User) {
     if (user.profilePictureId) {
       await new FirebaseStorageService().deleteAvatar(user.profilePictureId, user.id);

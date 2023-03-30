@@ -27,6 +27,12 @@ export class AppealsService {
     private userRepository: Repository<User>
   ) {}
 
+  /**
+   * Appeal a post's report
+   * @param user the user who is appealing the post
+   * @param body the appeal body
+   * @returns the appeal
+   */
   async appealPost(user: any, body: AppealDto): Promise<Appeal> {
     const newAppeal = new Appeal();
 
@@ -70,6 +76,13 @@ export class AppealsService {
     return this.appealRepository.save(newAppeal);
   }
 
+  /**
+   * Get the appeals for a post
+   * @param postId the post id
+   * @param user the user who is viewing the post's appeals
+   * @param pageOptionsDto the page options
+   * @returns the page of appeals
+   */
   async getPostAppealsById(
     postId: string,
     user: any,
@@ -96,6 +109,12 @@ export class AppealsService {
     return new PageDto(entities, pageMetaDto);
   }
 
+  /**
+   * Gets the appeals for a user
+   * @param user the user who is viewing their appeals
+   * @param pageOptionsDto the page options
+   * @returns the page of appeals
+   */
   async getUserAppeals(user: any, pageOptionsDto: PageOptionsDto): Promise<PageDto<Appeal>> {
     const dbUser = await this.userRepository.findOne({
       where: { id: user.id },
@@ -114,6 +133,11 @@ export class AppealsService {
     return new PageDto(entities, pageMetaDto);
   }
 
+  /**
+   * Accepts a post's appeal
+   * @param postId the post id
+   * @returns the appeal
+   */
   async acceptPostAppeal(postId: string): Promise<Appeal> {
     const post = await this.postRepository.findOne({
       where: { id: postId },
@@ -143,6 +167,11 @@ export class AppealsService {
     return this.appealRepository.save(appeal);
   }
 
+  /**
+   * Rejects a post's appeal
+   * @param postId the post id
+   * @returns the appeal
+   */
   async rejectPostAppeal(postId: string): Promise<Appeal> {
     const post = await this.postRepository.findOne({
       where: { id: postId },
@@ -170,6 +199,11 @@ export class AppealsService {
     return this.appealRepository.save(appeal);
   }
 
+  /**
+   * Gets the appeals for a post for an admin
+   * @param pageOptionsDto the page options
+   * @returns the page of appeals
+   */
   async getPostAppeals(pageOptionsDto: PageOptionsDto): Promise<PageDto<Appeal>> {
     const appeals = await this.appealRepository
       .createQueryBuilder()

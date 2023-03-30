@@ -137,14 +137,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="12"
-                            class="link-to-prism">src/common/services/stripe.service.ts:12</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/common/services/stripe.service.ts:19</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Delete a customer from Stripe</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -155,6 +157,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -169,6 +172,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the id of the customer</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -213,10 +220,16 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/common/services/stripe.service.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/common/services/stripe.service.ts:11</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Stripe instance</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -233,10 +246,17 @@ import { Injectable } from &#x27;@nestjs/common&#x27;;
 
 @Injectable()
 export class StripeService {
+  /**
+   * Stripe instance
+   */
   private stripe &#x3D; new Stripe(process.env?.STRIPE_TEST_KEY, {
     apiVersion: &#x27;2022-11-15&#x27;
   });
 
+  /**
+   * Delete a customer from Stripe
+   * @param customerId the id of the customer
+   */
   async deleteCustomer(customerId: string): Promise&lt;void&gt; {
     await this.stripe.customers.del(customerId);
   }

@@ -375,6 +375,12 @@ export class UserController {
       });
   }
 
+  /**
+   * Updates a users notification preferences
+   * @param req the request object
+   * @param res the response object
+   * @param notificationPreferences the notification preferences to update to
+   */
   @UseGuards(JwtAuthGuard)
   @Patch('notification-preferences')
   async updateUserNotificationPreferences(
@@ -392,6 +398,13 @@ export class UserController {
       });
   }
 
+  /**
+   * Searches for users by username
+   * @param req the request object
+   * @param res the response object
+   * @param searchTerm the search term to search for
+   * @param pageOptionsDto the page options
+   */
   @UseGuards(JwtAuthGuard)
   @Get('search')
   async searchUsers(
@@ -410,6 +423,11 @@ export class UserController {
       });
   }
 
+  /**
+   * Deletes a user
+   * @param req the request object
+   * @param res the response object
+   */
   @UseGuards(JwtAuthGuard)
   @Delete('delete')
   async deleteUser(@Request() req, @Res() res: Response) {

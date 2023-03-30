@@ -169,6 +169,12 @@ export class ReportController {
       });
   }
 
+  /**
+   * Gets the reported posts for admin
+   * @param req the request object
+   * @param res the response object
+   * @param pageOptionsDto the page options
+   */
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Get('reported-posts')
   @Roles(Role.Admin)
@@ -183,6 +189,12 @@ export class ReportController {
       });
   }
 
+  /**
+   * GEts the reported users for admin
+   * @param req the request object
+   * @param res the response object
+   * @param pageOptionsDto the page options
+   */
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Get('reported-users')
   @Roles(Role.Admin)

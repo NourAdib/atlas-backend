@@ -529,14 +529,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="175"
-                            class="link-to-prism">src/modules/report/report.controller.ts:175</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="181"
+                            class="link-to-prism">src/modules/report/report.controller.ts:181</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Gets the reported posts for admin</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -547,6 +549,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -560,6 +563,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the request object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>res</td>
@@ -572,6 +579,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the response object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>pageOptionsDto</td>
@@ -584,6 +595,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the page options</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -628,14 +643,16 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="189"
-                            class="link-to-prism">src/modules/report/report.controller.ts:189</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="201"
+                            class="link-to-prism">src/modules/report/report.controller.ts:201</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>GEts the reported users for admin</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -646,6 +663,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -659,6 +677,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the request object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>res</td>
@@ -671,6 +693,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the response object</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>pageOptionsDto</td>
@@ -683,6 +709,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>the page options</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1175,9 +1205,9 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, UseGuards, Res, Request, Post, Body, HttpStatus } from &#x27;@nestjs/common&#x27;;
 import { Get, Param, Query } from &#x27;@nestjs/common/decorators&#x27;;
 import { Response } from &#x27;express&#x27;;
-import { PageOptionsDto } from &#x27;src/common/dto/page-options.dto&#x27;;
-import { Role } from &#x27;src/constants/role.enum&#x27;;
-import { Roles } from &#x27;src/decorators/roles.decorator&#x27;;
+import { PageOptionsDto } from &#x27;../../common/dto/page-options.dto&#x27;;
+import { Role } from &#x27;../../constants/role.enum&#x27;;
+import { Roles } from &#x27;../../decorators/roles.decorator&#x27;;
 import { JwtAuthGuard } from &#x27;../auth/guards/jwt-auth.guard&#x27;;
 import { RolesGuard } from &#x27;../auth/guards/roles.guard&#x27;;
 import { ReportDto } from &#x27;./dto/report.dto&#x27;;
@@ -1343,6 +1373,12 @@ export class ReportController {
       });
   }
 
+  /**
+   * Gets the reported posts for admin
+   * @param req the request object
+   * @param res the response object
+   * @param pageOptionsDto the page options
+   */
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Get(&#x27;reported-posts&#x27;)
   @Roles(Role.Admin)
@@ -1357,6 +1393,12 @@ export class ReportController {
       });
   }
 
+  /**
+   * GEts the reported users for admin
+   * @param req the request object
+   * @param res the response object
+   * @param pageOptionsDto the page options
+   */
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Get(&#x27;reported-users&#x27;)
   @Roles(Role.Admin)

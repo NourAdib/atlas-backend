@@ -84,6 +84,12 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#captchaResult" >captchaResult</a>
+                            </li>
+                            <li>
+                                <a href="#getCaptcha" >getCaptcha</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Async</span>
                                 <a href="#loginUser" >loginUser</a>
                             </li>
@@ -114,6 +120,169 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="captchaResult"></a>
+                    <span class="name">
+                        <span ><b>captchaResult</b></span>
+                        <a href="#captchaResult"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>captchaResult(res: Response, captchaResponse)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Post(&#x27;captcha&#x27;)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="94"
+                            class="link-to-prism">src/modules/auth/auth.controller.ts:94</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>res</td>
+                                    <td>
+                                            <code>Response</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>captchaResponse</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCaptcha"></a>
+                    <span class="name">
+                        <span ><b>getCaptcha</b></span>
+                        <a href="#getCaptcha"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getCaptcha(res: Response)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;captcha&#x27;)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="81"
+                            class="link-to-prism">src/modules/auth/auth.controller.ts:81</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>res</td>
+                                    <td>
+                                            <code>Response</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="loginUser"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -139,8 +308,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="117"
-                            class="link-to-prism">src/modules/auth/auth.controller.ts:117</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="144"
+                            class="link-to-prism">src/modules/auth/auth.controller.ts:144</a></div>
                 </td>
             </tr>
 
@@ -221,8 +390,8 @@ The LocalAuthGuard will check if the user is authenticated using the local strat
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="88"
-                            class="link-to-prism">src/modules/auth/auth.controller.ts:88</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="115"
+                            class="link-to-prism">src/modules/auth/auth.controller.ts:115</a></div>
                 </td>
             </tr>
 
@@ -336,8 +505,8 @@ The LocalAuthGuard will check if the user is authenticated using the local strat
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/modules/auth/auth.controller.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/modules/auth/auth.controller.ts:41</a></div>
                 </td>
             </tr>
 
@@ -404,7 +573,7 @@ We use the @Body() decorator to get the body of the request and the body is a Si
 
 
                                     <td>
-                                        <p>the respponse object we will send back to the user</p>
+                                        <p>the response object we will send back to the user</p>
 
                                     </td>
                                 </tr>
@@ -452,12 +621,13 @@ We use the @Body() decorator to get the body of the request and the body is a Si
   UseGuards,
   ForbiddenException,
   UseInterceptors,
-  UploadedFile
+  UploadedFile,
+  Get
 } from &#x27;@nestjs/common&#x27;;
 import { FileInterceptor } from &#x27;@nestjs/platform-express&#x27;;
 import { Response } from &#x27;express&#x27;;
-import { Role } from &#x27;src/constants/role.enum&#x27;;
-import { Roles } from &#x27;src/decorators/roles.decorator&#x27;;
+import { Role } from &#x27;../../constants/role.enum&#x27;;
+import { Roles } from &#x27;../../decorators/roles.decorator&#x27;;
 import { User } from &#x27;../user/entities/user.entity&#x27;;
 import { UserService } from &#x27;../user/user.service&#x27;;
 import { AuthService } from &#x27;./auth.service&#x27;;
@@ -476,7 +646,7 @@ export class AuthController {
    * We use the @Body() decorator to get the body of the request and the body is a SignUpUserDto
    * @param body the request body
    * @param req the request object itself
-   * @param res the respponse object we will send back to the user
+   * @param res the response object we will send back to the user
    * @returns confirmation message or error message
    */
   @Post(&#x27;signup&#x27;)
@@ -518,6 +688,32 @@ export class AuthController {
         }
       }
     });
+  }
+
+  @Get(&#x27;captcha&#x27;)
+  getCaptcha(@Res() res: Response) {
+    this.authService
+      .getCaptcha()
+      .then((captcha) &#x3D;&gt; {
+        return res.status(HttpStatus.OK).send(captcha);
+      })
+      .catch((err) &#x3D;&gt; {
+        console.log(err);
+        return res.status(err.status).json({ message: err.message });
+      });
+  }
+
+  @Post(&#x27;captcha&#x27;)
+  captchaResult(@Res() res: Response, @Body() captchaResponse) {
+    this.authService
+      .captchaResult(captchaResponse)
+      .then((captcha) &#x3D;&gt; {
+        return res.status(HttpStatus.OK).send(captcha);
+      })
+      .catch((err) &#x3D;&gt; {
+        console.log(err);
+        return res.status(err.status).json({ message: err.message });
+      });
   }
 
   /** creating post route, the route will be admin/signup

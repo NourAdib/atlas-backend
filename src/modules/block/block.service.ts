@@ -14,6 +14,12 @@ export class BlockService {
     private userRepository: Repository<User>
   ) {}
 
+  /**
+   * Blocks a user
+   * @param id the id of the user to be blocked
+   * @param user the user who is blocking the other user
+   * @returns the block
+   */
   async blockUser(id: string, user: any): Promise<Block> {
     const userToBeBlocked = await this.userRepository.findOneBy({ id: id });
 
@@ -47,6 +53,12 @@ export class BlockService {
     return await this.blockRepository.save(newBlock);
   }
 
+  /**
+   * Unblocks a user
+   * @param id the id of the user to be unblocked
+   * @param user the user who is unblocking the other user
+   * @returns the block
+   */
   async unblockUser(id: string, user: any): Promise<DeleteResult> {
     const userToBeUnblocked = await this.userRepository.findOneBy({ id: id });
 

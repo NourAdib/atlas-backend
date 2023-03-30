@@ -33,7 +33,7 @@ export class AuthController {
    * We use the @Body() decorator to get the body of the request and the body is a SignUpUserDto
    * @param body the request body
    * @param req the request object itself
-   * @param res the respponse object we will send back to the user
+   * @param res the response object we will send back to the user
    * @returns confirmation message or error message
    */
   @Post('signup')

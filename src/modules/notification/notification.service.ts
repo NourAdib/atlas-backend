@@ -15,10 +15,21 @@ export class NotificationService {
     private usersRepository: Repository<User>
   ) {}
 
+  /**
+   * Adds the fcm token to the user
+   * @param user the user to be signed up
+   * @param fcmToken the fcm token to be saved
+   * @returns the operation result
+   */
   signup(user: any, fcmToken: string): Promise<UpdateResult> {
     return this.usersRepository.update(user.id, { fcmToken: fcmToken });
   }
 
+  /**
+   * Sends a notification
+   * @param sendNotificationDto the notification to be sent
+   * @returns result of the operation
+   */
   async sendNotification(sendNotificationDto: SendNotificationDto): Promise<any> {
     if (sendNotificationDto.targetGroup === NotificationTargetGroup.SingleUser) {
       if (!sendNotificationDto.targetUserId) {
@@ -47,6 +58,11 @@ export class NotificationService {
     }
   }
 
+  /**
+   * Sends a notification celebrity
+   * @param sendNotificationDto the notification to be sent
+   * @returns result of the operation
+   */
   async sendNotificationToCelebrities(title: string, body: string): Promise<any> {
     const usersToBeNotified = await this.usersRepository.find({
       where: [
@@ -94,6 +110,11 @@ export class NotificationService {
     return messaging.sendMulticast(payload);
   }
 
+  /**
+   * Sends a notification to influencers
+   * @param sendNotificationDto the notification to be sent
+   * @returns result of the operation
+   */
   async sendNotificationToInfluencers(title: string, body: string): Promise<any> {
     const usersToBeNotified = await this.usersRepository.find({
       where: [
@@ -141,6 +162,11 @@ export class NotificationService {
     return messaging.sendMulticast(payload);
   }
 
+  /**
+   * Sends a notification to all users
+   * @param sendNotificationDto the notification to be sent
+   * @returns result of the operation
+   */
   async sendNotificationToAll(title: string, body: string): Promise<any> {
     const usersToBeNotified = await this.usersRepository.find({
       where: [
@@ -186,6 +212,11 @@ export class NotificationService {
     return messaging.sendMulticast(payload);
   }
 
+  /**
+   * Sends a notification to one user
+   * @param sendNotificationDto the notification to be sent
+   * @returns result of the operation
+   */
   async sendNotificationToOne(title: string, body: string, userId): Promise<string> {
     const userToBeNotified = await this.usersRepository.findOne({
       where: {

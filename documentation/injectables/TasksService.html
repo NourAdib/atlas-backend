@@ -92,6 +92,10 @@ This will run once everyday at 12:00:00 AM server time</p>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#updateUserMemoryURLs" >updateUserMemoryURLs</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#updateUserPostURLs" >updateUserPostURLs</a>
                             </li>
                             <li>
@@ -116,12 +120,12 @@ This will run once everyday at 12:00:00 AM server time</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(userRepository: <a href="../entitys/User.html" target="_self">Repository&lt;User&gt;</a>, postRepository: <a href="../entitys/Post.html" target="_self">Repository&lt;Post&gt;</a>, userBanRepository: Repository<UserBan>)</code>
+<code>constructor(userRepository: <a href="../entitys/User.html" target="_self">Repository&lt;User&gt;</a>, postRepository: <a href="../entitys/Post.html" target="_self">Repository&lt;Post&gt;</a>, userBanRepository: Repository<UserBan>, memoryRepository: <a href="../entitys/Memory.html" target="_self">Repository&lt;Memory&gt;</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/modules/tasks/tasks.service.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/modules/tasks/tasks.service.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -174,6 +178,18 @@ This will run once everyday at 12:00:00 AM server time</p>
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>memoryRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/Memory.html" target="_self" >Repository&lt;Memory&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -211,14 +227,14 @@ This will run once everyday at 12:00:00 AM server time</p>
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)<br /></code>
+                    <code>@Cron(CronExpression.EVERY_MINUTE)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="111"
-                            class="link-to-prism">src/modules/tasks/tasks.service.ts:111</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="115"
+                            class="link-to-prism">src/modules/tasks/tasks.service.ts:115</a></div>
                 </td>
             </tr>
 
@@ -227,6 +243,55 @@ This will run once everyday at 12:00:00 AM server time</p>
                 <td class="col-md-4">
                     <div class="io-description"><p>Runs at the specified interval
 Removes the bans on users whose ban has expired</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateUserMemoryURLs"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>updateUserMemoryURLs</b></span>
+                        <a href="#updateUserMemoryURLs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateUserMemoryURLs()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Cron(CronExpression.EVERY_MINUTE)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="139"
+                            class="link-to-prism">src/modules/tasks/tasks.service.ts:139</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Runs at the specified interval
+Updates the memory picture URL for all posts whose picture will expire tomorrow</p>
 </div>
 
                     <div class="io-description">
@@ -260,14 +325,14 @@ Removes the bans on users whose ban has expired</p>
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)<br /></code>
+                    <code>@Cron(CronExpression.EVERY_MINUTE)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="72"
-                            class="link-to-prism">src/modules/tasks/tasks.service.ts:72</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="76"
+                            class="link-to-prism">src/modules/tasks/tasks.service.ts:76</a></div>
                 </td>
             </tr>
 
@@ -309,14 +374,14 @@ Updates the post picture URL for all posts whose picture will expire tomorrow</p
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)<br /></code>
+                    <code>@Cron(CronExpression.EVERY_MINUTE)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">src/modules/tasks/tasks.service.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/modules/tasks/tasks.service.ts:37</a></div>
                 </td>
             </tr>
 
@@ -344,9 +409,10 @@ Updates the profile picture URL for all users whose profile picture will expire 
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
 import { Cron, CronExpression } from &#x27;@nestjs/schedule&#x27;;
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
-import { FirebaseStorageService } from &#x27;src/common/services/firebase-storage.service&#x27;;
-import { BanStatus } from &#x27;src/constants/ban-status.enum&#x27;;
+import { FirebaseStorageService } from &#x27;../../common/services/firebase-storage.service&#x27;;
+import { BanStatus } from &#x27;../../constants/ban-status.enum&#x27;;
 import { Repository, Not, LessThan } from &#x27;typeorm&#x27;;
+import { Memory } from &#x27;../memory/entities/memory.entity&#x27;;
 import { Post } from &#x27;../post/entities/post.entity&#x27;;
 import { UserBan } from &#x27;../report/entities/user-ban.entity&#x27;;
 import { User } from &#x27;../user/entities/user.entity&#x27;;
@@ -365,14 +431,17 @@ export class TasksService {
     private postRepository: Repository&lt;Post&gt;,
 
     @InjectRepository(UserBan)
-    private userBanRepository: Repository&lt;UserBan&gt;
+    private userBanRepository: Repository&lt;UserBan&gt;,
+
+    @InjectRepository(Memory)
+    private memoryRepository: Repository&lt;Memory&gt;
   ) {}
 
   /**
    * Runs at the specified interval
    * Updates the profile picture URL for all users whose profile picture will expire tomorrow
    */
-  @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
+  @Cron(CronExpression.EVERY_MINUTE)
   async updateUserProfileURLs() {
     const tomorrow &#x3D; new Date(Date.now());
     tomorrow.setDate(tomorrow.getDate() + 1);
@@ -411,7 +480,7 @@ export class TasksService {
    * Runs at the specified interval
    * Updates the post picture URL for all posts whose picture will expire tomorrow
    */
-  @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
+  @Cron(CronExpression.EVERY_MINUTE)
   async updateUserPostURLs() {
     const tomorrow &#x3D; new Date(Date.now());
     tomorrow.setDate(tomorrow.getDate() + 1);
@@ -450,7 +519,7 @@ export class TasksService {
    * Runs at the specified interval
    * Removes the bans on users whose ban has expired
    */
-  @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
+  @Cron(CronExpression.EVERY_MINUTE)
   async removeExpiredBans() {
     await this.userBanRepository
       .find({
@@ -465,6 +534,46 @@ export class TasksService {
 
           if (ban.endDate &lt; new Date(Date.now())) {
             await this.userBanRepository.update(ban.id, { status: BanStatus.Expired });
+          }
+        }
+      });
+  }
+
+  /**
+   * Runs at the specified interval
+   * Updates the memory picture URL for all posts whose picture will expire tomorrow
+   */
+  @Cron(CronExpression.EVERY_MINUTE)
+  async updateUserMemoryURLs() {
+    const tomorrow &#x3D; new Date(Date.now());
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    await this.memoryRepository
+      .find({
+        where: {
+          imageId: Not(&#x27;&#x27;),
+          imageExpiryDate: LessThan(tomorrow)
+        },
+        relations: [&#x27;user&#x27;]
+      })
+      .then(async (memories) &#x3D;&gt; {
+        for (let i &#x3D; 0; i &lt; memories.length; i++) {
+          const memory &#x3D; memories[i];
+
+          if (memory.imageId &amp;&amp; memory.user) {
+            if (memory.imageExpiryDate &lt; new Date(Date.now())) {
+              const { url, expiryDate } &#x3D;
+                await new FirebaseStorageService().getMemoryImageSignedURL(
+                  memory.imageId,
+                  memory.user.id,
+                  memory.id
+                );
+
+              memory.imageExpiryDate &#x3D; new Date(expiryDate);
+              memory.imageUrl &#x3D; url;
+
+              await this.memoryRepository.save(memory);
+            }
           }
         }
       });

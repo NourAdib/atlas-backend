@@ -8,6 +8,12 @@ import { PageOptionsDto } from '../../common/dto/page-options.dto';
 export class FeedController {
   constructor(private feedService: FeedService) {}
 
+  /**
+   * Gets the feed
+   * @param req the request object
+   * @param res the response object
+   * @param pageOptionsDto the page options
+   */
   @UseGuards(JwtAuthGuard)
   @Get()
   getFeed(@Request() req, @Res() res: Response, @Query() pageOptionsDto: PageOptionsDto) {

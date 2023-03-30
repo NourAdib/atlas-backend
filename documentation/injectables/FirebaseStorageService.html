@@ -105,7 +105,15 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#deleteMemoryImage" >deleteMemoryImage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#deletePostImage" >deletePostImage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getMemoryImageSignedURL" >getMemoryImageSignedURL</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -122,6 +130,10 @@
                             <li>
                                     <span class="modifier">Async</span>
                                 <a href="#uploadAvatar" >uploadAvatar</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#uploadMemoryImage" >uploadMemoryImage</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -167,8 +179,102 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="68"
-                            class="link-to-prism">src/common/services/firebase-storage.service.ts:68</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">src/common/services/firebase-storage.service.ts:73</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Removes the avatar of a user</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>imageId</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the id of the image to be removed</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the id of the user</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteMemoryImage"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>deleteMemoryImage</b></span>
+                        <a href="#deleteMemoryImage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteMemoryImage(imageId: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, memoryId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="226"
+                            class="link-to-prism">src/common/services/firebase-storage.service.ts:226</a></div>
                 </td>
             </tr>
 
@@ -202,6 +308,18 @@
                                 </tr>
                                 <tr>
                                     <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>memoryId</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
@@ -250,8 +368,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="98"
-                            class="link-to-prism">src/common/services/firebase-storage.service.ts:98</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="111"
+                            class="link-to-prism">src/common/services/firebase-storage.service.ts:111</a></div>
                 </td>
             </tr>
 
@@ -327,6 +445,101 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="getMemoryImageSignedURL"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getMemoryImageSignedURL</b></span>
+                        <a href="#getMemoryImageSignedURL"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getMemoryImageSignedURL(imageId: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, memoryId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="180"
+                            class="link-to-prism">src/common/services/firebase-storage.service.ts:180</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>imageId</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>memoryId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getPostImageSignedURL"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -345,8 +558,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="139"
-                            class="link-to-prism">src/common/services/firebase-storage.service.ts:139</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="152"
+                            class="link-to-prism">src/common/services/firebase-storage.service.ts:152</a></div>
                 </td>
             </tr>
 
@@ -440,8 +653,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="110"
-                            class="link-to-prism">src/common/services/firebase-storage.service.ts:110</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="123"
+                            class="link-to-prism">src/common/services/firebase-storage.service.ts:123</a></div>
                 </td>
             </tr>
 
@@ -711,26 +924,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="uploadPostImage"></a>
+                    <a name="uploadMemoryImage"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>uploadPostImage</b></span>
-                        <a href="#uploadPostImage"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>uploadMemoryImage</b></span>
+                        <a href="#uploadMemoryImage"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>uploadPostImage(image: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, postId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>uploadMemoryImage(image: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, memoryId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="80"
-                            class="link-to-prism">src/common/services/firebase-storage.service.ts:80</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="208"
+                            class="link-to-prism">src/common/services/firebase-storage.service.ts:208</a></div>
                 </td>
             </tr>
 
@@ -775,7 +988,7 @@
 
                                 </tr>
                                 <tr>
-                                    <td>postId</td>
+                                    <td>memoryId</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
@@ -797,6 +1010,117 @@
                     </div>
                     <div class="io-description">
                         
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="uploadPostImage"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>uploadPostImage</b></span>
+                        <a href="#uploadPostImage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>uploadPostImage(image: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, postId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="93"
+                            class="link-to-prism">src/common/services/firebase-storage.service.ts:93</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Upload post image</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>image</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the image to be uploaded</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the id of the user</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>postId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>the id of the post</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>the image id, url and expiry date</p>
+
                     </div>
                 </td>
             </tr>
@@ -912,6 +1236,11 @@ export class FirebaseStorageService {
     return { url: url, expiryDate: this.expiryDate };
   }
 
+  /**
+   * Removes the avatar of a user
+   * @param imageId the id of the image to be removed
+   * @param userId the id of the user
+   */
   async deleteAvatar(imageId: any, userId: string) {
     const fileName &#x3D; &#x60;users/${userId}/avatars/${imageId}.png&#x60;;
 
@@ -924,6 +1253,14 @@ export class FirebaseStorageService {
       });
   }
 
+  /**
+   * Upload post image
+   * @description This function is used to upload a new avatar image
+   * @param image the image to be uploaded
+   * @param userId the id of the user
+   * @param postId the id of the post
+   * @returns the image id, url and expiry date
+   */
   async uploadPostImage(image: any, userId: string, postId: string) {
     const imageId &#x3D; uuidv4();
 
@@ -1009,6 +1346,64 @@ export class FirebaseStorageService {
         }
       });
     return { url: imageUrl, expiryDate: this.expiryDate };
+  }
+
+  async getMemoryImageSignedURL(imageId: any, userId: string, memoryId: string) {
+    const fileName &#x3D; &#x60;users/${userId}/memories/${memoryId}/${imageId}.png&#x60;;
+
+    let imageUrl &#x3D; &#x27;&#x27;;
+    await storage
+      .bucket(process.env.FIREBASE_BUCKET_NAME)
+      .file(fileName)
+      .exists()
+      .then(async (exists) &#x3D;&gt; {
+        if (exists[0]) {
+          const urlOptions: GetSignedUrlConfig &#x3D; {
+            version: &#x27;v4&#x27;,
+            action: &#x27;read&#x27;,
+            expires: this.expiryDate
+          };
+
+          // Get a signed URL that allows temporary access to the object
+          const [url] &#x3D; await storage
+            .bucket(process.env.FIREBASE_BUCKET_NAME)
+            .file(fileName)
+            .getSignedUrl(urlOptions);
+
+          imageUrl &#x3D; url;
+        }
+      });
+    return { url: imageUrl, expiryDate: this.expiryDate };
+  }
+
+  async uploadMemoryImage(image: any, userId: string, memoryId: string) {
+    const imageId &#x3D; uuidv4();
+
+    const file &#x3D; bucket.file(&#x60;users/${userId}/memories/${memoryId}/${imageId}.png&#x60;);
+
+    await file.save(image);
+
+    const urlOptions: GetSignedUrlConfig &#x3D; {
+      version: &#x27;v4&#x27;,
+      action: &#x27;read&#x27;,
+      expires: this.expiryDate
+    };
+
+    const [url] &#x3D; await file.getSignedUrl(urlOptions);
+
+    return { imageId: imageId, url: url, expiryDate: this.expiryDate };
+  }
+
+  async deleteMemoryImage(imageId: any, userId: string, memoryId: string) {
+    const fileName &#x3D; &#x60;users/${userId}/memories/${memoryId}/${imageId}.png&#x60;;
+
+    await storage
+      .bucket(process.env.FIREBASE_BUCKET_NAME)
+      .file(fileName)
+      .delete()
+      .catch((err) &#x3D;&gt; {
+        throw err;
+      });
   }
 }
 </code></pre>
