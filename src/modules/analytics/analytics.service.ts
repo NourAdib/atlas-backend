@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Role } from 'src/constants/role.enum';
+import { Role } from '../../constants/role.enum';
 import { Repository } from 'typeorm';
 import { Post } from '../post/entities/post.entity';
 import { User } from '../user/entities/user.entity';
